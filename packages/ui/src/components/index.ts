@@ -1,6 +1,6 @@
 // Atoms
-export * from './atoms/button/Button';
-export * from '../interface/atoms/button/Button.types';
+export * from './atoms/button/button';
+export * from '../interface/atoms/button/button.types';
 
 // Molecules
 // export * from './molecules/card/Card';

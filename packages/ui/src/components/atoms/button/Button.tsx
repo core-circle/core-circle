@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { cn } from '../../../utils/cn';
-import { ButtonProps } from '../../../interface/atoms/button/Button.types';
-import { buttonVariants } from './Button.styles';
-import LoadingIcon from '../../../../../icons/LoadingIcon';
+import { ButtonProps } from '../../../interface/atoms/button/button.types';
+import { buttonVariants } from './button.styles';
+import LoadingIcon from '../../../../../icons/loadingIcon';
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
@@ -23,7 +23,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const isDisabled = disabled || loading;
 
-    // Default loader if no custom loading icons are provided
     const showDefaultLoader = loading && !startLoadingIcon && !endLoadingIcon;
 
     return (

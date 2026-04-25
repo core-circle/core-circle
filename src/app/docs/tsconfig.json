@@ -19,7 +19,8 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@org/icons": ["../../../packages/icons/index.ts"]
     },
     "outDir": "dist",
     "rootDir": "src",
@@ -43,5 +44,10 @@
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
     ".next"
+  ],
+  "references": [
+    {
+      "path": "../../../packages/ui"
+    }
   ]
 }

@@ -1,3 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Ubuntu:wght@300;400;500;700&display=swap');
 @import "tailwindcss";
-@import "../../../../packages/theme/tailwind-theme.css";
+@import "../../../../../packages/ui/src/tailwind.css";
+
+@source "../../../../../packages/ui/src/**/*.{ts,tsx}";
+
+@theme {
+  --animate-core-circle-in: core-circle-in 0.4s var(--animate-ease-core-circle-out);
+
+  @keyframes core-circle-in {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
 

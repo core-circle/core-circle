@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nx dev @org/docs",
+    "dev": "npx nx reset & npx rimraf src/app/docs/.next & npx nx dev @org/docs",
     "build": "nx build @org/docs",
     "storybook": "nx storybook @org/ui",
     "build-storybook": "nx build-storybook @org/ui",

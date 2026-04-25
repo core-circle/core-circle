@@ -1,4 +1,8 @@
 @theme {
+  /* Font Families */
+  --font-family-core-circle-heading: "Montserrat", sans-serif;
+  --font-family-core-circle-body: "Ubuntu", sans-serif;
+
   /* Colors */
   /* Colors Palette (100+ colors) */
   --color-core-circle-slate-50: #f8fafc; --color-core-circle-slate-100: #f1f5f9; --color-core-circle-slate-200: #e2e8f0; --color-core-circle-slate-300: #cbd5e1; --color-core-circle-slate-400: #94a3b8; --color-core-circle-slate-50: #64748b; --color-core-circle-slate-600: #475569; --color-core-circle-slate-700: #334155; --color-core-circle-slate-800: #1e293b; --color-core-circle-slate-900: #0f172a; --color-core-circle-slate-950: #020617;
@@ -123,3 +127,23 @@
   --animate-ease-core-circle-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
 }
+
+@layer base {
+  body {
+    font-family: var(--font-family-core-circle-body);
+    @apply text-core-circle-text-main antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-core-circle-heading);
+    @apply font-core-circle-bold tracking-tight;
+  }
+
+  h1 { @apply text-core-circle-5xl; }
+  h2 { @apply text-core-circle-4xl; }
+  h3 { @apply text-core-circle-3xl; }
+  h4 { @apply text-core-circle-2xl; }
+  h5 { @apply text-core-circle-xl; }
+  h6 { @apply text-core-circle-lg; }
+}
+
