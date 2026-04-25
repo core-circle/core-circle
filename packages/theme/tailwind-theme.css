@@ -1,0 +1,125 @@
+@theme {
+  /* Colors */
+  /* Colors Palette (100+ colors) */
+  --color-core-circle-slate-50: #f8fafc; --color-core-circle-slate-100: #f1f5f9; --color-core-circle-slate-200: #e2e8f0; --color-core-circle-slate-300: #cbd5e1; --color-core-circle-slate-400: #94a3b8; --color-core-circle-slate-50: #64748b; --color-core-circle-slate-600: #475569; --color-core-circle-slate-700: #334155; --color-core-circle-slate-800: #1e293b; --color-core-circle-slate-900: #0f172a; --color-core-circle-slate-950: #020617;
+
+  --color-core-circle-gray-50: #f9fafb; --color-core-circle-gray-100: #f3f4f6; --color-core-circle-gray-200: #e5e7eb; --color-core-circle-gray-300: #d1d5db; --color-core-circle-gray-400: #9ca3af; --color-core-circle-gray-500: #6b7280; --color-core-circle-gray-600: #4b5563; --color-core-circle-gray-700: #374151; --color-core-circle-gray-800: #1f2937; --color-core-circle-gray-900: #111827; --color-core-circle-gray-950: #030712;
+
+  --color-core-circle-red-50: #fef2f2; --color-core-circle-red-100: #fee2e2; --color-core-circle-red-200: #fecaca; --color-core-circle-red-300: #fca5a5; --color-core-circle-red-400: #f87171; --color-core-circle-red-500: #ef4444; --color-core-circle-red-600: #dc2626; --color-core-circle-red-700: #b91c1c; --color-core-circle-red-800: #991b1b; --color-core-circle-red-900: #7f1d1d; --color-core-circle-red-950: #450a0a;
+
+  --color-core-circle-orange-50: #fff7ed; --color-core-circle-orange-100: #ffedd5; --color-core-circle-orange-200: #fed7aa; --color-core-circle-orange-300: #fdba74; --color-core-circle-orange-400: #fb923c; --color-core-circle-orange-500: #f97316; --color-core-circle-orange-600: #ea580c; --color-core-circle-orange-700: #c2410c; --color-core-circle-orange-800: #9a3412; --color-core-circle-orange-900: #7c2d12; --color-core-circle-orange-950: #431407;
+
+  --color-core-circle-amber-50: #fffbeb; --color-core-circle-amber-100: #fef3c7; --color-core-circle-amber-200: #fde68a; --color-core-circle-amber-300: #fcd34d; --color-core-circle-amber-400: #fbbf24; --color-core-circle-amber-500: #f59e0b; --color-core-circle-amber-600: #d97706; --color-core-circle-amber-700: #b45309; --color-core-circle-amber-800: #92400e; --color-core-circle-amber-900: #78350f; --color-core-circle-amber-950: #451a03;
+
+  --color-core-circle-green-50: #f0fdf4; --color-core-circle-green-100: #dcfce7; --color-core-circle-green-200: #bbf7d0; --color-core-circle-green-300: #86efac; --color-core-circle-green-400: #4ade80; --color-core-circle-green-500: #22c55e; --color-core-circle-green-600: #16a34a; --color-core-circle-green-700: #15803d; --color-core-circle-green-800: #166534; --color-core-circle-green-900: #14532d; --color-core-circle-green-950: #052e16;
+
+  --color-core-circle-teal-50: #f0fdfa; --color-core-circle-teal-100: #ccfbf1; --color-core-circle-teal-200: #99f6e4; --color-core-circle-teal-300: #5eead4; --color-core-circle-teal-400: #2dd4bf; --color-core-circle-teal-500: #14b8a6; --color-core-circle-teal-600: #0d9488; --color-core-circle-teal-700: #0f766e; --color-core-circle-teal-800: #115e59; --color-core-circle-teal-900: #134e4a; --color-core-circle-teal-950: #042f2e;
+
+  --color-core-circle-blue-50: #eff6ff; --color-core-circle-blue-100: #dbeafe; --color-core-circle-blue-200: #bfdbfe; --color-core-circle-blue-300: #93c5fd; --color-core-circle-blue-400: #60a5fa; --color-core-circle-blue-500: #3b82f6; --color-core-circle-blue-600: #2563eb; --color-core-circle-blue-700: #1d4ed8; --color-core-circle-blue-800: #1e40af; --color-core-circle-blue-900: #1e3a8a; --color-core-circle-blue-950: #172554;
+
+  --color-core-circle-indigo-50: #eef2ff; --color-core-circle-indigo-100: #e0e7ff; --color-core-circle-indigo-200: #c7d2fe; --color-core-circle-indigo-300: #a5b4fc; --color-core-circle-indigo-400: #818cf8; --color-core-circle-indigo-500: #6366f1; --color-core-circle-indigo-600: #4f46e5; --color-core-circle-indigo-700: #4338ca; --color-core-circle-indigo-800: #3730a3; --color-core-circle-indigo-900: #312e81; --color-core-circle-indigo-950: #1e1b4b;
+
+  --color-core-circle-purple-50: #faf5ff; --color-core-circle-purple-100: #f3e8ff; --color-core-circle-purple-200: #e9d5ff; --color-core-circle-purple-300: #d8b4fe; --color-core-circle-purple-400: #c084fc; --color-core-circle-purple-500: #a855f7; --color-core-circle-purple-600: #9333ea; --color-core-circle-purple-700: #7e22ce; --color-core-circle-purple-800: #6b21a8; --color-core-circle-purple-900: #581c87; --color-core-circle-purple-950: #3b0764;
+
+  /* Brand Colors (Aliased) */
+  --color-core-circle-primary: var(--color-core-circle-blue-600);
+  --color-core-circle-primary-hover: var(--color-core-circle-blue-700);
+  --color-core-circle-primary-active: var(--color-core-circle-blue-800);
+  
+  --color-core-circle-secondary: var(--color-core-circle-green-600);
+  --color-core-circle-secondary-hover: var(--color-core-circle-green-700);
+  --color-core-circle-secondary-active: var(--color-core-circle-green-800);
+  
+  --color-core-circle-destructive: var(--color-core-circle-red-600);
+  --color-core-circle-destructive-hover: var(--color-core-circle-red-700);
+
+  --color-core-circle-warning: var(--color-core-circle-orange-500);
+  --color-core-circle-warning-hover: var(--color-core-circle-orange-600);
+  --color-core-circle-warning-active: var(--color-core-circle-orange-700);
+
+  /* Semantic Presets - Backgrounds */
+  --color-core-circle-bg-page: var(--color-core-circle-slate-50);
+  --color-core-circle-bg-surface: #ffffff;
+  --color-core-circle-bg-muted: var(--color-core-circle-slate-100);
+  --color-core-circle-bg-inverse: var(--color-core-circle-slate-900);
+
+  /* Semantic Presets - Text */
+  --color-core-circle-text-main: var(--color-core-circle-slate-900);
+  --color-core-circle-text-muted: var(--color-core-circle-slate-500);
+  --color-core-circle-text-subtle: var(--color-core-circle-slate-400);
+  --color-core-circle-text-inverse: #ffffff;
+  --color-core-circle-text-link: var(--color-core-circle-blue-600);
+
+  /* Semantic Presets - Borders */
+  --color-core-circle-border-main: var(--color-core-circle-slate-200);
+  --color-core-circle-border-muted: var(--color-core-circle-slate-100);
+  --color-core-circle-border-strong: var(--color-core-circle-slate-300);
+  --color-core-circle-border-primary: var(--color-core-circle-blue-200);
+
+
+  /* Spacing Scale (Padding, Margin, Gaps) */
+  --spacing-core-circle-xs: 1rem;
+  --spacing-core-circle-sm: 2rem;
+  --spacing-core-circle-md: 4rem;
+  --spacing-core-circle-lg: 8rem;
+  --spacing-core-circle-xl: 16rem;
+  --spacing-core-circle-xxl: 24rem;
+  --spacing-core-circle-xxxl: 32rem;
+
+  /* Borders */
+  --radius-core-circle-xs: 0.125rem;
+  --radius-core-circle-sm: 0.25rem;
+  --radius-core-circle-md: 0.375rem;
+  --radius-core-circle-lg: 0.5rem;
+  --radius-core-circle-xl: 0.75rem;
+  --radius-core-circle-2xl: 1rem;
+
+  /* Shadows */
+  --shadow-core-circle-subtle: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-core-circle-elevated: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-core-circle-floating: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Typography - Font Sizes */
+  --text-core-circle-xs: 0.75rem;
+  --text-core-circle-sm: 0.875rem;
+  --text-core-circle-base: 1rem;
+  --text-core-circle-lg: 1.125rem;
+  --text-core-circle-xl: 1.25rem;
+  --text-core-circle-2xl: 1.5rem;
+  --text-core-circle-3xl: 1.875rem;
+  --text-core-circle-4xl: 2.25rem;
+  --text-core-circle-5xl: 3rem;
+
+  /* Typography - Font Weights */
+  --font-weight-core-circle-light: 300;
+  --font-weight-core-circle-normal: 400;
+  --font-weight-core-circle-medium: 500;
+  --font-weight-core-circle-semibold: 600;
+  --font-weight-core-circle-bold: 700;
+
+  /* Z-Index Scale */
+  --z-index-core-circle-hide: -1;
+  --z-index-core-circle-auto: auto;
+  --z-index-core-circle-base: 0;
+  --z-index-core-circle-docked: 10;
+  --z-index-core-circle-dropdown: 1000;
+  --z-index-core-circle-sticky: 1100;
+  --z-index-core-circle-banner: 1200;
+  --z-index-core-circle-overlay: 1300;
+  --z-index-core-circle-modal: 1400;
+  --z-index-core-circle-popover: 1500;
+  --z-index-core-circle-skipLink: 1600;
+  --z-index-core-circle-toast: 1700;
+  --z-index-core-circle-tooltip: 1800;
+
+  /* Animations - Durations */
+  --animate-duration-core-circle-fast: 150ms;
+  --animate-duration-core-circle-normal: 300ms;
+  --animate-duration-core-circle-slow: 500ms;
+
+  /* Animations - Easings */
+  --animate-ease-core-circle-in: cubic-bezier(0.4, 0, 1, 1);
+  --animate-ease-core-circle-out: cubic-bezier(0, 0, 0.2, 1);
+  --animate-ease-core-circle-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+}

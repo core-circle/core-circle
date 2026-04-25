@@ -1,5 +1,4 @@
-// Atoms - Basic building blocks
-export * from './atoms';
-
-// Molecules - Combinations of atoms
-// export * from './molecules';
+// Components (Atoms, Molecules, etc.)
+export * from './components';
+// Utils - Helper functions
+export * from './utils';
