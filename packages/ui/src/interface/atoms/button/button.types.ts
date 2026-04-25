@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { type VariantProps } from 'class-variance-authority';
-import { buttonVariants } from '../../../components/atoms/button/Button.styles';
+import { buttonVariants } from '../../../components/atoms/button/button.styles';
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
