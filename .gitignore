@@ -47,3 +47,30 @@ Thumbs.db
 .claude/settings.local.json
 .nx/polygraph
 .nx/self-healing
+
+# Next.js
+.next
+out
+
+test-output
+
+# AI Assistants
+.claude/
+.agents/
+.codex/
+.cursor/
+.opencode/
+.gemini/
+
+# Storybook
+storybook-static
+.storybook-cache
+
+# Local Env Files
+.env*.local
+
+# Build Caches & Logs
+.swc
+.turbo
+.eslintcache
+*.log
