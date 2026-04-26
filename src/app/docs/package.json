@@ -5,7 +5,9 @@
   "dependencies": {
     "next": "~16.1.6",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "@core-circle/ui": "workspace:*",
+    "@core-circle/theme": "workspace:*"
   },
   "nx": {
     "tags": ["app"]
