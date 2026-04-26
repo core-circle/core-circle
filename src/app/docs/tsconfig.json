@@ -20,7 +20,9 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@core-circle/icons": ["../../../packages/icons/index.ts"]
+      "@core-circle/ui": ["../../../packages/ui/src/index.ts"],
+      "@core-circle/icons": ["../../../packages/icons/index.ts"],
+      "@core-circle/theme": ["../../../packages/theme/index.ts"]
     },
     "outDir": "dist",
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"
@@ -43,13 +45,5 @@
     "src/**/*.spec.ts",
     "src/**/*.test.ts",
     ".next"
-  ],
-  "references": [
-    {
-      "path": "../../../packages/icons"
-    },
-    {
-      "path": "../../../packages/ui"
-    }
   ]
 }

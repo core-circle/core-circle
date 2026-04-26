@@ -20,7 +20,7 @@ const config: StorybookConfig = {
 
   viteFinal: async (config) =>
     mergeConfig(config, {
-      plugins: [tailwindcss(), react(), nxViteTsPaths()],
+      plugins: [tailwindcss(), nxViteTsPaths()],
     }),
 };
 
