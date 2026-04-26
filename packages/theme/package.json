@@ -27,5 +27,10 @@
     },
     "./package.json": "./package.json",
     "./tailwind-theme.css": "./tailwind-theme.css"
+  },
+  "nx": {
+    "tags": [
+      "package"
+    ]
   }
 }

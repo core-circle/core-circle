@@ -30,9 +30,9 @@ jobs:
         run: npm install
 
       - name: Build affected packages
-        run: npx nx affected --target=build --base=origin/main~1 --head=HEAD
+        run: npx nx affected --target=build --base=origin/main~1 --head=HEAD --projects=tag:package
 
       - name: Publish affected packages
-        run: npx nx affected --target=publish --base=origin/main~1 --head=HEAD
+        run: npx nx affected --target=publish --base=origin/main~1 --head=HEAD --projects=tag:package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
