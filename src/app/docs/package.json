@@ -6,8 +6,8 @@
     "next": "~16.1.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "@core-circle/ui": "workspace:*",
-    "@core-circle/theme": "workspace:*"
+    "@core-circle/ui": "*",
+    "@core-circle/theme": "*"
   },
   "nx": {
     "tags": ["app"]
