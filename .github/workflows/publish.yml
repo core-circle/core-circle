@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'packages/**'
+      - 'package.json'
+      - 'tsconfig.base.json'
+      - '.github/workflows/publish.yml'
   workflow_dispatch:
 
 jobs:
@@ -29,10 +34,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build all packages
-        run: npx nx run-many --target=build --projects=tag:package
+      - name: Build affected packages
+        run: npx nx affected --target=build --base=origin/main~1 --head=HEAD --projects=tag:package
 
-      - name: Publish all packages
-        run: npx nx run-many --target=publish --projects=tag:package
+      - name: Publish affected packages
+        run: npx nx affected --target=publish --base=origin/main~1 --head=HEAD --projects=tag:package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
