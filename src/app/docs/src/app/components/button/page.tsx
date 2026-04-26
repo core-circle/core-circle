@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@org/ui';
+import { Button } from '@core-circle/ui';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
 import { ButtonPlayground } from '../../../components/playground/button/buttonPlayground';

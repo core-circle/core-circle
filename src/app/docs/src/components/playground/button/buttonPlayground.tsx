@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '@org/ui';
-import { CodeIcon, CopyIcon } from '@org/icons';
+import { Button } from '@core-circle/ui';
+import { CodeIcon, CopyIcon } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 
 const ICONS = {

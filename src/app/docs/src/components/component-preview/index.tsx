@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { EyeIcon, CodeIcon, CopyIcon, CheckIcon } from '@org/icons';
+import { EyeIcon, CodeIcon, CopyIcon, CheckIcon } from '@core-circle/icons';
 import { highlightCode } from '../../utils/highlight';
 
 interface ComponentPreviewProps {

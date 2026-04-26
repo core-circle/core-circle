@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cn } from '../../../utils/cn';
 import { ButtonProps } from '../../../interface/atoms/button/button.types';
 import { buttonVariants } from './button.styles';
-import LoadingIcon from '../../../../../icons/loadingIcon';
+import { LoadingIcon } from '@core-circle/icons';
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (

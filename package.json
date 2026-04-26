@@ -1,12 +1,12 @@
 {
-  "name": "@org/source",
+  "name": "@core-circle/source",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "npx nx reset & npx rimraf src/app/docs/.next & npx nx dev @org/docs",
-    "build": "nx build @org/docs",
-    "storybook": "nx storybook @org/ui",
-    "build-storybook": "nx build-storybook @org/ui",
+    "dev": "npx nx reset & npx rimraf src/app/docs/.next & npx nx dev @core-circle/docs",
+    "build": "nx build @core-circle/docs",
+    "storybook": "nx storybook @core-circle/ui",
+    "build-storybook": "nx build-storybook @core-circle/ui",
     "test": "nx run-many --target=test",
     "lint": "nx run-many --target=lint"
   },

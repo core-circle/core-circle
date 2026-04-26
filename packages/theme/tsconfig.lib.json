@@ -1,0 +1,15 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "baseUrl": ".",
+    "types": ["node"],
+    "rootDir": ".",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "emitDeclarationOnly": false,
+    "declaration": true
+  },
+  "exclude": ["dist", "node_modules", "jest.config.ts", "jest.config.cts", "**/*.spec.ts", "**/*.test.ts"],
+  "include": ["**/*.ts", "**/*.tsx"]
+}

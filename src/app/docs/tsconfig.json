@@ -20,7 +20,7 @@
     ],
     "paths": {
       "@/*": ["./src/*"],
-      "@org/icons": ["../../../packages/icons/index.ts"]
+      "@core-circle/icons": ["../../../packages/icons/index.ts"]
     },
     "outDir": "dist",
     "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo"

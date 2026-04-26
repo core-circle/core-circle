@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: '@org/packages/ui',
+  displayName: '@core-circle/ui',
   preset: '../../jest.preset.js',
   transform: {
     '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nx/react/plugins/jest',

@@ -1,13 +1,28 @@
 {
-  "name": "@org/icons",
+  "name": "@core-circle/icons",
   "version": "0.0.1",
-  "main": "./index.ts",
-  "types": "./index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.lib.json",
+    "publish": "npm publish --access restricted"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/core-circle/core-circle.git"
+  },
   "exports": {
     ".": {
-      "types": "./index.ts",
-      "import": "./index.ts",
-      "default": "./index.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
     },
     "./package.json": "./package.json"
   }

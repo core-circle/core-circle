@@ -1,4 +1,3 @@
-import React from 'react';
 
 const CodeIcon = ({ className = 'w-3.5 h-3.5' }: { className?: string }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
