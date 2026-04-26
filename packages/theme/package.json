@@ -4,10 +4,6 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "scripts": {
-    "build": "tsc -p tsconfig.lib.json",
-    "publish": "npm publish --access restricted"
-  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
@@ -27,10 +23,5 @@
     },
     "./package.json": "./package.json",
     "./tailwind-theme.css": "./tailwind-theme.css"
-  },
-  "nx": {
-    "tags": [
-      "package"
-    ]
   }
 }

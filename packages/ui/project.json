@@ -1,0 +1,23 @@
+{
+  "name": "@core-circle/ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/ui/src",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "packages/ui/dist",
+        "configFile": "packages/ui/vite.config.ts"
+      }
+    },
+    "publish": {
+      "command": "npm publish --access restricted",
+      "options": {
+        "cwd": "packages/ui"
+      }
+    }
+  },
+  "tags": ["package"]
+}

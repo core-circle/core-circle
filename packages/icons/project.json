@@ -1,0 +1,23 @@
+{
+  "name": "@core-circle/icons",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "packages/icons",
+  "targets": {
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "packages/icons/dist",
+        "configFile": "packages/icons/vite.config.ts"
+      }
+    },
+    "publish": {
+      "command": "npm publish --access restricted",
+      "options": {
+        "cwd": "packages/icons"
+      }
+    }
+  },
+  "tags": ["package"]
+}

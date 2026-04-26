@@ -4,10 +4,6 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "scripts": {
-    "build": "tsc -p tsconfig.lib.json",
-    "publish": "npm publish --access restricted"
-  },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
   },
@@ -25,10 +21,5 @@
       "default": "./dist/index.js"
     },
     "./package.json": "./package.json"
-  },
-  "nx": {
-    "tags": [
-      "package"
-    ]
   }
 }

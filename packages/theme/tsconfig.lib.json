@@ -4,7 +4,6 @@
     "outDir": "dist",
     "baseUrl": ".",
     "types": ["node"],
-    "rootDir": ".",
     "module": "esnext",
     "moduleResolution": "bundler",
     "emitDeclarationOnly": false,
