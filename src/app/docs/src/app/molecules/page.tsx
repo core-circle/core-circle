@@ -1,9 +1,22 @@
+'use client';
+
 import Link from 'next/link';
+import { Breadcrumb } from '@core-circle/ui';
+import { HomeIcon } from '@core-circle/icons';
 import { wipPageStyles as s } from '../wip.styles';
 
 export default function MoleculesPage() {
   return (
     <div className={s.container}>
+      <div className="w-full max-w-5xl px-6 mb-8">
+        <Breadcrumb 
+          items={[
+            { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },
+            { label: 'Molecules' }
+          ]}
+          renderLink={(props) => <Link {...props} />}
+        />
+      </div>
       <div className={s.iconWrapper}>
         <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />

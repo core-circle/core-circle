@@ -1,27 +1,26 @@
+'use client';
+
 import Link from 'next/link';
-import { TextInput } from '@core-circle/ui';
-import { Mail, Lock, SearchIcon } from '@core-circle/icons';
+import { TextInput, Breadcrumb } from '@core-circle/ui';
+import { Mail, Lock, SearchIcon, HomeIcon } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { TextInputPlayground } from '../../../components/playground/text-input/TextInputPlayground';
+import { TextInputPlayground } from '../../../components/playground/text-input/textInputPlayground';
 import { textInputPageStyles as s } from './text-input.styles';
-
-export const metadata = {
-  title: 'TextInput Component | Core Circle UI',
-  description: 'Comprehensive documentation for the Core Circle TextInput component, featuring multiple variants, icons, and validation states.',
-};
 
 export default function TextInputDocsPage() {
   return (
     <div className={s.container}>
       <header className={s.header}>
-        <div className={s.breadcrumbWrapper}>
-          <Link href="/" className={s.breadcrumbLink}>Home</Link>
-          <span>/</span>
-          <Link href="/atoms" className={s.breadcrumbLink}>Atoms</Link>
-          <span>/</span>
-          <span className={s.breadcrumbCurrent}>TextInput</span>
-        </div>
+        <Breadcrumb 
+          items={[
+            { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },
+            { label: 'Atoms', href: '/atoms' },
+            { label: 'TextInput' }
+          ]}
+          renderLink={(props) => <Link {...props} />}
+          className="mb-4"
+        />
         <h1 className={s.title}>
           TextInput
         </h1>

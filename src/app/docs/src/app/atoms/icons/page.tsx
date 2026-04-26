@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { Breadcrumb } from '@core-circle/ui';
 import * as Icons from '@core-circle/icons';
 import DocSection from '../../../components/doc-section';
 import { highlightCode } from '../../../utils/highlight';
@@ -26,13 +27,15 @@ export default function IconsDocsPage() {
   return (
     <div className={s.container}>
       <header className={s.header}>
-        <div className={s.breadcrumbWrapper}>
-          <Link href="/" className={s.breadcrumbLink}>Home</Link>
-          <span>/</span>
-          <Link href="/atoms" className={s.breadcrumbLink}>Atoms</Link>
-          <span>/</span>
-          <span className={s.breadcrumbCurrent}>Icons</span>
-        </div>
+        <Breadcrumb 
+          items={[
+            { label: 'Home', href: '/', icon: <Icons.HomeIcon size={14} /> },
+            { label: 'Atoms', href: '/atoms' },
+            { label: 'Icons' }
+          ]}
+          renderLink={(props) => <Link {...props} />}
+          className="mb-4"
+        />
         <h1 className={s.title}>
           Icons
         </h1>

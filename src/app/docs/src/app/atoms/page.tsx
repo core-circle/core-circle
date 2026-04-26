@@ -1,15 +1,22 @@
+'use client';
+
 import Link from 'next/link';
+import { Breadcrumb } from '@core-circle/ui';
+import { HomeIcon } from '@core-circle/icons';
 import { atomsPageStyles as s } from './atoms.styles';
 
 export default function AtomsPage() {
   return (
     <div className={s.container}>
       <header className={s.header}>
-        <div className={s.breadcrumbWrapper}>
-          <Link href="/" className={s.breadcrumbLink}>Home</Link>
-          <span>/</span>
-          <span className={s.breadcrumbCurrent}>Atoms</span>
-        </div>
+        <Breadcrumb 
+          items={[
+            { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },
+            { label: 'Atoms' }
+          ]}
+          renderLink={(props) => <Link {...props} />}
+          className="mb-4"
+        />
         <h1 className={s.title}>
           Atoms
         </h1>
@@ -55,6 +62,19 @@ export default function AtomsPage() {
           <h3 className={s.cardTitle}>TextInput</h3>
           <p className={s.cardDescription}>
             Versatile input field with Material Design support and icons.
+          </p>
+        </Link>
+
+        {/* Breadcrumb Card */}
+        <Link href="/atoms/breadcrumb" className={s.card}>
+          <div className={s.cardIconWrapper}>
+            <svg className={s.cardIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </div>
+          <h3 className={s.cardTitle}>Breadcrumb</h3>
+          <p className={s.cardDescription}>
+            Navigation path component with dynamic items and back support.
           </p>
         </Link>
       </div>

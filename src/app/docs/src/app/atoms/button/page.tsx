@@ -1,26 +1,26 @@
+'use client';
+
 import Link from 'next/link';
-import { Button } from '@core-circle/ui';
+import { Button, Breadcrumb } from '@core-circle/ui';
+import { HomeIcon } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
 import { ButtonPlayground } from '../../../components/playground/button/buttonPlayground';
 import { buttonPageStyles as s } from './button.styles';
 
-export const metadata = {
-  title: 'Button Component | Core Circle UI',
-  description: 'Comprehensive documentation for the Core Circle Button component, featuring variants, sizes, and interactive playgrounds.',
-};
-
 export default function ButtonDocsPage() {
   return (
     <div className={s.container}>
       <header className={s.header}>
-        <div className={s.breadcrumbWrapper}>
-          <Link href="/" className={s.breadcrumbLink}>Home</Link>
-          <span>/</span>
-          <Link href="/atoms" className={s.breadcrumbLink}>Atoms</Link>
-          <span>/</span>
-          <span className={s.breadcrumbCurrent}>Button</span>
-        </div>
+        <Breadcrumb 
+          items={[
+            { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },
+            { label: 'Atoms', href: '/atoms' },
+            { label: 'Button' }
+          ]}
+          renderLink={(props) => <Link {...props} />}
+          className="mb-4"
+        />
         <h1 className={s.title}>
           Button
         </h1>

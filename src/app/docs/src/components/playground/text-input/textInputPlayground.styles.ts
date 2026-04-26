@@ -23,5 +23,5 @@ export const textInputPlaygroundStyles = {
   codeHeader: "flex items-center justify-between mb-4",
   codeTitle: "text-core-circle-xs font-core-circle-bold text-core-circle-text-inverse opacity-60 uppercase tracking-widest flex items-center gap-2",
   copyButton: "text-core-circle-xs text-core-circle-primary hover:text-white transition-colors flex items-center gap-2",
-  codeBlock: "text-core-circle-text-inverse font-mono text-[12px] leading-relaxed overflow-x-auto p-4 bg-black/20 rounded-core-circle-lg"
+  codeBlock: "text-core-circle-text-inverse text-slate-300 font-mono text-[12px] leading-relaxed overflow-x-auto p-4 bg-black/20 rounded-core-circle-lg"
 };
