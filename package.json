@@ -10,6 +10,8 @@
   "scripts": {
     "dev": "npx nx reset & npx rimraf src/app/docs/.next & npx nx dev @core-circle/docs",
     "build": "nx build @core-circle/docs",
+    "build:packages": "nx run-many --target=build --projects=tag:package",
+    "build:all": "nx run-many --target=build",
     "storybook": "nx storybook @core-circle/ui",
     "build-storybook": "nx build-storybook @core-circle/ui",
     "test": "nx run-many --target=test",

@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from '../../../components/atoms/button/button';
+import { Mail, ChevronRight, Bell, LoadingIcon } from '@core-circle/icons';
 
 const meta: Meta<typeof Button> = {
   title: 'Atoms/Button',
@@ -56,7 +57,7 @@ export const Ghost: Story = {
 export const GhostWithArrow: Story = {
   args: {
     variant: 'ghost',
-    endIcon: <span>→</span>,
+    endIcon: <ChevronRight />,
     children: 'Learn More',
   },
 };
@@ -101,7 +102,7 @@ export const DefaultLoading: Story = {
 export const CustomStartLoader: Story = {
   args: {
     loading: true,
-    startLoadingIcon: <span className="animate-pulse">⏳</span>,
+    startLoadingIcon: <LoadingIcon color="#ffffff" className="w-4 h-4" />,
     children: 'Custom Start Loader',
   },
 };
@@ -109,7 +110,7 @@ export const CustomStartLoader: Story = {
 export const EndLoader: Story = {
   args: {
     loading: true,
-    endLoadingIcon: <span className="animate-spin text-blue-500">⚙️</span>,
+    endLoadingIcon: <LoadingIcon color="#3b82f6" className="w-4 h-4" />,
     children: 'End Loader',
   },
 };
@@ -117,14 +118,14 @@ export const EndLoader: Story = {
 // --- Icon Scenarios ---
 export const WithStartIcon: Story = {
   args: {
-    startIcon: <span>📧</span>,
+    startIcon: <Mail />,
     children: 'Email Us',
   },
 };
 
 export const WithEndIcon: Story = {
   args: {
-    endIcon: <span>→</span>,
+    endIcon: <ChevronRight />,
     children: 'Next Step',
   },
 };
@@ -132,8 +133,8 @@ export const WithEndIcon: Story = {
 export const IconSwapping: Story = {
   args: {
     loading: true,
-    startIcon: <span>📧</span>,
-    endIcon: <span>→</span>,
+    startIcon: <Mail />,
+    endIcon: <ChevronRight />,
     children: 'Icons are hidden when loading',
   },
 };
@@ -141,8 +142,8 @@ export const IconSwapping: Story = {
 export const EndLoadingWithIcon: Story = {
   args: {
     loading: true,
-    endLoadingIcon: <span>⌛</span>,
-    endIcon: <span>→</span>,
+    endLoadingIcon: <LoadingIcon />,
+    endIcon: <ChevronRight />,
     children: 'End icon swapped',
   },
 };
@@ -151,7 +152,7 @@ export const EndLoadingWithIcon: Story = {
 export const FullyCustom: Story = {
   args: {
     variant: 'outline',
-    className: 'bg-gradient-to-r from-purple-500 to-pink-500 text-white border-none hover:opacity-90',
+    className: 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white border-none hover:opacity-90',
     children: 'Gradient Button',
   },
 };
@@ -160,6 +161,6 @@ export const IconOnly: Story = {
   args: {
     size: 'icon',
     variant: 'secondary',
-    children: <span>🔔</span>,
+    children: <Bell />,
   },
 };
