@@ -1,4 +1,5 @@
 # Core Circle Monorepo
+![Favicon](/src/app/docs/public/favicon.svg)
 
 A modern, high-performance monorepo for the Core Circle ecosystem. Built with **Nx**, **Next.js**, and **Tailwind CSS v4**.
 

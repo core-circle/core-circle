@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { EyeIcon, CodeIcon, CopyIcon, CheckIcon } from '@core-circle/icons';
 import { highlightCode } from '../../utils/highlight';
+import { componentPreviewStyles as s } from './component-preview.styles';
 
 interface ComponentPreviewProps {
   title: string;
@@ -21,16 +22,13 @@ const ComponentPreview = ({ title, code, children }: ComponentPreviewProps) => {
   };
 
   return (
-    <div className="group relative flex flex-col rounded-core-circle-2xl border border-core-circle-border-main bg-white shadow-core-circle-subtle overflow-hidden transition-all hover:shadow-core-circle-elevated">
-      <div className="flex items-center justify-between px-6 py-3 bg-core-circle-bg-page/50 backdrop-blur-sm border-b border-core-circle-border-main">
-        <h3 className="text-core-circle-text-main font-core-circle-bold text-[13px] tracking-tight">{title}</h3>
-        <div className="flex items-center gap-1.5">
+    <div className={s.container}>
+      <div className={s.toolbar}>
+        <h3 className={s.toolbarTitle}>{title}</h3>
+        <div className={s.toolbarActions}>
           <button
             onClick={() => setShowCode(!showCode)}
-            className={`flex items-center gap-2 px-3 py-1.5 text-[11px] font-core-circle-medium rounded-core-circle-md border transition-all ${showCode
-              ? 'bg-core-circle-primary text-white border-core-circle-primary'
-              : 'text-core-circle-text-muted hover:text-core-circle-text-main hover:bg-white border-transparent hover:border-core-circle-border-main'
-              }`}
+            className={`${s.toggleButton.base} ${showCode ? s.toggleButton.active : s.toggleButton.inactive}`}
           >
             {showCode ? <EyeIcon /> : <CodeIcon />}
             {showCode ? 'Preview' : 'Code'}
@@ -38,12 +36,12 @@ const ComponentPreview = ({ title, code, children }: ComponentPreviewProps) => {
 
           <button
             onClick={copyToClipboard}
-            className="flex items-center gap-2 px-3 py-1.5 text-[11px] font-core-circle-medium text-core-circle-text-muted hover:text-core-circle-text-main hover:bg-white rounded-core-circle-md border border-transparent hover:border-core-circle-border-main transition-all"
+            className={s.copyButton}
           >
             {copied ? (
               <>
-                <CheckIcon className="w-3.5 h-3.5 text-core-circle-secondary" />
-                <span className="text-core-circle-secondary">Copied!</span>
+                <CheckIcon className={s.copySuccess} />
+                <span className={s.copySuccessText}>Copied!</span>
               </>
             ) : (
               <>
@@ -55,14 +53,14 @@ const ComponentPreview = ({ title, code, children }: ComponentPreviewProps) => {
         </div>
       </div>
 
-      <div className="relative min-h-[160px] flex items-center justify-center p-12 bg-white transition-all duration-300">
+      <div className={s.contentArea}>
         {!showCode ? (
-          <div className="flex flex-wrap gap-4 items-center justify-center animate-core-circle-in">
+          <div className={s.previewWrapper}>
             {children}
           </div>
         ) : (
-          <div className="absolute inset-0 bg-core-circle-bg-inverse p-6 overflow-auto animate-core-circle-in">
-            <pre className="text-core-circle-text-inverse font-mono text-[12px] leading-relaxed">
+          <div className={s.codeWrapper}>
+            <pre className={s.codeBlock}>
               <code dangerouslySetInnerHTML={{ __html: highlightCode(code) }} />
             </pre>
           </div>

@@ -1,0 +1,22 @@
+export const iconPageStyles = {
+  container: "max-w-6xl mx-auto p-12 lg:p-20 bg-core-circle-bg-surface min-h-screen",
+  header: "mb-16",
+  breadcrumbWrapper: "flex items-center gap-2 text-core-circle-text-muted text-core-circle-xs mb-4",
+  breadcrumbLink: "hover:text-core-circle-primary transition-colors font-core-circle-medium",
+  breadcrumbCurrent: "text-core-circle-text-main font-core-circle-medium",
+  title: "text-core-circle-text-main text-5xl font-core-circle-bold tracking-tight mb-4",
+  description: "text-core-circle-text-muted text-core-circle-lg max-w-2xl leading-relaxed",
+  contentWrapper: "flex flex-col gap-12",
+  searchWrapper: "relative",
+  searchInput: "w-full p-4 pl-12 rounded-core-circle-xl border border-core-circle-border-main bg-white text-core-circle-text-main focus:outline-none focus:ring-2 focus:ring-core-circle-primary/20 focus:border-core-circle-primary transition-all shadow-core-circle-subtle",
+  searchIconWrapper: "absolute left-4 top-1/2 -translate-y-1/2 text-core-circle-text-muted",
+  galleryGrid: "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4",
+  iconCard: "group relative flex flex-col items-center justify-center p-6 bg-white border border-core-circle-border-main rounded-core-circle-xl hover:border-core-circle-primary hover:shadow-core-circle-floating transition-all duration-200 active:scale-95",
+  iconWrapper: "mb-4 text-core-circle-text-main group-hover:text-core-circle-primary transition-colors",
+  iconLabel: "text-[10px] font-core-circle-medium text-core-circle-text-muted uppercase tracking-wider text-center break-all",
+  copiedBadge: "absolute inset-0 flex items-center justify-center bg-core-circle-primary rounded-core-circle-xl text-white text-xs font-core-circle-bold animate-in fade-in zoom-in duration-200",
+  emptyState: "py-20 text-center",
+  emptyText: "text-core-circle-text-muted",
+  usageCodeWrapper: "bg-core-circle-slate-900 rounded-core-circle-xl p-6 overflow-x-auto shadow-core-circle-elevated",
+  usageCode: "text-white text-core-circle-sm font-mono leading-relaxed"
+};
