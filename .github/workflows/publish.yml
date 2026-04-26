@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-      - feature/core-circle/webapp-setup
     paths:
       - 'packages/**'
       - 'package.json'
@@ -64,7 +63,7 @@ jobs:
           echo "nx_flags=$EXTRA_FLAGS" >> $GITHUB_OUTPUT
 
       - name: Build packages
-        run: npx nx ${{ steps.cmd.outputs.nx_cmd }} -t build ${{ steps.cmd.outputs.nx_flags }}
+        run: npx nx ${{ steps.cmd.outputs.nx_cmd }} -t build ${{ steps.cmd.outputs.nx_flags }} -p tag:package
 
       - name: Publish packages
         run: npx nx ${{ steps.cmd.outputs.nx_cmd }} -t publish ${{ steps.cmd.outputs.nx_flags }} -p tag:package
