@@ -27,7 +27,9 @@ export default function IconsDocsPage() {
     <div className={s.container}>
       <header className={s.header}>
         <div className={s.breadcrumbWrapper}>
-          <Link href="/" className={s.breadcrumbLink}>Components</Link>
+          <Link href="/" className={s.breadcrumbLink}>Home</Link>
+          <span>/</span>
+          <Link href="/atoms" className={s.breadcrumbLink}>Atoms</Link>
           <span>/</span>
           <span className={s.breadcrumbCurrent}>Icons</span>
         </div>
