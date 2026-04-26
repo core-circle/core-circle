@@ -3,6 +3,7 @@ import { Button } from '@core-circle/ui';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
 import { ButtonPlayground } from '../../../components/playground/button/buttonPlayground';
+import { buttonPageStyles as s } from './button.styles';
 
 export const metadata = {
   title: 'Button Component | Core Circle UI',
@@ -11,23 +12,23 @@ export const metadata = {
 
 export default function ButtonDocsPage() {
   return (
-    <div className="max-w-6xl mx-auto p-12 lg:p-20 bg-core-circle-bg-surface min-h-screen">
-      <header className="mb-16">
-        <div className="flex items-center gap-2 text-core-circle-text-muted text-core-circle-xs mb-4">
-          <Link href="/" className="hover:text-core-circle-primary transition-colors font-core-circle-medium">Components</Link>
+    <div className={s.container}>
+      <header className={s.header}>
+        <div className={s.breadcrumbWrapper}>
+          <Link href="/" className={s.breadcrumbLink}>Components</Link>
           <span>/</span>
-          <span className="text-core-circle-text-main font-core-circle-medium">Button</span>
+          <span className={s.breadcrumbCurrent}>Button</span>
         </div>
-        <h1 className="text-core-circle-text-main text-5xl font-core-circle-bold tracking-tight mb-4">
+        <h1 className={s.title}>
           Button
         </h1>
-        <p className="text-core-circle-text-muted text-core-circle-lg max-w-2xl leading-relaxed">
+        <p className={s.description}>
           The core button component with multiple variants, sizes, and advanced loading states.
           Perfectly crafted for the Core Circle ecosystem.
         </p>
       </header>
 
-      <div className="flex flex-col gap-24">
+      <div className={s.sectionWrapper}>
         <DocSection
           id="playground"
           title="Live Playground"

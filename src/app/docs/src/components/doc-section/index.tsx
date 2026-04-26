@@ -1,4 +1,5 @@
 import React from 'react';
+import { docSectionStyles as s } from './doc-section.styles';
 
 interface DocSectionProps {
   id: string;
@@ -10,11 +11,11 @@ interface DocSectionProps {
 
 const DocSection = ({ id, title, description, children, showBorder }: DocSectionProps) => (
   <section id={id}>
-    <div className="mb-8">
-      <h2 className={`text-core-circle-text-main text-2xl font-core-circle-bold mb-2 ${showBorder ? 'border-b border-core-circle-border-main pb-4' : ''}`}>
+    <div className={s.headerWrapper}>
+      <h2 className={`${s.title.base} ${showBorder ? s.title.withBorder : ''}`}>
         {title}
       </h2>
-      <p className="text-core-circle-text-muted text-core-circle-sm mt-4">{description}</p>
+      <p className={s.description}>{description}</p>
     </div>
     {children}
   </section>
