@@ -21,7 +21,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '24'
           cache: 'npm'
           registry-url: 'https://npm.pkg.github.com'
           scope: '@core-circle'
@@ -29,10 +29,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build affected packages
-        run: npx nx affected --target=build --base=origin/main~1 --head=HEAD --projects=tag:package
+      - name: Build all packages
+        run: npx nx run-many --target=build --projects=tag:package
 
-      - name: Publish affected packages
-        run: npx nx affected --target=publish --base=origin/main~1 --head=HEAD --projects=tag:package
+      - name: Publish all packages
+        run: npx nx run-many --target=publish --projects=tag:package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
