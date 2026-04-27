@@ -17,12 +17,20 @@ export const highlightCode = (code: string) => {
   // 2. Props: variant= or size=
   output = output.replace(/([\s\n])(\w+)=/g, '$1__PROP__$2__END__=');
   
-  // 3. Strings: "primary" or "large"
-  output = output.replace(/(".*?")/g, '__STR__$1__END__');
+  // 3. Object Keys: label: or href:
+  output = output.replace(/([\s\n{])(\w+):/g, '$1__KEY__$2__END__:');
+
+  // 4. Strings: "primary" or "large"
+  output = output.replace(/(".*?"|'.*?')/g, '__STR__$1__END__');
+
+  // 5. Brackets & Braces: { } [ ]
+  output = output.replace(/([\{\}\[\]])/g, '__PUNCT__$1__END__');
 
   // Inject Spans
   return output
     .replace(/__TAG__(\w+)__END__/g, '<span class="text-core-circle-primary">$1</span>')
     .replace(/__PROP__(\w+)__END__/g, '<span class="text-core-circle-warning">$1</span>')
-    .replace(/__STR__("(?:.*?)")__END__/g, '<span class="text-core-circle-secondary">$1</span>');
+    .replace(/__KEY__(\w+)__END__/g, '<span class="text-core-circle-secondary">$1</span>')
+    .replace(/__STR__((?:"|').*?(?:"|'))__END__/g, '<span class="text-green-400">$1</span>')
+    .replace(/__PUNCT__([\{\}\[\]])__END__/g, '<span class="text-white opacity-60">$1</span>');
 };

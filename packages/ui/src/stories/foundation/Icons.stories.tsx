@@ -32,7 +32,7 @@ export const Gallery: StoryObj = {
               }}
             >
               <div className="mb-4 text-slate-900 group-hover:text-blue-600 transition-colors">
-                {/* @ts-ignore */}
+                {/* @ts-expect-error: TypeScript doesn't know the exact prop signature dynamically */}
                 <IconComponent size={32} />
               </div>
               <span className="text-[10px] font-medium text-slate-500 uppercase tracking-wider text-center break-all">
