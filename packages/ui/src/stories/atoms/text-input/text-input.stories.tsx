@@ -120,3 +120,24 @@ export const MaterialWithPrefix: Story = {
     fullWidth: true,
   },
 };
+
+export const MaterialAnimatedWithIcons: Story = {
+  args: {
+    variant: 'material-animated',
+    label: 'User Info',
+    placeholder: 'Enter details',
+    startIcon: <UserIcon size={18} />,
+    fullWidth: true,
+  },
+};
+
+export const MaterialAnimatedWithPrefix: Story = {
+  args: {
+    variant: 'material-animated',
+    label: 'Price',
+    placeholder: '0.00',
+    prefix: '$',
+    type: 'number',
+    fullWidth: true,
+  },
+};

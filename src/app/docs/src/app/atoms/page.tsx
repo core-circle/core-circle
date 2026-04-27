@@ -77,6 +77,32 @@ export default function AtomsPage() {
             Navigation path component with dynamic items and back support.
           </p>
         </Link>
+
+        {/* Select Card */}
+        <Link href="/atoms/select" className={s.card}>
+          <div className={s.cardIconWrapper}>
+            <svg className={s.cardIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </div>
+          <h3 className={s.cardTitle}>Select</h3>
+          <p className={s.cardDescription}>
+            Customizable dropdown selection component with variant support.
+          </p>
+        </Link>
+
+        {/* MultiSelect Card */}
+        <Link href="/atoms/multi-select" className={s.card}>
+          <div className={s.cardIconWrapper}>
+            <svg className={s.cardIcon} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </div>
+          <h3 className={s.cardTitle}>MultiSelect</h3>
+          <p className={s.cardDescription}>
+            Advanced dropdown for multiple selections with tag visualization.
+          </p>
+        </Link>
       </div>
     </div>
   );

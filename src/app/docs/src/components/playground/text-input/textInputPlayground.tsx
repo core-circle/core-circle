@@ -99,77 +99,54 @@ export const TextInputPlayground = () => {
         {/* Controls */}
         <div className={s.controlsWrapper}>
           <div className={s.gridTwoCols}>
-            <SelectField
-              label="Variant"
-              value={state.variant}
-              onChange={(v: string) => updateState('variant', v)}
-              options={{ outline: 'Outline', material: 'Material', 'material-animated': 'Material Animated', ghost: 'Ghost', standard: 'Standard' }}
-            />
-            <SelectField
-              label="Size"
-              value={state.size}
-              onChange={(v: string) => updateState('size', v)}
-              options={{ sm: 'Small', md: 'Medium', lg: 'Large' }}
-            />
-          </div>
-
-          <div className={s.dividerSection}>
-            <div className={s.gridTwoCols}>
-              <SelectField label="Type" value={state.type} options={{ text: 'Text', number: 'Number', password: 'Password', email: 'Email' }} onChange={(v: string) => updateState('type', v)} />
-              <div className="flex gap-4 items-end pb-2">
-                {['disabled', 'fullWidth'].map((key) => (
-                  <label key={key} className={s.checkboxLabel}>
-                    <input
-                      type="checkbox"
-                      checked={(state as any)[key]}
-                      onChange={(e) => updateState(key, e.target.checked)}
-                      className={s.checkboxInput}
-                    />
-                    <span className={s.checkboxText}>{key}</span>
-                  </label>
-                ))}
-              </div>
+            <SelectField label="Variant" value={state.variant} onChange={(v: string) => updateState('variant', v)} options={{ outline: 'Outline', material: 'Material', 'material-animated': 'Material Animated', ghost: 'Ghost', standard: 'Standard' }} />
+            <SelectField label="Size" value={state.size} onChange={(v: string) => updateState('size', v)} options={{ sm: 'Small', md: 'Medium', lg: 'Large' }} />
+            <SelectField label="Type" value={state.type} options={{ text: 'Text', number: 'Number', password: 'Password', email: 'Email' }} onChange={(v: string) => updateState('type', v)} />
+            <div className="flex gap-4 items-end pb-2">
+              {['disabled', 'fullWidth'].map((key) => (
+                <label key={key} className={s.checkboxLabel}>
+                  <input
+                    type="checkbox"
+                    checked={(state as any)[key]}
+                    onChange={(e) => updateState(key, e.target.checked)}
+                    className={s.checkboxInput}
+                  />
+                  <span className={s.checkboxText}>{key}</span>
+                </label>
+              ))}
             </div>
           </div>
 
           <div className={s.dividerSection}>
-            <div className={s.gridTwoCols}>
-              <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
-              <SelectField label="End Icon" value={state.endIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endIcon', v)} />
+            <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
+            <SelectField label="End Icon" value={state.endIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endIcon', v)} />
+            <div>
+              <ControlLabel>Prefix</ControlLabel>
+              <input type="text" value={state.prefix} onChange={(e) => updateState('prefix', e.target.value)} className={s.textInput} placeholder="e.g. Mr." />
             </div>
-            <div className={s.gridTwoCols + " mt-4"}>
-              <div>
-                <ControlLabel>Prefix</ControlLabel>
-                <input type="text" value={state.prefix} onChange={(e) => updateState('prefix', e.target.value)} className={s.textInput} placeholder="e.g. Mr." />
-              </div>
-              <div>
-                <ControlLabel>Suffix</ControlLabel>
-                <input type="text" value={state.suffix} onChange={(e) => updateState('suffix', e.target.value)} className={s.textInput} placeholder="e.g. kgs" />
-              </div>
+            <div>
+              <ControlLabel>Suffix</ControlLabel>
+              <input type="text" value={state.suffix} onChange={(e) => updateState('suffix', e.target.value)} className={s.textInput} placeholder="e.g. kgs" />
             </div>
           </div>
 
           <div className={s.dividerSection}>
-             <div className="space-y-4">
-                <div>
-                  <ControlLabel>Label</ControlLabel>
-                  <input type="text" value={state.label} onChange={(e) => updateState('label', e.target.value)} className={s.textInput} />
-                </div>
-                <div>
-                  <ControlLabel>Placeholder</ControlLabel>
-                  <input type="text" value={state.placeholder} onChange={(e) => updateState('placeholder', e.target.value)} className={s.textInput} />
-                </div>
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <ControlLabel>Error</ControlLabel>
-                    <input type="text" value={state.error} onChange={(e) => updateState('error', e.target.value)} className={s.textInput} placeholder="Error message..." />
-                  </div>
-                  <div>
-                    <ControlLabel>Helper Text</ControlLabel>
-                    <input type="text" value={state.helperText} onChange={(e) => updateState('helperText', e.target.value)} className={s.textInput} />
-                  </div>
-                </div>
-             </div>
+            <div>
+              <ControlLabel>Label</ControlLabel>
+              <input type="text" value={state.label} onChange={(e) => updateState('label', e.target.value)} className={s.textInput} />
+            </div>
+            <div>
+              <ControlLabel>Placeholder</ControlLabel>
+              <input type="text" value={state.placeholder} onChange={(e) => updateState('placeholder', e.target.value)} className={s.textInput} />
+            </div>
+            <div>
+              <ControlLabel>Error</ControlLabel>
+              <input type="text" value={state.error} onChange={(e) => updateState('error', e.target.value)} className={s.textInput} placeholder="Error message..." />
+            </div>
+            <div>
+              <ControlLabel>Helper Text</ControlLabel>
+              <input type="text" value={state.helperText} onChange={(e) => updateState('helperText', e.target.value)} className={s.textInput} />
+            </div>
           </div>
         </div>
 

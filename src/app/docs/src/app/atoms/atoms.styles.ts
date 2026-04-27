@@ -6,7 +6,7 @@ export const atomsPageStyles = {
   breadcrumbCurrent: "text-core-circle-text-main font-core-circle-medium",
   title: "text-core-circle-text-main text-5xl font-core-circle-bold tracking-tight mb-4",
   description: "text-core-circle-text-muted text-core-circle-lg max-w-2xl leading-relaxed",
-  grid: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
+  grid: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8",
   card: "group block p-8 rounded-core-circle-2xl border border-core-circle-border-main bg-white hover:border-core-circle-primary hover:shadow-core-circle-floating transition-all duration-300",
   cardIconWrapper: "w-12 h-12 bg-core-circle-primary/10 rounded-core-circle-xl flex items-center justify-center mb-6 group-hover:bg-core-circle-primary group-hover:text-white transition-colors",
   cardIcon: "w-6 h-6",
