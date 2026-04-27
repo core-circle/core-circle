@@ -5,113 +5,117 @@ import Link from 'next/link';
 import { Breadcrumb } from '@core-circle/ui';
 import * as Icons from '@core-circle/icons';
 import DocSection from '../../../components/doc-section';
-import { highlightCode } from '../../../utils/highlight';
+import ComponentPreview from '../../../components/component-preview';
 import { iconPageStyles as s } from './icons.styles';
+import { ICONS_BREADCRUMB_ITEMS, ICONS_HEADER_CONTENT, ICONS_SECTIONS } from '../../../constants/atoms-page/icons/iconsConstants';
 
 export default function IconsDocsPage() {
   const [search, setSearch] = useState('');
-  const [copied, setCopied] = useState<string | null>(null);
+  const [copiedIcon, setCopiedIcon] = useState<string | null>(null);
 
-  const allIcons = Object.entries(Icons);
-  const filteredIcons = allIcons.filter(([name]) => 
+  const filteredIcons = Object.entries(Icons).filter(([name]) =>
     name.toLowerCase().includes(search.toLowerCase())
   );
 
-  const copyToClipboard = (name: string) => {
-    const code = `<${name} />`;
-    navigator.clipboard.writeText(code);
-    setCopied(name);
-    setTimeout(() => setCopied(null), 2000);
+  const copyToClipboard = (iconName: string) => {
+    const componentCode = `<${iconName} />`;
+    navigator.clipboard.writeText(componentCode);
+    setCopiedIcon(iconName);
+    setTimeout(() => setCopiedIcon(null), 2000);
+  };
+
+  const getSectionContent = (id: string) => {
+    switch (id) {
+      case 'usage':
+        return (
+          <ComponentPreview
+            title={ICONS_SECTIONS.find(s => s.id === 'usage')?.previews?.[0].title}
+            code={ICONS_SECTIONS.find(s => s.id === 'usage')?.previews?.[0].code}
+          >
+            <div className="flex flex-wrap gap-8 items-center justify-center p-4">
+              <Icons.HomeIcon size={48} />
+              <Icons.SearchIcon size={40} />
+              <Icons.SettingsIcon size={32} />
+              <Icons.Mail size={24} />
+            </div>
+          </ComponentPreview>
+        );
+      case 'gallery':
+        return (
+          <>
+            <div className={s?.searchWrapper}>
+              <div className={s?.searchInputWrapper}>
+                <Icons.SearchIcon className={s?.searchIcon} size={18} />
+                <input
+                  type="text"
+                  placeholder="Search 110+ icons..."
+                  className={s?.searchInput}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className={s?.galleryGrid}>
+              {filteredIcons.map(([name, IconComponent]) => (
+                <button
+                  key={name}
+                  className={s?.iconCard}
+                  onClick={() => copyToClipboard(name)}
+                  title={`Click to copy <${name} />`}
+                >
+                  <div className={s?.iconWrapper}>
+                    <IconComponent size={24} />
+                  </div>
+                  <span className={s?.iconName}>
+                    {name.replace('Icon', '')}
+                  </span>
+                  {copiedIcon === name && (
+                    <span className={s?.copyFeedback}>Copied!</span>
+                  )}
+                </button>
+              ))}
+            </div>
+            {filteredIcons.length === 0 && (
+              <div className={s?.emptyState}>
+                <p className={s?.emptyText}>No icons found matching "{search}"</p>
+              </div>
+            )}
+          </>
+        );
+      default:
+        return null;
+    }
   };
 
   return (
-    <div className={s.container}>
-      <header className={s.header}>
+    <div className={s?.container}>
+      <header className={s?.header}>
         <Breadcrumb 
-          items={[
-            { label: 'Home', href: '/', icon: <Icons.HomeIcon size={14} /> },
-            { label: 'Atoms', href: '/atoms' },
-            { label: 'Icons' }
-          ]}
+          items={ICONS_BREADCRUMB_ITEMS}
           renderLink={(props) => <Link {...props} />}
           className="mb-4"
         />
-        <h1 className={s.title}>
-          Icons
+        <h1 className={s?.title}>
+          {ICONS_HEADER_CONTENT?.title}
         </h1>
-        <p className={s.description}>
-          A comprehensive collection of 110+ premium icons designed to perfectly align with the Core Circle design system.
+        <p className={s?.description}>
+          {ICONS_HEADER_CONTENT?.description}
         </p>
       </header>
 
-      <div className={s.contentWrapper}>
-        <DocSection
-          id="usage"
-          title="Usage"
-          description="Icons are easy to use and fully customizable with standard SVG props."
-        >
-          <div className={s.usageCodeWrapper}>
-            <pre className={s.usageCode}>
-              <code dangerouslySetInnerHTML={{ __html: highlightCode(`import { HomeIcon } from '@core-circle/icons';
-
-// Basic usage
-<HomeIcon />
-
-// Custom size and color
-<HomeIcon size={24} color="#3b82f6" className="my-custom-class" />`) }} />
-            </pre>
-          </div>
-        </DocSection>
-
-        <div className={s.searchWrapper}>
-          <input
-            type="text"
-            placeholder="Search 110+ icons..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className={s.searchInput}
-          />
-          <div className={s.searchIconWrapper}>
-            <Icons.SearchIcon size={20} />
-          </div>
-        </div>
-
-        <DocSection
-          id="gallery"
-          title="Icon Gallery"
-          description="Click on any icon to copy the React component code to your clipboard."
-          showBorder
-        >
-          <div className={s.galleryGrid}>
-            {filteredIcons.map(([name, IconComponent]) => (
-              <button
-                key={name}
-                onClick={() => copyToClipboard(name)}
-                className={s.iconCard}
-              >
-                <div className={s.iconWrapper}>
-                  {/* @ts-ignore */}
-                  <IconComponent size={32} />
-                </div>
-                <span className={s.iconLabel}>
-                  {name}
-                </span>
-
-                {copied === name && (
-                  <div className={s.copiedBadge}>
-                    Copied!
-                  </div>
-                )}
-              </button>
-            ))}
-          </div>
-
-          {filteredIcons.length === 0 && (
-            <div className={s.emptyState}>
-              <p className={s.emptyText}>No icons found matching "{search}"</p>
-            </div>
-          )}
-        </DocSection>
+      <div className={s?.contentWrapper}>
+        {ICONS_SECTIONS?.map((section) => (
+          <DocSection
+            key={section.id}
+            id={`atoms-icons-${section.id}`}
+            title={section.title}
+            description={section.description}
+            showBorder={section.showBorder}
+          >
+            {getSectionContent(section.id)}
+          </DocSection>
+        ))}
       </div>
     </div>
   );

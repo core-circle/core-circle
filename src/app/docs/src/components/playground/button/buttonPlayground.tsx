@@ -2,18 +2,18 @@
 
 import React, { useState } from 'react';
 import { Button } from '@core-circle/ui';
-import { CodeIcon, CopyIcon } from '@core-circle/icons';
+import { CodeIcon, CopyIcon, Mail, ArrowRight, Star, SettingsIcon, Rotate, Clock } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { buttonPlaygroundStyles as s } from './buttonPlayground.styles';
 
 const ICONS = {
   none: null,
-  email: <span>📧</span>,
-  arrow: <span>→</span>,
-  star: <span>⭐</span>,
-  settings: <span>⚙️</span>,
-  refresh: <span>♻️</span>,
-  clock: <span>⌛</span>,
+  email: <Mail size={16} />,
+  arrow: <ArrowRight size={16} />,
+  star: <Star size={16} />,
+  settings: <SettingsIcon size={16} />,
+  refresh: <Rotate size={16} />,
+  clock: <Clock size={16} />,
 };
 
 const ICON_LABELS: Record<string, string> = {
@@ -27,12 +27,12 @@ const ICON_LABELS: Record<string, string> = {
 };
 
 const ICON_MAP: Record<string, string> = {
-  email: 'fa-solid fa-envelope',
-  arrow: 'fa-solid fa-arrow-right',
-  star: 'fa-solid fa-star',
-  settings: 'fa-solid fa-gear',
-  refresh: 'fa-solid fa-rotate',
-  clock: 'fa-regular fa-clock',
+  email: 'Mail',
+  arrow: 'ArrowRight',
+  star: 'Star',
+  settings: 'SettingsIcon',
+  refresh: 'Rotate',
+  clock: 'Clock',
 };
 
 // Reusable Control Components
@@ -81,7 +81,7 @@ export const ButtonPlayground = () => {
     if (disabled) props += ' disabled';
 
     const addIcon = (name: string, val: string) => {
-      if (val !== 'none') props += `\n  ${name}={<i className="${ICON_MAP[val]}" />}`;
+      if (val !== 'none') props += `\n  ${name}={<${ICON_MAP[val]} size={16} />}`;
     };
 
     addIcon('startIcon', startIcon);

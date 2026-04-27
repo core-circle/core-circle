@@ -2,11 +2,12 @@
 
 import Link from 'next/link';
 import { Breadcrumb } from '@core-circle/ui';
-import { HomeIcon } from '@core-circle/icons';
+import { HomeIcon, ShoppingBag, ArrowRight } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
 import { BreadcrumbPlayground } from '../../../components/playground/breadcrumb/breadcrumbPlayground';
 import { breadcrumbPageStyles as s } from './breadcrumb.styles';
+import { BREADCRUMB_DOCS_ITEMS, BREADCRUMB_HEADER_CONTENT, BREADCRUMB_SECTIONS } from '../../../constants/atoms-page/breadcrumb/breadcrumbConstants';
 
 export default function BreadcrumbDocsPage() {
   const defaultItems = [
@@ -15,105 +16,92 @@ export default function BreadcrumbDocsPage() {
     { label: 'Breadcrumb' },
   ];
 
-  return (
-    <div className={s.container}>
-      <header className={s.header}>
-        <Breadcrumb 
-          items={defaultItems}
-          renderLink={(props) => <Link {...props} />}
-          className="mb-4"
-        />
-        <h1 className={s.title}>
-          Breadcrumb
-        </h1>
-        <p className={s.description}>
-          A navigation aid that allows users to keep track of their location within programs, 
-          documents, or websites. It provides a way to go back to previous levels of hierarchy.
-        </p>
-      </header>
-
-      <div className="space-y-16">
-        <DocSection
-          id="playground"
-          title="Interactive Playground"
-          description="Experiment with different variants and configurations."
-        >
-          <BreadcrumbPlayground />
-        </DocSection>
-
-        <DocSection
-          id="variants"
-          title="Visual Variants"
-          description="Three distinct styles to match your application's aesthetic."
-        >
+  const getSectionContent = (id: string) => {
+    switch (id) {
+      case 'playground':
+        return <BreadcrumbPlayground />;
+      case 'variants':
+        const variantsSection = BREADCRUMB_SECTIONS.find(s => s.id === 'variants');
+        return (
           <div className="space-y-8">
-            <ComponentPreview
-              title="Standard"
-              code={`<Breadcrumb \n  items={[\n    { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },\n    { label: 'Atoms', href: '/atoms' },\n    { label: 'Breadcrumb' }\n  ]} \n/>`}
-            >
-              <Breadcrumb items={defaultItems} />
-            </ComponentPreview>
-
-            <ComponentPreview
-              title="Ghost"
-              code={`<Breadcrumb variant="ghost" items={defaultItems} />`}
-            >
-              <Breadcrumb variant="ghost" items={defaultItems} />
-            </ComponentPreview>
-
-            <ComponentPreview
-              title="Pills"
-              code={`<Breadcrumb variant="pills" items={defaultItems} />`}
-            >
-              <Breadcrumb variant="pills" items={defaultItems} />
-            </ComponentPreview>
+            {variantsSection?.previews?.map(preview => (
+              <ComponentPreview
+                key={preview.id}
+                title={preview.title}
+                code={preview.code}
+              >
+                {preview.id === 'standard' && <Breadcrumb items={defaultItems} />}
+                {preview.id === 'ghost' && <Breadcrumb variant="ghost" items={defaultItems} />}
+                {preview.id === 'pills' && <Breadcrumb variant="pills" items={defaultItems} />}
+              </ComponentPreview>
+            ))}
           </div>
-        </DocSection>
-
-        <DocSection
-          id="back-link"
-          title="Go Back Support"
-          description="Built-in support for browser history navigation."
-        >
+        );
+      case 'back-link':
+        return (
           <ComponentPreview
-            title="With Back Link"
-            code={`<Breadcrumb \n  showBack \n  backLabel="Go Back" \n  items={defaultItems} \n/>`}
+            title={BREADCRUMB_SECTIONS.find(s => s.id === 'back-link')?.previews?.[0].title}
+            code={BREADCRUMB_SECTIONS.find(s => s.id === 'back-link')?.previews?.[0].code}
           >
             <Breadcrumb showBack backLabel="Go Back" items={defaultItems} />
           </ComponentPreview>
-        </DocSection>
-
-        <DocSection
-          id="customization"
-          title="Custom Separators"
-          description="Easily change the icon or element between items."
-        >
+        );
+      case 'customization':
+        return (
           <ComponentPreview
-            title="Custom Separator"
-            code={`<Breadcrumb \n  separator={<span className="opacity-30 mx-2">→</span>} \n  items={defaultItems} \n/>`}
+            title={BREADCRUMB_SECTIONS.find(s => s.id === 'customization')?.previews?.[0].title}
+            code={BREADCRUMB_SECTIONS.find(s => s.id === 'customization')?.previews?.[0].code}
           >
-            <Breadcrumb separator={<span className="opacity-30 mx-2">→</span>} items={defaultItems} />
+            <Breadcrumb separator={<ArrowRight size={14} className="opacity-30 mx-1" />} items={defaultItems} />
           </ComponentPreview>
-        </DocSection>
-
-        <DocSection
-          id="item-prefix-suffix"
-          title="Item Prefix & Suffix"
-          description="Add labels, emojis, or status indicators to individual breadcrumb items."
-        >
+        );
+      case 'item-prefix-suffix':
+        return (
           <ComponentPreview
-            title="Custom Labels"
-            code={`<Breadcrumb \n  items={[\n    { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },\n    { label: 'Orders', href: '#', prefix: '📦' },\n    { label: 'Checkout', suffix: '(Active)' }\n  ]} \n/>`}
+            title={BREADCRUMB_SECTIONS.find(s => s.id === 'item-prefix-suffix')?.previews?.[0].title}
+            code={BREADCRUMB_SECTIONS.find(s => s.id === 'item-prefix-suffix')?.previews?.[0].code}
           >
             <Breadcrumb 
               items={[
                 { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },
-                { label: 'Orders', href: '#', prefix: '📦' },
+                { label: 'Orders', href: '#', prefix: <ShoppingBag size={14} /> },
                 { label: 'Checkout', suffix: '(Active)' }
               ]} 
             />
           </ComponentPreview>
-        </DocSection>
+        );
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className={s?.container}>
+      <header className={s?.header}>
+        <Breadcrumb 
+          items={BREADCRUMB_DOCS_ITEMS}
+          renderLink={(props) => <Link {...props} />}
+          className="mb-4"
+        />
+        <h1 className={s?.title}>
+          {BREADCRUMB_HEADER_CONTENT?.title}
+        </h1>
+        <p className={s?.description}>
+          {BREADCRUMB_HEADER_CONTENT?.description}
+        </p>
+      </header>
+
+      <div className="space-y-16">
+        {BREADCRUMB_SECTIONS?.map((section) => (
+          <DocSection
+            key={section.id}
+            id={`atoms-breadcrumb-${section.id}`}
+            title={section.title}
+            description={section.description}
+          >
+            {getSectionContent(section.id)}
+          </DocSection>
+        ))}
       </div>
     </div>
   );

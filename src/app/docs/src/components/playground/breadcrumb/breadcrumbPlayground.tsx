@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Breadcrumb } from '@core-circle/ui';
-import { HomeIcon, CodeIcon, CopyIcon } from '@core-circle/icons';
+import { HomeIcon, CodeIcon, CopyIcon, ShoppingBag, LightningBolt } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { breadcrumbPlaygroundStyles as s } from './breadcrumbPlayground.styles';
 
@@ -22,9 +22,9 @@ export const BreadcrumbPlayground = () => {
   const getItems = () => {
     const items = [
       { label: 'Home', href: '#', icon: <HomeIcon size={14} /> },
-      { label: 'Products', href: '#', prefix: '📦' },
+      { label: 'Products', href: '#', prefix: <ShoppingBag size={14} /> },
       { label: 'Category', href: '#', suffix: '(Refined)' },
-      { label: 'Electronics', href: '#', prefix: '⚡' },
+      { label: 'Electronics', href: '#', prefix: <LightningBolt size={14} /> },
       { label: 'Smartphones' },
     ];
     return items.slice(0, state.itemCount);
@@ -35,7 +35,7 @@ export const BreadcrumbPlayground = () => {
     let props = `items={[\n    ${items.map(item => {
       let itemStr = `{ label: '${item.label}'`;
       if (item.href) itemStr += `, href: '${item.href}'`;
-      if (item.prefix) itemStr += `, prefix: '${item.prefix}'`;
+      if (item.prefix) itemStr += `, prefix: <ShoppingBag size={14} />`;
       if (item.suffix) itemStr += `, suffix: '${item.suffix}'`;
       if (item.icon) itemStr += `, icon: <HomeIcon size={14} />`;
       itemStr += ' }';
