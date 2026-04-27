@@ -96,3 +96,13 @@ export const WithCustomLink: Story = {
     ),
   },
 };
+export const WithPrefixSuffix: Story = {
+  args: {
+    items: [
+      { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },
+      { label: 'Shop', href: '/shop', prefix: '🛍️' },
+      { label: 'Cart', suffix: '(2 items)' },
+    ],
+    variant: 'standard',
+  },
+};

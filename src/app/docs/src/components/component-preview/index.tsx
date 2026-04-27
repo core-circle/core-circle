@@ -2,16 +2,17 @@
 
 import React, { useState } from 'react';
 import { EyeIcon, CodeIcon, CopyIcon, CheckIcon } from '@core-circle/icons';
+import { Button } from '@core-circle/ui';
 import { highlightCode } from '../../utils/highlight';
 import { componentPreviewStyles as s } from './component-preview.styles';
 
 interface ComponentPreviewProps {
-  title: string;
-  code: string;
+  title?: string;
+  code?: string;
   children: React.ReactNode;
 }
 
-const ComponentPreview = ({ title, code, children }: ComponentPreviewProps) => {
+const ComponentPreview = ({ title = '', code = '', children }: ComponentPreviewProps) => {
   const [showCode, setShowCode] = useState(false);
   const [copied, setCopied] = useState(false);
 
@@ -24,17 +25,21 @@ const ComponentPreview = ({ title, code, children }: ComponentPreviewProps) => {
   return (
     <div className={s.container}>
       <div className={s.toolbar}>
-        <h3 className={s.toolbarTitle}>{title}</h3>
+        {title && <h3 className={s.toolbarTitle}>{title}</h3>}
         <div className={s.toolbarActions}>
-          <button
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => setShowCode(!showCode)}
             className={`${s.toggleButton.base} ${showCode ? s.toggleButton.active : s.toggleButton.inactive}`}
           >
             {showCode ? <EyeIcon /> : <CodeIcon />}
             {showCode ? 'Preview' : 'Code'}
-          </button>
+          </Button>
 
-          <button
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={copyToClipboard}
             className={s.copyButton}
           >
@@ -49,7 +54,7 @@ const ComponentPreview = ({ title, code, children }: ComponentPreviewProps) => {
                 Copy
               </>
             )}
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -61,7 +66,7 @@ const ComponentPreview = ({ title, code, children }: ComponentPreviewProps) => {
         ) : (
           <div className={s.codeWrapper}>
             <pre className={s.codeBlock}>
-              <code dangerouslySetInnerHTML={{ __html: highlightCode(code) }} />
+              <code dangerouslySetInnerHTML={{ __html: code ? highlightCode(code) : '' }} />
             </pre>
           </div>
         )}

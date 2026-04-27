@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Breadcrumb } from '@core-circle/ui';
-import { HomeIcon, CodeIcon, CopyIcon } from '@core-circle/icons';
+import { Breadcrumb, Select, Checkbox, TextInput, Button } from '@core-circle/ui';
+import { HomeIcon, CodeIcon, CopyIcon, ShoppingBag, LightningBolt } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { breadcrumbPlaygroundStyles as s } from './breadcrumbPlayground.styles';
 
@@ -22,9 +22,9 @@ export const BreadcrumbPlayground = () => {
   const getItems = () => {
     const items = [
       { label: 'Home', href: '#', icon: <HomeIcon size={14} /> },
-      { label: 'Products', href: '#' },
-      { label: 'Category', href: '#' },
-      { label: 'Electronics', href: '#' },
+      { label: 'Products', href: '#', prefix: <ShoppingBag size={14} /> },
+      { label: 'Category', href: '#', suffix: '(Refined)' },
+      { label: 'Electronics', href: '#', prefix: <LightningBolt size={14} /> },
       { label: 'Smartphones' },
     ];
     return items.slice(0, state.itemCount);
@@ -32,15 +32,15 @@ export const BreadcrumbPlayground = () => {
 
   const generateCode = () => {
     const items = getItems();
-    const itemsCode = items.map(item => {
+    let props = `items={[\n    ${items.map(item => {
       let itemStr = `{ label: '${item.label}'`;
       if (item.href) itemStr += `, href: '${item.href}'`;
+      if (item.prefix) itemStr += `, prefix: <ShoppingBag size={14} />`;
+      if (item.suffix) itemStr += `, suffix: '${item.suffix}'`;
       if (item.icon) itemStr += `, icon: <HomeIcon size={14} />`;
       itemStr += ' }';
       return itemStr;
-    }).join(', ');
-
-    let props = `items={[\n    ${items.map(item => `{ label: '${item.label}'${item.href ? `, href: '${item.href}'` : ''} }`).join(',\n    ')}\n  ]}`;
+    }).join(',\n    ')}\n  ]}`;
     props += `\n  variant="${state.variant}"`;
     if (state.showBack) {
       props += `\n  showBack`;
@@ -55,18 +55,16 @@ export const BreadcrumbPlayground = () => {
       <div className={s.layout}>
         <div className={s.controlsWrapper}>
           <div className="space-y-4">
-            <div>
-              <label className={s.controlLabel}>Variant</label>
-              <select
+              <Select
+                label="Variant"
                 value={state.variant}
-                onChange={(e) => updateState('variant', e.target.value)}
-                className={s.selectField}
-              >
-                <option value="standard">Standard</option>
-                <option value="ghost">Ghost</option>
-                <option value="pills">Pills</option>
-              </select>
-            </div>
+                onChange={(v) => updateState('variant', v)}
+                options={[
+                  { value: 'standard', label: 'Standard' },
+                  { value: 'ghost', label: 'Ghost' },
+                  { value: 'pills', label: 'Pills' },
+                ]}
+              />
 
             <div>
               <label className={s.controlLabel}>Item Count</label>
@@ -85,25 +83,19 @@ export const BreadcrumbPlayground = () => {
             </div>
 
             <div className={s.dividerSection}>
-              <label className={s.checkboxLabel}>
-                <input
-                  type="checkbox"
-                  checked={state.showBack}
-                  onChange={(e) => updateState('showBack', e.target.checked)}
-                  className={s.checkboxInput}
-                />
-                <span className={s.checkboxText}>Show Back Link</span>
-              </label>
+              <Checkbox
+                label="Show Back Link"
+                checked={state.showBack}
+                onChange={(checked) => updateState('showBack', checked)}
+              />
             </div>
 
             {state.showBack && (
               <div>
-                <label className={s.controlLabel}>Back Label</label>
-                <input
-                  type="text"
+                <TextInput
+                  label="Back Label"
                   value={state.backLabel}
                   onChange={(e) => updateState('backLabel', e.target.value)}
-                  className={s.textInput}
                 />
               </div>
             )}
@@ -126,13 +118,15 @@ export const BreadcrumbPlayground = () => {
                 <CodeIcon className="w-3.5 h-3.5" />
                 Live Code
               </span>
-              <button
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => navigator.clipboard.writeText(generateCode())}
                 className={s.copyButton}
               >
                 <CopyIcon className="w-3.5 h-3.5" />
-                Copy
-              </button>
+                Copy Snippet
+              </Button>
             </div>
             <pre className={s.codeBlock}>
               <code dangerouslySetInnerHTML={{ __html: highlightCode(generateCode()) }} />

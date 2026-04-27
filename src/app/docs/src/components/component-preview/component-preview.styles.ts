@@ -1,5 +1,5 @@
 export const componentPreviewStyles = {
-  container: "group relative flex flex-col rounded-core-circle-2xl border border-core-circle-border-main bg-white shadow-core-circle-subtle overflow-hidden transition-all hover:shadow-core-circle-elevated",
+  container: "group relative flex flex-col rounded-core-circle-2xl border border-core-circle-border-main bg-white shadow-core-circle-subtle transition-all hover:shadow-core-circle-elevated",
 
   // Header toolbar
   toolbar: "flex items-center justify-between px-6 py-3 bg-core-circle-bg-page/50 backdrop-blur-sm border-b border-core-circle-border-main",
@@ -19,8 +19,8 @@ export const componentPreviewStyles = {
   copySuccessText: "text-core-circle-secondary",
 
   // Content area
-  contentArea: "relative min-h-[160px] flex items-center justify-center p-12 bg-white transition-all duration-300",
+  contentArea: "relative min-h-[220px] flex items-center justify-center p-8 bg-white transition-all duration-300",
   previewWrapper: "flex flex-wrap gap-4 items-center justify-center animate-core-circle-in",
-  codeWrapper: "absolute inset-0 bg-core-circle-bg-inverse p-6 overflow-auto animate-core-circle-in",
+  codeWrapper: "absolute inset-0 bg-core-circle-bg-inverse p-6 overflow-auto animate-core-circle-in rounded-b-core-circle-2xl",
   codeBlock: "text-core-circle-text-inverse font-mono text-[12px] leading-relaxed",
 };

@@ -2,7 +2,7 @@ import { IconProps } from './types';
 
 const Wifi = ({ 
   className = 'w-3.5 h-3.5', 
-  color = '#000000',
+  color = 'currentColor',
   size,
   ...props 
 }: IconProps) => (

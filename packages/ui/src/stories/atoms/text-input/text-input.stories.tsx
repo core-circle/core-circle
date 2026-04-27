@@ -88,3 +88,56 @@ export const Disabled: Story = {
     fullWidth: true,
   },
 };
+export const WithPrefixAndSuffix: Story = {
+  args: {
+    variant: 'outline',
+    label: 'Price',
+    placeholder: '0.00',
+    prefix: <span className="font-core-circle-bold text-core-circle-text-main">$</span>,
+    suffix: <span className="text-core-circle-text-muted">USD</span>,
+    type: 'number',
+    fullWidth: true,
+  },
+};
+
+export const WithTitlePrefix: Story = {
+  args: {
+    variant: 'outline',
+    label: 'Full Name',
+    placeholder: 'John Doe',
+    prefix: 'Mr.',
+    startIcon: <UserIcon size={18} />,
+    fullWidth: true,
+  },
+};
+
+export const MaterialWithPrefix: Story = {
+  args: {
+    variant: 'material',
+    label: 'Weight',
+    placeholder: '00',
+    suffix: 'kgs',
+    fullWidth: true,
+  },
+};
+
+export const MaterialAnimatedWithIcons: Story = {
+  args: {
+    variant: 'material-animated',
+    label: 'User Info',
+    placeholder: 'Enter details',
+    startIcon: <UserIcon size={18} />,
+    fullWidth: true,
+  },
+};
+
+export const MaterialAnimatedWithPrefix: Story = {
+  args: {
+    variant: 'material-animated',
+    label: 'Price',
+    placeholder: '0.00',
+    prefix: '$',
+    type: 'number',
+    fullWidth: true,
+  },
+};

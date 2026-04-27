@@ -58,8 +58,10 @@ export const Breadcrumb = ({
                   className={itemClassName}
                 >
                   <span className="flex items-center gap-1.5">
+                    {item.prefix && <span className="text-core-circle-text-muted">{item.prefix}</span>}
                     {item.icon && <span className="shrink-0">{item.icon}</span>}
                     {item.label}
+                    {item.suffix && <span className="text-core-circle-text-muted">{item.suffix}</span>}
                   </span>
                 </Link>
               </li>

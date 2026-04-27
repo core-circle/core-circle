@@ -1,19 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '@core-circle/ui';
-import { CodeIcon, CopyIcon } from '@core-circle/icons';
+import { Button, Select, Checkbox, TextInput } from '@core-circle/ui';
+import { CodeIcon, CopyIcon, Mail, ArrowRight, Star, SettingsIcon, Rotate, Clock } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { buttonPlaygroundStyles as s } from './buttonPlayground.styles';
 
 const ICONS = {
   none: null,
-  email: <span>📧</span>,
-  arrow: <span>→</span>,
-  star: <span>⭐</span>,
-  settings: <span>⚙️</span>,
-  refresh: <span>♻️</span>,
-  clock: <span>⌛</span>,
+  email: <Mail size={16} />,
+  arrow: <ArrowRight size={16} />,
+  star: <Star size={16} />,
+  settings: <SettingsIcon size={16} />,
+  refresh: <Rotate size={16} />,
+  clock: <Clock size={16} />,
 };
 
 const ICON_LABELS: Record<string, string> = {
@@ -27,35 +27,28 @@ const ICON_LABELS: Record<string, string> = {
 };
 
 const ICON_MAP: Record<string, string> = {
-  email: 'fa-solid fa-envelope',
-  arrow: 'fa-solid fa-arrow-right',
-  star: 'fa-solid fa-star',
-  settings: 'fa-solid fa-gear',
-  refresh: 'fa-solid fa-rotate',
-  clock: 'fa-regular fa-clock',
+  email: 'Mail',
+  arrow: 'ArrowRight',
+  star: 'Star',
+  settings: 'SettingsIcon',
+  refresh: 'Rotate',
+  clock: 'Clock',
 };
 
-// Reusable Control Components
-const ControlLabel = ({ children }: { children: React.ReactNode }) => (
-  <label className={s.controlLabel}>
-    {children}
-  </label>
-);
-
-const SelectField = ({ label, value, options, onChange }: any) => (
-  <div>
-    <ControlLabel>{label}</ControlLabel>
-    <select
+const SelectField = ({ label, value, options, onChange }: any) => {
+  const formattedOptions = Object.entries(options).map(([val, lbl]) => ({
+    value: val,
+    label: lbl as string,
+  }));
+  return (
+    <Select
+      label={label}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className={s.selectField}
-    >
-      {Object.entries(options).map(([val, label]) => (
-        <option key={val} value={val}>{label as string}</option>
-      ))}
-    </select>
-  </div>
-);
+      options={formattedOptions}
+    />
+  );
+};
 
 export const ButtonPlayground = () => {
   const [state, setState] = useState({
@@ -81,7 +74,7 @@ export const ButtonPlayground = () => {
     if (disabled) props += ' disabled';
 
     const addIcon = (name: string, val: string) => {
-      if (val !== 'none') props += `\n  ${name}={<i className="${ICON_MAP[val]}" />}`;
+      if (val !== 'none') props += `\n  ${name}={<${ICON_MAP[val]} size={16} />}`;
     };
 
     addIcon('startIcon', startIcon);
@@ -97,6 +90,7 @@ export const ButtonPlayground = () => {
       <div className={s.layout}>
         {/* Controls */}
         <div className={s.controlsWrapper}>
+          {/* Row 1: All select controls in one flat grid */}
           <div className={s.gridTwoCols}>
             <SelectField
               label="Variant"
@@ -110,42 +104,30 @@ export const ButtonPlayground = () => {
               onChange={(v: string) => updateState('size', v)}
               options={{ sm: 'Small', md: 'Medium', lg: 'Large', icon: 'Icon' }}
             />
+            <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
+            <SelectField label="End Icon" value={state.endIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endIcon', v)} />
+            <SelectField label="Start Loader" value={state.startLoadingIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startLoadingIcon', v)} />
+            <SelectField label="End Loader" value={state.endLoadingIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endLoadingIcon', v)} />
           </div>
 
-          <div className={s.dividerSection}>
-            <div className={s.gridTwoCols}>
-              <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
-              <SelectField label="End Icon" value={state.endIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endIcon', v)} />
-            </div>
-            <div className={s.gridTwoCols}>
-              <SelectField label="Start Loader" value={state.startLoadingIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startLoadingIcon', v)} />
-              <SelectField label="End Loader" value={state.endLoadingIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endLoadingIcon', v)} />
-            </div>
-          </div>
-
+          {/* Row 2: Checkboxes + Label input in one flex row */}
           <div className={s.flexGapSection}>
             {['loading', 'disabled'].map((key) => (
-              <label key={key} className={s.checkboxLabel}>
-                <input
-                  type="checkbox"
-                  checked={(state as any)[key]}
-                  onChange={(e) => updateState(key, e.target.checked)}
-                  className={s.checkboxInput}
-                />
-                <span className={s.checkboxText}>{key}</span>
-              </label>
+              <Checkbox
+                key={key}
+                label={key}
+                checked={(state as any)[key]}
+                onChange={(checked) => updateState(key, checked)}
+              />
             ))}
-          </div>
-
-          <div className={s.dividerSection}>
-            <ControlLabel>Button Label</ControlLabel>
-            <input
-              type="text"
-              value={state.text}
-              onChange={(e) => updateState('text', e.target.value)}
-              className={s.textInput}
-              placeholder="Enter label..."
-            />
+            <div className="ml-auto flex items-end">
+              <TextInput
+                label="Label"
+                value={state.text}
+                onChange={(e) => updateState('text', e.target.value)}
+                placeholder="Enter label..."
+              />
+            </div>
           </div>
         </div>
 
@@ -172,13 +154,15 @@ export const ButtonPlayground = () => {
                 <CodeIcon className="w-3.5 h-3.5" />
                 Live Code
               </span>
-              <button
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => navigator.clipboard.writeText(generateCode())}
                 className={s.copyButton}
               >
                 <CopyIcon className="w-3.5 h-3.5" />
                 Copy Snippet
-              </button>
+              </Button>
             </div>
             <pre className={s.codeBlock}>
               <code dangerouslySetInnerHTML={{ __html: highlightCode(generateCode()) }} />
