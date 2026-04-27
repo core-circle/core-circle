@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Breadcrumb } from '@core-circle/ui';
+import { Breadcrumb, TextInput, Button } from '@core-circle/ui';
 import * as Icons from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
@@ -46,18 +46,23 @@ export default function IconsContainer({ sections, headerContent, breadcrumbItem
         return (
           <>
             <div className={s?.searchWrapper}>
-              <div className={s?.searchInputWrapper}>
-                <Icons.SearchIcon className={s?.searchIcon} size={18} />
-                <input type="text" placeholder="Search 110+ icons..." className={s?.searchInput} value={search} onChange={(e) => setSearch(e.target.value)} />
+              <div className="pb-4 w-full">
+                <TextInput 
+                  placeholder="Search 110+ icons..." 
+                  startIcon={<Icons.SearchIcon size={18} />} 
+                  value={search} 
+                  onChange={(e) => setSearch(e.target.value)} 
+                  fullWidth
+                />
               </div>
             </div>
             <div className={s?.galleryGrid}>
               {filteredIcons.map(([name, IconComponent]) => (
-                <button key={name} className={s?.iconCard} onClick={() => copyToClipboard(name)} title={`Click to copy <${name} />`}>
+                <Button key={name} variant="ghost" className={s?.iconCard} onClick={() => copyToClipboard(name)} title={`Click to copy <${name} />`}>
                   <div className={s?.iconWrapper}><IconComponent size={24} /></div>
                   <span className={s?.iconName}>{name.replace('Icon', '')}</span>
                   {copiedIcon === name && <span className={s?.copyFeedback}>Copied!</span>}
-                </button>
+                </Button>
               ))}
             </div>
             {filteredIcons.length === 0 && (

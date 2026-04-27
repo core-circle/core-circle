@@ -1,3 +1,5 @@
+'use client';
+
 import { 
   HomeIcon,
   MousePointer, 
@@ -7,7 +9,7 @@ import {
   ChevronDown, 
   List, 
   CheckIcon, 
-  CircleDot 
+  CircleDot
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -78,5 +80,11 @@ export const ATOM_CARDS = [
     description: 'Exclusive selection control for choosing one from many options.',
     href: '/atoms/radio-button',
     icon: CircleDot,
+  },
+  {
+    title: 'Tabs',
+    description: 'Dynamic tab component used for alternating between different views.',
+    href: '/atoms/tabs',
+    icon: List,
   },
 ];

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { EyeIcon, CodeIcon, CopyIcon, CheckIcon } from '@core-circle/icons';
+import { Button } from '@core-circle/ui';
 import { highlightCode } from '../../utils/highlight';
 import { componentPreviewStyles as s } from './component-preview.styles';
 
@@ -26,15 +27,19 @@ const ComponentPreview = ({ title = '', code = '', children }: ComponentPreviewP
       <div className={s.toolbar}>
         {title && <h3 className={s.toolbarTitle}>{title}</h3>}
         <div className={s.toolbarActions}>
-          <button
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={() => setShowCode(!showCode)}
             className={`${s.toggleButton.base} ${showCode ? s.toggleButton.active : s.toggleButton.inactive}`}
           >
             {showCode ? <EyeIcon /> : <CodeIcon />}
             {showCode ? 'Preview' : 'Code'}
-          </button>
+          </Button>
 
-          <button
+          <Button
+            variant="ghost"
+            size="sm"
             onClick={copyToClipboard}
             className={s.copyButton}
           >
@@ -49,7 +54,7 @@ const ComponentPreview = ({ title = '', code = '', children }: ComponentPreviewP
                 Copy
               </>
             )}
-          </button>
+          </Button>
         </div>
       </div>
 

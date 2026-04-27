@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Breadcrumb, Select, Checkbox, TextInput } from '@core-circle/ui';
+import { Breadcrumb, Select, Checkbox, TextInput, Button } from '@core-circle/ui';
 import { HomeIcon, CodeIcon, CopyIcon, ShoppingBag, LightningBolt } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { breadcrumbPlaygroundStyles as s } from './breadcrumbPlayground.styles';
@@ -118,13 +118,15 @@ export const BreadcrumbPlayground = () => {
                 <CodeIcon className="w-3.5 h-3.5" />
                 Live Code
               </span>
-              <button
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => navigator.clipboard.writeText(generateCode())}
                 className={s.copyButton}
               >
                 <CopyIcon className="w-3.5 h-3.5" />
-                Copy
-              </button>
+                Copy Snippet
+              </Button>
             </div>
             <pre className={s.codeBlock}>
               <code dangerouslySetInnerHTML={{ __html: highlightCode(generateCode()) }} />

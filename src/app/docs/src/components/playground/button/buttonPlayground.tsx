@@ -154,13 +154,15 @@ export const ButtonPlayground = () => {
                 <CodeIcon className="w-3.5 h-3.5" />
                 Live Code
               </span>
-              <button
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => navigator.clipboard.writeText(generateCode())}
                 className={s.copyButton}
               >
                 <CopyIcon className="w-3.5 h-3.5" />
                 Copy Snippet
-              </button>
+              </Button>
             </div>
             <pre className={s.codeBlock}>
               <code dangerouslySetInnerHTML={{ __html: highlightCode(generateCode()) }} />

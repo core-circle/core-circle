@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Select, TextInput, Checkbox } from '@core-circle/ui';
+import { Select, TextInput, Checkbox, Button } from '@core-circle/ui';
 import { CodeIcon, CopyIcon, Filter, Map, SettingsIcon, UserIcon } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { textInputPlaygroundStyles as s } from '../text-input/textInputPlayground.styles';
@@ -139,13 +139,15 @@ export const SelectPlayground = () => {
                 <CodeIcon className="w-3.5 h-3.5" />
                 Live Code
               </span>
-              <button
+              <Button
+                variant="ghost"
+                size="sm"
                 onClick={() => navigator.clipboard.writeText(generateCode())}
                 className={s.copyButton}
               >
                 <CopyIcon className="w-3.5 h-3.5" />
-                Copy
-              </button>
+                Copy Snippet
+              </Button>
             </div>
             <pre className={s.codeBlock}>
               <code dangerouslySetInnerHTML={{ __html: highlightCode(generateCode()) }} />
