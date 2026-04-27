@@ -18,28 +18,70 @@ export const inputContainerVariants = cva(
   }
 );
 
-export const inputVariants = cva(
-  'w-full font-core-circle-medium transition-all duration-200 outline-none disabled:cursor-not-allowed disabled:opacity-50',
+export const inputWrapperVariants = cva(
+  'relative flex items-center group w-full font-core-circle-medium transition-all duration-200 outline-none',
   {
     variants: {
       variant: {
-        outline: 'border border-core-circle-border-main bg-white text-core-circle-text-main rounded-core-circle-lg focus:border-core-circle-primary focus:ring-2 focus:ring-core-circle-primary/10',
-        material: 'border-b-2 border-core-circle-border-main bg-core-circle-bg-page hover:bg-core-circle-bg-muted focus:border-core-circle-primary rounded-t-core-circle-md',
-        'material-animated': 'border-b-2 border-core-circle-border-main bg-core-circle-bg-page hover:bg-core-circle-bg-muted focus:border-core-circle-primary rounded-t-core-circle-md pt-6 pb-1.5',
-        ghost: 'bg-transparent border-none text-core-circle-text-main hover:bg-core-circle-bg-page focus:bg-core-circle-bg-page',
-        standard: 'border-b border-core-circle-border-main bg-transparent text-core-circle-text-main focus:border-core-circle-primary',
+        outline: 'border border-core-circle-border-main bg-white rounded-core-circle-lg focus-within:border-core-circle-primary focus-within:ring-2 focus-within:ring-core-circle-primary/10',
+        material: 'border-b-2 border-core-circle-border-main bg-core-circle-bg-page hover:bg-core-circle-bg-muted focus-within:border-core-circle-primary rounded-t-core-circle-md',
+        'material-animated': 'border-b-2 border-core-circle-border-main bg-core-circle-bg-page hover:bg-core-circle-bg-muted focus-within:border-core-circle-primary rounded-t-core-circle-md',
+        ghost: 'bg-transparent border-none hover:bg-core-circle-bg-page focus-within:bg-core-circle-bg-page',
+        standard: 'border-b border-core-circle-border-main bg-transparent focus-within:border-core-circle-primary',
       },
+      hasError: {
+        true: 'border-core-circle-warning focus-within:border-core-circle-warning focus-within:ring-core-circle-warning/10',
+      },
+      disabled: {
+        true: 'cursor-not-allowed opacity-50',
+      }
+    },
+    defaultVariants: {
+      variant: 'outline',
+    },
+  }
+);
+
+export const inputVariants = cva(
+  'w-full bg-transparent border-none outline-none text-core-circle-text-main placeholder:text-core-circle-text-muted disabled:cursor-not-allowed',
+  {
+    variants: {
       size: {
         sm: 'px-3 py-1.5 text-core-circle-xs',
         md: 'px-4 py-2.5 text-core-circle-sm',
         lg: 'px-6 py-4 text-core-circle-md',
       },
-      hasError: {
-        true: 'border-core-circle-warning focus:border-core-circle-warning focus:ring-core-circle-warning/10',
+      variant: {
+        outline: '',
+        material: '',
+        'material-animated': '',
+        ghost: '',
+        standard: '',
       }
     },
+    compoundVariants: [
+      {
+        variant: 'material-animated',
+        className: 'pt-6 pb-1.5',
+      }
+    ],
     defaultVariants: {
-      variant: 'outline',
+      size: 'md',
+    },
+  }
+);
+
+export const prefixSuffixVariants = cva(
+  'flex items-center justify-center text-core-circle-text-muted transition-colors whitespace-nowrap select-none',
+  {
+    variants: {
+      size: {
+        sm: 'text-core-circle-xs',
+        md: 'text-core-circle-sm',
+        lg: 'text-core-circle-md',
+      },
+    },
+    defaultVariants: {
       size: 'md',
     },
   }

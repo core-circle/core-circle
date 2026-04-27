@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { cn } from '../../../utils/cn';
 import { TextInputProps } from '../../../interface/atoms/text-input/text-input.types';
-import { inputContainerVariants, inputVariants, labelVariants } from './text-input.styles';
+import { inputContainerVariants, inputVariants, labelVariants, inputWrapperVariants, prefixSuffixVariants } from './text-input.styles';
 
 export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   (
@@ -17,6 +17,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       startIcon,
       endIcon,
       fullWidth = false,
+      prefix,
+      suffix,
       id,
       onFocus,
       onBlur,
@@ -47,7 +49,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      setHasValue(!!e.target.value);
+      setHasValue(!!e.currentTarget.value);
       onChange?.(e);
     };
 
@@ -64,13 +66,13 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           </label>
         )}
         
-        <div className="relative flex items-center group">
+        <div className={cn(inputWrapperVariants({ variant, hasError, disabled: props.disabled }))}>
           {label && isMaterialAnimated && (
             <label 
               htmlFor={inputId} 
               className={cn(
                 labelVariants({ variant, hasError, isFloating }),
-                startIcon && !isFloating && 'left-11'
+                (startIcon || prefix) && !isFloating && 'left-11'
               )}
             >
               {label}
@@ -79,10 +81,22 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 
           {startIcon && (
             <div className={cn(
-              "absolute left-4 flex items-center justify-center text-core-circle-text-muted group-focus-within:text-core-circle-primary transition-colors",
-              isMaterialAnimated && "top-1/2 -translate-y-1/2 mt-2"
+              "flex items-center justify-center text-core-circle-text-muted group-focus-within:text-core-circle-primary transition-colors",
+              variant === 'outline' ? 'pl-4' : 'pl-0',
+              isMaterialAnimated && "mt-2"
             )}>
               {startIcon}
+            </div>
+          )}
+
+          {prefix && (
+            <div className={cn(
+              prefixSuffixVariants({ size }),
+              variant === 'outline' && !startIcon && 'pl-4',
+              (startIcon) && 'pl-2',
+              isMaterialAnimated && "mt-2"
+            )}>
+              {prefix}
             </div>
           )}
           
@@ -90,9 +104,11 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
             id={inputId}
             ref={ref}
             className={cn(
-              inputVariants({ variant, size, hasError }),
-              startIcon && 'pl-11',
-              endIcon && 'pr-11'
+              inputVariants({ size, variant }),
+              variant === 'outline' && !startIcon && !prefix && 'pl-4',
+              variant === 'outline' && !endIcon && !suffix && 'pr-4',
+              (startIcon || prefix) && 'pl-2',
+              (endIcon || suffix) && 'pr-2'
             )}
             placeholder={isMaterialAnimated ? (isFloating ? placeholder : '') : placeholder}
             onFocus={handleFocus}
@@ -102,11 +118,23 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
             defaultValue={defaultValue}
             {...props}
           />
+
+          {suffix && (
+            <div className={cn(
+              prefixSuffixVariants({ size }),
+              variant === 'outline' && !endIcon && 'pr-4',
+              (endIcon) && 'pr-2',
+              isMaterialAnimated && "mt-2"
+            )}>
+              {suffix}
+            </div>
+          )}
           
           {endIcon && (
             <div className={cn(
-              "absolute right-4 flex items-center justify-center text-core-circle-text-muted group-focus-within:text-core-circle-primary transition-colors",
-              isMaterialAnimated && "top-1/2 -translate-y-1/2 mt-2"
+              "flex items-center justify-center text-core-circle-text-muted group-focus-within:text-core-circle-primary transition-colors",
+              variant === 'outline' ? 'pr-4' : 'pr-0',
+              isMaterialAnimated && "mt-2"
             )}>
               {endIcon}
             </div>

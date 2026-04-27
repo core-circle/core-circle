@@ -1,6 +1,6 @@
 import { InputHTMLAttributes, ReactNode } from 'react';
 
-export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface TextInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
   /**
    * Visual style of the input
    * @default 'outline'
@@ -43,4 +43,14 @@ export interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
    * @default false
    */
   fullWidth?: boolean;
+
+  /**
+   * Text or element to display at the start of the input (after the icon if present)
+   */
+  prefix?: ReactNode;
+
+  /**
+   * Text or element to display at the end of the input (before the icon if present)
+   */
+  suffix?: ReactNode;
 }

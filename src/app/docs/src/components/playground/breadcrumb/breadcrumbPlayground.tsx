@@ -22,9 +22,9 @@ export const BreadcrumbPlayground = () => {
   const getItems = () => {
     const items = [
       { label: 'Home', href: '#', icon: <HomeIcon size={14} /> },
-      { label: 'Products', href: '#' },
-      { label: 'Category', href: '#' },
-      { label: 'Electronics', href: '#' },
+      { label: 'Products', href: '#', prefix: '📦' },
+      { label: 'Category', href: '#', suffix: '(Refined)' },
+      { label: 'Electronics', href: '#', prefix: '⚡' },
       { label: 'Smartphones' },
     ];
     return items.slice(0, state.itemCount);
@@ -32,15 +32,15 @@ export const BreadcrumbPlayground = () => {
 
   const generateCode = () => {
     const items = getItems();
-    const itemsCode = items.map(item => {
+    let props = `items={[\n    ${items.map(item => {
       let itemStr = `{ label: '${item.label}'`;
       if (item.href) itemStr += `, href: '${item.href}'`;
+      if (item.prefix) itemStr += `, prefix: '${item.prefix}'`;
+      if (item.suffix) itemStr += `, suffix: '${item.suffix}'`;
       if (item.icon) itemStr += `, icon: <HomeIcon size={14} />`;
       itemStr += ' }';
       return itemStr;
-    }).join(', ');
-
-    let props = `items={[\n    ${items.map(item => `{ label: '${item.label}'${item.href ? `, href: '${item.href}'` : ''} }`).join(',\n    ')}\n  ]}`;
+    }).join(',\n    ')}\n  ]}`;
     props += `\n  variant="${state.variant}"`;
     if (state.showBack) {
       props += `\n  showBack`;

@@ -98,6 +98,37 @@ export default function TextInputDocsPage() {
             </div>
           </ComponentPreview>
         </DocSection>
+        
+        <DocSection
+          id="prefix-suffix"
+          title="Prefix and Suffix"
+          description="Add non-editable text or symbols at the start or end of the input field."
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <ComponentPreview
+              title="Currency & Units"
+              code={`<TextInput \n  label="Price" \n  prefix={<span className="font-bold">$</span>} \n  suffix="USD" \n  placeholder="0.00" \n/>`}
+            >
+              <TextInput 
+                label="Price" 
+                prefix={<span className="font-bold text-core-circle-text-main">$</span>} 
+                suffix={<span className="text-core-circle-text-muted">USD</span>} 
+                placeholder="0.00" 
+                fullWidth 
+              />
+            </ComponentPreview>
+
+            <ComponentPreview
+              title="Titles & Measurements"
+              code={`<TextInput prefix="Mr." placeholder="Full Name" />\n<TextInput suffix="kgs" placeholder="Weight" />`}
+            >
+              <div className="space-y-6 w-full">
+                <TextInput prefix="Mr." placeholder="Full Name" fullWidth />
+                <TextInput suffix="kgs" placeholder="Weight" fullWidth />
+              </div>
+            </ComponentPreview>
+          </div>
+        </DocSection>
 
         <DocSection
           id="validation"

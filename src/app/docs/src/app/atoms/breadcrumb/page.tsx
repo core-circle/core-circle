@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Breadcrumb } from '@core-circle/ui';
-import { HomeIcon, ChevronRight } from '@core-circle/icons';
+import { HomeIcon } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
 import { BreadcrumbPlayground } from '../../../components/playground/breadcrumb/breadcrumbPlayground';
@@ -49,7 +49,6 @@ export default function BreadcrumbDocsPage() {
           <div className="space-y-8">
             <ComponentPreview
               title="Standard"
-              description="The default classic breadcrumb style."
               code={`<Breadcrumb \n  items={[\n    { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },\n    { label: 'Atoms', href: '/atoms' },\n    { label: 'Breadcrumb' }\n  ]} \n/>`}
             >
               <Breadcrumb items={defaultItems} />
@@ -57,7 +56,6 @@ export default function BreadcrumbDocsPage() {
 
             <ComponentPreview
               title="Ghost"
-              description="A subtle variation with a light background wrapper."
               code={`<Breadcrumb variant="ghost" items={defaultItems} />`}
             >
               <Breadcrumb variant="ghost" items={defaultItems} />
@@ -65,7 +63,6 @@ export default function BreadcrumbDocsPage() {
 
             <ComponentPreview
               title="Pills"
-              description="A modern style with each item in its own capsule."
               code={`<Breadcrumb variant="pills" items={defaultItems} />`}
             >
               <Breadcrumb variant="pills" items={defaultItems} />
@@ -80,7 +77,6 @@ export default function BreadcrumbDocsPage() {
         >
           <ComponentPreview
             title="With Back Link"
-            description="Adds a prominent back link before the breadcrumb items."
             code={`<Breadcrumb \n  showBack \n  backLabel="Go Back" \n  items={defaultItems} \n/>`}
           >
             <Breadcrumb showBack backLabel="Go Back" items={defaultItems} />
@@ -97,6 +93,25 @@ export default function BreadcrumbDocsPage() {
             code={`<Breadcrumb \n  separator={<span className="opacity-30 mx-2">→</span>} \n  items={defaultItems} \n/>`}
           >
             <Breadcrumb separator={<span className="opacity-30 mx-2">→</span>} items={defaultItems} />
+          </ComponentPreview>
+        </DocSection>
+
+        <DocSection
+          id="item-prefix-suffix"
+          title="Item Prefix & Suffix"
+          description="Add labels, emojis, or status indicators to individual breadcrumb items."
+        >
+          <ComponentPreview
+            title="Custom Labels"
+            code={`<Breadcrumb \n  items={[\n    { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },\n    { label: 'Orders', href: '#', prefix: '📦' },\n    { label: 'Checkout', suffix: '(Active)' }\n  ]} \n/>`}
+          >
+            <Breadcrumb 
+              items={[
+                { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },
+                { label: 'Orders', href: '#', prefix: '📦' },
+                { label: 'Checkout', suffix: '(Active)' }
+              ]} 
+            />
           </ComponentPreview>
         </DocSection>
       </div>

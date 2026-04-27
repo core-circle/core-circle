@@ -59,6 +59,8 @@ export const TextInputPlayground = () => {
     fullWidth: true,
     startIcon: 'none',
     endIcon: 'none',
+    prefix: '',
+    suffix: '',
   });
 
   const updateState = (key: string, value: any) => {
@@ -84,6 +86,9 @@ export const TextInputPlayground = () => {
 
     addIcon('startIcon', startIcon);
     addIcon('endIcon', endIcon);
+
+    if (state.prefix) props += ` prefix="${state.prefix}"`;
+    if (state.suffix) props += ` suffix="${state.suffix}"`;
 
     return `<TextInput ${props} />`;
   };
@@ -132,6 +137,16 @@ export const TextInputPlayground = () => {
               <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
               <SelectField label="End Icon" value={state.endIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endIcon', v)} />
             </div>
+            <div className={s.gridTwoCols + " mt-4"}>
+              <div>
+                <ControlLabel>Prefix</ControlLabel>
+                <input type="text" value={state.prefix} onChange={(e) => updateState('prefix', e.target.value)} className={s.textInput} placeholder="e.g. Mr." />
+              </div>
+              <div>
+                <ControlLabel>Suffix</ControlLabel>
+                <input type="text" value={state.suffix} onChange={(e) => updateState('suffix', e.target.value)} className={s.textInput} placeholder="e.g. kgs" />
+              </div>
+            </div>
           </div>
 
           <div className={s.dividerSection}>
@@ -174,6 +189,8 @@ export const TextInputPlayground = () => {
                 fullWidth={state.fullWidth}
                 startIcon={(ICONS as any)[state.startIcon]}
                 endIcon={(ICONS as any)[state.endIcon]}
+                prefix={state.prefix}
+                suffix={state.suffix}
               />
             </div>
           </div>
