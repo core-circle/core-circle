@@ -97,6 +97,7 @@ export const ButtonPlayground = () => {
       <div className={s.layout}>
         {/* Controls */}
         <div className={s.controlsWrapper}>
+          {/* Row 1: All select controls in one flat grid */}
           <div className={s.gridTwoCols}>
             <SelectField
               label="Variant"
@@ -110,19 +111,13 @@ export const ButtonPlayground = () => {
               onChange={(v: string) => updateState('size', v)}
               options={{ sm: 'Small', md: 'Medium', lg: 'Large', icon: 'Icon' }}
             />
+            <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
+            <SelectField label="End Icon" value={state.endIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endIcon', v)} />
+            <SelectField label="Start Loader" value={state.startLoadingIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startLoadingIcon', v)} />
+            <SelectField label="End Loader" value={state.endLoadingIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endLoadingIcon', v)} />
           </div>
 
-          <div className={s.dividerSection}>
-            <div className={s.gridTwoCols}>
-              <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
-              <SelectField label="End Icon" value={state.endIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endIcon', v)} />
-            </div>
-            <div className={s.gridTwoCols}>
-              <SelectField label="Start Loader" value={state.startLoadingIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startLoadingIcon', v)} />
-              <SelectField label="End Loader" value={state.endLoadingIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endLoadingIcon', v)} />
-            </div>
-          </div>
-
+          {/* Row 2: Checkboxes + Label input in one flex row */}
           <div className={s.flexGapSection}>
             {['loading', 'disabled'].map((key) => (
               <label key={key} className={s.checkboxLabel}>
@@ -135,17 +130,17 @@ export const ButtonPlayground = () => {
                 <span className={s.checkboxText}>{key}</span>
               </label>
             ))}
-          </div>
-
-          <div className={s.dividerSection}>
-            <ControlLabel>Button Label</ControlLabel>
-            <input
-              type="text"
-              value={state.text}
-              onChange={(e) => updateState('text', e.target.value)}
-              className={s.textInput}
-              placeholder="Enter label..."
-            />
+            <div className="ml-auto flex items-end gap-3">
+              <ControlLabel>Label</ControlLabel>
+              <input
+                type="text"
+                value={state.text}
+                onChange={(e) => updateState('text', e.target.value)}
+                className={s.textInput}
+                placeholder="Enter label..."
+                style={{ width: '180px' }}
+              />
+            </div>
           </div>
         </div>
 
