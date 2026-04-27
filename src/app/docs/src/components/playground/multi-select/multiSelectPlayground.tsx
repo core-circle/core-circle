@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { MultiSelect } from '@core-circle/ui';
+import { MultiSelect, Select, TextInput, Checkbox } from '@core-circle/ui';
 import { CodeIcon, CopyIcon, Filter, Map, SettingsIcon, UserIcon, Tag } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { textInputPlaygroundStyles as s } from '../text-input/textInputPlayground.styles';
@@ -32,26 +32,20 @@ const OPTIONS = [
   { value: 'typescript', label: 'TypeScript', disabled: true },
 ];
 
-const ControlLabel = ({ children }: { children: React.ReactNode }) => (
-  <label className={s.controlLabel}>
-    {children}
-  </label>
-);
-
-const SelectField = ({ label, value, options, onChange }: any) => (
-  <div>
-    <ControlLabel>{label}</ControlLabel>
-    <select
+const SelectField = ({ label, value, options, onChange }: any) => {
+  const formattedOptions = Object.entries(options).map(([val, lbl]) => ({
+    value: val,
+    label: lbl as string,
+  }));
+  return (
+    <Select
+      label={label}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className={s.selectField}
-    >
-      {Object.entries(options).map(([val, label]) => (
-        <option key={val} value={val}>{label as string}</option>
-      ))}
-    </select>
-  </div>
-);
+      options={formattedOptions}
+    />
+  );
+};
 
 export const MultiSelectPlayground = () => {
   const [state, setState] = useState({
@@ -102,44 +96,26 @@ export const MultiSelectPlayground = () => {
             <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
             <div className="flex gap-4 items-end pb-2">
               {['disabled', 'fullWidth'].map((key) => (
-                <label key={key} className={s.checkboxLabel}>
-                  <input
-                    type="checkbox"
-                    checked={(state as any)[key]}
-                    onChange={(e) => updateState(key, e.target.checked)}
-                    className={s.checkboxInput}
-                  />
-                  <span className={s.checkboxText}>{key}</span>
-                </label>
+                <Checkbox
+                  key={key}
+                  label={key}
+                  checked={(state as any)[key]}
+                  onChange={(checked) => updateState(key, checked)}
+                />
               ))}
             </div>
           </div>
 
           <div className={s.dividerSection}>
             <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
-            <div>
-              <ControlLabel>Placeholder</ControlLabel>
-              <input type="text" value={state.placeholder} onChange={(e) => updateState('placeholder', e.target.value)} className={s.textInput} />
-            </div>
-            <div>
-              <ControlLabel>Label</ControlLabel>
-              <input type="text" value={state.label} onChange={(e) => updateState('label', e.target.value)} className={s.textInput} />
-            </div>
-            <div>
-              <ControlLabel>Prefix</ControlLabel>
-              <input type="text" value={state.prefix} onChange={(e) => updateState('prefix', e.target.value)} className={s.textInput} />
-            </div>
+            <TextInput label="Placeholder" value={state.placeholder} onChange={(e) => updateState('placeholder', e.target.value)} />
+            <TextInput label="Label" value={state.label} onChange={(e) => updateState('label', e.target.value)} />
+            <TextInput label="Prefix" value={state.prefix} onChange={(e) => updateState('prefix', e.target.value)} />
           </div>
 
           <div className={s.dividerSection}>
-            <div>
-              <ControlLabel>Error</ControlLabel>
-              <input type="text" value={state.error} onChange={(e) => updateState('error', e.target.value)} className={s.textInput} placeholder="Error message..." />
-            </div>
-            <div>
-              <ControlLabel>Helper Text</ControlLabel>
-              <input type="text" value={state.helperText} onChange={(e) => updateState('helperText', e.target.value)} className={s.textInput} />
-            </div>
+            <TextInput label="Error" value={state.error} onChange={(e) => updateState('error', e.target.value)} placeholder="Error message..." />
+            <TextInput label="Helper Text" value={state.helperText} onChange={(e) => updateState('helperText', e.target.value)} />
           </div>
         </div>
 

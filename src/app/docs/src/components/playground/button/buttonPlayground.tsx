@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '@core-circle/ui';
+import { Button, Select, Checkbox, TextInput } from '@core-circle/ui';
 import { CodeIcon, CopyIcon, Mail, ArrowRight, Star, SettingsIcon, Rotate, Clock } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { buttonPlaygroundStyles as s } from './buttonPlayground.styles';
@@ -35,27 +35,20 @@ const ICON_MAP: Record<string, string> = {
   clock: 'Clock',
 };
 
-// Reusable Control Components
-const ControlLabel = ({ children }: { children: React.ReactNode }) => (
-  <label className={s.controlLabel}>
-    {children}
-  </label>
-);
-
-const SelectField = ({ label, value, options, onChange }: any) => (
-  <div>
-    <ControlLabel>{label}</ControlLabel>
-    <select
+const SelectField = ({ label, value, options, onChange }: any) => {
+  const formattedOptions = Object.entries(options).map(([val, lbl]) => ({
+    value: val,
+    label: lbl as string,
+  }));
+  return (
+    <Select
+      label={label}
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      className={s.selectField}
-    >
-      {Object.entries(options).map(([val, label]) => (
-        <option key={val} value={val}>{label as string}</option>
-      ))}
-    </select>
-  </div>
-);
+      options={formattedOptions}
+    />
+  );
+};
 
 export const ButtonPlayground = () => {
   const [state, setState] = useState({
@@ -120,25 +113,19 @@ export const ButtonPlayground = () => {
           {/* Row 2: Checkboxes + Label input in one flex row */}
           <div className={s.flexGapSection}>
             {['loading', 'disabled'].map((key) => (
-              <label key={key} className={s.checkboxLabel}>
-                <input
-                  type="checkbox"
-                  checked={(state as any)[key]}
-                  onChange={(e) => updateState(key, e.target.checked)}
-                  className={s.checkboxInput}
-                />
-                <span className={s.checkboxText}>{key}</span>
-              </label>
+              <Checkbox
+                key={key}
+                label={key}
+                checked={(state as any)[key]}
+                onChange={(checked) => updateState(key, checked)}
+              />
             ))}
-            <div className="ml-auto flex items-end gap-3">
-              <ControlLabel>Label</ControlLabel>
-              <input
-                type="text"
+            <div className="ml-auto flex items-end">
+              <TextInput
+                label="Label"
                 value={state.text}
                 onChange={(e) => updateState('text', e.target.value)}
-                className={s.textInput}
                 placeholder="Enter label..."
-                style={{ width: '180px' }}
               />
             </div>
           </div>
