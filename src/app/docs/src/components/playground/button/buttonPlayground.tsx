@@ -5,6 +5,7 @@ import { Button, Select, Checkbox, TextInput } from '@core-circle/ui';
 import { CodeIcon, CopyIcon, Mail, ArrowRight, Star, SettingsIcon, Rotate, Clock } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { buttonPlaygroundStyles as s } from './buttonPlayground.styles';
+import { DOC_TEXT } from '../../../constants/common-constants';
 
 const ICONS = {
   none: null,
@@ -171,7 +172,7 @@ export const ButtonPlayground = () => {
             <div className={s.codeHeader}>
               <span className={s.codeTitle}>
                 <CodeIcon className="w-3.5 h-3.5" />
-                Live Code
+                {DOC_TEXT.PLAYGROUND.LIVE_CODE}
               </span>
               <Button
                 variant="ghost"
@@ -180,7 +181,7 @@ export const ButtonPlayground = () => {
                 className={s.copyButton}
                 startIcon={<CopyIcon className="w-3.5 h-3.5" />}
               >
-                Copy Snippet
+                {DOC_TEXT.PLAYGROUND.COPY_SNIPPET}
               </Button>
             </div>
             <pre className={s.codeBlock}>

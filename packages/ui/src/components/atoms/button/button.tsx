@@ -19,6 +19,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       endIcon,
       children,
       disabled,
+      fullWidth,
       ...props
     },
     ref
@@ -31,7 +32,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         disabled={isDisabled}
-        className={cn(buttonVariants({ variant, size, labelSize, labelWeight, className }))}
+        className={cn(buttonVariants({ variant, size, labelSize, labelWeight, fullWidth, className }))}
         {...props}
       >
         {loading && (startLoadingIcon || showDefaultLoader) ? (

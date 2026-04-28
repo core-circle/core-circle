@@ -16,6 +16,7 @@
     "build-storybook": "nx build-storybook @core-circle/ui",
     "test": "nx run-many --target=test",
     "lint": "nx run-many --target=lint",
+    "validate": "nx reset && nx run-many --target=lint && nx run-many --target=build",
     "prepare": "husky"
   },
   "devDependencies": {

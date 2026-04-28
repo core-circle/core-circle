@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Breadcrumb, Select, Checkbox, TextInput, Button } from '@core-circle/ui';
+import { Breadcrumb, Select, Checkbox, TextInput, Button, SliderInput } from '@core-circle/ui';
 import { HomeIcon, CodeIcon, CopyIcon, ShoppingBag, LightningBolt } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { breadcrumbPlaygroundStyles as s } from './breadcrumbPlayground.styles';
@@ -66,21 +66,15 @@ export const BreadcrumbPlayground = () => {
                 ]}
               />
 
-            <div>
-              <label className={s.controlLabel}>Item Count</label>
-              <input 
-                type="range" 
-                min="1" 
-                max="5" 
-                value={state.itemCount} 
-                onChange={(e) => updateState('itemCount', parseInt(e.target.value))}
-                className="w-full accent-core-circle-primary cursor-pointer"
-              />
-              <div className="flex justify-between text-[10px] text-core-circle-text-muted mt-1 uppercase font-core-circle-bold">
-                <span>1 Item</span>
-                <span>5 Items</span>
-              </div>
-            </div>
+            <SliderInput
+              label="Item Count"
+              min={1}
+              max={5}
+              value={state.itemCount}
+              onChange={(e) => updateState('itemCount', parseInt(e.target.value))}
+              showValue
+              fullWidth
+            />
 
             <div className={s.dividerSection}>
               <Checkbox

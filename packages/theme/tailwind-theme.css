@@ -1,7 +1,10 @@
 @theme {
   /* Font Families */
-  --font-family-core-circle-heading: "Montserrat", sans-serif;
-  --font-family-core-circle-body: "Ubuntu", sans-serif;
+  --font-family-core-circle-primary: "Montserrat", sans-serif;
+  --font-family-core-circle-secondary: "Ubuntu", sans-serif;
+  
+  --font-family-core-circle-heading: var(--font-family-core-circle-primary);
+  --font-family-core-circle-body: var(--font-family-core-circle-primary);
 
   /* Colors */
   /* Colors Palette (100+ colors) */
@@ -40,6 +43,9 @@
   --color-core-circle-warning: var(--color-core-circle-orange-500);
   --color-core-circle-warning-hover: var(--color-core-circle-orange-600);
   --color-core-circle-warning-active: var(--color-core-circle-orange-700);
+
+  --color-core-circle-success: var(--color-core-circle-green-600);
+  --color-core-circle-danger: var(--color-core-circle-destructive);
 
   /* Semantic Presets - Backgrounds */
   --color-core-circle-bg-page: var(--color-core-circle-slate-50);
@@ -126,11 +132,27 @@
   --animate-ease-core-circle-out: cubic-bezier(0, 0, 0.2, 1);
   --animate-ease-core-circle-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
+  /* Progress Animations */
+  --animate-progress-indeterminate: progress-indeterminate 2s infinite linear;
+
+  @keyframes progress-indeterminate {
+    0% { transform: translateX(-100%) scaleX(0.2); }
+    50% { transform: translateX(0%) scaleX(0.5); }
+    100% { transform: translateX(100%) scaleX(0.2); }
+  }
+
+  @keyframes shimmer {
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes spinner-spin {
+    to { transform: rotate(360deg); }
+  }
 }
 
 @layer base {
   * {
-    font-family: var(--font-family-core-circle-body);
+    font-family: var(--font-family-core-circle-primary);
   }
 
   body {
@@ -138,7 +160,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-family-core-circle-heading);
+    font-family: var(--font-family-core-circle-primary);
     @apply font-core-circle-bold tracking-tight;
   }
 

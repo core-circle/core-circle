@@ -49,20 +49,20 @@ export default function IconsContainer({ headerContent, breadcrumbItems }: Icons
           </DocSection>
 
           <DocSection id="icons-styling" title="Advanced Styling" description="Since icons are React components, you can style them using CSS classes or inline styles just like any other element.">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-              <div className="bg-slate-50 dark:bg-slate-900/50 rounded-xl p-8 flex items-center justify-center gap-8 border border-slate-200 dark:border-slate-800">
-                <div className="flex flex-col items-center gap-2">
-                  <HomeIcon size={32} className="text-blue-500 animate-pulse" />
-                  <span className="text-[10px] text-slate-400 font-mono">Animated</span>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+              <div className="bg-white dark:bg-slate-900 rounded-core-circle-2xl p-12 flex items-center justify-center gap-12 border border-core-circle-border-main shadow-core-circle-subtle">
+                <div className="flex flex-col items-center gap-4">
+                  <HomeIcon size={40} className="text-core-circle-primary animate-pulse" />
+                  <span className="text-[10px] text-core-circle-text-muted font-core-circle-bold uppercase tracking-widest">Animated</span>
                 </div>
-                <div className="flex flex-col items-center gap-2">
-                  <SearchIcon size={32} className="text-emerald-500 hover:scale-125 transition-transform" />
-                  <span className="text-[10px] text-slate-400 font-mono">Hover Effect</span>
+                <div className="flex flex-col items-center gap-4">
+                  <SearchIcon size={40} className="text-core-circle-secondary hover:scale-125 transition-transform cursor-pointer" />
+                  <span className="text-[10px] text-core-circle-text-muted font-core-circle-bold uppercase tracking-widest">Hover Effect</span>
                 </div>
               </div>
               <CodeSnippet
                 label="Custom CSS"
-                code={`<HomeIcon \n  className="text-blue-500 animate-pulse" \n/>`}
+                code={`<HomeIcon \n  className="text-blue-600 animate-pulse" \n/>`}
               />
             </div>
           </DocSection>
@@ -75,34 +75,34 @@ export default function IconsContainer({ headerContent, breadcrumbItems }: Icons
       icon: <Image size={16} />,
       content: (
         <DocSection id="icons-gallery" title="110+ Premium Icons" description="Click on any icon to copy the React component code to your clipboard.">
-          <div className="mt-8 space-y-8">
-            <div className="max-w-md">
+          <div className="mt-8 space-y-10">
+            <div className="w-full">
               <TextInput
-                placeholder="Search icons..."
+                placeholder="Search premium icons..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                startIcon={<SearchIcon size={18} />}
+                startIcon={<SearchIcon size={20} />}
                 fullWidth
               />
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            <div className={s.galleryGrid}>
               {filteredIcons.map(([name, IconComponent]) => {
                 const Icon = IconComponent as React.FC<{ size?: number }>;
                 return (
                   <button
                     key={name}
-                    className="relative flex flex-col items-center justify-center p-6 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-xl hover:border-core-circle-primary hover:shadow-md transition-all group"
+                    className={s.iconCard}
                     onClick={() => copyToClipboard(name)}
                   >
-                    <div className="text-slate-700 dark:text-slate-300 group-hover:text-core-circle-primary transition-colors">
+                    <div className={s.iconWrapper}>
                       <Icon size={32} />
                     </div>
-                    <span className="mt-3 text-[10px] font-mono text-slate-400 truncate w-full text-center">
+                    <span className={s.iconName}>
                       {name.replace('Icon', '')}
                     </span>
                     {copiedIcon === name && (
-                      <div className="absolute inset-0 flex items-center justify-center bg-core-circle-primary/90 text-white text-[10px] font-bold rounded-xl animate-in fade-in zoom-in duration-200">
+                      <div className={s.copiedBadge}>
                         Copied!
                       </div>
                     )}
@@ -112,8 +112,8 @@ export default function IconsContainer({ headerContent, breadcrumbItems }: Icons
             </div>
 
             {filteredIcons.length === 0 && (
-              <div className="py-20 text-center bg-slate-50 dark:bg-slate-900/50 rounded-2xl border border-dashed border-slate-200 dark:border-slate-800">
-                <p className="text-slate-400">No icons found matching "{search}"</p>
+              <div className={s.emptyState}>
+                <p className={s.emptyText}>No icons found matching "{search}"</p>
               </div>
             )}
           </div>
