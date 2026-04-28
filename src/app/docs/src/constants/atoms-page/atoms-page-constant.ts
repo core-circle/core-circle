@@ -7,10 +7,15 @@ import {
   SquareEdit, 
   ChevronRight, 
   ChevronDown, 
-  List, 
   CheckIcon, 
   CircleDot,
-  DocumentText
+  TypeIcon,
+  RowsIcon,
+  TabIcon,
+  SlidersHorizontalIcon,
+  PresentationChart,
+  UserCircle,
+  Tag
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -35,22 +40,22 @@ export const ATOMS_HEADER_CONTENT = {
  */
 export const ATOM_CARDS = [
   {
-    title: 'Button',
-    description: 'Standard button with various variants, sizes, and loading states.',
-    href: '/atoms/button',
-    icon: MousePointer,
+    title: 'Accordion',
+    description: 'A vertically stacked set of interactive headings that reveal content sections.',
+    href: '/atoms/accordion',
+    icon: ChevronDown,
   },
   {
-    title: 'Icons',
-    description: '110+ high-quality vector icons for the Core Circle ecosystem.',
-    href: '/atoms/icons',
-    icon: Sparkles,
+    title: 'Avatar',
+    description: 'Visual representation of a user or entity with fallback support.',
+    href: '/atoms/avatar',
+    icon: UserCircle,
   },
   {
-    title: 'TextInput',
-    description: 'Versatile input field with Material Design support and icons.',
-    href: '/atoms/text-input',
-    icon: SquareEdit,
+    title: 'Badge',
+    description: 'Small visual indicator for status, counts, or categorization.',
+    href: '/atoms/badge',
+    icon: Tag,
   },
   {
     title: 'Breadcrumb',
@@ -59,16 +64,10 @@ export const ATOM_CARDS = [
     icon: ChevronRight,
   },
   {
-    title: 'Select',
-    description: 'Customizable dropdown selection component with variant support.',
-    href: '/atoms/select',
-    icon: ChevronDown,
-  },
-  {
-    title: 'MultiSelect',
-    description: 'Advanced dropdown for multiple selections with tag visualization.',
-    href: '/atoms/multi-select',
-    icon: List,
+    title: 'Button',
+    description: 'Standard button with various variants, sizes, and loading states.',
+    href: '/atoms/button',
+    icon: MousePointer,
   },
   {
     title: 'Checkbox',
@@ -77,21 +76,57 @@ export const ATOM_CARDS = [
     icon: CheckIcon,
   },
   {
+    title: 'Icons',
+    description: '110+ high-quality vector icons for the Core Circle ecosystem.',
+    href: '/atoms/icons',
+    icon: Sparkles,
+  },
+  {
+    title: 'Label',
+    description: 'A primitive component for displaying text labels with various styles.',
+    href: '/atoms/label',
+    icon: TypeIcon,
+  },
+  {
+    title: 'MultiSelect',
+    description: 'Advanced dropdown for multiple selections with tag visualization.',
+    href: '/atoms/multi-select',
+    icon: RowsIcon,
+  },
+  {
+    title: 'Progress',
+    description: 'Visual indicator of task completion with support for variants and labels.',
+    href: '/atoms/progress',
+    icon: PresentationChart,
+  },
+  {
     title: 'RadioButton',
     description: 'Exclusive selection control for choosing one from many options.',
     href: '/atoms/radio-button',
     icon: CircleDot,
   },
   {
+    title: 'Select',
+    description: 'Customizable dropdown selection component with variant support.',
+    href: '/atoms/select',
+    icon: ChevronDown,
+  },
+  {
+    title: 'SliderInput',
+    description: 'A range input component for selecting values by sliding a thumb.',
+    href: '/atoms/slider-input',
+    icon: SlidersHorizontalIcon,
+  },
+  {
     title: 'Tabs',
     description: 'Dynamic tab component used for alternating between different views.',
     href: '/atoms/tabs',
-    icon: List,
+    icon: TabIcon,
   },
   {
-    title: 'Label',
-    description: 'A primitive component for displaying text labels with various styles.',
-    href: '/atoms/label',
-    icon: DocumentText,
+    title: 'TextInput',
+    description: 'Versatile input field with Material Design support and icons.',
+    href: '/atoms/text-input',
+    icon: SquareEdit,
   },
 ];
