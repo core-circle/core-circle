@@ -15,7 +15,7 @@ export const tabsContainerVariants = cva('flex flex-col w-full', {
 export const tabListVariants = cva('flex items-center flex-wrap', {
   variants: {
     variant: {
-      underline: 'border-b border-core-circle-border-main gap-4',
+      underline: 'border-b border-core-circle-border-main gap-8',
       pills: 'gap-2 bg-core-circle-bg-muted p-1 rounded-core-circle-lg inline-flex w-fit',
       enclosed: 'border-b border-core-circle-border-main gap-1',
     },
@@ -42,7 +42,7 @@ export const tabItemVariants = cva(
   {
     variants: {
       variant: {
-        underline: 'border-b-2 hover:text-core-circle-text-main',
+        underline: 'border-b-2 hover:text-core-circle-text-main pb-4',
         pills: 'rounded-core-circle-md hover:bg-white hover:shadow-core-circle-sm hover:text-core-circle-text-main',
         enclosed: 'border border-transparent rounded-t-core-circle-lg hover:bg-core-circle-bg-muted hover:text-core-circle-text-main',
       },
@@ -68,7 +68,7 @@ export const tabItemVariants = cva(
       {
         variant: 'underline',
         active: true,
-        className: 'border-core-circle-primary text-core-circle-primary hover:text-core-circle-primary',
+        className: 'border-core-circle-primary text-core-circle-primary hover:text-core-circle-primary font-semibold mb-[-1px]',
       },
       {
         variant: 'underline',

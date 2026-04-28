@@ -9,7 +9,8 @@ import {
   ChevronDown, 
   List, 
   CheckIcon, 
-  CircleDot
+  CircleDot,
+  DocumentText
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -86,5 +87,11 @@ export const ATOM_CARDS = [
     description: 'Dynamic tab component used for alternating between different views.',
     href: '/atoms/tabs',
     icon: List,
+  },
+  {
+    title: 'Label',
+    description: 'A primitive component for displaying text labels with various styles.',
+    href: '/atoms/label',
+    icon: DocumentText,
   },
 ];

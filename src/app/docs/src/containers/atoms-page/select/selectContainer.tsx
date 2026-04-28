@@ -9,11 +9,7 @@ import { SelectPlayground } from '../../../components/playground/select/selectPl
 import { textInputPageStyles as s } from '../text-input/text-input.styles';
 import { SELECT_BREADCRUMB_ITEMS, SELECT_HEADER_CONTENT, SELECT_SECTIONS } from '../../../constants/atoms-page/select/selectConstants';
 
-interface SelectContainerProps {
-  sections: typeof SELECT_SECTIONS;
-  headerContent: typeof SELECT_HEADER_CONTENT;
-  breadcrumbItems: typeof SELECT_BREADCRUMB_ITEMS;
-}
+import { SelectContainerProps } from '../../../interface/containers/atoms/select.types';
 
 export default function SelectContainer({ sections, headerContent, breadcrumbItems }: SelectContainerProps) {
   const defaultOptions = [

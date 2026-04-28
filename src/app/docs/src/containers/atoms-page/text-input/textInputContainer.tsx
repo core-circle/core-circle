@@ -9,11 +9,7 @@ import { TextInputPlayground } from '../../../components/playground/text-input/t
 import { textInputPageStyles as s } from './text-input.styles';
 import { TEXT_INPUT_BREADCRUMB_ITEMS, TEXT_INPUT_HEADER_CONTENT, TEXT_INPUT_SECTIONS } from '../../../constants/atoms-page/text-input/textInputConstants';
 
-interface TextInputContainerProps {
-  sections: typeof TEXT_INPUT_SECTIONS;
-  headerContent: typeof TEXT_INPUT_HEADER_CONTENT;
-  breadcrumbItems: typeof TEXT_INPUT_BREADCRUMB_ITEMS;
-}
+import { TextInputContainerProps } from '../../../interface/containers/atoms/text-input.types';
 
 export default function TextInputContainer({ sections, headerContent, breadcrumbItems }: TextInputContainerProps) {
   const getSectionContent = (section: any) => {

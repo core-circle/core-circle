@@ -118,8 +118,8 @@ export const RadioButtonPlayground = () => {
                 size="sm"
                 onClick={() => navigator.clipboard.writeText(generateCode())}
                 className={s.copyButton}
+                startIcon={<CopyIcon className="w-3.5 h-3.5" />}
               >
-                <CopyIcon className="w-3.5 h-3.5" />
                 Copy Snippet
               </Button>
             </div>

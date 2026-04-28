@@ -74,11 +74,20 @@ export const Variants: Story = {
   ),
 };
 
-export const NormalCase: Story = {
+export const Capitalize: Story = {
   args: {
-    uppercase: false,
-    children: 'Normal Case Label',
-    size: 'md',
+    children: 'this label will be capitalized',
+    size: 'sm',
+    weight: 'normal',
+    variant: 'muted',
+  },
+};
+
+export const Uppercase: Story = {
+  args: {
+    uppercase: true,
+    children: 'uppercase label',
+    size: 'sm',
     weight: 'medium',
     variant: 'default',
   },

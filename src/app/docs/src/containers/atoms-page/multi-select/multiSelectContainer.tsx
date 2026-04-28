@@ -9,11 +9,7 @@ import { MultiSelectPlayground } from '../../../components/playground/multi-sele
 import { textInputPageStyles as s } from '../text-input/text-input.styles';
 import { MULTI_SELECT_BREADCRUMB_ITEMS, MULTI_SELECT_HEADER_CONTENT, MULTI_SELECT_SECTIONS } from '../../../constants/atoms-page/multi-select/multiSelectConstants';
 
-interface MultiSelectContainerProps {
-  sections: typeof MULTI_SELECT_SECTIONS;
-  headerContent: typeof MULTI_SELECT_HEADER_CONTENT;
-  breadcrumbItems: typeof MULTI_SELECT_BREADCRUMB_ITEMS;
-}
+import { MultiSelectContainerProps } from '../../../interface/containers/atoms/multi-select.types';
 
 export default function MultiSelectContainer({ sections, headerContent, breadcrumbItems }: MultiSelectContainerProps) {
   const defaultOptions = [

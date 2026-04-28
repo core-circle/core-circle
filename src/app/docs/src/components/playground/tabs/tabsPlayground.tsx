@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Tabs, Select, TextInput, Button, Checkbox } from '@core-circle/ui';
-import { CodeIcon, CopyIcon, UserIcon, SettingsIcon, Bell } from '@core-circle/icons';
+import { CodeIcon, CopyIcon, UserIcon, SettingsIcon, Bell, Plus } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { textInputPlaygroundStyles as s } from '../text-input/textInputPlayground.styles';
 
@@ -138,6 +138,7 @@ ${itemsCode}
               <Button 
                 onClick={handleAddTab} 
                 disabled={!newTabTitle.trim()}
+                startIcon={<Plus size={16} />}
               >
                 Add Tab
               </Button>
@@ -168,8 +169,8 @@ ${itemsCode}
                 size="sm"
                 onClick={() => navigator.clipboard.writeText(generateCode())}
                 className={s.copyButton}
+                startIcon={<CopyIcon className="w-3.5 h-3.5" />}
               >
-                <CopyIcon className="w-3.5 h-3.5" />
                 Copy Snippet
               </Button>
             </div>

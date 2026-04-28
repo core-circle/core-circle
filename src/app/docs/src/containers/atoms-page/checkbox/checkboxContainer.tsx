@@ -8,11 +8,7 @@ import { CheckboxPlayground } from '../../../components/playground/checkbox/chec
 import { atomsPageStyles as s } from '../atoms.styles';
 import { CHECKBOX_BREADCRUMB_ITEMS, CHECKBOX_HEADER_CONTENT, CHECKBOX_SECTIONS } from '../../../constants/atoms-page/checkbox/checkboxConstants';
 
-interface CheckboxContainerProps {
-  sections: typeof CHECKBOX_SECTIONS;
-  headerContent: typeof CHECKBOX_HEADER_CONTENT;
-  breadcrumbItems: typeof CHECKBOX_BREADCRUMB_ITEMS;
-}
+import { CheckboxContainerProps } from '../../../interface/containers/atoms/checkbox.types';
 
 export default function CheckboxContainer({ sections, headerContent, breadcrumbItems }: CheckboxContainerProps) {
   const getSectionContent = (section: any) => {

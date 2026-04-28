@@ -4,7 +4,7 @@ export const componentPreviewStyles = {
   // Header toolbar
   toolbar: "flex items-center justify-between px-6 py-3 bg-core-circle-bg-page/50 backdrop-blur-sm border-b border-core-circle-border-main",
   toolbarTitle: "text-core-circle-text-main font-core-circle-bold text-[13px] tracking-tight",
-  toolbarActions: "flex items-center gap-1.5",
+  toolbarActions: "flex items-center gap-1.5 ml-auto",
 
   // Toggle Code/Preview button
   toggleButton: {

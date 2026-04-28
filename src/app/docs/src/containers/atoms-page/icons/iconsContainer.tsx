@@ -9,11 +9,7 @@ import DocSection from '../../../components/doc-section';
 import { iconPageStyles as s } from './icons.styles';
 import { ICONS_BREADCRUMB_ITEMS, ICONS_HEADER_CONTENT, ICONS_SECTIONS } from '../../../constants/atoms-page/icons/iconsConstants';
 
-interface IconsContainerProps {
-  sections: typeof ICONS_SECTIONS;
-  headerContent: typeof ICONS_HEADER_CONTENT;
-  breadcrumbItems: typeof ICONS_BREADCRUMB_ITEMS;
-}
+import { IconsContainerProps } from '../../../interface/containers/atoms/icons.types';
 
 export default function IconsContainer({ sections, headerContent, breadcrumbItems }: IconsContainerProps) {
   const [search, setSearch] = useState('');

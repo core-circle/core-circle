@@ -8,11 +8,7 @@ import { RadioButtonPlayground } from '../../../components/playground/radio-butt
 import { atomsPageStyles as s } from '../atoms.styles';
 import { RADIO_BUTTON_BREADCRUMB_ITEMS, RADIO_BUTTON_HEADER_CONTENT, RADIO_BUTTON_SECTIONS } from '../../../constants/atoms-page/radio-button/radioButtonConstants';
 
-interface RadioButtonContainerProps {
-  sections: typeof RADIO_BUTTON_SECTIONS;
-  headerContent: typeof RADIO_BUTTON_HEADER_CONTENT;
-  breadcrumbItems: typeof RADIO_BUTTON_BREADCRUMB_ITEMS;
-}
+import { RadioButtonContainerProps } from '../../../interface/containers/atoms/radio-button.types';
 
 export default function RadioButtonContainer({ sections, headerContent, breadcrumbItems }: RadioButtonContainerProps) {
   const getSectionContent = (section: any) => {

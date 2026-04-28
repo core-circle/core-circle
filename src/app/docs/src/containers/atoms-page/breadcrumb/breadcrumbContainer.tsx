@@ -9,11 +9,7 @@ import { BreadcrumbPlayground } from '../../../components/playground/breadcrumb/
 import { breadcrumbPageStyles as s } from './breadcrumb.styles';
 import { BREADCRUMB_DOCS_ITEMS, BREADCRUMB_HEADER_CONTENT, BREADCRUMB_SECTIONS } from '../../../constants/atoms-page/breadcrumb/breadcrumbConstants';
 
-interface BreadcrumbContainerProps {
-  sections: typeof BREADCRUMB_SECTIONS;
-  headerContent: typeof BREADCRUMB_HEADER_CONTENT;
-  breadcrumbItems: typeof BREADCRUMB_DOCS_ITEMS;
-}
+import { BreadcrumbContainerProps } from '../../../interface/containers/atoms/breadcrumb.types';
 
 export default function BreadcrumbContainer({ sections, headerContent, breadcrumbItems }: BreadcrumbContainerProps) {
   const defaultItems = [
