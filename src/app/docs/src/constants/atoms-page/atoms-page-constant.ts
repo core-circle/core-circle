@@ -7,11 +7,11 @@ import {
   SquareEdit, 
   ChevronRight, 
   ChevronDown, 
-  CheckIcon, 
   CircleDot,
   TypeIcon,
   RowsIcon,
   TabIcon,
+  CircleCheck,
   SlidersHorizontalIcon,
   PresentationChart,
   UserCircle,
@@ -22,7 +22,11 @@ import {
   SkeletonIcon,
   SpinnerIcon,
   DividerIcon,
-  AspectRatioIcon
+  AspectRatioIcon,
+  KbdIcon,
+  IndicatorIcon,
+  ImageIcon,
+  CounterIcon
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -86,19 +90,13 @@ export const ATOM_CARDS = [
     title: 'Checkbox',
     description: 'Toggleable selection control for single or multiple choices.',
     href: '/atoms/checkbox',
-    icon: CheckIcon,
+    icon: CircleCheck,
   },
   {
-    title: 'Icons',
-    description: '110+ high-quality vector icons for the Core Circle ecosystem.',
-    href: '/atoms/icons',
-    icon: Sparkles,
-  },
-  {
-    title: 'Label',
-    description: 'A primitive component for displaying text labels with various styles.',
-    href: '/atoms/label',
-    icon: TypeIcon,
+    title: 'Counter',
+    description: 'A numeric indicator for counts, often used in buttons or tabs.',
+    href: '/atoms/counter',
+    icon: CounterIcon,
   },
   {
     title: 'Divider',
@@ -111,6 +109,36 @@ export const ATOM_CARDS = [
     description: 'Advanced dropdown for multiple selections with tag visualization.',
     href: '/atoms/multi-select',
     icon: RowsIcon,
+  },
+  {
+    title: 'Icons',
+    description: '110+ high-quality vector icons for the Core Circle ecosystem.',
+    href: '/atoms/icons',
+    icon: Sparkles,
+  },
+  {
+    title: 'Image',
+    description: 'Enhanced media element with loading and fallback support.',
+    href: '/atoms/image',
+    icon: ImageIcon,
+  },
+  {
+    title: 'Indicator',
+    description: 'A visual marker to indicate status or presence on a component.',
+    href: '/atoms/indicator',
+    icon: IndicatorIcon,
+  },
+  {
+    title: 'Kbd',
+    description: 'Visual representation of keyboard keys and shortcuts.',
+    href: '/atoms/kbd',
+    icon: KbdIcon,
+  },
+  {
+    title: 'Label',
+    description: 'A primitive component for displaying text labels with various styles.',
+    href: '/atoms/label',
+    icon: TypeIcon,
   },
   {
     title: 'Progress',
