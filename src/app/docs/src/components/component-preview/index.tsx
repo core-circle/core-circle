@@ -31,9 +31,9 @@ const ComponentPreview = ({ title = '', code = '', children }: ComponentPreviewP
             variant="ghost"
             size="sm"
             onClick={() => setShowCode(!showCode)}
+            startIcon={showCode ? <EyeIcon size={16} /> : <CodeIcon size={16} />}
             className={`${s.toggleButton.base} ${showCode ? s.toggleButton.active : s.toggleButton.inactive}`}
           >
-            {showCode ? <EyeIcon /> : <CodeIcon />}
             {showCode ? 'Preview' : 'Code'}
           </Button>
 
@@ -41,18 +41,13 @@ const ComponentPreview = ({ title = '', code = '', children }: ComponentPreviewP
             variant="ghost"
             size="sm"
             onClick={copyToClipboard}
+            startIcon={copied ? <CheckIcon size={16} className={s.copySuccess} /> : <CopyIcon size={16} />}
             className={s.copyButton}
           >
             {copied ? (
-              <>
-                <CheckIcon className={s.copySuccess} />
-                <span className={s.copySuccessText}>Copied!</span>
-              </>
+              <span className={s.copySuccessText}>Copied!</span>
             ) : (
-              <>
-                <CopyIcon />
-                Copy
-              </>
+              'Copy'
             )}
           </Button>
         </div>

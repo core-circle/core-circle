@@ -5,6 +5,7 @@ import { cn } from '../../../utils/cn';
 import { CheckboxProps } from '../../../interface/atoms/checkbox/checkbox.types';
 import { checkboxWrapperVariants, checkboxVariants, labelVariants } from './checkbox.styles';
 import { CheckIcon, Minus } from '@core-circle/icons';
+import { Label } from '../label/label';
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
@@ -13,6 +14,9 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       variant = 'outline',
       size = 'md',
       label,
+      labelSize,
+      labelWeight,
+      labelClassName,
       error,
       helperText,
       indeterminate = false,
@@ -64,9 +68,15 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
             </div>
           </div>
           {label && (
-            <span className={cn(labelVariants({ size, hasError }))}>
+            <Label 
+              as="span"
+              size={labelSize || (size === 'lg' ? 'md' : size === 'md' ? 'sm' : 'xs')}
+              weight={labelWeight || 'medium'}
+              uppercase={false}
+              className={cn(labelVariants({ size, hasError }), labelClassName)}
+            >
               {label}
-            </span>
+            </Label>
           )}
         </label>
         

@@ -1,5 +1,6 @@
 import { HomeIcon } from '@core-circle/icons';
 import React from 'react';
+import { PropItem } from '../../../interface/components/props-table.types';
 
 export const BUTTON_BREADCRUMB_ITEMS = [
   { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
@@ -63,5 +64,54 @@ export const BUTTON_SECTIONS = [
         code: `<Button loading>Default Loader</Button>\n<Button variant="secondary" loading startLoadingIcon={<i className="fa-solid fa-rotate" />}>\n  Custom Start Loader\n</Button>\n<Button variant="warning" loading endLoadingIcon={<i className="fa-regular fa-clock" />}>\n  Custom End Loader\n</Button>`
       }
     ]
+  }
+];
+
+export const BUTTON_PROPS_DATA: PropItem[] = [
+  {
+    name: 'variant',
+    type: "'primary' | 'secondary' | 'warning' | 'destructive' | 'outline' | 'ghost'",
+    defaultValue: "'primary'",
+    description: 'The visual style of the button.'
+  },
+  {
+    name: 'size',
+    type: "'sm' | 'md' | 'lg' | 'icon'",
+    defaultValue: "'md'",
+    description: 'The size of the button.'
+  },
+  {
+    name: 'loading',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Shows a loading spinner and disables interaction.'
+  },
+  {
+    name: 'startIcon',
+    type: 'React.ReactNode',
+    description: 'Icon element to display before the button label.'
+  },
+  {
+    name: 'endIcon',
+    type: 'React.ReactNode',
+    description: 'Icon element to display after the button label.'
+  },
+  {
+    name: 'labelSize',
+    type: "'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl'",
+    defaultValue: "'sm'",
+    description: 'Specific typography size for the button label.'
+  },
+  {
+    name: 'labelWeight',
+    type: "'light' | 'normal' | 'medium' | 'semibold' | 'bold'",
+    defaultValue: "'medium'",
+    description: 'Typography weight for the button label.'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Whether the button is non-interactive.'
   }
 ];

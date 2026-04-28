@@ -5,6 +5,7 @@ import { cn } from '../../../utils/cn';
 import { RadioButtonProps } from '../../../interface/atoms/radio-button/radio-button.types';
 import { radioWrapperVariants, radioVariants, innerCircleVariants } from './radio-button.styles';
 import { labelVariants } from '../checkbox/checkbox.styles';
+import { Label } from '../label/label';
 
 export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
   (
@@ -13,6 +14,9 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
       variant = 'outline',
       size = 'md',
       label,
+      labelSize,
+      labelWeight,
+      labelClassName,
       error,
       helperText,
       checked: controlledChecked,
@@ -60,9 +64,15 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
             </div>
           </div>
           {label && (
-            <span className={cn(labelVariants({ size, hasError }))}>
+            <Label 
+              as="span"
+              size={labelSize || (size === 'lg' ? 'md' : size === 'md' ? 'sm' : 'xs')}
+              weight={labelWeight || 'medium'}
+              uppercase={false}
+              className={cn(labelVariants({ size, hasError }), labelClassName)}
+            >
               {label}
-            </span>
+            </Label>
           )}
         </label>
         

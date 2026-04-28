@@ -4,7 +4,7 @@ export const buttonPlaygroundStyles = {
 
   // Controls Panel
   controlsWrapper: "w-full bg-core-circle-bg-page/30 border-b border-core-circle-border-main p-4 space-y-4",
-  controlLabel: "block text-[10px] font-core-circle-bold text-core-circle-text-muted uppercase tracking-wider mb-2",
+  controlLabel: "block text-core-circle-sm font-core-circle-normal text-core-circle-text-muted capitalize font-core-circle-body tracking-wider mb-2",
   selectField: "w-full px-3 py-2 bg-white border border-core-circle-border-main rounded-core-circle-md text-core-circle-xs outline-none focus:border-core-circle-primary transition-colors cursor-pointer",
   gridTwoCols: "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 items-end",
   dividerSection: "grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 items-end border-t border-core-circle-border-main pt-6 mt-2",

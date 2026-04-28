@@ -1,13 +1,6 @@
 import React from 'react';
+import { DocSectionProps } from '../../interface/components/doc-section.types';
 import { docSectionStyles as s } from './doc-section.styles';
-
-interface DocSectionProps {
-  id: string;
-  title: string;
-  description: string;
-  children: React.ReactNode;
-  showBorder?: boolean;
-}
 
 const DocSection = ({ id, title, description, children, showBorder }: DocSectionProps) => (
   <section id={id}>

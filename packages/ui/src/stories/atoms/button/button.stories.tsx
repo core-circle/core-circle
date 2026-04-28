@@ -16,6 +16,14 @@ const meta: Meta<typeof Button> = {
       control: 'select',
       options: ['sm', 'md', 'lg', 'icon'],
     },
+    labelSize: {
+      control: 'select',
+      options: ['xs', 'sm', 'base', 'lg', 'xl', '2xl'],
+    },
+    labelWeight: {
+      control: 'select',
+      options: ['light', 'normal', 'medium', 'semibold', 'bold'],
+    },
     loading: { control: 'boolean' },
     disabled: { control: 'boolean' },
     children: { control: 'text' },
