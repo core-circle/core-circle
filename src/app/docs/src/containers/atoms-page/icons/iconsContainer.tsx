@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Breadcrumb, TextInput, Button } from '@core-circle/ui';
+import { Breadcrumb, TextInput } from '@core-circle/ui';
 import * as Icons from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
@@ -47,22 +47,27 @@ export default function IconsContainer({ sections, headerContent, breadcrumbItem
           <>
             <div className={s?.searchWrapper}>
               <div className="pb-4 w-full">
-                <TextInput 
-                  placeholder="Search 110+ icons..." 
-                  startIcon={<Icons.SearchIcon size={18} />} 
-                  value={search} 
-                  onChange={(e) => setSearch(e.target.value)} 
+                <TextInput
+                  placeholder="Search 110+ icons..."
+                  startIcon={<Icons.SearchIcon size={18} />}
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
                   fullWidth
                 />
               </div>
             </div>
             <div className={s?.galleryGrid}>
               {filteredIcons.map(([name, IconComponent]) => (
-                <Button key={name} variant="ghost" className={s?.iconCard} onClick={() => copyToClipboard(name)} title={`Click to copy <${name} />`}>
-                  <div className={s?.iconWrapper}><IconComponent size={24} /></div>
+                <button
+                  key={name}
+                  className={s?.iconCard}
+                  onClick={() => copyToClipboard(name)}
+                  title={`Click to copy <${name} />`}
+                >
+                  <div className={s?.iconWrapper}><IconComponent size={32} /></div>
                   <span className={s?.iconName}>{name.replace('Icon', '')}</span>
-                  {copiedIcon === name && <span className={s?.copyFeedback}>Copied!</span>}
-                </Button>
+                  {copiedIcon === name && <div className={s?.copyFeedback}>Copied!</div>}
+                </button>
               ))}
             </div>
             {filteredIcons.length === 0 && (

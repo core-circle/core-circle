@@ -10,6 +10,8 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       variant,
       size,
+      labelSize,
+      labelWeight,
       loading,
       startLoadingIcon,
       endLoadingIcon,
@@ -29,7 +31,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         disabled={isDisabled}
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(buttonVariants({ variant, size, labelSize, labelWeight, className }))}
         {...props}
       >
         {loading && (startLoadingIcon || showDefaultLoader) ? (

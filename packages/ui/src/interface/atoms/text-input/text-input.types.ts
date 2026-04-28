@@ -17,6 +17,21 @@ export interface TextInputProps extends Omit<InputHTMLAttributes<HTMLInputElemen
    * Optional label text
    */
   label?: string;
+
+  /**
+   * Size of the label text
+   */
+  labelSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+
+  /**
+   * Font weight of the label text
+   */
+  labelWeight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
+
+  /**
+   * Additional classes for the label
+   */
+  labelClassName?: string;
   
   /**
    * Error message to display below the input

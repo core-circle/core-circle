@@ -22,6 +22,14 @@ const meta: Meta<typeof TextInput> = {
     fullWidth: {
       control: 'boolean',
     },
+    labelSize: {
+      control: 'select',
+      options: ['xs', 'sm', 'md', 'lg', 'xl', '2xl'],
+    },
+    labelWeight: {
+      control: 'select',
+      options: ['light', 'normal', 'medium', 'semibold', 'bold'],
+    },
   },
 };
 

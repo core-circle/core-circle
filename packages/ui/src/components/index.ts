@@ -1,4 +1,5 @@
 export * from './atoms/button/button';
+export * from './atoms/label/label';
 export * from './atoms/text-input/text-input';
 export * from './atoms/select/select';
 export * from './atoms/multi-select/multi-select';

@@ -17,6 +17,7 @@ const SelectField = ({ label, value, options, onChange }: any) => {
       value={value}
       onChange={(val) => onChange(val)}
       options={formattedOptions}
+      fullWidth
     />
   );
 };

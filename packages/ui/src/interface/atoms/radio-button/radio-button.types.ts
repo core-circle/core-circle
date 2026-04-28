@@ -7,6 +7,9 @@ export interface RadioButtonProps extends Omit<InputHTMLAttributes<HTMLInputElem
   variant?: RadioVariant;
   size?: RadioSize;
   label?: string;
+  labelSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  labelWeight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
+  labelClassName?: string;
   error?: string;
   helperText?: string;
   onChange?: (value: string) => void;

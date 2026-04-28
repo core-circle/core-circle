@@ -17,6 +17,7 @@ const SelectField = ({ label, value, options, onChange }: any) => {
       value={value}
       onChange={(e) => onChange(e.target.value)}
       options={formattedOptions}
+      fullWidth
     />
   );
 };
@@ -30,6 +31,8 @@ export const RadioButtonPlayground = () => {
     helperText: 'Please select one option.',
     disabled: false,
     checked: false,
+    labelSize: 'sm',
+    labelWeight: 'medium',
   });
 
   const updateState = (key: string, value: any) => {
@@ -37,8 +40,10 @@ export const RadioButtonPlayground = () => {
   };
 
   const generateCode = () => {
-    const { variant, size, label, error, helperText, disabled, checked } = state;
+    const { variant, size, label, error, helperText, disabled, checked, labelSize, labelWeight } = state;
     let props = `variant="${variant}" size="${size}"`;
+    if (labelSize !== 'sm') props += ` labelSize="${labelSize}"`;
+    if (labelWeight !== 'medium') props += ` labelWeight="${labelWeight}"`;
     if (label) props += ` label="${label}"`;
     if (error) props += ` error="${error}"`;
     if (helperText) props += ` helperText="${helperText}"`;
@@ -55,7 +60,19 @@ export const RadioButtonPlayground = () => {
           <div className={s.gridTwoCols}>
             <SelectField label="Variant" value={state.variant} onChange={(v: string) => updateState('variant', v)} options={{ outline: 'Outline', solid: 'Solid' }} />
             <SelectField label="Size" value={state.size} onChange={(v: string) => updateState('size', v)} options={{ sm: 'Small', md: 'Medium', lg: 'Large' }} />
-            <div className="flex gap-4 items-end pb-2">
+            <SelectField
+              label="Label Size"
+              value={state.labelSize}
+              onChange={(v: string) => updateState('labelSize', v)}
+              options={{ xs: 'Extra Small', sm: 'Small', base: 'Base', lg: 'Large', xl: 'Extra Large', '2xl': '2XL' }}
+            />
+            <SelectField
+              label="Label Weight"
+              value={state.labelWeight}
+              onChange={(v: string) => updateState('labelWeight', v)}
+              options={{ light: 'Light', normal: 'Normal', medium: 'Medium', semibold: 'Semibold', bold: 'Bold' }}
+            />
+            <div className="flex gap-4 items-end pb-2 ml-auto">
               {['disabled', 'checked'].map((key) => (
                 <Checkbox
                   key={key}
@@ -68,9 +85,9 @@ export const RadioButtonPlayground = () => {
           </div>
 
           <div className={s.dividerSection}>
-            <TextInput label="Label" value={state.label} onChange={(e) => updateState('label', e.target.value)} />
-            <TextInput label="Error" value={state.error} onChange={(e) => updateState('error', e.target.value)} placeholder="Error message..." />
-            <TextInput label="Helper Text" value={state.helperText} onChange={(e) => updateState('helperText', e.target.value)} />
+            <TextInput label="Label" value={state.label} onChange={(e) => updateState('label', e.target.value)} fullWidth />
+            <TextInput label="Error" value={state.error} onChange={(e) => updateState('error', e.target.value)} placeholder="Error message..." fullWidth />
+            <TextInput label="Helper Text" value={state.helperText} onChange={(e) => updateState('helperText', e.target.value)} fullWidth />
           </div>
         </div>
 
@@ -85,6 +102,8 @@ export const RadioButtonPlayground = () => {
               disabled={state.disabled}
               checked={state.checked}
               onChange={() => updateState('checked', !state.checked)}
+              labelSize={state.labelSize as any}
+              labelWeight={state.labelWeight as any}
             />
           </div>
 

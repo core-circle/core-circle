@@ -59,7 +59,7 @@ export const checkboxVariants = cva(
 );
 
 export const labelVariants = cva(
-  "font-core-circle-medium text-core-circle-text-main transition-colors",
+  "font-core-circle-normal text-core-circle-text-main capitalize font-core-circle-body transition-colors",
   {
     variants: {
       size: {

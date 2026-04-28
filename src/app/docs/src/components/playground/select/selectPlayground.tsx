@@ -40,6 +40,7 @@ const SelectField = ({ label, value, options, onChange }: any) => {
       value={value}
       onChange={(e) => onChange(e.target.value)}
       options={formattedOptions}
+      fullWidth
     />
   );
 };
@@ -56,6 +57,8 @@ export const SelectPlayground = () => {
     startIcon: 'none',
     prefix: '',
     placeholder: 'Select...',
+    labelSize: 'xs',
+    labelWeight: 'bold',
   });
 
   const updateState = (key: string, value: any) => {
@@ -63,8 +66,10 @@ export const SelectPlayground = () => {
   };
 
   const generateCode = () => {
-    const { variant, size, label, error, helperText, disabled, fullWidth, startIcon, prefix, placeholder } = state;
+    const { variant, size, label, error, helperText, disabled, fullWidth, startIcon, prefix, placeholder, labelSize, labelWeight } = state;
     let props = `variant="${variant}" size="${size}"`;
+    if (labelSize !== 'xs') props += ` labelSize="${labelSize}"`;
+    if (labelWeight !== 'bold') props += ` labelWeight="${labelWeight}"`;
     if (label) props += ` label="${label}"`;
     if (placeholder) props += ` placeholder="${placeholder}"`;
     if (error) props += ` error="${error}"`;
@@ -89,7 +94,19 @@ export const SelectPlayground = () => {
             <SelectField label="Variant" value={state.variant} onChange={(v: string) => updateState('variant', v)} options={{ outline: 'Outline', material: 'Material', 'material-animated': 'Material Animated', ghost: 'Ghost', standard: 'Standard' }} />
             <SelectField label="Size" value={state.size} onChange={(v: string) => updateState('size', v)} options={{ sm: 'Small', md: 'Medium', lg: 'Large' }} />
             <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
-            <div className="flex gap-4 items-end pb-2">
+            <SelectField
+              label="Label Size"
+              value={state.labelSize}
+              onChange={(v: string) => updateState('labelSize', v)}
+              options={{ xs: 'Extra Small', sm: 'Small', base: 'Base', lg: 'Large', xl: 'Extra Large', '2xl': '2XL' }}
+            />
+            <SelectField
+              label="Label Weight"
+              value={state.labelWeight}
+              onChange={(v: string) => updateState('labelWeight', v)}
+              options={{ light: 'Light', normal: 'Normal', medium: 'Medium', semibold: 'Semibold', bold: 'Bold' }}
+            />
+            <div className="flex gap-4 items-end pb-2 ml-auto">
               {['disabled', 'fullWidth'].map((key) => (
                 <Checkbox
                   key={key}
@@ -102,15 +119,11 @@ export const SelectPlayground = () => {
           </div>
 
           <div className={s.dividerSection}>
-            <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
-            <TextInput label="Placeholder" value={state.placeholder} onChange={(e) => updateState('placeholder', e.target.value)} placeholder="e.g. Choose..." />
-            <TextInput label="Prefix" value={state.prefix} onChange={(e) => updateState('prefix', e.target.value)} placeholder="e.g. ID" />
-            <TextInput label="Label" value={state.label} onChange={(e) => updateState('label', e.target.value)} />
-          </div>
-
-          <div className={s.dividerSection}>
-            <TextInput label="Error" value={state.error} onChange={(e) => updateState('error', e.target.value)} placeholder="Error message..." />
-            <TextInput label="Helper Text" value={state.helperText} onChange={(e) => updateState('helperText', e.target.value)} />
+            <TextInput label="Placeholder" value={state.placeholder} onChange={(e) => updateState('placeholder', e.target.value)} placeholder="e.g. Choose..." fullWidth />
+            <TextInput label="Prefix" value={state.prefix} onChange={(e) => updateState('prefix', e.target.value)} placeholder="e.g. ID" fullWidth />
+            <TextInput label="Label" value={state.label} onChange={(e) => updateState('label', e.target.value)} fullWidth />
+            <TextInput label="Error" value={state.error} onChange={(e) => updateState('error', e.target.value)} placeholder="Error message..." fullWidth />
+            <TextInput label="Helper Text" value={state.helperText} onChange={(e) => updateState('helperText', e.target.value)} fullWidth />
           </div>
         </div>
 
@@ -129,6 +142,8 @@ export const SelectPlayground = () => {
                 prefix={state.prefix}
                 placeholder={state.placeholder}
                 options={OPTIONS}
+                labelSize={state.labelSize as any}
+                labelWeight={state.labelWeight as any}
               />
             </div>
           </div>

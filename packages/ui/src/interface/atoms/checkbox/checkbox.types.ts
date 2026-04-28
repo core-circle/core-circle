@@ -7,6 +7,9 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
   variant?: CheckboxVariant;
   size?: CheckboxSize;
   label?: string;
+  labelSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  labelWeight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
+  labelClassName?: string;
   error?: string;
   helperText?: string;
   indeterminate?: boolean;

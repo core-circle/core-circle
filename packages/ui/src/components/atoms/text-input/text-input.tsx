@@ -4,6 +4,7 @@ import * as React from 'react';
 import { cn } from '../../../utils/cn';
 import { TextInputProps } from '../../../interface/atoms/text-input/text-input.types';
 import { inputContainerVariants, inputVariants, labelVariants, inputWrapperVariants, prefixSuffixVariants } from './text-input.styles';
+import { Label } from '../label/label';
 
 export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   (
@@ -12,6 +13,9 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       variant = 'outline',
       size = 'md',
       label,
+      labelSize,
+      labelWeight,
+      labelClassName,
       error,
       helperText,
       startIcon,
@@ -58,25 +62,30 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     return (
       <div className={cn(inputContainerVariants({ fullWidth, hasFloatingLabel: isMaterialAnimated }), className)}>
         {label && !isMaterialAnimated && (
-          <label 
+          <Label 
             htmlFor={inputId} 
-            className={cn(labelVariants({ variant, hasError }))}
+            size={labelSize}
+            weight={labelWeight}
+            className={cn(labelVariants({ variant, hasError }), labelClassName)}
           >
             {label}
-          </label>
+          </Label>
         )}
         
         <div className={cn(inputWrapperVariants({ variant, hasError, disabled: props.disabled }))}>
           {label && isMaterialAnimated && (
-            <label 
+            <Label 
               htmlFor={inputId} 
+              size={labelSize}
+              weight={labelWeight}
               className={cn(
                 labelVariants({ variant, hasError, isFloating }),
-                (startIcon || prefix) && !isFloating && 'left-11'
+                (startIcon || prefix) && !isFloating && 'left-11',
+                labelClassName
               )}
             >
               {label}
-            </label>
+            </Label>
           )}
 
           {startIcon && (
