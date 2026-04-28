@@ -1,5 +1,6 @@
 import { HomeIcon } from '@core-circle/icons';
 import React from 'react';
+import { PropItem } from '../../../interface/components/props-table.types';
 
 export const BREADCRUMB_DOCS_ITEMS = [
   { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
@@ -76,5 +77,47 @@ export const BREADCRUMB_SECTIONS = [
         code: `<Breadcrumb \n  items={[\n    { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },\n    { label: 'Orders', href: '#', prefix: <ShoppingBag size={14} /> },\n    { label: 'Checkout', suffix: '(Active)' }\n  ]} \n/>`
       }
     ]
+  }
+];
+
+export const BREADCRUMB_PROPS_DATA: PropItem[] = [
+  {
+    name: 'items',
+    type: 'BreadcrumbItem[]',
+    description: 'List of objects representing each breadcrumb link.'
+  },
+  {
+    name: 'variant',
+    type: "'standard' | 'ghost' | 'pills'",
+    defaultValue: "'standard'",
+    description: 'Visual layout style.'
+  },
+  {
+    name: 'separator',
+    type: 'ReactNode',
+    defaultValue: "'/'",
+    description: 'Divider element between breadcrumb items.'
+  },
+  {
+    name: 'showBack',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Adds an arrow-back link to the beginning of the list.'
+  },
+  {
+    name: 'backLabel',
+    type: 'string',
+    defaultValue: "'Back'",
+    description: 'Custom text label for the back link.'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    description: 'Additional classes for the nav container.'
+  },
+  {
+    name: 'renderLink',
+    type: '(props) => ReactNode',
+    description: 'Custom renderer for item links (essential for Next.js).'
   }
 ];

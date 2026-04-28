@@ -1,5 +1,6 @@
 import { HomeIcon } from '@core-circle/icons';
 import React from 'react';
+import { PropItem } from '../../../interface/components/props-table.types';
 
 export const CHECKBOX_BREADCRUMB_ITEMS = [
   { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
@@ -59,5 +60,64 @@ export const CHECKBOX_SECTIONS = [
         code: `<Checkbox label="Disabled" disabled />\n<Checkbox label="Error" error="Field required" />\n<Checkbox label="Indeterminate" indeterminate />`
       }
     ]
+  }
+];
+
+export const CHECKBOX_PROPS_DATA: PropItem[] = [
+  {
+    name: 'variant',
+    type: "'outline' | 'solid'",
+    defaultValue: "'outline'",
+    description: 'Visual style of the checkbox.'
+  },
+  {
+    name: 'size',
+    type: "'sm' | 'md' | 'lg'",
+    defaultValue: "'md'",
+    description: 'Size of the checkbox and label.'
+  },
+  {
+    name: 'label',
+    type: 'string',
+    description: 'Label text displayed next to the checkbox.'
+  },
+  {
+    name: 'labelSize',
+    type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
+    defaultValue: "'sm'",
+    description: 'Typography size for the label.'
+  },
+  {
+    name: 'labelWeight',
+    type: "'light' | 'normal' | 'medium' | 'semibold' | 'bold'",
+    defaultValue: "'medium'",
+    description: 'Typography weight for the label.'
+  },
+  {
+    name: 'indeterminate',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Shows a dash instead of a checkmark (used for partially selected groups).'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    description: 'Error message that displays below the checkbox.'
+  },
+  {
+    name: 'helperText',
+    type: 'string',
+    description: 'Additional guidance text.'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Prevents user interaction.'
+  },
+  {
+    name: 'onChange',
+    type: '(checked: boolean) => void',
+    description: 'Callback function when the checked state changes.'
   }
 ];

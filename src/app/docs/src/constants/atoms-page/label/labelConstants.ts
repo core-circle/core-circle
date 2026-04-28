@@ -1,3 +1,5 @@
+import { PropItem } from '../../../interface/components/props-table.types';
+
 export const LABEL_HEADER_CONTENT = {
   title: 'Label',
   description: 'A primitive component for displaying text labels with various sizes, weights, and variants.',
@@ -43,4 +45,42 @@ export const LABEL_SECTIONS = [
       { id: '2xl', title: '2XL', code: '<Label size="2xl">2XL</Label>' },
     ],
   },
+];
+
+export const LABEL_PROPS_DATA: PropItem[] = [
+  {
+    name: 'variant',
+    type: "'default' | 'muted' | 'primary' | 'warning' | 'error'",
+    defaultValue: "'default'",
+    description: 'The semantic variant of the label.'
+  },
+  {
+    name: 'size',
+    type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
+    defaultValue: "'sm'",
+    description: 'The font size of the label.'
+  },
+  {
+    name: 'weight',
+    type: "'light' | 'normal' | 'medium' | 'semibold' | 'bold'",
+    defaultValue: "'normal'",
+    description: 'The font weight of the label.'
+  },
+  {
+    name: 'uppercase',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Transforms the label text to uppercase.'
+  },
+  {
+    name: 'as',
+    type: "'label' | 'span' | 'div'",
+    defaultValue: "'label'",
+    description: 'The underlying HTML element to render.'
+  },
+  {
+    name: 'htmlFor',
+    type: 'string',
+    description: 'The ID of the input element this label is associated with.'
+  }
 ];

@@ -8,7 +8,6 @@ import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
 import { ButtonPlayground } from '../../../components/playground/button/buttonPlayground';
 import { buttonPageStyles as s } from './button.styles';
-import { highlightCode } from '../../../utils/highlight';
 import CodeSnippet from '../../../components/code-snippet';
 import PropsTable from '../../../components/props-table';
 import {
@@ -117,44 +116,29 @@ export default function ButtonContainer({ sections, headerContent, breadcrumbIte
       icon: <CodeIcon size={16} />,
       content: (
         <div className="flex flex-col gap-8">
-          <DocSection
-            id="button-data-driven"
-            title="Data-Driven UI"
-            description="Learn how to pass mock data from a CMS or API to generate the Button component dynamically."
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-4">
-              <div className="flex flex-col gap-4">
-                <h4 className="text-sm font-bold text-core-circle-text-main">API Response (JSON)</h4>
-                <div className="bg-core-circle-bg-inverse p-6 rounded-core-circle-2xl border border-core-circle-border-main overflow-x-auto">
-                  <pre className="text-slate-300 font-mono text-[13px] leading-relaxed">
-                    <code dangerouslySetInnerHTML={{
-                      __html: highlightCode(JSON.stringify({
-                        id: "btn_01",
-                        type: "button",
-                        label: "Subscribe Now",
-                        style: {
-                          variant: "primary",
-                          size: "lg",
-                          fullWidth: true
-                        },
-                        action: {
-                          type: "NAVIGATE",
-                          payload: "/subscribe"
-                        }
-                      }, null, 2))
-                    }} />
-                  </pre>
-                </div>
-              </div>
+          <DocSection id="button-mock" title="Enterprise Integration" description="Example of how to consume dynamic button configurations from an API.">
+            <div className="flex flex-col gap-10 mt-8">
+              <CodeSnippet
+                label="Sample API Response"
+                code={JSON.stringify({
+                  id: "btn_123",
+                  label: "Upgrade Plan",
+                  style: {
+                    variant: "primary",
+                    size: "lg",
+                    fullWidth: true
+                  },
+                  action: {
+                    type: "NAVIGATE",
+                    payload: "/subscribe"
+                  }
+                }, null, 2)}
+              />
 
-              <div className="flex flex-col gap-4">
-                <h4 className="text-sm font-bold text-core-circle-text-main">Component Implementation</h4>
-                <div className="bg-core-circle-bg-inverse p-6 rounded-core-circle-2xl border border-core-circle-border-main overflow-x-auto">
-                  <pre className="text-slate-300 font-mono text-[13px] leading-relaxed">
-                    <code dangerouslySetInnerHTML={{ __html: highlightCode(`const DynamicButton = ({ data }) => {\n  return (\n    <Button\n      variant={data.style.variant}\n      size={data.style.size}\n      fullWidth={data.style.fullWidth}\n      onClick={() => handleAction(data.action)}\n    >\n      {data.label}\n    </Button>\n  );\n};`) }} />
-                  </pre>
-                </div>
-              </div>
+              <CodeSnippet
+                label="Dynamic Integration"
+                code={`const DynamicButton = ({ data }) => {\n  return (\n    <Button\n      variant={data.style.variant}\n      size={data.style.size}\n      fullWidth={data.style.fullWidth}\n      onClick={() => handleAction(data.action)}\n    >\n      {data.label}\n    </Button>\n  );\n};`}
+              />
             </div>
           </DocSection>
         </div>
