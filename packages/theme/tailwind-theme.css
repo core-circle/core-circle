@@ -1,7 +1,10 @@
 @theme {
   /* Font Families */
-  --font-family-core-circle-heading: "Montserrat", sans-serif;
-  --font-family-core-circle-body: "Ubuntu", sans-serif;
+  --font-family-core-circle-primary: "Montserrat", sans-serif;
+  --font-family-core-circle-secondary: "Ubuntu", sans-serif;
+  
+  --font-family-core-circle-heading: var(--font-family-core-circle-primary);
+  --font-family-core-circle-body: var(--font-family-core-circle-primary);
 
   /* Colors */
   /* Colors Palette (100+ colors) */
@@ -130,7 +133,7 @@
 
 @layer base {
   * {
-    font-family: var(--font-family-core-circle-body);
+    font-family: var(--font-family-core-circle-primary);
   }
 
   body {
@@ -138,7 +141,7 @@
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-family-core-circle-heading);
+    font-family: var(--font-family-core-circle-primary);
     @apply font-core-circle-bold tracking-tight;
   }
 
