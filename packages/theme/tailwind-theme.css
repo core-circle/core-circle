@@ -44,6 +44,9 @@
   --color-core-circle-warning-hover: var(--color-core-circle-orange-600);
   --color-core-circle-warning-active: var(--color-core-circle-orange-700);
 
+  --color-core-circle-success: var(--color-core-circle-green-600);
+  --color-core-circle-danger: var(--color-core-circle-destructive);
+
   /* Semantic Presets - Backgrounds */
   --color-core-circle-bg-page: var(--color-core-circle-slate-50);
   --color-core-circle-bg-surface: #ffffff;
@@ -129,6 +132,14 @@
   --animate-ease-core-circle-out: cubic-bezier(0, 0, 0.2, 1);
   --animate-ease-core-circle-in-out: cubic-bezier(0.4, 0, 0.2, 1);
 
+  /* Progress Animations */
+  --animate-progress-indeterminate: progress-indeterminate 2s infinite linear;
+
+  @keyframes progress-indeterminate {
+    0% { transform: translateX(-100%) scaleX(0.2); }
+    50% { transform: translateX(0%) scaleX(0.5); }
+    100% { transform: translateX(100%) scaleX(0.2); }
+  }
 }
 
 @layer base {

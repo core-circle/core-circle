@@ -1,6 +1,6 @@
 export const breadcrumbPageStyles = {
   container: 'max-w-5xl mx-auto px-6 py-12',
-  header: 'mb-12',
+  header: 'mb-8',
   breadcrumbWrapper: 'flex items-center gap-2 text-xs text-core-circle-text-muted mb-4',
   breadcrumbLink: 'hover:text-core-circle-primary transition-colors',
   breadcrumbCurrent: 'text-core-circle-text-main font-core-circle-medium',

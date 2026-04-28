@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Accordion } from './accordion';
-import { HelpCircle, Settings, Shield, User } from '@core-circle/icons';
+import { Accordion } from '../../../components/atoms/accordion/accordion';
+import { UserIcon, Shield, SettingsIcon } from '@core-circle/icons';
 import React from 'react';
 
 const meta: Meta<typeof Accordion> = {
@@ -17,7 +17,7 @@ const meta: Meta<typeof Accordion> = {
       options: ['sm', 'md', 'lg'],
     },
     type: {
-      control: 'radio',
+      control: 'select',
       options: ['single', 'multiple'],
     },
   },
@@ -28,29 +28,22 @@ type Story = StoryObj<typeof Accordion>;
 
 const items = [
   {
-    id: 'item-1',
-    title: 'Account Settings',
-    content: 'Manage your account settings and preferences. You can update your email, password, and personal information here.',
-    icon: <User size={20} />,
+    id: '1',
+    title: 'Profile Information',
+    content: 'Manage your personal details, contact information, and public profile settings.',
+    startIcon: <UserIcon size={18} />,
   },
   {
-    id: 'item-2',
-    title: 'Privacy & Security',
-    content: 'Configure your privacy settings and security options. Enable two-factor authentication for better protection.',
-    icon: <Shield size={20} />,
+    id: '2',
+    title: 'Security & Privacy',
+    content: 'Control your account security, two-factor authentication, and privacy preferences.',
+    startIcon: <Shield size={18} />,
   },
   {
-    id: 'item-3',
-    title: 'System Preferences',
-    content: 'Adjust system-wide settings like notifications, display, and sound to match your workflow.',
-    icon: <Settings size={20} />,
-    disabled: true,
-  },
-  {
-    id: 'item-4',
-    title: 'Help & Support',
-    content: 'Get help with your account or find answers to frequently asked questions in our documentation.',
-    icon: <HelpCircle size={20} />,
+    id: '3',
+    title: 'System Settings',
+    content: 'Adjust system-wide preferences and notification settings.',
+    startIcon: <SettingsIcon size={18} />,
   },
 ];
 
@@ -58,16 +51,7 @@ export const Bordered: Story = {
   args: {
     items,
     variant: 'bordered',
-    type: 'single',
-    defaultValue: 'item-1',
-  },
-};
-
-export const Ghost: Story = {
-  args: {
-    items,
-    variant: 'ghost',
-    type: 'single',
+    defaultValue: '1',
   },
 };
 
@@ -75,21 +59,32 @@ export const Separated: Story = {
   args: {
     items,
     variant: 'separated',
+    defaultValue: '1',
+  },
+};
+
+export const Ghost: Story = {
+  args: {
+    items,
+    variant: 'ghost',
+    defaultValue: '1',
+  },
+};
+
+export const Multiple: Story = {
+  args: {
+    items,
     type: 'multiple',
-    defaultValue: ['item-1', 'item-4'],
+    variant: 'bordered',
   },
 };
 
-export const Small: Story = {
+export const CustomIcons: Story = {
   args: {
-    items,
-    size: 'sm',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    items,
-    size: 'lg',
+    items: items.map(item => ({
+      ...item,
+      endIcon: <div className="px-2 py-0.5 rounded-full bg-core-circle-primary/10 text-[10px] text-core-circle-primary font-bold">PRO</div>
+    })),
+    variant: 'separated',
   },
 };

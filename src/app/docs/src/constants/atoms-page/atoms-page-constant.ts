@@ -12,7 +12,8 @@ import {
   TypeIcon,
   RowsIcon,
   TabIcon,
-  SlidersHorizontalIcon
+  SlidersHorizontalIcon,
+  PresentationChart
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -77,6 +78,12 @@ export const ATOM_CARDS = [
     description: 'Advanced dropdown for multiple selections with tag visualization.',
     href: '/atoms/multi-select',
     icon: RowsIcon,
+  },
+  {
+    title: 'Progress',
+    description: 'Visual indicator of task completion with support for variants and labels.',
+    href: '/atoms/progress',
+    icon: PresentationChart,
   },
   {
     title: 'RadioButton',

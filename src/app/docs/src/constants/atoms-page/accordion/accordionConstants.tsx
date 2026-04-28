@@ -1,5 +1,4 @@
-import { AccordionProps } from '@core-circle/ui';
-import { UserIcon, Shield, SettingsIcon, Bell, Star, ArrowRight } from '@core-circle/icons';
+import { UserIcon, Shield, SettingsIcon, ArrowRight } from '@core-circle/icons';
 import React from 'react';
 
 export const ACCORDION_HEADER_CONTENT = {

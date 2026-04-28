@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Breadcrumb, Tabs, TextInput, Select } from '@core-circle/ui';
+import { Breadcrumb, Tabs, TextInput } from '@core-circle/ui';
 import * as Icons from '@core-circle/icons';
 import { Info, Image, CodeIcon, SearchIcon, HomeIcon } from '@core-circle/icons';
 import DocSection from '../../../components/doc-section';
