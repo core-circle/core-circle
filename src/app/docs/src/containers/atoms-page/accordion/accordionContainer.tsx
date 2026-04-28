@@ -17,7 +17,6 @@ import CodeSnippet from '../../../components/code-snippet';
 import { AccordionContainerProps } from '../../../interface/containers/atoms/accordion.types';
 
 export default function AccordionContainer({
-  sections,
   headerContent,
   breadcrumbItems
 }: AccordionContainerProps) {

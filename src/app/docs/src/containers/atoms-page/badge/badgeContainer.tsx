@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { Breadcrumb, Tabs, Badge } from '@core-circle/ui';
-import { Info, Image, SettingsIcon, CodeIcon, Sparkles, CheckIcon, Alert, Info as InfoIcon } from '@core-circle/icons';
+import { Info, Image, SettingsIcon, CodeIcon, Sparkles, CheckIcon, Alert } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
 import { accordionPageStyles as s } from '../accordion/accordion.styles';
@@ -17,7 +17,6 @@ import { BadgeContainerProps } from '../../../interface/containers/atoms/badge.t
 import { DOC_TEXT } from '../../../constants/common-constants';
 
 export default function BadgeContainer({
-  sections,
   headerContent,
   breadcrumbItems
 }: BadgeContainerProps) {
@@ -83,9 +82,9 @@ export default function BadgeContainer({
               code={`<Badge removable onRemove={() => {}}>Removable Tag</Badge>`}
             >
               <div className="flex items-center gap-4 flex-wrap">
-                <Badge variant="primary" removable shape="pill" onRemove={() => { }}>Design</Badge>
-                <Badge variant="secondary" removable shape="pill" onRemove={() => { }}>React</Badge>
-                <Badge variant="ghost" removable shape="pill" onRemove={() => { }}>Typescript</Badge>
+                <Badge variant="primary" removable shape="pill" onRemove={() => { /* no-op */ }}>Design</Badge>
+                <Badge variant="secondary" removable shape="pill" onRemove={() => { /* no-op */ }}>React</Badge>
+                <Badge variant="ghost" removable shape="pill" onRemove={() => { /* no-op */ }}>Typescript</Badge>
               </div>
             </ComponentPreview>
           </DocSection>

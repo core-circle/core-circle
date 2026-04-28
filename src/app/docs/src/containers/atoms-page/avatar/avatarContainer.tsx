@@ -17,7 +17,6 @@ import { AvatarContainerProps } from '../../../interface/containers/atoms/avatar
 import { DOC_TEXT } from '../../../constants/common-constants';
 
 export default function AvatarContainer({
-  sections,
   headerContent,
   breadcrumbItems
 }: AvatarContainerProps) {
