@@ -14,6 +14,7 @@ import { ProgressPlayground } from '../../../components/playground/progress/Prog
 import PropsTable from '../../../components/props-table';
 import CodeSnippet from '../../../components/code-snippet';
 import { ProgressContainerProps } from '../../../interface/containers/atoms/progress.types';
+import { DOC_TEXT } from '../../../constants/common-constants';
 
 export default function ProgressContainer({
   sections,
@@ -23,11 +24,11 @@ export default function ProgressContainer({
   const tabItems = [
     {
       id: 'overview',
-      label: 'Overview',
+      label: DOC_TEXT.COMMON.OVERVIEW,
       icon: <Info size={16} />,
       content: (
         <div className="flex flex-col gap-12 max-w-5xl">
-          <DocSection id="progress-usage" title="Usage" description="The Progress component is used to show the status of a task or process.">
+          <DocSection id="progress-usage" title={DOC_TEXT.COMMON.USAGE} description="The Progress component is used to show the status of a task or process.">
             <div className="flex flex-col gap-8 mt-6">
               <CodeSnippet
                 label="Basic Usage"
@@ -36,7 +37,7 @@ export default function ProgressContainer({
             </div>
           </DocSection>
 
-          <DocSection id="progress-props" title="Properties" description="Explore the available props for the Progress component.">
+          <DocSection id="progress-props" title={DOC_TEXT.COMMON.PROPERTIES} description="Explore the available props for the Progress component.">
             <PropsTable data={PROGRESS_PROPS_DATA} />
           </DocSection>
         </div>
@@ -44,7 +45,7 @@ export default function ProgressContainer({
     },
     {
       id: 'variants',
-      label: 'Variants',
+      label: DOC_TEXT.COMMON.VARIANTS,
       icon: <Image size={16} />,
       content: (
         <div className="flex flex-col gap-12 max-w-5xl">
@@ -105,14 +106,14 @@ export default function ProgressContainer({
       label: 'Playground',
       icon: <SettingsIcon size={16} />,
       content: (
-        <DocSection id="progress-playground" title="Interactive Playground" description="Customize the progress bar variants, sizes, and behavior in real-time.">
+        <DocSection id="progress-playground" title={DOC_TEXT.PLAYGROUND.TITLE} description="Customize the progress bar variants, sizes, and behavior in real-time.">
           <ProgressPlayground />
         </DocSection>
       )
     },
     {
       id: 'mock-code',
-      label: 'Mock Code',
+      label: DOC_TEXT.COMMON.MOCK_CODE,
       icon: <CodeIcon size={16} />,
       content: (
         <div className="max-w-5xl">

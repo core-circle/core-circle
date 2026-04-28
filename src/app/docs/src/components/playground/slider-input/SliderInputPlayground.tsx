@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { SliderInput, Select, Checkbox, Button, TextInput, Label } from '@core-circle/ui';
+import { SliderInput, Select, Checkbox, Button, TextInput } from '@core-circle/ui';
 import { CodeIcon, CopyIcon } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { textInputPlaygroundStyles as s } from '../text-input/textInputPlayground.styles';
@@ -45,7 +45,7 @@ export const SliderInputPlayground = () => {
   const generateCode = () => {
     const { variant, size, label, defaultValue, min, max, step, showValue, disabled, fullWidth, error, helperText } = state;
     let props = `variant="${variant}" size="${size}" defaultValue={${defaultValue}}`;
-    
+
     if (label) props += ` label="${label}"`;
     if (min !== 0) props += ` min={${min}}`;
     if (max !== 100) props += ` max={${max}}`;
@@ -110,28 +110,28 @@ export const SliderInputPlayground = () => {
               fullWidth
             />
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-            <TextInput 
-              label="Label Text" 
-              placeholder="e.g. Volume" 
-              value={state.label} 
-              onChange={(e) => updateState('label', e.target.value)} 
-              fullWidth 
+            <TextInput
+              label="Label Text"
+              placeholder="e.g. Volume"
+              value={state.label}
+              onChange={(e) => updateState('label', e.target.value)}
+              fullWidth
             />
-            <TextInput 
-              label="Error Message" 
-              placeholder="e.g. Invalid value" 
-              value={state.error} 
-              onChange={(e) => updateState('error', e.target.value)} 
-              fullWidth 
+            <TextInput
+              label="Error Message"
+              placeholder="e.g. Invalid value"
+              value={state.error}
+              onChange={(e) => updateState('error', e.target.value)}
+              fullWidth
             />
-            <TextInput 
-              label="Helper Text" 
-              placeholder="e.g. Adjust the volume" 
-              value={state.helperText} 
-              onChange={(e) => updateState('helperText', e.target.value)} 
-              fullWidth 
+            <TextInput
+              label="Helper Text"
+              placeholder="e.g. Adjust the volume"
+              value={state.helperText}
+              onChange={(e) => updateState('helperText', e.target.value)}
+              fullWidth
             />
           </div>
         </div>

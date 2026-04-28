@@ -6,6 +6,7 @@ import { CodeIcon, CopyIcon } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { accordionPlaygroundStyles as s } from './accordionPlayground.styles';
 import { ACCORDION_PLAYGROUND_ITEMS } from '../../../constants/atoms-page/accordion/accordionConstants';
+import { DOC_TEXT } from '../../../constants/common-constants';
 
 export const AccordionPlayground = () => {
   const [state, setState] = useState({
@@ -88,7 +89,7 @@ export const AccordionPlayground = () => {
             <div className={s.codeHeader}>
               <span className={s.codeTitle}>
                 <CodeIcon className="w-3.5 h-3.5" />
-                Live Code
+                {DOC_TEXT.PLAYGROUND.LIVE_CODE}
               </span>
               <Button
                 variant="ghost"
@@ -97,7 +98,7 @@ export const AccordionPlayground = () => {
                 className={s.copyButton}
                 startIcon={<CopyIcon size={14} />}
               >
-                Copy Snippet
+                {DOC_TEXT.PLAYGROUND.COPY_SNIPPET}
               </Button>
             </div>
             <pre className={s.codeBlock}>

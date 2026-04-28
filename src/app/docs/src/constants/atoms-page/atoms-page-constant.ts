@@ -13,7 +13,9 @@ import {
   RowsIcon,
   TabIcon,
   SlidersHorizontalIcon,
-  PresentationChart
+  PresentationChart,
+  UserCircle,
+  Tag
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -42,6 +44,18 @@ export const ATOM_CARDS = [
     description: 'A vertically stacked set of interactive headings that reveal content sections.',
     href: '/atoms/accordion',
     icon: ChevronDown,
+  },
+  {
+    title: 'Avatar',
+    description: 'Visual representation of a user or entity with fallback support.',
+    href: '/atoms/avatar',
+    icon: UserCircle,
+  },
+  {
+    title: 'Badge',
+    description: 'Small visual indicator for status, counts, or categorization.',
+    href: '/atoms/badge',
+    icon: Tag,
   },
   {
     title: 'Breadcrumb',
