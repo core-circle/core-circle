@@ -10,4 +10,5 @@ export interface ButtonProps
   endLoadingIcon?: React.ReactNode;
   startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
+  fullWidth?: boolean;
 }

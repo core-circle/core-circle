@@ -39,11 +39,16 @@ export const buttonVariants = cva(
         semibold: 'font-semibold',
         bold: 'font-bold',
       },
+      fullWidth: {
+        true: 'w-full',
+        false: 'w-fit',
+      },
     },
     defaultVariants: {
       variant: 'primary',
       size: 'md',
       labelWeight: 'medium',
+      fullWidth: false,
     },
   }
 );

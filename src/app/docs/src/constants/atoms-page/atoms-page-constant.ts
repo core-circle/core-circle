@@ -37,6 +37,12 @@ export const ATOMS_HEADER_CONTENT = {
  */
 export const ATOM_CARDS = [
   {
+    title: 'Accordion',
+    description: 'A vertically stacked set of interactive headings that reveal content sections.',
+    href: '/atoms/accordion',
+    icon: ChevronDown,
+  },
+  {
     title: 'Breadcrumb',
     description: 'Navigation path component with dynamic items and back support.',
     href: '/atoms/breadcrumb',
