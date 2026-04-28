@@ -1,4 +1,3 @@
-import React from 'react';
 
 export const AVATAR_HEADER_CONTENT = {
   title: 'Avatar',

@@ -1,4 +1,3 @@
-import React from 'react';
 
 export const PROGRESS_HEADER_CONTENT = {
   title: 'Progress',

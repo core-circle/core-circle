@@ -17,7 +17,6 @@ import { ProgressContainerProps } from '../../../interface/containers/atoms/prog
 import { DOC_TEXT } from '../../../constants/common-constants';
 
 export default function ProgressContainer({
-  sections,
   headerContent,
   breadcrumbItems
 }: ProgressContainerProps) {

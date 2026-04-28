@@ -15,7 +15,14 @@ import {
   SlidersHorizontalIcon,
   PresentationChart,
   UserCircle,
-  Tag
+  Tag,
+  Info,
+  AccordionIcon,
+  SwitchIcon,
+  SkeletonIcon,
+  SpinnerIcon,
+  DividerIcon,
+  AspectRatioIcon
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -43,7 +50,7 @@ export const ATOM_CARDS = [
     title: 'Accordion',
     description: 'A vertically stacked set of interactive headings that reveal content sections.',
     href: '/atoms/accordion',
-    icon: ChevronDown,
+    icon: AccordionIcon,
   },
   {
     title: 'Avatar',
@@ -56,6 +63,12 @@ export const ATOM_CARDS = [
     description: 'Small visual indicator for status, counts, or categorization.',
     href: '/atoms/badge',
     icon: Tag,
+  },
+  {
+    title: 'AspectRatio',
+    description: 'Ensuring media (images, videos) maintains a specific ratio during resize.',
+    href: '/atoms/aspect-ratio',
+    icon: AspectRatioIcon,
   },
   {
     title: 'Breadcrumb',
@@ -86,6 +99,12 @@ export const ATOM_CARDS = [
     description: 'A primitive component for displaying text labels with various styles.',
     href: '/atoms/label',
     icon: TypeIcon,
+  },
+  {
+    title: 'Divider',
+    description: 'Clean visual separation of content with horizontal and vertical variants.',
+    href: '/atoms/divider',
+    icon: DividerIcon,
   },
   {
     title: 'MultiSelect',
@@ -128,5 +147,29 @@ export const ATOM_CARDS = [
     description: 'Versatile input field with Material Design support and icons.',
     href: '/atoms/text-input',
     icon: SquareEdit,
+  },
+  {
+    title: 'Switch',
+    description: 'A toggle component that allows users to switch between two states: on and off.',
+    href: '/atoms/switch',
+    icon: SwitchIcon,
+  },
+  {
+    title: 'Skeleton',
+    description: 'Provide a placeholder for content that is still loading with smooth animations.',
+    href: '/atoms/skeleton',
+    icon: SkeletonIcon,
+  },
+  {
+    title: 'Spinner',
+    description: 'An indeterminate circular progress indicator for loading states.',
+    href: '/atoms/spinner',
+    icon: SpinnerIcon,
+  },
+  {
+    title: 'Tooltip',
+    description: 'An information popover that appears on click or hover to provide additional context.',
+    href: '/atoms/tooltip',
+    icon: Info,
   },
 ];
