@@ -1,7 +1,7 @@
 import { cva } from 'class-variance-authority';
 
 export const selectWrapperVariants = cva(
-  'relative flex items-center group w-full font-core-circle-medium transition-all duration-200 outline-none',
+  'relative flex items-center group w-full font-core-circle-medium transition-all duration-200 outline-none cursor-pointer min-h-[42px]',
   {
     variants: {
       variant: {
@@ -54,7 +54,7 @@ export const selectVariants = cva(
 );
 
 export const labelVariants = cva(
-  'mb-1.5 text-core-circle-xs font-core-circle-bold uppercase tracking-wider transition-all duration-200 pointer-events-none',
+  'mb-1.5 text-core-circle-sm font-core-circle-normal capitalize font-core-circle-body tracking-normal transition-all duration-200 pointer-events-none',
   {
     variants: {
       variant: {
@@ -75,7 +75,7 @@ export const labelVariants = cva(
       {
         variant: 'material-animated',
         isFloating: true,
-        className: '-translate-y-8 left-0 scale-100 text-core-circle-primary font-core-circle-bold uppercase tracking-wider text-[10px]',
+        className: '-translate-y-8 left-0 scale-100 text-core-circle-primary font-core-circle-bold capitalize tracking-normal text-[10px]',
       }
     ],
     defaultVariants: {
@@ -97,5 +97,37 @@ export const prefixVariants = cva(
     defaultVariants: {
       size: 'md',
     },
+  }
+);
+export const dropdownVariants = cva(
+  'absolute z-50 top-full left-0 right-0 mt-2 bg-white border border-core-circle-border-main rounded-core-circle-lg shadow-core-circle-2xl max-h-60 overflow-y-auto overflow-x-hidden transition-all duration-300 origin-top [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-core-circle-border-main/60 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-transparent',
+  {
+    variants: {
+      isOpen: {
+        true: 'opacity-100 scale-y-100',
+        false: 'opacity-0 scale-y-0 pointer-events-none',
+      }
+    },
+    defaultVariants: {
+      isOpen: false,
+    }
+  }
+);
+
+export const optionVariants = cva(
+  'flex items-center justify-between px-3 py-2.5 cursor-pointer transition-all duration-200 border-l-2 border-transparent',
+  {
+    variants: {
+      isSelected: {
+        true: 'bg-core-circle-primary/5 text-core-circle-primary font-core-circle-bold border-core-circle-primary',
+        false: 'text-core-circle-text-main hover:bg-core-circle-bg-page',
+      },
+      disabled: {
+        true: 'opacity-40 cursor-not-allowed grayscale',
+      }
+    },
+    defaultVariants: {
+      isSelected: false,
+    }
   }
 );

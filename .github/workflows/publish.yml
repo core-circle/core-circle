@@ -40,32 +40,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Determine Command Type
-        id: cmd
-        run: |
-          # Default to affected
-          COMMAND="affected"
-          EXTRA_FLAGS="--base=origin/main~1 --head=HEAD"
-          
-          # Check for manual force
-          if [ "${{ github.event.inputs.force }}" == "true" ]; then
-            COMMAND="run-many"
-            EXTRA_FLAGS=""
-            echo "Reason: Manual force trigger"
-          # Check for commit message tag
-          elif [[ "${{ github.event.head_commit.message }}" == *"[force-publish]"* ]]; then
-            COMMAND="run-many"
-            EXTRA_FLAGS=""
-            echo "Reason: [force-publish] tag in commit"
-          fi
-          
-          echo "nx_cmd=$COMMAND" >> $GITHUB_OUTPUT
-          echo "nx_flags=$EXTRA_FLAGS" >> $GITHUB_OUTPUT
-
       - name: Build packages
-        run: npx nx ${{ steps.cmd.outputs.nx_cmd }} -t build ${{ steps.cmd.outputs.nx_flags }} -p tag:package
+        run: npx nx run-many -t build -p tag:package
 
       - name: Publish packages
-        run: npx nx ${{ steps.cmd.outputs.nx_cmd }} -t publish ${{ steps.cmd.outputs.nx_flags }} -p tag:package
+        run: npx nx run-many -t publish -p tag:package
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

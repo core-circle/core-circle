@@ -1,7 +1,6 @@
-'use client';
-
 import { HomeIcon } from '@core-circle/icons';
 import React from 'react';
+import { PropItem } from '../../../interface/components/props-table.types';
 
 export const TABS_BREADCRUMB_ITEMS = [
   { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
@@ -54,5 +53,51 @@ export const TABS_SECTIONS = [
         code: `<Tabs items={[\n  { id: '1', label: 'Profile', icon: <UserIcon size={16} />, content: '...' }\n]} />`
       }
     ]
+  }
+];
+
+export const TABS_PROPS_DATA: PropItem[] = [
+  {
+    name: 'items',
+    type: 'TabItem[]',
+    description: 'The list of tabs to render dynamically (id, label, content, icon).'
+  },
+  {
+    name: 'variant',
+    type: "'underline' | 'pills' | 'enclosed'",
+    defaultValue: "'underline'",
+    description: 'The design variant of the tabs.'
+  },
+  {
+    name: 'size',
+    type: "'sm' | 'md' | 'lg'",
+    defaultValue: "'md'",
+    description: 'The size of the tabs.'
+  },
+  {
+    name: 'fullWidth',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Whether the tabs list should take up the full width.'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    description: 'The currently active tab ID (controlled mode).'
+  },
+  {
+    name: 'defaultValue',
+    type: 'string',
+    description: 'The default active tab ID (uncontrolled mode).'
+  },
+  {
+    name: 'onChange',
+    type: '(id: string) => void',
+    description: 'Callback fired when the active tab changes.'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    description: 'Additional class name for the wrapper.'
   }
 ];

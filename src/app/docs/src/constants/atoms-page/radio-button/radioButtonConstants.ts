@@ -1,5 +1,6 @@
 import { HomeIcon } from '@core-circle/icons';
 import React from 'react';
+import { PropItem } from '../../../interface/components/props-table.types';
 
 export const RADIO_BUTTON_BREADCRUMB_ITEMS = [
   { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
@@ -59,5 +60,68 @@ export const RADIO_BUTTON_SECTIONS = [
         code: `<RadioButton size="sm" label="Small" />\n<RadioButton size="md" label="Medium" />\n<RadioButton size="lg" label="Large" />`
       }
     ]
+  }
+];
+
+export const RADIO_BUTTON_PROPS_DATA: PropItem[] = [
+  {
+    name: 'variant',
+    type: "'outline' | 'solid'",
+    defaultValue: "'outline'",
+    description: 'Visual style of the radio button.'
+  },
+  {
+    name: 'size',
+    type: "'sm' | 'md' | 'lg'",
+    defaultValue: "'md'",
+    description: 'Size of the radio circle and label.'
+  },
+  {
+    name: 'label',
+    type: 'string',
+    description: 'Label text displayed next to the radio button.'
+  },
+  {
+    name: 'labelSize',
+    type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
+    defaultValue: "'sm'",
+    description: 'Typography size for the label.'
+  },
+  {
+    name: 'labelWeight',
+    type: "'light' | 'normal' | 'medium' | 'semibold' | 'bold'",
+    defaultValue: "'medium'",
+    description: 'Typography weight for the label.'
+  },
+  {
+    name: 'name',
+    type: 'string',
+    description: 'The group name for the radio buttons (essential for exclusive selection).'
+  },
+  {
+    name: 'value',
+    type: 'string',
+    description: 'The value to be submitted with the form when selected.'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    description: 'Error message that displays below the radio button.'
+  },
+  {
+    name: 'helperText',
+    type: 'string',
+    description: 'Additional guidance text.'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Prevents user interaction.'
+  },
+  {
+    name: 'onChange',
+    type: '(value: string) => void',
+    description: 'Callback function when the selection changes.'
   }
 ];

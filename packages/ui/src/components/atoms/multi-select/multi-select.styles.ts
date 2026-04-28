@@ -57,7 +57,7 @@ export const tagVariants = cva(
 );
 
 export const dropdownVariants = cva(
-  'absolute z-50 left-0 right-0 mt-1 bg-white border border-core-circle-border-main rounded-core-circle-lg shadow-core-circle-2xl max-h-60 overflow-y-auto overflow-x-hidden transition-all duration-300 origin-top',
+  'absolute z-50 top-full left-0 right-0 mt-2 bg-white border border-core-circle-border-main rounded-core-circle-lg shadow-core-circle-2xl max-h-60 overflow-y-auto overflow-x-hidden transition-all duration-300 origin-top [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-core-circle-border-main/60 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:bg-transparent',
   {
     variants: {
       isOpen: {

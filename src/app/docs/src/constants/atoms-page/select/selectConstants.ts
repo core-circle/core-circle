@@ -1,5 +1,6 @@
 import { HomeIcon } from '@core-circle/icons';
 import React from 'react';
+import { PropItem } from '../../../interface/components/props-table.types';
 
 export const SELECT_BREADCRUMB_ITEMS = [
   { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
@@ -74,5 +75,79 @@ export const SELECT_SECTIONS = [
         code: '<Select error="This field is required" options={options} />'
       }
     ]
+  }
+];
+
+export const SELECT_PROPS_DATA: PropItem[] = [
+  {
+    name: 'variant',
+    type: "'outline' | 'material' | 'material-animated' | 'ghost' | 'standard'",
+    defaultValue: "'outline'",
+    description: 'Visual style of the select.'
+  },
+  {
+    name: 'size',
+    type: "'sm' | 'md' | 'lg'",
+    defaultValue: "'md'",
+    description: 'Vertical size of the select field.'
+  },
+  {
+    name: 'options',
+    type: 'SelectOption[]',
+    description: 'List of options to display in the dropdown.'
+  },
+  {
+    name: 'label',
+    type: 'string',
+    description: 'Floating or static label text.'
+  },
+  {
+    name: 'labelSize',
+    type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
+    defaultValue: "'sm'",
+    description: 'Typography size for the label.'
+  },
+  {
+    name: 'labelWeight',
+    type: "'light' | 'normal' | 'medium' | 'semibold' | 'bold'",
+    defaultValue: "'medium'",
+    description: 'Typography weight for the label.'
+  },
+  {
+    name: 'startIcon',
+    type: 'ReactNode',
+    description: 'Icon element to display at the beginning.'
+  },
+  {
+    name: 'prefix',
+    type: 'ReactNode',
+    description: 'Non-editable content at the start.'
+  },
+  {
+    name: 'placeholder',
+    type: 'string',
+    description: 'Text shown when no option is selected.'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    description: 'Error message displayed below.'
+  },
+  {
+    name: 'helperText',
+    type: 'string',
+    description: 'Additional guidance text.'
+  },
+  {
+    name: 'fullWidth',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Takes full width of container.'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Prevents interaction.'
   }
 ];

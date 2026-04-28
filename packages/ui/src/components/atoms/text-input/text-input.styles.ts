@@ -88,7 +88,7 @@ export const prefixSuffixVariants = cva(
 );
 
 export const labelVariants = cva(
-  'mb-1.5 text-core-circle-xs font-core-circle-bold uppercase tracking-wider transition-all duration-200 pointer-events-none',
+  'mb-1.5 text-core-circle-sm font-core-circle-normal capitalize font-core-circle-body tracking-normal transition-all duration-200 pointer-events-none',
   {
     variants: {
       variant: {
@@ -109,7 +109,7 @@ export const labelVariants = cva(
       {
         variant: 'material-animated',
         isFloating: true,
-        className: '-translate-y-8 left-0 scale-100 text-core-circle-primary font-core-circle-bold uppercase tracking-wider text-[10px]',
+        className: '-translate-y-8 left-0 scale-100 text-core-circle-primary font-core-circle-bold capitalize tracking-normal text-[10px]',
       }
     ],
     defaultVariants: {

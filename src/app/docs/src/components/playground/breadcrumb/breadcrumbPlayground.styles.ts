@@ -10,7 +10,7 @@ export const breadcrumbPlaygroundStyles = {
   copyButton: 'text-[11px] font-core-circle-medium text-white/50 hover:text-white flex items-center gap-1.5 transition-colors',
   codeBlock: 'p-4 overflow-x-auto text-sm leading-relaxed text-slate-300',
   gridTwoCols: 'grid grid-cols-2 gap-4',
-  controlLabel: 'block text-[11px] font-core-circle-bold text-core-circle-text-muted uppercase tracking-wider mb-2',
+  controlLabel: 'block text-core-circle-sm font-core-circle-normal text-core-circle-text-muted capitalize font-core-circle-body tracking-wider mb-2',
   selectField: 'w-full bg-white border border-core-circle-border-main rounded-core-circle-md px-3 py-2 text-sm focus:border-core-circle-primary focus:ring-2 focus:ring-core-circle-primary/10 transition-all outline-none',
   textInput: 'w-full bg-white border border-core-circle-border-main rounded-core-circle-md px-3 py-2 text-sm focus:border-core-circle-primary focus:ring-2 focus:ring-core-circle-primary/10 transition-all outline-none',
   checkboxLabel: 'flex items-center gap-2 cursor-pointer group',

@@ -1,5 +1,6 @@
 import { HomeIcon } from '@core-circle/icons';
 import React from 'react';
+import { PropItem } from '../../../interface/components/props-table.types';
 
 export const TEXT_INPUT_BREADCRUMB_ITEMS = [
   { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
@@ -90,5 +91,79 @@ export const TEXT_INPUT_SECTIONS = [
         code: `<TextInput label="Password" type="password" helperText="Must be at least 8 characters" />\n<TextInput label="Email" error="Please enter a valid email address" defaultValue="invalid-email" />`
       }
     ]
+  }
+];
+
+export const TEXT_INPUT_PROPS_DATA: PropItem[] = [
+  {
+    name: 'variant',
+    type: "'outline' | 'material' | 'material-animated' | 'ghost' | 'standard'",
+    defaultValue: "'outline'",
+    description: 'Visual style of the input.'
+  },
+  {
+    name: 'size',
+    type: "'sm' | 'md' | 'lg'",
+    defaultValue: "'md'",
+    description: 'Vertical size of the input field.'
+  },
+  {
+    name: 'label',
+    type: 'string',
+    description: 'Floating or static label text for the input.'
+  },
+  {
+    name: 'labelSize',
+    type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
+    defaultValue: "'sm'",
+    description: 'Typography size for the label.'
+  },
+  {
+    name: 'labelWeight',
+    type: "'light' | 'normal' | 'medium' | 'semibold' | 'bold'",
+    defaultValue: "'medium'",
+    description: 'Typography weight for the label.'
+  },
+  {
+    name: 'startIcon',
+    type: 'ReactNode',
+    description: 'Icon element to display at the beginning of the input.'
+  },
+  {
+    name: 'endIcon',
+    type: 'ReactNode',
+    description: 'Icon element to display at the end of the input.'
+  },
+  {
+    name: 'prefix',
+    type: 'ReactNode',
+    description: 'Non-editable content at the start of the input (after icon).'
+  },
+  {
+    name: 'suffix',
+    type: 'ReactNode',
+    description: 'Non-editable content at the end of the input (before icon).'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    description: 'Error message that changes input color and displays below.'
+  },
+  {
+    name: 'helperText',
+    type: 'string',
+    description: 'Additional guidance text displayed below the input.'
+  },
+  {
+    name: 'fullWidth',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Whether the input takes the full width of its container.'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Prevents user interaction with the input.'
   }
 ];

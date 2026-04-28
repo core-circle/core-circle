@@ -46,6 +46,7 @@ const SelectField = ({ label, value, options, onChange }: any) => {
       value={value}
       onChange={(e) => onChange(e.target.value)}
       options={formattedOptions}
+      fullWidth
     />
   );
 };
@@ -61,6 +62,8 @@ export const ButtonPlayground = () => {
     endIcon: 'none',
     startLoadingIcon: 'none',
     endLoadingIcon: 'none',
+    labelSize: 'sm',
+    labelWeight: 'medium',
   });
 
   const updateState = (key: string, value: any) => {
@@ -68,8 +71,10 @@ export const ButtonPlayground = () => {
   };
 
   const generateCode = () => {
-    const { variant, size, loading, disabled, text, startIcon, endIcon, startLoadingIcon, endLoadingIcon } = state;
+    const { variant, size, loading, disabled, text, startIcon, endIcon, startLoadingIcon, endLoadingIcon, labelSize, labelWeight } = state;
     let props = `variant="${variant}" size="${size}"`;
+    if (labelSize !== 'sm') props += ` labelSize="${labelSize}"`;
+    if (labelWeight !== 'medium') props += ` labelWeight="${labelWeight}"`;
     if (loading) props += ' loading';
     if (disabled) props += ' disabled';
 
@@ -110,23 +115,35 @@ export const ButtonPlayground = () => {
             <SelectField label="End Loader" value={state.endLoadingIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endLoadingIcon', v)} />
           </div>
 
-          {/* Row 2: Checkboxes + Label input in one flex row */}
-          <div className={s.flexGapSection}>
-            {['loading', 'disabled'].map((key) => (
-              <Checkbox
-                key={key}
-                label={key}
-                checked={(state as any)[key]}
-                onChange={(checked) => updateState(key, checked)}
-              />
-            ))}
-            <div className="ml-auto flex items-end">
-              <TextInput
-                label="Label"
-                value={state.text}
-                onChange={(e) => updateState('text', e.target.value)}
-                placeholder="Enter label..."
-              />
+          <div className={s.dividerSection}>
+            <SelectField
+              label="Label Size"
+              value={state.labelSize}
+              onChange={(v: string) => updateState('labelSize', v)}
+              options={{ xs: 'Extra Small', sm: 'Small', base: 'Base', lg: 'Large', xl: 'Extra Large', '2xl': '2XL' }}
+            />
+            <SelectField
+              label="Label Weight"
+              value={state.labelWeight}
+              onChange={(v: string) => updateState('labelWeight', v)}
+              options={{ light: 'Light', normal: 'Normal', medium: 'Medium', semibold: 'Semibold', bold: 'Bold' }}
+            />
+            <TextInput
+              label="Label"
+              value={state.text}
+              onChange={(e) => updateState('text', e.target.value)}
+              placeholder="Enter label..."
+              fullWidth
+            />
+            <div className="flex items-center gap-6 pb-2 ml-auto lg:col-span-3">
+              {['loading', 'disabled'].map((key) => (
+                <Checkbox
+                  key={key}
+                  label={key}
+                  checked={(state as any)[key]}
+                  onChange={(checked) => updateState(key, checked)}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -143,6 +160,8 @@ export const ButtonPlayground = () => {
               endIcon={(ICONS as any)[state.endIcon]}
               startLoadingIcon={(ICONS as any)[state.startLoadingIcon]}
               endLoadingIcon={(ICONS as any)[state.endLoadingIcon]}
+              labelSize={state.labelSize as any}
+              labelWeight={state.labelWeight as any}
             >
               {state.text}
             </Button>
@@ -159,8 +178,8 @@ export const ButtonPlayground = () => {
                 size="sm"
                 onClick={() => navigator.clipboard.writeText(generateCode())}
                 className={s.copyButton}
+                startIcon={<CopyIcon className="w-3.5 h-3.5" />}
               >
-                <CopyIcon className="w-3.5 h-3.5" />
                 Copy Snippet
               </Button>
             </div>
