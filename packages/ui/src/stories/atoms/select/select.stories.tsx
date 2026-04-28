@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Select } from '../../../components/atoms/select/select';
-import { Mail, Globe, Filter } from '@core-circle/icons';
+import { Mail, Map, Filter } from '@core-circle/icons';
 
 const meta: Meta<typeof Select> = {
   title: 'Atoms/Select',
@@ -136,7 +136,7 @@ export const MaterialAnimatedWithIcons: Story = {
       { value: 'us', label: 'United States' },
       { value: 'uk', label: 'United Kingdom' },
     ],
-    startIcon: <Globe size={18} />,
+    startIcon: <Map size={18} />,
     fullWidth: true,
   },
 };
