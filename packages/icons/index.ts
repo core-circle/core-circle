@@ -1,4 +1,5 @@
 export { default as AccordionIcon } from './AccordionIcon';
+export { default as AvatarIcon } from './AvatarIcon';
 export { default as AspectRatioIcon } from './AspectRatioIcon';
 export { default as Alert } from './Alert';
 export { default as Atom } from './Atom';

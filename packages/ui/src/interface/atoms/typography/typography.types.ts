@@ -23,5 +23,5 @@ export interface TypographyProps
     VariantProps<typeof typographyVariants> {
   variant?: TypographyVariant;
   as?: React.ElementType;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }

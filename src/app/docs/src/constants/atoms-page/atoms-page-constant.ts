@@ -28,7 +28,11 @@ import {
   ImageIcon,
   CounterIcon,
   DocumentText,
-  TypeIcon as TypographyIcon
+  TypeIcon as TypographyIcon,
+  Alert as AlertIcon,
+  Bell as BellIcon,
+  Layers as LayersIcon,
+  Grid as DialogIcon
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -213,5 +217,29 @@ export const ATOM_CARDS = [
     description: 'Render complex HTML or formatted content with design system styles.',
     href: '/atoms/rich-text',
     icon: DocumentText,
+  },
+  {
+    title: 'Alert',
+    description: 'Displays a callout for user attention or information with various visual styles.',
+    href: '/atoms/alert',
+    icon: AlertIcon,
+  },
+  {
+    title: 'Toast',
+    description: 'A succinct message that is displayed temporarily and non-interruptively.',
+    href: '/atoms/toast',
+    icon: BellIcon,
+  },
+  {
+    title: 'Popover',
+    description: 'Displays rich content in a portal, triggered by a button or other interactive element.',
+    href: '/atoms/popover',
+    icon: LayersIcon,
+  },
+  {
+    title: 'Dialog',
+    description: 'A window overlaid on the primary window, rendering the content underneath inert.',
+    href: '/atoms/dialog',
+    icon: DialogIcon,
   },
 ];

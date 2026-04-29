@@ -5,6 +5,8 @@ import { cn } from '../../../utils/cn';
 import { XIcon } from '@core-circle/icons';
 import { BadgeProps } from '../../../interface/atoms/badge/badge.types';
 import { badgeVariants, badgeRemoveButtonVariants } from './badge.styles';
+import { Typography } from '../typography/typography';
+import { Button } from '../button/button';
 
 export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
   (
@@ -24,28 +26,29 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
     ref
   ) => {
     return (
-      <span
-        ref={ref}
+      <Typography
+        as="span"
+        ref={ref as any}
         className={cn(badgeVariants({ variant, size, shape, pulse }), className)}
         {...props}
       >
         {startIcon && (
-          <span className="inline-flex shrink-0">
+          <Typography as="span" className="inline-flex shrink-0">
             {startIcon}
-          </span>
+          </Typography>
         )}
         
-        <span className="truncate">{children}</span>
+        <Typography variant="span" className="truncate">{children}</Typography>
         
         {endIcon && !removable && (
-          <span className="inline-flex shrink-0">
+          <Typography as="span" className="inline-flex shrink-0">
             {endIcon}
-          </span>
+          </Typography>
         )}
         
         {removable && (
-          <button
-            type="button"
+          <Button
+            variant="ghost"
             className={cn(badgeRemoveButtonVariants({ size }))}
             onClick={(e) => {
               e.stopPropagation();
@@ -54,9 +57,9 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
             aria-label="Remove"
           >
             <XIcon size={size === 'sm' ? 10 : size === 'lg' ? 14 : 12} />
-          </button>
+          </Button>
         )}
-      </span>
+      </Typography>
     );
   }
 );
