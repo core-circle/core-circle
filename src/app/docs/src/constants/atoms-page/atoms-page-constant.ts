@@ -26,7 +26,9 @@ import {
   KbdIcon,
   IndicatorIcon,
   ImageIcon,
-  CounterIcon
+  CounterIcon,
+  DocumentText,
+  TypeIcon as TypographyIcon
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -199,5 +201,17 @@ export const ATOM_CARDS = [
     description: 'An information popover that appears on click or hover to provide additional context.',
     href: '/atoms/tooltip',
     icon: Info,
+  },
+  {
+    title: 'Typography',
+    description: 'A fundamental component for consistent text styles, headings, and paragraphs.',
+    href: '/atoms/typography',
+    icon: TypographyIcon,
+  },
+  {
+    title: 'RichText',
+    description: 'Render complex HTML or formatted content with design system styles.',
+    href: '/atoms/rich-text',
+    icon: DocumentText,
   },
 ];

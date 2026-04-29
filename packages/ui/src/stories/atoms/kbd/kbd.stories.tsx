@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Kbd } from './kbd';
+import { Kbd } from '../../../components/atoms/kbd/kbd';
+import React from 'react';
 
 const meta: Meta<typeof Kbd> = {
   title: 'Atoms/Kbd',
@@ -52,7 +53,7 @@ export const Combination: Story = {
     <div className="flex items-center gap-1">
       <Kbd>⌘</Kbd>
       <span>+</span>
-      <Kbd>Shift</Highlight>
+      <Kbd>Shift</Kbd>
       <span>+</span>
       <Kbd>P</Kbd>
     </div>

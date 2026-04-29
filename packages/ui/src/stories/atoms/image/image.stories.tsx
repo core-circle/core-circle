@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Image } from './image';
-import { AspectRatio } from '../aspect-ratio/aspect-ratio';
+import { Image } from '../../../components/atoms/image/image';
+import { AspectRatio } from '../../../components/atoms/aspect-ratio/aspect-ratio';
 import React from 'react';
 
 const meta: Meta<typeof Image> = {

@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Breadcrumb, Tabs, Counter, Button } from '@core-circle/ui';
-import { Info, Layers, Play, Bell } from '@core-circle/icons';
+import { Breadcrumb, Tabs, Counter, Button, Typography } from '@core-circle/ui';
+import { Info, Layers, Play, Bell, CodeIcon } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
 import CodeSnippet from '../../../components/code-snippet';
@@ -27,7 +27,7 @@ export default function CounterContainer({ headerContent, breadcrumbItems }: any
                 code={`import { Counter } from '@core-circle/ui';\n\n<Counter count={12} max={99} />`}
               />
               <div className="flex flex-col gap-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</h4>
+                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
                 <PropsTable data={[
                   { name: 'count', type: 'number', defaultValue: '-', description: 'Value to display' },
                   { name: 'max', type: 'number', defaultValue: '-', description: 'Maximum cap (e.g. 99+)' },
@@ -90,6 +90,33 @@ export default function CounterContainer({ headerContent, breadcrumbItems }: any
       label: 'Playground',
       icon: <Play size={16} />,
       content: <CounterPlayground />
+    },
+    {
+      id: 'mock-code',
+      label: 'Mock Code',
+      icon: <CodeIcon size={16} />,
+      content: (
+        <div className="flex flex-col gap-8">
+          <DocSection id="counter-mock" title="Notification API Integration" description="Example of how to consume dynamic badge counts from a notification service.">
+            <div className="flex flex-col gap-10 mt-8">
+              <CodeSnippet
+                label="Unread Count API"
+                code={JSON.stringify({
+                  user_id: "usr_567",
+                  unread_notifications: 45,
+                  unread_messages: 102,
+                  system_alerts: 2
+                }, null, 2)}
+              />
+
+              <CodeSnippet
+                label="Dynamic Counter usage"
+                code={`const NotificationBadge = ({ data }) => {\n  return (\n    <Button size="icon" variant="ghost">\n      <Bell size={20} />\n      <Counter \n        count={data.unread_notifications} \n        max={99} \n        className="absolute -top-1 -right-1" \n      />\n    </Button>\n  );\n};`}
+              />
+            </div>
+          </DocSection>
+        </div>
+      )
     }
   ];
 
@@ -97,8 +124,8 @@ export default function CounterContainer({ headerContent, breadcrumbItems }: any
     <div className={s?.container}>
       <header className={s?.header}>
         <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
-        <h1 className={s?.title}>{headerContent?.title}</h1>
-        <p className={s?.description}>{headerContent?.description}</p>
+        <Typography variant="h1" className={s?.title}>{headerContent?.title}</Typography>
+        <Typography variant="p" className={s?.description}>{headerContent?.description}</Typography>
       </header>
 
       <div className="mt-8">

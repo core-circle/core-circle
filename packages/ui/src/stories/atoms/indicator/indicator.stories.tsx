@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Indicator } from './indicator';
-import { Avatar } from '../avatar/avatar';
-import { Button } from '../button/button';
+import { Indicator } from '../../../components/atoms/indicator/indicator';
+import { Avatar } from '../../../components/atoms/avatar/avatar';
+import { Button } from '../../../components/atoms/button/button';
 import { Bell } from '@core-circle/icons';
 import React from 'react';
 

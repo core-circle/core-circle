@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button } from '@core-circle/ui';
+import { Button, Typography } from '@core-circle/ui';
 import { CheckIcon, CopyIcon } from '@core-circle/icons';
 import { highlightCode } from '../../utils/highlight';
 
@@ -23,9 +23,9 @@ const CodeSnippet = ({ code, label, className = '' }: CodeSnippetProps) => {
   return (
     <div className={`flex flex-col gap-3 ${className}`}>
       {label && (
-        <h4 className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">
+        <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">
           {label}
-        </h4>
+        </Typography>
       )}
       <div className="relative group">
         <div className="absolute right-3 top-3 opacity-0 group-hover:opacity-100 transition-opacity z-10">

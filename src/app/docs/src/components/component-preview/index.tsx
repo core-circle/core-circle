@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { EyeIcon, CodeIcon, CopyIcon, CheckIcon } from '@core-circle/icons';
-import { Button } from '@core-circle/ui';
+import { Button, Typography } from '@core-circle/ui';
 import { highlightCode } from '../../utils/highlight';
 import { componentPreviewStyles as s } from './component-preview.styles';
 
@@ -25,7 +25,7 @@ const ComponentPreview = ({ title = '', code = '', children }: ComponentPreviewP
   return (
     <div className={s.container}>
       <div className={s.toolbar}>
-        {title && <h3 className={s.toolbarTitle}>{title}</h3>}
+        {title && <Typography variant="h3" className={s.toolbarTitle}>{title}</Typography>}
         <div className={s.toolbarActions}>
           <Button
             variant="ghost"
@@ -45,7 +45,7 @@ const ComponentPreview = ({ title = '', code = '', children }: ComponentPreviewP
             className={s.copyButton}
           >
             {copied ? (
-              <span className={s.copySuccessText}>Copied!</span>
+              <Typography variant="p" as="span" className={s.copySuccessText}>Copied!</Typography>
             ) : (
               'Copy'
             )}

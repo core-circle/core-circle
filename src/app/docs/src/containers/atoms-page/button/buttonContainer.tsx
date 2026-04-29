@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Button, Breadcrumb, Tabs } from '@core-circle/ui';
+import { Button, Breadcrumb, Tabs, Typography } from '@core-circle/ui';
 import { Mail, ArrowRight, SettingsIcon, Rotate, Clock, Bell, Info, Layers, Play, CodeIcon } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
@@ -90,7 +90,7 @@ export default function ButtonContainer({ sections, headerContent, breadcrumbIte
                 code={`import { Button } from '@core-circle/ui';\n\n<Button variant="primary">\n  Click Me\n</Button>`}
               />
               <div className="flex flex-col gap-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</h4>
+                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
                 <PropsTable data={BUTTON_PROPS_DATA} />
               </div>
             </div>
@@ -150,8 +150,8 @@ export default function ButtonContainer({ sections, headerContent, breadcrumbIte
     <div className={s?.container}>
       <header className={s?.header}>
         <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
-        <h1 className={s?.title}>{headerContent?.title}</h1>
-        <p className={s?.description}>{headerContent?.description}</p>
+        <Typography variant="h1" className={s?.title}>{headerContent?.title}</Typography>
+        <Typography variant="p" className={s?.description}>{headerContent?.description}</Typography>
       </header>
 
       <div className="mt-8">

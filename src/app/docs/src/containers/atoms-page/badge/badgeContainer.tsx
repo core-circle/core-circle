@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Breadcrumb, Tabs, Badge } from '@core-circle/ui';
+import { Breadcrumb, Tabs, Badge, Typography } from '@core-circle/ui';
 import { Info, Image, SettingsIcon, CodeIcon, Sparkles, CheckIcon, Alert } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
@@ -134,8 +134,8 @@ export default function BadgeContainer({
     <div className={s.container}>
       <header className={s.header}>
         <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
-        <h1 className={s.title}>{headerContent.title}</h1>
-        <p className={s.description}>{headerContent.description}</p>
+        <Typography variant="h1" className={s.title}>{headerContent.title}</Typography>
+        <Typography variant="p" className={s.description}>{headerContent.description}</Typography>
       </header>
 
       <div className="mt-8">

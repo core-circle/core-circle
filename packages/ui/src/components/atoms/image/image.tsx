@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, forwardRef, useEffect } from 'react';
 import { cn } from '../../../utils/cn';
 import { imageVariants, type ImageProps } from './image.styles';

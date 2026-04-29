@@ -22,6 +22,8 @@ export * from './atoms/skeleton/skeleton';
 export * from './atoms/spinner/spinner';
 export * from './atoms/switch/switch';
 export * from './atoms/tooltip/tooltip';
+export * from './atoms/typography/typography';
+export * from './atoms/richtext/richtext';
 export * from '../interface/atoms/button/button.types';
 export * from '../interface/atoms/text-input/text-input.types';
 export * from '../interface/atoms/select/select.types';
@@ -40,6 +42,8 @@ export * from '../interface/atoms/skeleton/skeleton.types';
 export * from '../interface/atoms/spinner/spinner.types';
 export * from '../interface/atoms/switch/switch.types';
 export * from '../interface/atoms/tooltip/tooltip.types';
+export * from '../interface/atoms/typography/typography.types';
+export * from '../interface/atoms/richtext/richtext.types';
 
 // Molecules
 // export * from './molecules/card/Card';

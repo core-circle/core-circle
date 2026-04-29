@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { TabsProps } from '../../../interface/atoms/tabs/tabs.types';
 import { tabsContainerVariants, tabListVariants, tabItemVariants, tabContentVariants } from './tabs.styles';
@@ -28,11 +30,11 @@ export const Tabs = ({
 
   const handleTabClick = (id: string, disabled?: boolean) => {
     if (disabled) return;
-    
+
     if (!isControlled) {
       setInternalValue(id);
     }
-    
+
     if (onChange) {
       onChange(id);
     }
@@ -42,8 +44,8 @@ export const Tabs = ({
 
   return (
     <div className={twMerge(tabsContainerVariants({ fullWidth }), className)}>
-      <div 
-        className={tabListVariants({ variant, fullWidth })} 
+      <div
+        className={tabListVariants({ variant, fullWidth })}
         role="tablist"
         aria-orientation="horizontal"
       >
@@ -67,9 +69,9 @@ export const Tabs = ({
           );
         })}
       </div>
-      <div 
-        role="tabpanel" 
-        id={`tabpanel-${currentValue}`} 
+      <div
+        role="tabpanel"
+        id={`tabpanel-${currentValue}`}
         aria-labelledby={`tab-${currentValue}`}
         className={tabContentVariants()}
         tabIndex={0}

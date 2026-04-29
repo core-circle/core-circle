@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Breadcrumb, Tabs, Indicator, Avatar, Button } from '@core-circle/ui';
-import { Info, Layers, Play, Bell } from '@core-circle/icons';
+import { Breadcrumb, Tabs, Indicator, Avatar, Button, Typography } from '@core-circle/ui';
+import { Info, Layers, Play, Bell, CodeIcon } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
 import CodeSnippet from '../../../components/code-snippet';
@@ -27,7 +27,7 @@ export default function IndicatorContainer({ headerContent, breadcrumbItems }: a
                 code={`import { Indicator } from '@core-circle/ui';\n\n<Indicator variant="danger" pulse>\n  <Avatar name="User" />\n</Indicator>`}
               />
               <div className="flex flex-col gap-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</h4>
+                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
                 <PropsTable data={[
                   { name: 'variant', type: 'primary | success | warning | danger | info', defaultValue: 'primary', description: 'Semantic color' },
                   { name: 'position', type: 'top-right | top-left | bottom-right | bottom-left', defaultValue: 'top-right', description: 'Overlay position' },
@@ -106,6 +106,33 @@ export default function IndicatorContainer({ headerContent, breadcrumbItems }: a
       label: 'Playground',
       icon: <Play size={16} />,
       content: <IndicatorPlayground />
+    },
+    {
+      id: 'mock-code',
+      label: 'Mock Code',
+      icon: <CodeIcon size={16} />,
+      content: (
+        <div className="flex flex-col gap-8">
+          <DocSection id="indicator-mock" title="Real-time Presence Integration" description="Example of how to integrate indicator status with a WebSocket presence service.">
+            <div className="flex flex-col gap-10 mt-8">
+              <CodeSnippet
+                label="Presence Payload"
+                code={JSON.stringify({
+                  user_id: "usr_123",
+                  status: "online", // mapped to 'success'
+                  last_seen: "2026-04-29T10:00:00Z",
+                  is_away: false
+                }, null, 2)}
+              />
+
+              <CodeSnippet
+                label="Dynamic Indicator"
+                code={`const UserAvatar = ({ user }) => {\n  const variant = user.status === 'online' ? 'success' : 'neutral';\n  return (\n    <Indicator variant={variant} size="sm" position="bottom-right">\n      <Avatar name={user.name} src={user.avatar} />\n    </Indicator>\n  );\n};`}
+              />
+            </div>
+          </DocSection>
+        </div>
+      )
     }
   ];
 
@@ -113,8 +140,8 @@ export default function IndicatorContainer({ headerContent, breadcrumbItems }: a
     <div className={s?.container}>
       <header className={s?.header}>
         <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
-        <h1 className={s?.title}>{headerContent?.title}</h1>
-        <p className={s?.description}>{headerContent?.description}</p>
+        <Typography variant="h1" className={s?.title}>{headerContent?.title}</Typography>
+        <Typography variant="p" className={s?.description}>{headerContent?.description}</Typography>
       </header>
 
       <div className="mt-8">

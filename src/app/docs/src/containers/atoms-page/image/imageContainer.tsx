@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Breadcrumb, Tabs, Image, AspectRatio } from '@core-circle/ui';
-import { Info, Layers, Play } from '@core-circle/icons';
+import { Breadcrumb, Tabs, Image, AspectRatio, Typography } from '@core-circle/ui';
+import { Info, Layers, Play, CodeIcon } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
 import CodeSnippet from '../../../components/code-snippet';
@@ -27,7 +27,7 @@ export default function ImageContainer({ headerContent, breadcrumbItems }: any) 
                 code={`import { Image } from '@core-circle/ui';\n\n<Image src="..." alt="..." rounded="md" />`}
               />
               <div className="flex flex-col gap-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</h4>
+                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
                 <PropsTable data={[
                   { name: 'src', type: 'string', defaultValue: '-', description: 'URL of the image' },
                   { name: 'fit', type: 'cover | contain | fill', defaultValue: 'cover', description: 'Object fit property' },
@@ -109,6 +109,39 @@ export default function ImageContainer({ headerContent, breadcrumbItems }: any) 
       label: 'Playground',
       icon: <Play size={16} />,
       content: <ImagePlayground />
+    },
+    {
+      id: 'mock-code',
+      label: 'Mock Code',
+      icon: <CodeIcon size={16} />,
+      content: (
+        <div className="flex flex-col gap-8">
+          <DocSection id="image-mock" title="Dynamic Media Gallery" description="Example of how to render images from a headless CMS with dynamic optimization.">
+            <div className="flex flex-col gap-10 mt-8">
+              <CodeSnippet
+                label="Media API Response"
+                code={JSON.stringify({
+                  id: "img_432",
+                  urls: {
+                    original: "https://example.com/main.jpg",
+                    thumbnail: "https://example.com/thumb.jpg",
+                    shimmer: "data:image/svg+xml;..."
+                  },
+                  metadata: {
+                    alt: "Forest landscape",
+                    ratio: 1.5
+                  }
+                }, null, 2)}
+              />
+
+              <CodeSnippet
+                label="Gallery Implementation"
+                code={`const GalleryItem = ({ image }) => {\n  return (\n    <AspectRatio ratio={image.metadata.ratio}>\n      <Image \n        src={image.urls.original} \n        alt={image.metadata.alt} \n        rounded="lg"\n      />\n    </AspectRatio>\n  );\n};`}
+              />
+            </div>
+          </DocSection>
+        </div>
+      )
     }
   ];
 
@@ -116,8 +149,8 @@ export default function ImageContainer({ headerContent, breadcrumbItems }: any) 
     <div className={s?.container}>
       <header className={s?.header}>
         <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
-        <h1 className={s?.title}>{headerContent?.title}</h1>
-        <p className={s?.description}>{headerContent?.description}</p>
+        <Typography variant="h1" className={s?.title}>{headerContent?.title}</Typography>
+        <Typography variant="p" className={s?.description}>{headerContent?.description}</Typography>
       </header>
 
       <div className="mt-8">

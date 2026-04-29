@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Breadcrumb, Tabs, Kbd } from '@core-circle/ui';
-import { Info, Layers, Play } from '@core-circle/icons';
+import { Breadcrumb, Tabs, Kbd, Typography } from '@core-circle/ui';
+import { Info, Layers, Play, CodeIcon } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
 import CodeSnippet from '../../../components/code-snippet';
@@ -27,7 +27,7 @@ export default function KbdContainer({ headerContent, breadcrumbItems }: any) {
                 code={`import { Kbd } from '@core-circle/ui';\n\n<Kbd>⌘</Kbd> + <Kbd>K</Kbd>`}
               />
               <div className="flex flex-col gap-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</h4>
+                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
                 <PropsTable data={[
                   { name: 'variant', type: 'outline | solid | ghost', defaultValue: 'outline', description: 'Visual style' },
                   { name: 'size', type: 'sm | md', defaultValue: 'md', description: 'Size of the key' },
@@ -88,6 +88,34 @@ export default function KbdContainer({ headerContent, breadcrumbItems }: any) {
       label: 'Playground',
       icon: <Play size={16} />,
       content: <KbdPlayground />
+    },
+    {
+      id: 'mock-code',
+      label: 'Mock Code',
+      icon: <CodeIcon size={16} />,
+      content: (
+        <div className="flex flex-col gap-8">
+          <DocSection id="kbd-mock" title="Dynamic Shortcut Configurations" description="Example of how to render keyboard shortcuts from a user settings API.">
+            <div className="flex flex-col gap-10 mt-8">
+              <CodeSnippet
+                label="Settings API Response"
+                code={JSON.stringify({
+                  actions: [
+                    { name: "Save", shortcut: ["Ctrl", "S"] },
+                    { name: "Open", shortcut: ["⌘", "O"] },
+                    { name: "Search", shortcut: ["/"] }
+                  ]
+                }, null, 2)}
+              />
+
+              <CodeSnippet
+                label="Shortcut Renderer"
+                code={`const ShortcutList = ({ actions }) => {\n  return (\n    <div className="space-y-2">\n      {actions.map(action => (\n        <div className="flex justify-between">\n          <span>{action.name}</span>\n          <div className="flex gap-1">\n            {action.shortcut.map(key => <Kbd key={key}>{key}</Kbd>)}\n          </div>\n        </div>\n      ))}\n    </div>\n  );\n};`}
+              />
+            </div>
+          </DocSection>
+        </div>
+      )
     }
   ];
 
@@ -95,8 +123,8 @@ export default function KbdContainer({ headerContent, breadcrumbItems }: any) {
     <div className={s?.container}>
       <header className={s?.header}>
         <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
-        <h1 className={s?.title}>{headerContent?.title}</h1>
-        <p className={s?.description}>{headerContent?.description}</p>
+        <Typography variant="h1" className={s?.title}>{headerContent?.title}</Typography>
+        <Typography variant="p" className={s?.description}>{headerContent?.description}</Typography>
       </header>
 
       <div className="mt-8">
