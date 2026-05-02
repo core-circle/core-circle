@@ -1,8 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Tooltip } from '../components/molecules/tooltip/tooltip';
-import { HelpCircle, AlertCircle } from 'lucide-react'; // Using lucide-react if available or @core-circle/icons
 import * as Icons from '@core-circle/icons';
-import React from 'react';
+
 
 const meta: Meta<typeof Tooltip> = {
   title: 'Atoms/Tooltip',
