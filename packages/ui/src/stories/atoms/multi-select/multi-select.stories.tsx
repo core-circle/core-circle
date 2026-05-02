@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { MultiSelect } from '../../../components/atoms/multi-select/multi-select';
-import { Filter, Tag, Users } from '@core-circle/icons';
+import { Tag, Users } from '@core-circle/icons';
 
 const meta: Meta<typeof MultiSelect> = {
   title: 'Atoms/MultiSelect',

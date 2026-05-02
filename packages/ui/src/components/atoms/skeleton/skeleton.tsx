@@ -9,7 +9,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
   ({ className, variant, animation, width, height, borderRadius, loading = true, children, style, ...props }, ref) => {
     // If we have children and loading is false, just render the children
     if (children && !loading) {
-      return <>{children}</>;
+      return children as React.ReactElement;
     }
 
     // If we have children and loading is true, we wrap the children to maintain dimensions

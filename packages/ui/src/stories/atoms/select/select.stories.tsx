@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Select } from '../../../components/atoms/select/select';
-import { Mail, Map, Filter } from '@core-circle/icons';
+import { Map, Filter } from '@core-circle/icons';
 
 const meta: Meta<typeof Select> = {
   title: 'Atoms/Select',

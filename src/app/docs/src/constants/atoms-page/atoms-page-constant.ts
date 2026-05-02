@@ -22,7 +22,10 @@ import {
   SkeletonIcon,
   SpinnerIcon,
   DividerIcon,
-  AspectRatioIcon
+  AspectRatioIcon,
+  DocumentText,
+  Key,
+  Palette
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -171,5 +174,23 @@ export const ATOM_CARDS = [
     description: 'An information popover that appears on click or hover to provide additional context.',
     href: '/atoms/tooltip',
     icon: Info,
+  },
+  {
+    title: 'Textarea',
+    description: 'Multi-line text input for longer content with support for variants and resizing.',
+    href: '/atoms/textarea',
+    icon: DocumentText,
+  },
+  {
+    title: 'OTP Input',
+    description: 'A specialized input for one-time passwords and verification codes.',
+    href: '/atoms/otp-input',
+    icon: Key,
+  },
+  {
+    title: 'Color Picker',
+    description: 'A visual tool for selecting colors with support for various output formats.',
+    href: '/atoms/color-picker',
+    icon: Palette,
   },
 ];
