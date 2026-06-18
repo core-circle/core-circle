@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Breadcrumb, Tabs } from '@core-circle/ui';
+import { Breadcrumb, Tabs, Typography } from '@core-circle/ui';
 import { HomeIcon, ArrowRight, ShoppingBag, Info, Layers, Play, CodeIcon } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
@@ -94,7 +94,7 @@ export default function BreadcrumbContainer({ sections, headerContent, breadcrum
                 code={`import { Breadcrumb } from '@core-circle/ui';\n\n<Breadcrumb \n  items={[\n    { label: 'Home', href: '/' },\n    { label: 'Dashboard' }\n  ]} \n/>`}
               />
               <div className="flex flex-col gap-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</h4>
+                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
                 <PropsTable data={BREADCRUMB_PROPS_DATA} />
               </div>
             </div>
@@ -148,8 +148,8 @@ export default function BreadcrumbContainer({ sections, headerContent, breadcrum
     <div className={s.container}>
       <header className={s.header}>
         <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
-        <h1 className={s.title}>{headerContent.title}</h1>
-        <p className={s.description}>{headerContent.description}</p>
+        <Typography variant="h1" className={s.title}>{headerContent.title}</Typography>
+        <Typography variant="p" className={s.description}>{headerContent.description}</Typography>
       </header>
 
       <div className="mt-8">

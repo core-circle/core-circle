@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { TextInput } from '../../../components/atoms/text-input/text-input';
-import { Mail, Lock, SearchIcon, UserIcon, Phone } from '@core-circle/icons';
+import { Mail, Lock, SearchIcon, UserIcon } from '@core-circle/icons';
 
 const meta: Meta<typeof TextInput> = {
   title: 'Atoms/TextInput',

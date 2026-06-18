@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Breadcrumb, Tabs, Accordion } from '@core-circle/ui';
+import { Breadcrumb, Tabs, Accordion, Typography } from '@core-circle/ui';
 import { Info, Image, CodeIcon, SettingsIcon } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
@@ -49,10 +49,17 @@ export default function AccordionContainer({
           <DocSection id="accordion-variants-bordered" title="Bordered" description="The default style with a solid border and internal dividers.">
             <ComponentPreview
               title="Bordered Style"
-              code={`<Accordion \n  items={items} \n  variant="bordered" \n  defaultValue="1" \n/>`}
+              code={`<Accordion type="single" variant="bordered" defaultValue="1">\n  <Accordion.Item value="1">\n    <Accordion.Trigger>Title</Accordion.Trigger>\n    <Accordion.Content>Content</Accordion.Content>\n  </Accordion.Item>\n</Accordion>`}
             >
               <div className="w-full">
-                <Accordion items={ACCORDION_SAMPLE_ITEMS} variant="bordered" defaultValue="1" />
+                <Accordion type="single" variant="bordered" defaultValue="1">
+                  {ACCORDION_SAMPLE_ITEMS.map((item) => (
+                    <Accordion.Item key={item.id} value={item.id}>
+                      <Accordion.Trigger startIcon={item.startIcon}>{item.title}</Accordion.Trigger>
+                      <Accordion.Content>{item.content}</Accordion.Content>
+                    </Accordion.Item>
+                  ))}
+                </Accordion>
               </div>
             </ComponentPreview>
           </DocSection>
@@ -60,10 +67,17 @@ export default function AccordionContainer({
           <DocSection id="accordion-variants-separated" title="Separated" description="Items are displayed as individual cards with gaps between them.">
             <ComponentPreview
               title="Separated Style"
-              code={`<Accordion \n  items={items} \n  variant="separated" \n  defaultValue="1" \n/>`}
+              code={`<Accordion type="single" variant="separated" defaultValue="1">\n  <Accordion.Item value="1">\n    <Accordion.Trigger>Title</Accordion.Trigger>\n    <Accordion.Content>Content</Accordion.Content>\n  </Accordion.Item>\n</Accordion>`}
             >
               <div className="w-full">
-                <Accordion items={ACCORDION_SAMPLE_ITEMS} variant="separated" defaultValue="1" />
+                <Accordion type="single" variant="separated" defaultValue="1">
+                  {ACCORDION_SAMPLE_ITEMS.map((item) => (
+                    <Accordion.Item key={item.id} value={item.id}>
+                      <Accordion.Trigger startIcon={item.startIcon}>{item.title}</Accordion.Trigger>
+                      <Accordion.Content>{item.content}</Accordion.Content>
+                    </Accordion.Item>
+                  ))}
+                </Accordion>
               </div>
             </ComponentPreview>
           </DocSection>
@@ -71,10 +85,17 @@ export default function AccordionContainer({
           <DocSection id="accordion-variants-ghost" title="Ghost" description="A minimal style without outer borders, useful for embedding in other containers.">
             <ComponentPreview
               title="Ghost Style"
-              code={`<Accordion \n  items={items} \n  variant="ghost" \n  defaultValue="1" \n/>`}
+              code={`<Accordion type="single" variant="ghost" defaultValue="1">\n  <Accordion.Item value="1">\n    <Accordion.Trigger>Title</Accordion.Trigger>\n    <Accordion.Content>Content</Accordion.Content>\n  </Accordion.Item>\n</Accordion>`}
             >
               <div className="w-full">
-                <Accordion items={ACCORDION_SAMPLE_ITEMS} variant="ghost" defaultValue="1" />
+                <Accordion type="single" variant="ghost" defaultValue="1">
+                  {ACCORDION_SAMPLE_ITEMS.map((item) => (
+                    <Accordion.Item key={item.id} value={item.id}>
+                      <Accordion.Trigger startIcon={item.startIcon}>{item.title}</Accordion.Trigger>
+                      <Accordion.Content>{item.content}</Accordion.Content>
+                    </Accordion.Item>
+                  ))}
+                </Accordion>
               </div>
             </ComponentPreview>
           </DocSection>
@@ -127,8 +148,8 @@ export default function AccordionContainer({
     <div className={s.container}>
       <header className={s.header}>
         <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
-        <h1 className={s.title}>{headerContent.title}</h1>
-        <p className={s.description}>{headerContent.description}</p>
+        <Typography variant="h1" className={s.title}>{headerContent.title}</Typography>
+        <Typography variant="p" className={s.description}>{headerContent.description}</Typography>
       </header>
 
       <div className="mt-8">

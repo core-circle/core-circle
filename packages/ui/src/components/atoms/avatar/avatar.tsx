@@ -9,6 +9,9 @@ import {
   avatarFallbackVariants,
   avatarStatusVariants,
 } from './avatar.styles';
+import { Image } from '../image/image';
+import { Typography } from '../typography/typography';
+import { AvatarIcon } from '@core-circle/icons';
 
 const getInitials = (name: string) => {
   const parts = name.split(' ');
@@ -35,30 +38,20 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     },
     ref
   ) => {
-    const [hasError, setHasError] = React.useState(false);
-
-    const handleImageError = () => {
-      setHasError(true);
-      onError?.();
-    };
-
     const renderFallback = () => {
       if (fallback) return fallback;
-      if (customInitials) return customInitials;
-      if (name) return getInitials(name);
+      const content = customInitials || (name ? getInitials(name) : null);
+      
+      if (content) {
+        return (
+          <Typography variant="p" className="font-core-circle-bold">
+            {content}
+          </Typography>
+        );
+      }
+
       return (
-        <svg
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="h-1/2 w-1/2 opacity-40"
-        >
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-          <circle cx="12" cy="7" r="4" />
-        </svg>
+        <AvatarIcon className="h-1/2 w-1/2 opacity-40" />
       );
     };
 
@@ -68,21 +61,22 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
         className={cn(avatarContainerVariants({ size, shape, bordered }), className)}
         {...props}
       >
-        {src && !hasError ? (
-          <img
-            src={src}
-            alt={alt || name || 'avatar'}
-            className={cn(avatarImageVariants({ shape }), imageClassName)}
-            onError={handleImageError}
-          />
-        ) : (
-          <div className={cn(avatarFallbackVariants({ shape }))}>
-            {renderFallback()}
-          </div>
-        )}
+        <Image
+          src={src || ''}
+          alt={alt || name || 'avatar'}
+          className={cn(avatarImageVariants({ shape }), imageClassName)}
+          rounded={shape === 'circle' ? 'full' : (shape === 'rounded' ? 'md' : 'none')}
+          onError={onError}
+          fallback={
+            <div className={cn(avatarFallbackVariants({ shape }))}>
+              {renderFallback()}
+            </div>
+          }
+        />
 
         {status && (
-          <span
+          <Typography
+            as="span"
             className={cn(avatarStatusVariants({ status, size }))}
             role="status"
             aria-label={status}

@@ -56,7 +56,6 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
               onChange={handleChange}
               className="sr-only"
               value={value}
-              aria-invalid={hasError}
               {...props}
             />
             <div className={cn(radioVariants({ variant, size, checked: isChecked, hasError }))}>

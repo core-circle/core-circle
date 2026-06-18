@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Skeleton, Breadcrumb, Tabs, Button } from '@core-circle/ui';
+import { Skeleton, Breadcrumb, Tabs, Button, Typography } from '@core-circle/ui';
 import { Info, Layers, Play, CodeIcon, Rotate } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
@@ -28,7 +28,7 @@ export default function SkeletonContainer({ headerContent, breadcrumbItems }: an
                 code={`<Skeleton loading={isLoading}>\n  <UserProfileCard user={user} />\n</Skeleton>`}
               />
               <div className="flex flex-col gap-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</h4>
+                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
                 <PropsTable data={[
                   { name: 'loading', type: 'boolean', defaultValue: 'true', description: 'Toggle between skeleton and content' },
                   { name: 'variant', type: 'text | circular | rectangular', defaultValue: 'rectangular', description: 'Shape (if not using children)' },
@@ -69,8 +69,8 @@ export default function SkeletonContainer({ headerContent, breadcrumbItems }: an
                       JD
                     </div>
                     <div className="flex-1">
-                      <h3 className="text-lg font-bold">John Doe</h3>
-                      <p className="text-sm text-core-circle-text-muted">Software Engineer at Core Circle</p>
+                      <Typography variant="h3" className="text-lg font-bold">John Doe</Typography>
+                      <Typography variant="p" className="text-sm text-core-circle-text-muted">Software Engineer at Core Circle</Typography>
                     </div>
                   </div>
                 </Skeleton>
@@ -149,8 +149,8 @@ export default function SkeletonContainer({ headerContent, breadcrumbItems }: an
     <div className={s?.container}>
       <header className={s?.header}>
         <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
-        <h1 className={s?.title}>{headerContent?.title}</h1>
-        <p className={s?.description}>{headerContent?.description}</p>
+        <Typography variant="h1" className={s?.title}>{headerContent?.title}</Typography>
+        <Typography variant="p" className={s?.description}>{headerContent?.description}</Typography>
       </header>
 
       <div className="mt-8">

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Breadcrumb, Tabs, TextInput } from '@core-circle/ui';
+import { Breadcrumb, Tabs, TextInput, Typography } from '@core-circle/ui';
 import * as Icons from '@core-circle/icons';
 import { Info, Image, CodeIcon, SearchIcon, HomeIcon } from '@core-circle/icons';
 import DocSection from '../../../components/doc-section';
@@ -42,7 +42,7 @@ export default function IconsContainer({ headerContent, breadcrumbItems }: Icons
                 code={`import { HomeIcon } from '@core-circle/icons';\n\n<HomeIcon size={24} color="primary" />`}
               />
               <div className="flex flex-col gap-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</h4>
+                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
                 <PropsTable data={ICONS_PROPS_DATA} />
               </div>
             </div>
@@ -113,7 +113,7 @@ export default function IconsContainer({ headerContent, breadcrumbItems }: Icons
 
             {filteredIcons.length === 0 && (
               <div className={s.emptyState}>
-                <p className={s.emptyText}>No icons found matching "{search}"</p>
+                <Typography variant="p" className={s.emptyText}>No icons found matching "{search}"</Typography>
               </div>
             )}
           </div>
@@ -155,8 +155,8 @@ export default function IconsContainer({ headerContent, breadcrumbItems }: Icons
     <div className={s.container}>
       <header className={s.header}>
         <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
-        <h1 className={s.title}>{headerContent.title}</h1>
-        <p className={s.description}>{headerContent.description}</p>
+        <Typography variant="h1" className={s.title}>{headerContent.title}</Typography>
+        <Typography variant="p" className={s.description}>{headerContent.description}</Typography>
       </header>
 
       <div className="mt-8">

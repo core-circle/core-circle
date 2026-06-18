@@ -77,12 +77,16 @@ export const AccordionPlayground = () => {
         <div className={s.previewWrapper}>
           <div className={s.previewArea}>
             <Accordion
-              items={ACCORDION_PLAYGROUND_ITEMS}
-              variant={state.variant as any}
-              size={state.size as any}
               type={state.type as any}
-              fullWidth={state.fullWidth}
-            />
+              variant={state.variant as any}
+            >
+              {ACCORDION_PLAYGROUND_ITEMS.map((item) => (
+                <Accordion.Item key={item.id} value={item.id}>
+                  <Accordion.Trigger startIcon={item.icon}>{item.title}</Accordion.Trigger>
+                  <Accordion.Content>{item.content}</Accordion.Content>
+                </Accordion.Item>
+              ))}
+            </Accordion>
           </div>
 
           <div className={s.codeSection}>

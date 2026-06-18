@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { AspectRatio, Breadcrumb, Tabs } from '@core-circle/ui';
-import { Info, Layers, Play } from '@core-circle/icons';
+import { AspectRatio, Breadcrumb, Tabs, Typography } from '@core-circle/ui';
+import { Info, Layers, Play, CodeIcon } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
 import CodeSnippet from '../../../components/code-snippet';
@@ -26,7 +26,7 @@ export default function AspectRatioContainer({ headerContent, breadcrumbItems }:
                 code={`import { AspectRatio } from '@core-circle/ui';\n\n<AspectRatio ratio={16 / 9}>\n  <img src="..." />\n</AspectRatio>`}
               />
               <div className="flex flex-col gap-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</h4>
+                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
                 <PropsTable data={[
                   { name: 'ratio', type: 'number', defaultValue: '1.77 (16/9)', description: 'The width / height ratio' },
                   { name: 'children', type: 'ReactNode', defaultValue: '-', description: 'The content to be constrained' },
@@ -92,6 +92,37 @@ export default function AspectRatioContainer({ headerContent, breadcrumbItems }:
       label: 'Playground',
       icon: <Play size={16} />,
       content: <AspectRatioPlayground />
+    },
+    {
+      id: 'mock-code',
+      label: 'Mock Code',
+      icon: <CodeIcon size={16} />,
+      content: (
+        <div className="flex flex-col gap-8">
+          <DocSection id="ar-mock" title="Dynamic Video Configurations" description="Example of how to consume video aspect ratios from an API.">
+            <div className="flex flex-col gap-10 mt-8">
+              <CodeSnippet
+                label="Video Metadata API"
+                code={JSON.stringify({
+                  id: "vid_987",
+                  title: "Design System Overview",
+                  dimensions: {
+                    width: 1920,
+                    height: 1080,
+                    aspect_ratio: 1.777
+                  },
+                  thumbnail: "https://example.com/thumb.jpg"
+                }, null, 2)}
+              />
+
+              <CodeSnippet
+                label="Dynamic Aspect Ratio"
+                code={`const VideoThumbnail = ({ video }) => {\n  return (\n    <AspectRatio ratio={video.dimensions.aspect_ratio}>\n      <img src={video.thumbnail} alt={video.title} />\n    </AspectRatio>\n  );\n};`}
+              />
+            </div>
+          </DocSection>
+        </div>
+      )
     }
   ];
 
@@ -99,8 +130,8 @@ export default function AspectRatioContainer({ headerContent, breadcrumbItems }:
     <div className={s?.container}>
       <header className={s?.header}>
         <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
-        <h1 className={s?.title}>{headerContent?.title}</h1>
-        <p className={s?.description}>{headerContent?.description}</p>
+        <Typography variant="h1" className={s?.title}>{headerContent?.title}</Typography>
+        <Typography variant="p" className={s?.description}>{headerContent?.description}</Typography>
       </header>
 
       <div className="mt-8">
