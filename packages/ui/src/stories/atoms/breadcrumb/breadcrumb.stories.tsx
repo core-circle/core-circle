@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { Breadcrumb } from '../../../components/atoms/breadcrumb/breadcrumb';
-import { HomeIcon, UserIcon, SettingsIcon, CodeIcon } from '@core-circle/icons';
+import { HomeIcon, UserIcon, SettingsIcon } from '@core-circle/icons';
 
 const meta: Meta<typeof Breadcrumb> = {
   title: 'Atoms/Breadcrumb',

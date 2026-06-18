@@ -1,12 +1,12 @@
 'use client';
 
-import { 
+import {
   HomeIcon,
-  MousePointer, 
-  Sparkles, 
-  SquareEdit, 
-  ChevronRight, 
-  ChevronDown, 
+  MousePointer,
+  Sparkles,
+  SquareEdit,
+  ChevronRight,
+  ChevronDown,
   CircleDot,
   TypeIcon,
   RowsIcon,
@@ -32,7 +32,9 @@ import {
   Alert as AlertIcon,
   Bell as BellIcon,
   Layers as LayersIcon,
-  Grid as DialogIcon
+  Grid as DialogIcon,
+  Key,
+  Palette
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -241,5 +243,23 @@ export const ATOM_CARDS = [
     description: 'A window overlaid on the primary window, rendering the content underneath inert.',
     href: '/atoms/dialog',
     icon: DialogIcon,
+  },
+  {
+    title: 'Textarea',
+    description: 'Multi-line text input for longer content with support for variants and resizing.',
+    href: '/atoms/textarea',
+    icon: DocumentText,
+  },
+  {
+    title: 'OTP Input',
+    description: 'A specialized input for one-time passwords and verification codes.',
+    href: '/atoms/otp-input',
+    icon: Key,
+  },
+  {
+    title: 'Color Picker',
+    description: 'A visual tool for selecting colors with support for various output formats.',
+    href: '/atoms/color-picker',
+    icon: Palette,
   },
 ];

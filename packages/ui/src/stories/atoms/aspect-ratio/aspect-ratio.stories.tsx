@@ -17,7 +17,7 @@ export const Default: Story = {
     children: (
       <img
         src="https://images.unsplash.com/photo-1588345921523-c2dcd57f48a4?w=800&dpr=2&q=80"
-        alt="Photo by Drew Beamer"
+        alt="Drew Beamer"
         className="object-cover w-full h-full"
       />
     ),
