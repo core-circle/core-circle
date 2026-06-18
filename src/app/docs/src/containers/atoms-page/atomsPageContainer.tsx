@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Breadcrumb, TextInput } from '@core-circle/ui';
+import { Breadcrumb, TextInput, Typography } from '@core-circle/ui';
 import { SearchIcon } from '@core-circle/icons';
 import { atomsPageStyles as s } from './atoms.styles';
 import { ATOM_CARDS, ATOMS_BREADCRUMB_ITEMS, ATOMS_HEADER_CONTENT } from '../../constants/atoms-page/atoms-page-constant';
@@ -12,8 +12,8 @@ const AtomCard = ({ title, description, href, icon: Icon }: typeof ATOM_CARDS[0]
     <div className={s?.cardIconWrapper}>
       <Icon className={s?.cardIcon} />
     </div>
-    <h3 className={s?.cardTitle}>{title}</h3>
-    <p className={s?.cardDescription}>{description}</p>
+    <Typography variant="h3" className={s?.cardTitle}>{title}</Typography>
+    <Typography variant="p" className={s?.cardDescription}>{description}</Typography>
   </Link>
 );
 
@@ -35,8 +35,8 @@ export default function AtomsPageContainer() {
         />
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <div className="max-w-2xl">
-            <h1 className={s?.title}>{ATOMS_HEADER_CONTENT?.title}</h1>
-            <p className={s?.description}>{ATOMS_HEADER_CONTENT?.description}</p>
+            <Typography variant="h1" className={s?.title}>{ATOMS_HEADER_CONTENT?.title}</Typography>
+            <Typography variant="p" className={s?.description}>{ATOMS_HEADER_CONTENT?.description}</Typography>
           </div>
           <div className="w-full md:w-80">
             <TextInput
@@ -57,7 +57,7 @@ export default function AtomsPageContainer() {
           ))
         ) : (
           <div className="col-span-full py-20 text-center bg-white dark:bg-slate-900 rounded-3xl border border-dashed border-slate-200 dark:border-slate-800">
-            <p className="text-slate-400">No components found matching "{search}"</p>
+            <Typography variant="muted">No components found matching "{search}"</Typography>
           </div>
         )}
       </div>

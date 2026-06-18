@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Tooltip } from '../components/molecules/tooltip/tooltip';
+import { Tooltip } from '../../../components/atoms/tooltip/tooltip';
 import * as Icons from '@core-circle/icons';
 
 

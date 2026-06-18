@@ -57,41 +57,41 @@ export const ToastPlayground = () => {
         {/* Controls */}
         <div className={s.controlsWrapper}>
           <div className={s.gridTwoCols}>
-            <SelectField 
-              label="Variant" 
-              value={state.variant} 
-              onChange={(v: string) => updateState('variant', v)} 
-              options={{ 
-                default: 'Default', 
-                success: 'Success', 
-                error: 'Error', 
-                warning: 'Warning', 
-                info: 'Info' 
-              }} 
+            <SelectField
+              label="Variant"
+              value={state.variant}
+              onChange={(v: string) => updateState('variant', v)}
+              options={{
+                default: 'Default',
+                success: 'Success',
+                error: 'Error',
+                warning: 'Warning',
+                info: 'Info'
+              }}
             />
-            <SelectField 
-              label="Duration (ms)" 
-              value={state.duration.toString()} 
-              onChange={(v: string) => updateState('duration', parseInt(v))} 
-              options={{ 
-                3000: '3000ms', 
-                5000: '5000ms', 
-                10000: '10000ms', 
-                0: 'Persistent (0)' 
-              }} 
+            <SelectField
+              label="Duration (ms)"
+              value={state.duration.toString()}
+              onChange={(v: string) => updateState('duration', parseInt(v))}
+              options={{
+                3000: '3000ms',
+                5000: '5000ms',
+                10000: '10000ms',
+                0: 'Persistent (0)'
+              }}
             />
-            <SelectField 
-              label="Position" 
-              value={state.position} 
-              onChange={(v: string) => updateState('position', v)} 
-              options={{ 
-                'top-left': 'Top Left', 
-                'top-right': 'Top Right', 
-                'top-center': 'Top Center', 
-                'bottom-left': 'Bottom Left', 
-                'bottom-right': 'Bottom Right', 
-                'bottom-center': 'Bottom Center' 
-              }} 
+            <SelectField
+              label="Position"
+              value={state.position}
+              onChange={(v: string) => updateState('position', v)}
+              options={{
+                'top-left': 'Top Left',
+                'top-right': 'Top Right',
+                'top-center': 'Top Center',
+                'bottom-left': 'Bottom Left',
+                'bottom-right': 'Bottom Right',
+                'bottom-center': 'Bottom Center'
+              }}
             />
           </div>
 
@@ -101,8 +101,8 @@ export const ToastPlayground = () => {
           </div>
 
           <div className="flex justify-end mt-4">
-            <Button 
-              variant="primary" 
+            <Button
+              variant="primary"
               onClick={showToast}
               startIcon={<Bell size={18} />}
             >

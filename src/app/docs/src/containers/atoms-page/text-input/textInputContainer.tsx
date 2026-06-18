@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { TextInput, Breadcrumb, Tabs } from '@core-circle/ui';
+import { TextInput, Breadcrumb, Tabs, Typography } from '@core-circle/ui';
 import { Mail, SearchIcon, Lock, Info, Layers, Play, CodeIcon } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
@@ -97,7 +97,7 @@ export default function TextInputContainer({ sections, headerContent, breadcrumb
                 code={`import { TextInput } from '@core-circle/ui';\n\n<TextInput \n  label="Email" \n  placeholder="Enter your email" \n  variant="outline"\n/>`}
               />
               <div className="flex flex-col gap-4">
-                <h4 className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</h4>
+                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
                 <PropsTable data={TEXT_INPUT_PROPS_DATA} />
               </div>
             </div>
@@ -159,8 +159,8 @@ export default function TextInputContainer({ sections, headerContent, breadcrumb
     <div className={s.container}>
       <header className={s.header}>
         <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
-        <h1 className={s.title}>{headerContent.title}</h1>
-        <p className={s.description}>{headerContent.description}</p>
+        <Typography variant="h1" className={s.title}>{headerContent.title}</Typography>
+        <Typography variant="p" className={s.description}>{headerContent.description}</Typography>
       </header>
 
       <div className="mt-8">
