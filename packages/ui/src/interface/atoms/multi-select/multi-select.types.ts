@@ -1,102 +1,130 @@
 import { ReactNode } from 'react';
 
+export type MultiSelectVariant =
+  | 'outline'
+  | 'filled'
+  | 'floating'
+  | 'glassmorphic'
+  | 'pill'
+  | 'material'
+  | 'gradient'
+  | 'compact'
+  | 'chips'
+  | 'ghost';
+
+export type MultiSelectSize = 'sm' | 'md' | 'lg';
+
 export interface MultiSelectOption {
   value: string;
   label: string;
   disabled?: boolean;
+  group?: string;
+  icon?: ReactNode;
 }
 
 export interface MultiSelectProps {
   /**
-   * Visual style of the select
+   * Visual style variant of the multi-select input (10 options).
    * @default 'outline'
    */
-  variant?: 'outline' | 'material' | 'material-animated' | 'ghost' | 'standard';
+  variant?: MultiSelectVariant;
   
   /**
-   * Size of the select
+   * Size scale of the multi-select.
    * @default 'md'
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: MultiSelectSize;
   
   /**
-   * Optional label text
+   * Optional label text displayed above the select.
    */
-  label?: string;
+  label?: ReactNode;
 
   /**
-   * Size of the label text
-   */
-  labelSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
-
-  /**
-   * Font weight of the label text
-   */
-  labelWeight?: 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
-
-  /**
-   * Additional classes for the label
-   */
-  labelClassName?: string;
-  
-  /**
-   * Error message to display below the select
+   * Error message to display below the select.
    */
   error?: string;
   
   /**
-   * Helper text to display below the select
+   * Helper text to display below the select.
    */
   helperText?: string;
   
   /**
-   * Options for the select
+   * Available options for selection.
    */
   options: MultiSelectOption[];
 
   /**
-   * Selected values
+   * Controlled selected value array.
    */
   value?: string[];
 
   /**
-   * Default selected values
+   * Default selected values for uncontrolled usage.
    */
   defaultValue?: string[];
 
   /**
-   * Callback when selection changes
+   * Callback fired when selection changes.
    */
   onChange?: (value: string[]) => void;
 
   /**
-   * Icon to display at the start of the select
+   * Leading icon element.
    */
   startIcon?: ReactNode;
   
   /**
-   * Whether the select should take up full width
+   * Whether the select expands to fill container width.
    * @default false
    */
   fullWidth?: boolean;
 
   /**
-   * Text or element to display at the start of the select
-   */
-  prefix?: ReactNode;
-
-  /**
-   * Placeholder text when no items are selected
+   * Placeholder text when no items are selected.
+   * @default 'Select options...'
    */
   placeholder?: string;
 
   /**
-   * Whether the component is disabled
+   * Whether users can search/filter options by typing.
+   * @default true
+   */
+  searchable?: boolean;
+
+  /**
+   * Search input placeholder.
+   * @default 'Search options...'
+   */
+  searchPlaceholder?: string;
+
+  /**
+   * Whether to display 'Select All' action.
+   * @default false
+   */
+  showSelectAll?: boolean;
+
+  /**
+   * Whether to display 'Clear All' action when items are selected.
+   * @default true
+   */
+  showClearAll?: boolean;
+
+  /**
+   * Maximum number of selected chips visible before collapsing with '+N more'.
+   * @default 3
+   */
+  maxTags?: number;
+
+  /**
+   * Whether the component is disabled.
+   * @default false
    */
   disabled?: boolean;
 
   /**
-   * Custom class name for the container
+   * Custom class name for the outer container.
    */
   className?: string;
 }

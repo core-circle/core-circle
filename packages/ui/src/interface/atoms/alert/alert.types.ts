@@ -2,8 +2,6 @@ import { ReactNode } from 'react';
 
 export type AlertVariant =
   | 'info'
-  | 'primary'
-  | 'secondary'
   | 'success'
   | 'warning'
   | 'destructive'
@@ -14,8 +12,7 @@ export type AlertVariant =
   | 'pill'
   | 'minimal'
   | 'outline'
-  | 'soft'
-  | 'bordered-segment';
+  | 'soft';
 
 export interface AlertProps {
   /**

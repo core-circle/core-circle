@@ -3,128 +3,153 @@
 import * as React from 'react';
 import { cn } from '../../../utils/cn';
 import { OTPInputProps } from '../../../interface/atoms/otp-input/otp-input.types';
-import { otpContainerVariants, otpGroupVariants, otpInputVariants } from './otp-input.styles';
+import { otpContainerVariants, otpSlotVariants } from './otp-input.styles';
 
-export const OTPInput = React.forwardRef<HTMLDivElement, OTPInputProps>(
+export const OtpInput = React.forwardRef<HTMLDivElement, OTPInputProps>(
   (
     {
-      length = 4,
-      variant = 'outline',
-      size = 'md',
+      length = 6,
+      value: controlledValue,
+      defaultValue = '',
       onChange,
       onComplete,
+      variant = 'outline',
+      size = 'md',
+      shape = 'rounded',
+      mask = false,
+      maskChar = '•',
+      separator,
+      disabled = false,
+      autoFocus = false,
       error,
       helperText,
-      value: controlledValue,
-      mask = false,
-      disabled = false,
       className,
       ...props
     },
     ref
   ) => {
-    const [values, setValues] = React.useState<string[]>(
-      controlledValue ? controlledValue.split('').slice(0, length) : Array(length).fill('')
-    );
-    const inputsRef = React.useRef<(HTMLInputElement | null)[]>([]);
+    const [otpValues, setOtpValues] = React.useState<string[]>(() => {
+      const initial = (controlledValue !== undefined ? controlledValue : defaultValue).split('');
+      return Array.from({ length }, (_, i) => initial[i] || '');
+    });
+
+    const inputRefs = React.useRef<(HTMLInputElement | null)[]>([]);
 
     React.useEffect(() => {
-      setValues((prev) => {
-        const baseValue = controlledValue !== undefined ? controlledValue : prev.join('');
-        const newValues = baseValue.split('').slice(0, length);
-        return [...newValues, ...Array(Math.max(0, length - newValues.length)).fill('')];
-      });
+      if (controlledValue !== undefined) {
+        const valArr = controlledValue.split('');
+        setOtpValues(Array.from({ length }, (_, i) => valArr[i] || ''));
+      }
     }, [controlledValue, length]);
 
-    const handleValueChange = (newValues: string[]) => {
-      const combinedValue = newValues.join('');
-      setValues(newValues);
-      onChange?.(combinedValue);
-      if (combinedValue.length === length) {
-        onComplete?.(combinedValue);
+    const handleInputChange = (index: number, val: string) => {
+      if (disabled) return;
+      const lastChar = val.slice(-1);
+      const newOtp = [...otpValues];
+      newOtp[index] = lastChar;
+      setOtpValues(newOtp);
+
+      const fullOtp = newOtp.join('');
+      onChange?.(fullOtp);
+
+      if (lastChar && index < length - 1) {
+        inputRefs.current[index + 1]?.focus();
       }
-    };
 
-    const handleChange = (index: number, e: React.ChangeEvent<HTMLInputElement>) => {
-      const val = e.target.value;
-      if (!val) return;
-
-      const char = val.slice(-1);
-      const newValues = [...values];
-      newValues[index] = char;
-      
-      handleValueChange(newValues);
-
-      // Move to next input
-      if (index < length - 1) {
-        inputsRef.current[index + 1]?.focus();
+      if (newOtp.every((char) => char !== '') && newOtp.length === length) {
+        onComplete?.(fullOtp);
       }
     };
 
     const handleKeyDown = (index: number, e: React.KeyboardEvent<HTMLInputElement>) => {
       if (e.key === 'Backspace') {
-        if (!values[index] && index > 0) {
-          // Move to previous input on backspace if current is empty
-          const newValues = [...values];
-          newValues[index - 1] = '';
-          handleValueChange(newValues);
-          inputsRef.current[index - 1]?.focus();
-        } else {
-          const newValues = [...values];
-          newValues[index] = '';
-          handleValueChange(newValues);
+        if (!otpValues[index] && index > 0) {
+          inputRefs.current[index - 1]?.focus();
+          const newOtp = [...otpValues];
+          newOtp[index - 1] = '';
+          setOtpValues(newOtp);
+          onChange?.(newOtp.join(''));
         }
       } else if (e.key === 'ArrowLeft' && index > 0) {
-        inputsRef.current[index - 1]?.focus();
+        e.preventDefault();
+        inputRefs.current[index - 1]?.focus();
       } else if (e.key === 'ArrowRight' && index < length - 1) {
-        inputsRef.current[index + 1]?.focus();
+        e.preventDefault();
+        inputRefs.current[index + 1]?.focus();
       }
     };
 
-    const handlePaste = (e: React.ClipboardEvent) => {
+    const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
       e.preventDefault();
-      const pasteData = e.clipboardData.getData('text').slice(0, length).split('');
-      const newValues = [...values];
-      
-      pasteData.forEach((char, i) => {
-        if (i < length) newValues[i] = char;
-      });
+      if (disabled) return;
+      const pastedData = e.clipboardData.getData('text').trim();
+      if (!pastedData) return;
 
-      handleValueChange(newValues);
-      
-      // Focus the next empty input or the last one
-      const nextEmpty = newValues.findIndex(v => !v);
-      const focusIndex = nextEmpty === -1 ? length - 1 : nextEmpty;
-      inputsRef.current[focusIndex]?.focus();
+      const pastedChars = pastedData.split('').slice(0, length);
+      const newOtp = Array.from({ length }, (_, i) => pastedChars[i] || '');
+      setOtpValues(newOtp);
+
+      const fullOtp = newOtp.join('');
+      onChange?.(fullOtp);
+
+      const nextEmptyIndex = newOtp.findIndex((char) => char === '');
+      const focusIndex = nextEmptyIndex === -1 ? length - 1 : nextEmptyIndex;
+      inputRefs.current[focusIndex]?.focus();
+
+      if (newOtp.every((char) => char !== '') && newOtp.length === length) {
+        onComplete?.(fullOtp);
+      }
     };
 
+    const halfLength = Math.floor(length / 2);
+
     return (
-      <div ref={ref} className={cn(otpContainerVariants(), className)}>
-        <div className={cn(otpGroupVariants({ size }))}>
-          {values.map((val, i) => (
-            <input
-              key={i}
-              ref={el => { inputsRef.current[i] = el; }}
-              type={mask ? 'password' : 'text'}
-              inputMode="numeric"
-              autoComplete="one-time-code"
-              pattern="\d*"
-              maxLength={1}
-              value={val}
-              disabled={disabled}
-              onChange={e => handleChange(i, e)}
-              onKeyDown={e => handleKeyDown(i, e)}
-              onPaste={handlePaste}
-              className={cn(otpInputVariants({ variant, size, hasError: !!error }))}
-              {...props}
-            />
+      <div
+        ref={ref}
+        className={cn(otpContainerVariants({ disabled }), className)}
+        {...props}
+      >
+        <div className="flex items-center gap-2">
+          {Array.from({ length }, (_, i) => (
+            <React.Fragment key={i}>
+              <input
+                ref={(el) => {
+                  inputRefs.current[i] = el;
+                }}
+                type={mask ? 'password' : 'text'}
+                inputMode="numeric"
+                pattern="[0-9]*"
+                maxLength={1}
+                value={mask && otpValues[i] ? maskChar : otpValues[i]}
+                onChange={(e) => handleInputChange(i, e.target.value)}
+                onKeyDown={(e) => handleKeyDown(i, e)}
+                onPaste={handlePaste}
+                autoFocus={autoFocus && i === 0}
+                disabled={disabled}
+                className={cn(
+                  otpSlotVariants({ variant, size, shape, hasError: !!error })
+                )}
+                aria-label={`Digit ${i + 1}`}
+              />
+
+              {/* Mid-point separator slot */}
+              {separator && i === halfLength - 1 && (
+                <span className="text-slate-400 font-bold px-1 select-none">
+                  {separator}
+                </span>
+              )}
+            </React.Fragment>
           ))}
         </div>
+
+        {/* Error or helper text */}
         {(error || helperText) && (
-          <p className={cn(
-            "mt-1 text-[11px] font-core-circle-medium transition-all duration-200",
-            error ? "text-core-circle-warning" : "text-core-circle-text-muted"
-          )}>
+          <p
+            className={cn(
+              'text-[11px] font-core-circle-medium pl-1 transition-all duration-200',
+              error ? 'text-core-circle-warning' : 'text-core-circle-text-muted'
+            )}
+          >
             {error || helperText}
           </p>
         )}
@@ -133,4 +158,6 @@ export const OTPInput = React.forwardRef<HTMLDivElement, OTPInputProps>(
   }
 );
 
-OTPInput.displayName = 'OTPInput';
+OtpInput.displayName = 'OtpInput';
+
+export default OtpInput;

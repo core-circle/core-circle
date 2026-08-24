@@ -2,11 +2,34 @@
 
 import React, { useState, forwardRef, useEffect } from 'react';
 import { cn } from '../../../utils/cn';
-import { imageVariants, type ImageProps } from './image.styles';
-import { ImageIcon } from '@core-circle/icons';
+import { ImageProps } from '../../../interface/atoms/image/image.types';
+import { imageContainerVariants, imageElementVariants } from './image.styles';
+import { ImageIcon, Alert } from '@core-circle/icons';
 
-const Image = forwardRef<HTMLImageElement, ImageProps>(
-  ({ className, src, alt, fit, rounded, fallback, width, height, style, ...props }, ref) => {
+export const Image = forwardRef<HTMLImageElement, ImageProps>(
+  (
+    {
+      className,
+      imageClassName,
+      src,
+      alt = 'Image asset',
+      variant = 'card',
+      aspectRatio = 'auto',
+      fit = 'cover',
+      rounded = 'xl',
+      fallback,
+      zoomOnHover = false,
+      caption,
+      overlay,
+      width,
+      height,
+      style,
+      onLoad,
+      onError,
+      ...props
+    },
+    ref
+  ) => {
     const [status, setStatus] = useState<'idle' | 'loading' | 'loaded' | 'error'>('idle');
 
     useEffect(() => {
@@ -19,12 +42,12 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
 
     const handleLoad = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
       setStatus('loaded');
-      props.onLoad?.(e);
+      onLoad?.(e);
     };
 
     const handleError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
       setStatus('error');
-      props.onError?.(e);
+      onError?.(e);
     };
 
     const isLoaded = status === 'loaded';
@@ -34,32 +57,37 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
     return (
       <div 
         className={cn(
-          'relative inline-block overflow-hidden bg-core-circle-bg-muted',
-          rounded === 'full' ? 'rounded-full' : imageVariants({ rounded }),
+          imageContainerVariants({ 
+            variant, 
+            aspectRatio: variant === 'circular' ? '1:1' : aspectRatio, 
+            rounded: variant === 'circular' ? 'full' : rounded 
+          }),
           className
         )}
         style={{ width, height, ...style }}
       >
-        {/* Placeholder/Skeleton */}
+        {/* Animated Skeleton Placeholder */}
         {(isLoading || !isLoaded) && !isError && (
-          <div className="absolute inset-0 bg-core-circle-bg-muted animate-pulse flex items-center justify-center">
-             <ImageIcon className="text-core-circle-text-subtle/20" size={width ? (typeof width === 'number' ? width / 3 : 40) : 40} />
+          <div className="absolute inset-0 bg-slate-100 animate-pulse flex items-center justify-center z-10">
+            <ImageIcon className="text-slate-300 animate-pulse" size={32} />
           </div>
         )}
 
-        {/* Fallback */}
+        {/* Graceful Fallback on Error */}
         {isError && (
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-core-circle-bg-muted text-core-circle-text-muted p-4">
+          <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-100 text-slate-400 p-4 z-10 text-center">
             {fallback || (
               <>
-                <ImageIcon size={32} className="mb-2 opacity-50" />
-                <span className="text-xs font-core-circle-medium text-center">Failed to load image</span>
+                <div className="p-2.5 rounded-full bg-slate-200/80 mb-2">
+                  <Alert size={20} className="text-slate-400" />
+                </div>
+                <span className="text-xs font-core-circle-medium text-slate-500">Image unavailable</span>
               </>
             )}
           </div>
         )}
 
-        {/* Main Image */}
+        {/* Main Image Asset */}
         {src && (
           <img
             ref={ref}
@@ -68,13 +96,31 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
             onLoad={handleLoad}
             onError={handleError}
             className={cn(
-              'w-full h-full transition-opacity duration-500',
-              imageVariants({ fit }),
-              isLoaded ? 'opacity-100' : 'opacity-0'
+              imageElementVariants({ fit, zoomOnHover }),
+              isLoaded ? 'opacity-100' : 'opacity-0',
+              imageClassName
             )}
             loading="lazy"
             {...props}
           />
+        )}
+
+        {/* Top Overlay Badge / Controls */}
+        {overlay && (
+          <div className="absolute top-3 right-3 z-20 pointer-events-auto">
+            {overlay}
+          </div>
+        )}
+
+        {/* Bottom Caption Overlay */}
+        {caption && (
+          <div className={cn(
+            variant === 'polaroid' 
+              ? "absolute bottom-1 left-3 right-3 text-center text-xs font-core-circle-medium text-slate-700 truncate"
+              : "absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-slate-950/80 via-slate-950/40 to-transparent text-white text-xs z-20 flex items-center justify-between backdrop-blur-[1px]"
+          )}>
+            {caption}
+          </div>
         )}
       </div>
     );
@@ -83,4 +129,4 @@ const Image = forwardRef<HTMLImageElement, ImageProps>(
 
 Image.displayName = 'Image';
 
-export { Image };
+export default Image;

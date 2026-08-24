@@ -1,11 +1,9 @@
 import { 
   COLOR_PICKER_BREADCRUMB_ITEMS, 
-  COLOR_PICKER_HEADER_CONTENT, 
-  COLOR_PICKER_SECTIONS 
+  COLOR_PICKER_HEADER_CONTENT 
 } from '../../../constants/atoms-page/color-picker/colorPickerConstants';
 
 export interface ColorPickerContainerProps {
-  sections: typeof COLOR_PICKER_SECTIONS;
   headerContent: typeof COLOR_PICKER_HEADER_CONTENT;
-  breadcrumbItems: typeof COLOR_PICKER_BREADCRUMB_ITEMS;
+  breadcrumbItems?: typeof COLOR_PICKER_BREADCRUMB_ITEMS;
 }

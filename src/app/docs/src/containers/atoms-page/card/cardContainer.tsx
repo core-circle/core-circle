@@ -27,9 +27,10 @@ export default function CardContainer({ headerContent, breadcrumbItems }: CardCo
       icon: <Palette size={16} />,
       content: (
         <div className="flex flex-col gap-12 max-w-5xl">
+          {/* 1. Royal VIP Subscription */}
           <DocSection
             id="theming-vip-subscription"
-            title="Royal VIP Subscription Pricing Theme"
+            title="1. Royal VIP Subscription Pricing Theme"
             description="Custom purple gradient container with star corner anchor and tiered feature checks."
           >
             <ComponentPreview
@@ -88,9 +89,10 @@ export default function CardContainer({ headerContent, breadcrumbItems }: CardCo
             </ComponentPreview>
           </DocSection>
 
+          {/* 2. Enterprise Cloud Cluster */}
           <DocSection
             id="theming-enterprise-cluster"
-            title="Enterprise Cloud Cluster Monitor Card"
+            title="2. Enterprise Cloud Cluster Monitor Theme"
             description="Elevated status card with live telemetry metrics, health indicator badges, and direct management actions."
           >
             <ComponentPreview
@@ -125,6 +127,180 @@ export default function CardContainer({ headerContent, breadcrumbItems }: CardCo
                   </Card.Body>
                   <Card.Footer align="end">
                     <Button size="sm" variant="outline">Open Telemetry</Button>
+                  </Card.Footer>
+                </Card>
+              </div>
+            </ComponentPreview>
+          </DocSection>
+
+          {/* 3. Patagonia Media Cover */}
+          <DocSection
+            id="theming-patagonia-cover"
+            title="3. Wilderness Travel & Media Cover Theme"
+            description="Full-bleed scenic background card with dark readability gradient and corner bookmark status."
+          >
+            <ComponentPreview
+              title="Patagonia Expedition Cover Card"
+              code={`<Card variant="cover" hoverable className="max-w-md">
+  <Card.Media
+    position="cover"
+    src="${coverPhoto}"
+    alt="Patagonia Mountains"
+  />
+  <Card.Corner position="top-right" shape="circle" size="md">
+    <div className="bg-white/90 backdrop-blur-md p-2 rounded-full shadow text-rose-500">
+      <Heart size={16} />
+    </div>
+  </Card.Corner>
+  <Card.Header>
+    <Badge variant="warning" shape="pill" size="sm">Featured Trek</Badge>
+    <h3 className="text-2xl font-extrabold text-white mt-1">Patagonia Mountain Pass</h3>
+  </Card.Header>
+  <Card.Body>
+    <p className="text-sm text-slate-200 line-clamp-2">
+      An extraordinary 12-day alpine trek through glaciers, granite spires, and turquoise lakes.
+    </p>
+  </Card.Body>
+  <Card.Footer align="between">
+    <span className="text-sm font-bold text-white">$2,450 / person</span>
+    <Button variant="primary" size="sm" endIcon={<ArrowRight size={14} />}>Explore Route</Button>
+  </Card.Footer>
+</Card>`}
+            >
+              <div className="w-full max-w-md mx-auto">
+                <Card variant="cover" hoverable>
+                  <Card.Media
+                    position="cover"
+                    src={coverPhoto}
+                    alt="Patagonia Mountains"
+                  />
+                  <Card.Corner position="top-right" shape="circle" size="md">
+                    <div className="bg-white/90 backdrop-blur-md p-2 rounded-full shadow text-rose-500">
+                      <Heart size={16} />
+                    </div>
+                  </Card.Corner>
+                  <Card.Header>
+                    <Badge variant="warning" shape="pill" size="sm">Featured Trek</Badge>
+                    <h3 className="text-2xl font-extrabold text-white mt-1">Patagonia Mountain Pass</h3>
+                  </Card.Header>
+                  <Card.Body>
+                    <p className="text-sm text-slate-200 line-clamp-2">
+                      An extraordinary 12-day alpine trek through glaciers, granite spires, and turquoise lakes.
+                    </p>
+                  </Card.Body>
+                  <Card.Footer align="between">
+                    <span className="text-sm font-bold text-white">$2,450 / person</span>
+                    <Button variant="primary" size="sm" endIcon={<ArrowRight size={14} />}>Explore Route</Button>
+                  </Card.Footer>
+                </Card>
+              </div>
+            </ComponentPreview>
+          </DocSection>
+
+          {/* 4. Horizontal E-Commerce Product Card */}
+          <DocSection
+            id="theming-horizontal-store"
+            title="4. Modern E-Commerce Horizontal Product Showcase Theme"
+            description="Side-by-side media and metadata layout with inventory badges and instant checkout."
+          >
+            <ComponentPreview
+              title="Horizontal Product Listing Card"
+              code={`<Card orientation="horizontal" variant="card" hoverable>
+  <Card.Media
+    position="side"
+    src="${samplePhoto}"
+    alt="Mechanical Keyboard"
+    className="w-48"
+  />
+  <div className="flex-1 flex flex-col justify-between p-6">
+    <div>
+      <div className="flex items-center justify-between gap-2 mb-2">
+        <Badge variant="soft" shape="pill" size="sm">Wireless RGB</Badge>
+        <span className="text-sm font-bold text-emerald-600">$189.00</span>
+      </div>
+      <h4 className="text-lg font-bold text-slate-900">Custom Mechanical Keyboard</h4>
+      <p className="text-xs text-slate-500 mt-1">Gateron Oil King linear switches with hot-swappable PCB and gasket mount.</p>
+    </div>
+    <div className="flex items-center justify-between mt-4 pt-3 border-t border-slate-100">
+      <span className="text-xs text-slate-400">In Stock (Ships in 24h)</span>
+      <Button variant="primary" size="sm">Add to Cart</Button>
+    </div>
+  </div>
+</Card>`}
+            >
+              <div className="w-full max-w-2xl mx-auto">
+                <Card orientation="horizontal" variant="card" hoverable>
+                  <Card.Media
+                    position="side"
+                    src={samplePhoto}
+                    alt="Mechanical Keyboard"
+                    className="w-48"
+                  />
+                  <div className="flex-1 flex flex-col justify-between p-6">
+                    <div>
+                      <div className="flex items-center justify-between gap-2 mb-2">
+                        <Badge variant="soft" shape="pill" size="sm">Wireless RGB</Badge>
+                        <span className="text-sm font-bold text-emerald-600">$189.00</span>
+                      </div>
+                      <h4 className="text-lg font-bold text-slate-900">Custom Mechanical Keyboard</h4>
+                      <p className="text-xs text-slate-500 mt-1">Gateron Oil King linear switches with hot-swappable PCB and gasket mount.</p>
+                    </div>
+                    <div className="flex items-center justify-between mt-4 pt-3 border-t border-slate-100">
+                      <span className="text-xs text-slate-400">In Stock (Ships in 24h)</span>
+                      <Button variant="primary" size="sm">Add to Cart</Button>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            </ComponentPreview>
+          </DocSection>
+
+          {/* 5. Developer Webhook Key Card */}
+          <DocSection
+            id="theming-developer-webhook"
+            title="5. Developer API Key & Webhook Governance Theme"
+            description="High-contrast outline card with secret key obfuscation, expiration chips, and rotation controls."
+          >
+            <ComponentPreview
+              title="Workspace API Key Governance Card"
+              code={`<Card variant="outline" hoverable className="max-w-md">
+  <Card.Header divider>
+    <div className="flex items-center gap-2">
+      <Shield size={16} className="text-core-circle-primary" />
+      <h4 className="font-bold text-slate-900">Production Webhook Key</h4>
+    </div>
+    <Badge variant="primary" size="sm" shape="pill">Active</Badge>
+  </Card.Header>
+  <Card.Body>
+    <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 font-mono text-xs text-slate-700 select-all mb-2">
+      sk_live_9824...78bfd
+    </div>
+    <p className="text-xs text-slate-500">Created 14 days ago by Alex. Last used 3 minutes ago.</p>
+  </Card.Body>
+  <Card.Footer divider align="between">
+    <Button size="sm" variant="destructive">Revoke Key</Button>
+    <Button size="sm" variant="outline">Rotate Secret</Button>
+  </Card.Footer>
+</Card>`}
+            >
+              <div className="w-full max-w-md mx-auto">
+                <Card variant="outline" hoverable>
+                  <Card.Header divider>
+                    <div className="flex items-center gap-2">
+                      <Shield size={16} className="text-core-circle-primary" />
+                      <h4 className="font-bold text-slate-900">Production Webhook Key</h4>
+                    </div>
+                    <Badge variant="primary" size="sm" shape="pill">Active</Badge>
+                  </Card.Header>
+                  <Card.Body>
+                    <div className="p-3 bg-slate-50 rounded-xl border border-slate-200 font-mono text-xs text-slate-700 select-all mb-2">
+                      sk_live_9824...78bfd
+                    </div>
+                    <p className="text-xs text-slate-500">Created 14 days ago by Alex. Last used 3 minutes ago.</p>
+                  </Card.Body>
+                  <Card.Footer divider align="between">
+                    <Button size="sm" variant="destructive">Revoke Key</Button>
+                    <Button size="sm" variant="outline">Rotate Secret</Button>
                   </Card.Footer>
                 </Card>
               </div>

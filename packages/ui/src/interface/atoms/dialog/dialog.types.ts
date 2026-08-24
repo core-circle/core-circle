@@ -1,55 +1,111 @@
 import { ReactNode } from 'react';
 
+export type DialogVariant =
+  | 'card'
+  | 'floating'
+  | 'glassmorphic'
+  | 'gradient'
+  | 'destructive'
+  | 'success'
+  | 'centered-hero'
+  | 'drawer'
+  | 'minimal'
+  | 'bordered';
+
+export type DialogSize = 'sm' | 'md' | 'lg' | 'xl' | 'full';
+
+export type DialogPosition = 'center' | 'top' | 'bottom';
+
 export interface DialogProps {
   /**
-   * Whether the dialog is open.
+   * Controlled open state.
    */
   open?: boolean;
-  
+
   /**
-   * Initial open state.
+   * Default open state for uncontrolled usage.
+   * @default false
    */
   defaultOpen?: boolean;
-  
+
   /**
-   * Callback when open state changes.
+   * Callback fired when open state changes.
    */
   onOpenChange?: (open: boolean) => void;
-  
+
   /**
-   * The element that triggers the dialog.
+   * The trigger element (e.g. Button) that opens the dialog.
    */
   trigger?: ReactNode;
-  
+
   /**
    * The title of the dialog.
    */
-  title?: string;
-  
+  title?: ReactNode;
+
   /**
-   * The description or content of the dialog.
+   * Optional description text below the title.
    */
-  children: ReactNode;
-  
+  description?: ReactNode;
+
   /**
-   * Optional footer content (usually buttons).
+   * Optional header icon slot (e.g. Shield, Trash, Sparkles).
    */
-  footer?: ReactNode;
-  
+  icon?: ReactNode;
+
   /**
-   * Size of the dialog.
+   * Visual style variant of the dialog modal.
+   * @default 'card'
+   */
+  variant?: DialogVariant;
+
+  /**
+   * Size scale of the dialog.
    * @default 'md'
    */
-  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
-  
+  size?: DialogSize;
+
   /**
-   * Additional class names for the content.
+   * Screen position of the dialog window.
+   * @default 'center'
    */
-  className?: string;
-  
+  position?: DialogPosition;
+
   /**
-   * Whether clicking the overlay closes the dialog.
+   * The main body content of the dialog.
+   */
+  children?: ReactNode;
+
+  /**
+   * Optional footer actions slot (e.g. Cancel & Confirm buttons).
+   */
+  footer?: ReactNode;
+
+  /**
+   * Whether to display the close (X) button in top-right corner.
+   * @default true
+   */
+  showCloseButton?: boolean;
+
+  /**
+   * Whether clicking the backdrop overlay closes the dialog.
    * @default true
    */
   closeOnOverlayClick?: boolean;
+
+  /**
+   * Whether pressing Escape closes the dialog.
+   * @default true
+   */
+  closeOnEsc?: boolean;
+
+  /**
+   * Additional class names for the content modal.
+   */
+  className?: string;
+
+  /**
+   * Additional class names for the overlay backdrop.
+   */
+  overlayClassName?: string;
 }

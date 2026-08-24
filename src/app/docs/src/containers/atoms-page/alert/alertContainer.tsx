@@ -2,30 +2,30 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Alert, Breadcrumb, Tabs, Typography, Button, Badge } from '@core-circle/ui';
-import {
-  Info,
-  CircleCheck,
-  Alert as AlertIcon,
-  CircleX,
-  Layers,
-  Play,
-  CodeIcon,
-  Sparkles,
-  Shield,
-  Star,
-  ArrowRight,
-  Refresh,
-  Palette,
+import { Breadcrumb, Tabs, Alert, Button, Typography, Badge } from '@core-circle/ui';
+import { 
+  Info, 
+  CodeIcon, 
+  Sparkles, 
+  Shield, 
+  Star, 
+  Palette, 
+  Layers, 
+  Play, 
+  CircleCheck, 
+  CircleX, 
+  Lock, 
+  Cloud, 
+  Terminal, 
+  CheckIcon 
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import CodeSnippet from '../../../components/code-snippet';
-import PropsTable from '../../../components/props-table';
-import { AlertPlayground } from '../../../components/playground/alert/alertPlayground';
-import { ALERT_PROPS_DATA } from '../../../constants/atoms-page/alert/alertConstants';
-import { DOC_TEXT } from '../../../constants/common-constants';
 import { atomsPageStyles as s } from '../atoms.styles';
+import { ALERT_PROPS_DATA } from '../../../constants/atoms-page/alert/alertConstants';
+import { AlertPlayground } from '../../../components/playground/alert/alertPlayground';
+import PropsTable from '../../../components/props-table';
+import CodeSnippet from '../../../components/code-snippet';
 
 export default function AlertContainer({ headerContent, breadcrumbItems }: any) {
   const tabItems = [
@@ -35,9 +35,10 @@ export default function AlertContainer({ headerContent, breadcrumbItems }: any) 
       icon: <Palette size={16} />,
       content: (
         <div className="flex flex-col gap-12 max-w-5xl">
+          {/* 1. Incident Notice */}
           <DocSection
             id="theming-production-alert"
-            title="Enterprise Service Incident Notice Theme"
+            title="1. Enterprise Service Incident Notice Theme"
             description="High-visibility bordered alert with clear resolution CTAs and status telemetry."
           >
             <ComponentPreview
@@ -61,7 +62,6 @@ export default function AlertContainer({ headerContent, breadcrumbItems }: any) 
                   title="Automated Database Failover Initiated"
                   description="Primary cluster node unresponsiveness detected. Replicas promoted in region us-east-1 with zero data loss."
                   dismissible
-                  onDismiss={() => alert('Dismissed')}
                   action={
                     <div className="flex gap-2">
                       <Button size="sm" variant="outline">Live Dashboard</Button>
@@ -73,29 +73,153 @@ export default function AlertContainer({ headerContent, breadcrumbItems }: any) 
             </ComponentPreview>
           </DocSection>
 
+          {/* 2. VIP Loyalty Reward */}
           <DocSection
-            id="theming-vip-reward"
-            title="VIP Loyalty & Reward Alert"
-            description="Radiant purple gradient banner with action triggers and glowing star decoration."
+            id="theming-luxury-purple"
+            title="2. Royal VIP Loyalty Reward Theme"
+            description="Luminous gradient banner with gold star icon badges and instant claim actions."
           >
             <ComponentPreview
-              title="VIP Tier Upgrade Callout"
+              title="VIP Loyalty Tier Upgrade"
               code={`<Alert
   variant="gradient"
-  title="Congratulations! You have reached Platinum VIP Tier"
-  description="Enjoy 25% discount on all cloud compute instances and 24/7 dedicated engineering support."
+  icon={<Star size={18} className="text-amber-500" />}
+  title="You have unlocked Executive VIP Tier"
+  description="Enjoy 25% discount across all cloud services, dedicated Slack war room, and custom SLA agreements."
   dismissible
-  action={<Button size="sm" variant="primary">Claim VIP Perks</Button>}
+  action={
+    <Button size="sm" variant="gradient">
+      Claim Executive Perks
+    </Button>
+  }
 />`}
             >
               <div className="w-full">
                 <Alert
                   variant="gradient"
-                  title="Congratulations! You have reached Platinum VIP Tier"
-                  description="Enjoy a 25% automatic discount on all GPU cluster instances and 24/7 dedicated engineering support."
+                  icon={<Star size={18} className="text-amber-500" />}
+                  title="You have unlocked Executive VIP Tier"
+                  description="Enjoy 25% discount across all cloud services, dedicated Slack war room, and custom SLA agreements."
                   dismissible
-                  onDismiss={() => alert('Dismissed')}
-                  action={<Button size="sm" variant="primary" endIcon={<ArrowRight size={14} />}>Claim VIP Perks</Button>}
+                  action={
+                    <Button size="sm" variant="gradient">
+                      Claim Executive Perks
+                    </Button>
+                  }
+                />
+              </div>
+            </ComponentPreview>
+          </DocSection>
+
+          {/* 3. Fintech Security Threat Notice */}
+          <DocSection
+            id="theming-security-threat"
+            title="3. Fintech Security & Fraud Prevention Theme"
+            description="High-urgency destructive banner with account freeze triggers and security audit logs."
+          >
+            <ComponentPreview
+              title="Suspicious Login Activity Flagged"
+              code={`<Alert
+  variant="destructive"
+  icon={<Lock size={18} />}
+  title="Unrecognized Device Login Detected (Berlin, DE)"
+  description="A new session was initiated from IP 194.26.29.112. If this was not you, freeze your API credentials immediately."
+  dismissible
+  action={
+    <div className="flex gap-2">
+      <Button size="sm" variant="destructive">Freeze Account</Button>
+      <Button size="sm" variant="outline">Verify Identity</Button>
+    </div>
+  }
+/>`}
+            >
+              <div className="w-full">
+                <Alert
+                  variant="destructive"
+                  icon={<Lock size={18} />}
+                  title="Unrecognized Device Login Detected (Berlin, DE)"
+                  description="A new session was initiated from IP 194.26.29.112. If this was not you, freeze your API credentials immediately."
+                  dismissible
+                  action={
+                    <div className="flex gap-2">
+                      <Button size="sm" variant="destructive">Freeze Account</Button>
+                      <Button size="sm" variant="outline">Verify Identity</Button>
+                    </div>
+                  }
+                />
+              </div>
+            </ComponentPreview>
+          </DocSection>
+
+          {/* 4. Cloud Backup Success Notice */}
+          <DocSection
+            id="theming-cloud-backup"
+            title="4. Cloud Database Backup Success Theme"
+            description="Clean emerald confirmation banner with snapshot verification links."
+          >
+            <ComponentPreview
+              title="Snapshot Backup Succeeded"
+              code={`<Alert
+  variant="success"
+  icon={<CircleCheck size={18} />}
+  title="Daily Database Snapshot Succeeded"
+  description="Point-in-time recovery image created (2.4 TB). Verified hash: 8f92a1bc40."
+  dismissible
+  action={
+    <Button size="sm" variant="outline">View Storage Bucket</Button>
+  }
+/>`}
+            >
+              <div className="w-full">
+                <Alert
+                  variant="success"
+                  icon={<CircleCheck size={18} />}
+                  title="Daily Database Snapshot Succeeded"
+                  description="Point-in-time recovery image created (2.4 TB). Verified hash: 8f92a1bc40."
+                  dismissible
+                  action={
+                    <Button size="sm" variant="outline">View Storage Bucket</Button>
+                  }
+                />
+              </div>
+            </ComponentPreview>
+          </DocSection>
+
+          {/* 5. Developer Workspace Rate Limit Notice */}
+          <DocSection
+            id="theming-dev-quota"
+            title="5. Developer API Usage Quota Theme"
+            description="Elevated floating info card with meter warnings and instant plan upgrading."
+          >
+            <ComponentPreview
+              title="API Rate Limit Approaching 90%"
+              code={`<Alert
+  variant="floating"
+  icon={<Terminal size={18} className="text-core-circle-primary" />}
+  title="Monthly Request Quota at 88% Capacity"
+  description="Your workspace has consumed 880,000 of 1,000,000 requests. Upgrade to Unlimited Tier to avoid automatic burst charges."
+  dismissible
+  action={
+    <div className="flex gap-2">
+      <Button size="sm" variant="primary">Upgrade Tier</Button>
+      <Button size="sm" variant="ghost">Usage Breakdown</Button>
+    </div>
+  }
+/>`}
+            >
+              <div className="w-full">
+                <Alert
+                  variant="floating"
+                  icon={<Terminal size={18} className="text-core-circle-primary" />}
+                  title="Monthly Request Quota at 88% Capacity"
+                  description="Your workspace has consumed 880,000 of 1,000,000 requests. Upgrade to Unlimited Tier to avoid automatic burst charges."
+                  dismissible
+                  action={
+                    <div className="flex gap-2">
+                      <Button size="sm" variant="primary">Upgrade Tier</Button>
+                      <Button size="sm" variant="ghost">Usage Breakdown</Button>
+                    </div>
+                  }
                 />
               </div>
             </ComponentPreview>
@@ -109,61 +233,29 @@ export default function AlertContainer({ headerContent, breadcrumbItems }: any) 
       icon: <Layers size={16} />,
       content: (
         <div className="flex flex-col gap-12 max-w-5xl">
-          <DocSection
-            id="alert-variants-semantic"
-            title="1. Semantic Status Variants"
-            description="Standard alerts for communicative status, verification, warning, and critical errors."
-          >
-            <div className="flex flex-col gap-6 w-full">
-              <ComponentPreview
-                title="Primary & Secondary"
-                code={`<Alert variant="primary" title="Update Available" description="A new release v3.2.0 is available." />\n<Alert variant="secondary" title="Feature Announcement" description="Dark mode support is now enabled." />`}
-              >
-                <div className="flex flex-col gap-4 w-full">
-                  <Alert variant="primary" title="Update Available" description="A new version v3.2.0 of the CoreCircle Design System is ready to install." />
-                  <Alert variant="secondary" title="Feature Announcement" description="Subtle glassmorphic and floating elevated variant styles are now live." />
-                </div>
-              </ComponentPreview>
-
-              <ComponentPreview
-                title="Success, Warning & Destructive"
-                code={`<Alert variant="success" title="Changes Saved" description="Profile preferences were updated." />\n<Alert variant="warning" title="Approaching Quota" description="Storage limit reached 85%." />\n<Alert variant="destructive" title="Connection Dropped" description="Unable to reach replica server." />`}
-              >
-                <div className="flex flex-col gap-4 w-full">
-                  <Alert variant="success" title="Deployment Successful" description="Production services are active with zero latency degradation." />
-                  <Alert variant="warning" title="Approaching Rate Limit" description="Your workspace has consumed 88% of this month's allocated API units." />
-                  <Alert variant="destructive" title="Database Connection Dropped" description="Worker node lost heartbeat with master cluster node. Reconnecting..." />
-                </div>
-              </ComponentPreview>
+          <DocSection id="alert-variants-semantic" title="1. Semantic System States" description="Core semantic alerts for informational, positive, warning, and fatal conditions.">
+            <div className="flex flex-col gap-4 w-full">
+              <Alert variant="info" title="Information Update" description="A new software update is ready to install." />
+              <Alert variant="success" title="Deployment Successful" description="All container workloads are online." />
+              <Alert variant="warning" title="SSL Certificate Expiring" description="Your TLS certificate expires in 3 days." />
+              <Alert variant="destructive" title="Storage Quota Exceeded" description="Clean up older artifacts or increase disk size." />
             </div>
           </DocSection>
 
-          <DocSection
-            id="alert-variants-advanced"
-            title="2. Advanced Surface Variants"
-            description="Modern surface treatments including glassmorphic frosted glass, gradient glow, floating depth, soft tint, and segmented outline."
-          >
-            <div className="flex flex-col gap-6 w-full">
-              <ComponentPreview
-                title="Glassmorphic & Gradient"
-                code={`<Alert variant="glassmorphic" title="Frosted Alert" description="Translucent frosted background." />\n<Alert variant="gradient" title="Radiant Glow" description="Subtle linear gradient background." />`}
-              >
-                <div className="flex flex-col gap-4 w-full p-4 bg-gradient-to-br from-blue-50/60 to-purple-50/60 rounded-3xl">
-                  <Alert variant="glassmorphic" title="Frosted Glass Surface" description="Translucent glass overlay with soft backdrop blur for modern hero sections." />
-                  <Alert variant="gradient" title="Gradient Ambient Alert" description="Luminous linear color blend for high-impact announcements and promotional banners." />
-                </div>
-              </ComponentPreview>
+          <DocSection id="alert-variants-card-floating" title="2. Card, Floating & Glassmorphic Styles" description="Translucent frosted card, elevated shadow box, and structured container alerts.">
+            <div className="flex flex-col gap-4 w-full">
+              <Alert variant="card" title="Card Layout Alert" description="Contained box alert with border contrast." />
+              <Alert variant="floating" title="Floating Elevated Alert" description="Soft shadow alert module with modern depth." />
+              <Alert variant="glassmorphic" title="Glassmorphic Frost Alert" description="Frosted translucent backdrop blur banner." />
+            </div>
+          </DocSection>
 
-              <ComponentPreview
-                title="Floating, Pill, Soft & Bordered Segment"
-                code={`<Alert variant="floating" title="Floating Lift" description="Elevated card with soft shadow." />\n<Alert variant="soft" title="Soft Tint" description="Subtle tone-on-tone container." />`}
-              >
-                <div className="flex flex-col gap-4 w-full">
-                  <Alert variant="floating" title="Floating Elevated Alert" description="Elevated with ambient drop shadow for dynamic toast and overlay announcements." />
-                  <Alert variant="soft" title="Soft Pastel Tint" description="Tone-on-tone soft background for clean, low-distraction form feedback." />
-                  <Alert variant="bordered-segment" title="Segmented Outline" description="Thick structured left boundary accent for dense tabular views." />
-                </div>
-              </ComponentPreview>
+          <DocSection id="alert-variants-pill-minimal" title="3. Pill, Minimal, Outline & Soft Styles" description="Pill-shaped capsule, flat minimal lines, crisp outline, and subtle soft tinted surfaces.">
+            <div className="flex flex-col gap-4 w-full">
+              <Alert variant="pill" title="Capsule Pill Alert" description="Smooth rounded-full edges for onboarding toasts." />
+              <Alert variant="minimal" title="Minimal Border Alert" description="Clean left-edge indicator bar with transparent surface." />
+              <Alert variant="outline" title="Outline Alert" description="Crisp geometric outline with high text clarity." />
+              <Alert variant="soft" title="Soft Tint Alert" description="Gentle background wash for low-urgency notifications." />
             </div>
           </DocSection>
         </div>
@@ -176,8 +268,8 @@ export default function AlertContainer({ headerContent, breadcrumbItems }: any) 
       content: (
         <DocSection
           id="alert-playground-section"
-          title="Interactive Alert Playground"
-          description="Test all 12 visual variants, dismiss triggers, custom action buttons, and live code generation."
+          title="Interactive Playground"
+          description="Experiment with 12 visual variants, titles, descriptions, icons, and dismiss handlers."
         >
           <AlertPlayground />
         </DocSection>
@@ -191,55 +283,44 @@ export default function AlertContainer({ headerContent, breadcrumbItems }: any) 
         <div className="flex flex-col gap-12 max-w-5xl">
           <DocSection
             id="alert-mock"
-            title="Dynamic Notification Event Stream API"
-            description="Consume server events or WebSocket payloads to render reactive alert banners."
+            title="Dynamic Telemetry Alert Integration"
+            description="Render system alerts dynamically based on incident API responses."
           >
             <div className="flex flex-col gap-8 mt-6">
               <CodeSnippet
-                label="Sample Backend Alert Payload"
+                label="Sample Backend Incident Payload"
                 code={JSON.stringify({
-                  event_id: "evt_98321",
-                  timestamp: "2026-08-24T12:00:00Z",
+                  incident_id: "inc_9824",
                   severity: "warning",
-                  title: "High Memory Utilization Detected",
-                  message: "Cluster worker-03 has exceeded 90% memory threshold for > 5 minutes.",
-                  action: {
-                    label: "Scale Cluster",
-                    href: "/infrastructure/scale"
-                  }
+                  title: "High Latency in Edge Region us-west",
+                  details: "p99 latency increased to 480ms. Traffic rerouted to secondary POP.",
+                  dismissible: true
                 }, null, 2)}
               />
 
               <CodeSnippet
                 label="Dynamic Consumer Component"
-                code={`import React, { useState, useEffect } from 'react';
+                code={`import React, { useEffect, useState } from 'react';
 import { Alert, Button } from '@core-circle/ui';
 
-export const DynamicAlertBanner = () => {
-  const [event, setEvent] = useState(null);
+export const LiveSystemAlert = () => {
+  const [incident, setIncident] = useState(null);
 
   useEffect(() => {
-    const ws = new WebSocket('wss://api.example.com/alerts/stream');
-    ws.onmessage = (msg) => setEvent(JSON.parse(msg.data));
-    return () => ws.close();
+    fetch('/api/v1/incidents/active')
+      .then(res => res.json())
+      .then(data => setIncident(data));
   }, []);
 
-  if (!event) return null;
+  if (!incident) return null;
 
   return (
     <Alert
-      variant={event.severity === 'warning' ? 'warning' : 'destructive'}
-      title={event.title}
-      description={event.message}
-      dismissible
-      onDismiss={() => setEvent(null)}
-      action={
-        event.action && (
-          <Button size="sm" variant="outline" onClick={() => window.location.href = event.action.href}>
-            {event.action.label}
-          </Button>
-        )
-      }
+      variant={incident.severity}
+      title={incident.title}
+      description={incident.details}
+      dismissible={incident.dismissible}
+      action={<Button size="sm" variant="outline">View Health Graph</Button>}
     />
   );
 };`}
@@ -255,18 +336,16 @@ export const DynamicAlertBanner = () => {
       icon: <Info size={16} />,
       content: (
         <div className="flex flex-col gap-12 max-w-5xl">
-          <DocSection id="alert-intro" title="Introduction" description="Alerts communicate critical status updates, feedback, and action items directly in the layout flow.">
+          <DocSection id="alert-usage" title="Introduction" description="The Alert atom communicates critical status information, callouts, and actionable system events to users.">
             <div className="flex flex-col gap-8 mt-6">
               <CodeSnippet
                 label="Quick Usage"
-                code={`import { Alert, Button } from '@core-circle/ui';
+                code={`import { Alert } from '@core-circle/ui';
 
 <Alert
-  variant="primary"
-  title="Security Update"
-  description="Please verify your two-factor authentication recovery codes."
-  dismissible
-  action={<Button size="sm" variant="outline">Verify</Button>}
+  variant="info"
+  title="System Notice"
+  description="Scheduled maintenance is planned for Sunday 02:00 UTC."
 />`}
               />
               <div className="flex flex-col gap-4">

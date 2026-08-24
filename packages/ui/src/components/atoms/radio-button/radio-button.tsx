@@ -3,9 +3,11 @@
 import * as React from 'react';
 import { cn } from '../../../utils/cn';
 import { RadioButtonProps } from '../../../interface/atoms/radio-button/radio-button.types';
-import { radioWrapperVariants, radioVariants, innerCircleVariants } from './radio-button.styles';
-import { labelVariants } from '../checkbox/checkbox.styles';
-import { Label } from '../label/label';
+import { 
+  radioWrapperVariants, 
+  radioCircleVariants, 
+  innerDotVariants 
+} from './radio-button.styles';
 
 export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
   (
@@ -14,21 +16,24 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
       variant = 'outline',
       size = 'md',
       label,
-      labelSize,
-      labelWeight,
-      labelClassName,
+      description,
+      badge,
       error,
       helperText,
       checked: controlledChecked,
-      defaultChecked,
+      defaultChecked = false,
       onChange,
       disabled = false,
       value,
+      id: customId,
       ...props
     },
     ref
   ) => {
-    const [internalChecked, setInternalChecked] = React.useState(defaultChecked || false);
+    const [internalChecked, setInternalChecked] = React.useState(defaultChecked);
+    const autoId = React.useId();
+    const id = customId || autoId;
+
     const isChecked = controlledChecked !== undefined ? controlledChecked : internalChecked;
     const hasError = !!error;
 
@@ -43,43 +48,73 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
     };
 
     return (
-      <div className={cn("flex flex-col gap-1.5", "w-fit")}>
-        <label 
-          className={cn(radioWrapperVariants({ disabled }), className)}
+      <div className="flex flex-col gap-1 w-full">
+        <label
+          htmlFor={id}
+          className={cn(radioWrapperVariants({ variant, disabled }), className)}
         >
-          <div className="relative flex items-center justify-center">
-            <input
-              type="radio"
-              ref={ref}
-              checked={isChecked}
-              disabled={disabled}
-              onChange={handleChange}
-              className="sr-only"
-              value={value}
-              {...props}
+          {/* Visual Radio Circle */}
+          <div
+            data-state={isChecked ? 'checked' : 'unchecked'}
+            className={cn(radioCircleVariants({ variant, size, hasError }))}
+          >
+            <div
+              className={cn(innerDotVariants({ variant, size, checked: isChecked }))}
             />
-            <div className={cn(radioVariants({ variant, size, checked: isChecked, hasError }))}>
-              <div className={cn(innerCircleVariants({ size, checked: isChecked }))} />
-            </div>
           </div>
-          {label && (
-            <Label 
-              as="span"
-              size={labelSize || (size === 'lg' ? 'md' : size === 'md' ? 'sm' : 'xs')}
-              weight={labelWeight || 'medium'}
-              uppercase={false}
-              className={cn(labelVariants({ size, hasError }), labelClassName)}
-            >
-              {label}
-            </Label>
+
+          {/* Hidden native radio input */}
+          <input
+            {...props}
+            ref={ref}
+            id={id}
+            type="radio"
+            checked={isChecked}
+            disabled={disabled}
+            onChange={handleChange}
+            value={value}
+            className="sr-only"
+          />
+
+          {/* Label, Badge & Subtitle Description */}
+          {(label || description || badge) && (
+            <div className="flex flex-col gap-0.5 min-w-0 flex-1">
+              <div className="flex items-center gap-2">
+                {label && (
+                  <span
+                    className={cn(
+                      "font-core-circle-medium text-slate-900 leading-tight",
+                      size === 'sm' ? "text-xs" : size === 'lg' ? "text-base" : "text-sm",
+                      disabled && "text-slate-400"
+                    )}
+                  >
+                    {label}
+                  </span>
+                )}
+                {badge && (
+                  <span className="inline-flex items-center">
+                    {badge}
+                  </span>
+                )}
+              </div>
+
+              {description && (
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  {description}
+                </p>
+              )}
+            </div>
           )}
         </label>
-        
+
+        {/* Error or Helper text */}
         {(error || helperText) && (
-          <p className={cn(
-            "text-[11px] font-core-circle-medium pl-1 transition-all duration-200",
-            hasError ? "text-core-circle-warning" : "text-core-circle-text-muted"
-          )}>
+          <p
+            className={cn(
+              "text-[11px] font-core-circle-medium pl-1 transition-all duration-200",
+              hasError ? "text-core-circle-warning" : "text-core-circle-text-muted"
+            )}
+          >
             {error || helperText}
           </p>
         )}
@@ -89,3 +124,5 @@ export const RadioButton = React.forwardRef<HTMLInputElement, RadioButtonProps>(
 );
 
 RadioButton.displayName = 'RadioButton';
+
+export default RadioButton;

@@ -1,163 +1,175 @@
 'use client';
 
 import React, { useState } from 'react';
-import { OTPInput, Select, Checkbox, Button, TextInput } from '@core-circle/ui';
-import { CodeIcon, CopyIcon } from '@core-circle/icons';
-import { highlightCode } from '../../../utils/highlight';
-import { otpInputPlaygroundStyles as s } from './otpInputPlayground.styles';
+import { 
+  OtpInput, 
+  Select, 
+  Checkbox, 
+  TextInput, 
+  Typography, 
+  Card,
+  OtpVariant,
+  OtpSize,
+  OtpShape 
+} from '@core-circle/ui';
+import ComponentPreview from '../../component-preview';
 
-const SelectField = ({ label, value, options, onChange }: any) => {
-  const formattedOptions = Object.entries(options).map(([val, lbl]) => ({
-    value: val,
-    label: lbl as string,
-  }));
-  return (
-    <Select
-      label={label}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      options={formattedOptions}
-      fullWidth
-    />
-  );
-};
+export const OtpInputPlayground: React.FC = () => {
+  const [code, setCode] = useState('');
+  const [completedCode, setCompletedCode] = useState('');
+  const [variant, setVariant] = useState<OtpVariant>('outline');
+  const [size, setSize] = useState<OtpSize>('md');
+  const [length, setLength] = useState('6');
+  const [shape, setShape] = useState<OtpShape>('rounded');
 
-export const OTPInputPlayground = () => {
-  const [state, setState] = useState({
-    variant: 'outline',
-    size: 'md',
-    length: 4,
-    error: '',
-    helperText: 'Enter the code sent to your phone',
-    disabled: false,
-    mask: false,
-  });
+  const [mask, setMask] = useState(false);
+  const [showSeparator, setShowSeparator] = useState(true);
+  const [disabled, setDisabled] = useState(false);
+  const [helperText, setHelperText] = useState('Enter the 6-digit code sent to your mobile phone.');
 
-  const updateState = (key: string, value: any) => {
-    setState((prev) => ({ ...prev, [key]: value }));
+  const variantOptions = [
+    { label: 'Outline (Default)', value: 'outline' },
+    { label: 'Filled Surface', value: 'filled' },
+    { label: 'Floating Card', value: 'floating' },
+    { label: 'Glassmorphic Blur', value: 'glassmorphic' },
+    { label: 'Pill Capsule', value: 'pill' },
+    { label: 'Material Underline', value: 'material' },
+    { label: 'Gradient Glow', value: 'gradient' },
+    { label: 'Bordered Strong', value: 'bordered' },
+    { label: 'Success Emerald', value: 'success' },
+    { label: 'Ghost Minimal', value: 'ghost' },
+  ];
+
+  const sizeOptions = [
+    { label: 'Small (sm: 36px)', value: 'sm' },
+    { label: 'Medium (md: 48px)', value: 'md' },
+    { label: 'Large (lg: 56px)', value: 'lg' },
+    { label: 'Extra Large (xl: 64px)', value: 'xl' },
+  ];
+
+  const lengthOptions = [
+    { label: '4 Digits (e.g. Card PIN)', value: '4' },
+    { label: '6 Digits (Standard 2FA)', value: '6' },
+    { label: '8 Digits (Backup Code)', value: '8' },
+  ];
+
+  const shapeOptions = [
+    { label: 'Rounded Box (Default)', value: 'rounded' },
+    { label: 'Circular Ring', value: 'circle' },
+    { label: 'Sharp Square', value: 'square' },
+  ];
+
+  const generateCodeSnippet = () => {
+    let props = `length={${length}}\n  onChange={setCode}\n  onComplete={(val) => console.log('Completed:', val)}`;
+    if (variant !== 'outline') props += `\n  variant="${variant}"`;
+    if (size !== 'md') props += `\n  size="${size}"`;
+    if (shape !== 'rounded') props += `\n  shape="${shape}"`;
+    if (mask) props += `\n  mask`;
+    if (showSeparator) props += `\n  separator="-"`;
+    if (helperText) props += `\n  helperText="${helperText}"`;
+    if (disabled) props += `\n  disabled`;
+
+    return `<OtpInput\n  ${props}\n/>`;
   };
 
-  const generateCode = () => {
-    const { variant, size, length, error, helperText, disabled, mask } = state;
-    let props = `variant="${variant}" size="${size}" length={${length}}`;
-    if (error) props += ` error="${error}"`;
-    if (helperText) props += ` helperText="${helperText}"`;
-    if (disabled) props += ' disabled';
-    if (mask) props += ' mask';
-
-    return `<OTPInput ${props} />`;
-  };
-
   return (
-    <div className={s.container}>
-      <div className={s.layout}>
-        {/* Controls */}
-        <div className={s.controlsWrapper}>
-          <div className={s.gridTwoCols}>
-            <SelectField
-              label="Variant"
-              value={state.variant}
-              onChange={(v: string) => updateState('variant', v)}
-              options={{
-                outline: 'Outline',
-                material: 'Material',
-                ghost: 'Ghost',
-                standard: 'Standard',
+    <div className="flex flex-col gap-8 w-full">
+      <ComponentPreview title="Interactive OtpInput Sandbox" code={generateCodeSnippet()}>
+        <div className="flex flex-col items-center justify-center p-8 w-full min-h-[220px] bg-slate-50/50 rounded-2xl border border-slate-100 gap-4">
+          <OtpInput
+            key={`${length}-${variant}-${size}-${shape}`}
+            length={Number(length)}
+            variant={variant}
+            size={size}
+            shape={shape}
+            mask={mask}
+            separator={showSeparator ? '-' : undefined}
+            onChange={setCode}
+            onComplete={setCompletedCode}
+            helperText={helperText}
+            disabled={disabled}
+            autoFocus
+          />
+
+          {completedCode && (
+            <span className="text-xs font-bold text-emerald-600 animate-in fade-in duration-200">
+              ✓ Verified Complete: {completedCode}
+            </span>
+          )}
+        </div>
+      </ComponentPreview>
+
+      {/* Control Configuration Panel */}
+      <Card variant="outline" className="p-6 bg-white border border-core-circle-border-main/70">
+        <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted mb-6">
+          OtpInput Controls
+        </Typography>
+
+        <div className="flex flex-col gap-6">
+          {/* Tier 1: Exactly 4 Select Dropdowns */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <Select
+              label="Visual Variant"
+              value={variant}
+              options={variantOptions}
+              onChange={(val) => setVariant(val as OtpVariant)}
+            />
+            <Select
+              label="Size Scale"
+              value={size}
+              options={sizeOptions}
+              onChange={(val) => setSize(val as OtpSize)}
+            />
+            <Select
+              label="Digit Count"
+              value={length}
+              options={lengthOptions}
+              onChange={(val) => {
+                setLength(val as string);
+                setCompletedCode('');
               }}
             />
-            <SelectField
-              label="Size"
-              value={state.size}
-              onChange={(v: string) => updateState('size', v)}
-              options={{ sm: 'Small', md: 'Medium', lg: 'Large' }}
+            <Select
+              label="Contour Shape"
+              value={shape}
+              options={shapeOptions}
+              onChange={(val) => setShape(val as OtpShape)}
             />
-            <div className="flex flex-col gap-1.5">
-              <label className="text-[10px] font-bold uppercase text-slate-400">
-                Length
-              </label>
-              <input
-                type="number"
-                value={state.length}
-                min={1}
-                max={10}
-                onChange={(e) =>
-                  updateState('length', parseInt(e.target.value) || 1)
-                }
-                className="px-3 py-2 bg-white border border-core-circle-border-main rounded-core-circle-md text-core-circle-xs outline-none focus:border-core-circle-primary transition-all"
-              />
-            </div>
-            <div className="flex gap-4 items-end pb-2">
-              <Checkbox
-                label="Disabled"
-                checked={state.disabled}
-                onChange={(checked) => updateState('disabled', checked)}
-              />
-              <Checkbox
-                label="Mask (Password)"
-                checked={state.mask}
-                onChange={(checked) => updateState('mask', checked)}
-              />
-            </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-core-circle-border-main pt-6">
-            <TextInput
-              label="Error Message"
-              value={state.error}
-              onChange={(e) => updateState('error', e.target.value)}
-              placeholder="e.g. Invalid code"
-              fullWidth
+          {/* Tier 2: Horizontal Checkboxes Row */}
+          <div className="flex flex-wrap items-center gap-6 py-2 border-t border-core-circle-border-main/40">
+            <Checkbox
+              id="mask-flag"
+              label="Mask PIN (•••)"
+              checked={mask}
+              onChange={(e) => setMask(e.target.checked)}
             />
+            <Checkbox
+              id="separator-flag"
+              label="Midway Dash Separator (-)"
+              checked={showSeparator}
+              onChange={(e) => setShowSeparator(e.target.checked)}
+            />
+            <Checkbox
+              id="dis-flag"
+              label="Disabled"
+              checked={disabled}
+              onChange={(e) => setDisabled(e.target.checked)}
+            />
+          </div>
+
+          {/* Tier 3: Text Input */}
+          <div className="grid grid-cols-1 gap-4 border-t border-core-circle-border-main/60 pt-4">
             <TextInput
-              label="Helper Text"
-              value={state.helperText}
-              onChange={(e) => updateState('helperText', e.target.value)}
-              fullWidth
+              label="Helper Guidance Text"
+              value={helperText}
+              onChange={(e) => setHelperText(e.target.value)}
+              placeholder="e.g. Enter the 6-digit code..."
             />
           </div>
         </div>
-
-        {/* Preview & Code */}
-        <div className={s.previewWrapper}>
-          <div className={s.previewArea}>
-            <OTPInput
-              variant={state.variant as any}
-              size={state.size as any}
-              length={state.length}
-              error={state.error}
-              helperText={state.helperText}
-              disabled={state.disabled}
-              mask={state.mask}
-              onComplete={(val: string) => console.log('Completed:', val)}
-            />
-          </div>
-
-          <div className={s.codeSection}>
-            <div className={s.codeHeader}>
-              <span className={s.codeTitle}>
-                <CodeIcon className="w-3.5 h-3.5" />
-                Live Code
-              </span>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigator.clipboard.writeText(generateCode())}
-                className={s.copyButton}
-                startIcon={<CopyIcon className="w-3.5 h-3.5" />}
-              >
-                Copy Snippet
-              </Button>
-            </div>
-            <pre className={s.codeBlock}>
-              <code
-                dangerouslySetInnerHTML={{
-                  __html: highlightCode(generateCode()),
-                }}
-              />
-            </pre>
-          </div>
-        </div>
-      </div>
+      </Card>
     </div>
   );
 };
