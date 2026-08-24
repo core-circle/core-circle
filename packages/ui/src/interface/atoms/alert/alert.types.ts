@@ -1,34 +1,76 @@
 import { ReactNode } from 'react';
 
-export type AlertVariant = 'info' | 'success' | 'warning' | 'destructive' | 'outline';
+export type AlertVariant =
+  | 'info'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'destructive'
+  | 'card'
+  | 'floating'
+  | 'glassmorphic'
+  | 'gradient'
+  | 'pill'
+  | 'minimal'
+  | 'outline'
+  | 'soft'
+  | 'bordered-segment';
 
 export interface AlertProps {
   /**
-   * The variant of the alert.
+   * The visual style variant of the alert.
    * @default 'info'
    */
   variant?: AlertVariant;
-  
+
   /**
    * Optional title for the alert.
    */
-  title?: string;
-  
+  title?: ReactNode;
+
   /**
-   * The content of the alert.
+   * Optional description text for the alert.
    */
-  children: ReactNode;
-  
+  description?: ReactNode;
+
   /**
-   * Optional icon to display.
+   * The content / description of the alert.
+   */
+  children?: ReactNode;
+
+  /**
+   * Optional icon to display before the title/description.
    */
   icon?: ReactNode;
-  
+
   /**
-   * Whether the alert can be closed.
+   * Optional action element slot (e.g., Button or Link).
+   */
+  action?: ReactNode;
+
+  /**
+   * Whether the alert shows a dismiss/close button.
+   * @default false
+   */
+  dismissible?: boolean;
+
+  /**
+   * Callback fired when the dismiss button is clicked.
+   */
+  onDismiss?: () => void;
+
+  /**
+   * Callback fired when the close button is clicked (alias for onDismiss).
    */
   onClose?: () => void;
-  
+
+  /**
+   * Whether the alert occupies the full width of its container.
+   * @default true
+   */
+  fullWidth?: boolean;
+
   /**
    * Additional class names.
    */

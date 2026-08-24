@@ -42,7 +42,7 @@ export const Toast = React.forwardRef<HTMLDivElement, ToastProps>(
         )}
         <Button
           variant="ghost"
-          onClick={onClose}
+          onClick={() => onClose?.(props.id)}
           className={toastCloseButtonStyles}
           aria-label="Close toast"
         >

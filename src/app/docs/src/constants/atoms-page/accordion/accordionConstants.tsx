@@ -47,8 +47,14 @@ export const ACCORDION_PROPS_DATA = [
     description: 'Whether one or multiple items can be open at a time.',
   },
   {
+    name: 'collapsible',
+    type: 'boolean',
+    defaultValue: 'true',
+    description: 'When type is "single", allows closing the open item by clicking it again.',
+  },
+  {
     name: 'variant',
-    type: '"bordered" | "ghost" | "separated"',
+    type: '"bordered" | "card" | "filled" | "glassmorphic" | "floating" | "gradient" | "pill" | "separated" | "minimal" | "ghost"',
     defaultValue: '"bordered"',
     description: 'The visual style of the accordion.',
   },
@@ -63,6 +69,18 @@ export const ACCORDION_PROPS_DATA = [
     type: 'boolean',
     defaultValue: 'true',
     description: 'Whether the accordion should take up the full width of its container.',
+  },
+  {
+    name: 'expandIcon',
+    type: 'ReactNode | ((isOpen: boolean) => ReactNode)',
+    defaultValue: '<ChevronDown />',
+    description: 'Custom icon or dynamic render function to replace the default toggle icon.',
+  },
+  {
+    name: 'collapseIcon',
+    type: 'ReactNode',
+    defaultValue: 'undefined',
+    description: 'Custom icon to display when expanded (e.g. Minus or X icon paired with Plus expandIcon).',
   },
 ];
 

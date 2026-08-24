@@ -1,7 +1,17 @@
 import { ReactNode } from 'react';
 
 export type AccordionType = 'single' | 'multiple';
-export type AccordionVariant = 'bordered' | 'ghost' | 'separated';
+export type AccordionVariant = 
+  | 'bordered' 
+  | 'ghost' 
+  | 'separated' 
+  | 'card' 
+  | 'filled' 
+  | 'glassmorphic' 
+  | 'minimal' 
+  | 'floating' 
+  | 'pill' 
+  | 'gradient';
 export type AccordionSize = 'sm' | 'md' | 'lg';
 
 export interface AccordionItemProps {
@@ -30,6 +40,14 @@ export interface AccordionItemProps {
    */
   endIcon?: ReactNode;
   /**
+   * Custom expand icon or render function for this specific item
+   */
+  expandIcon?: ReactNode | ((isOpen: boolean) => ReactNode);
+  /**
+   * Custom icon to display when this item is expanded (e.g. Minus icon)
+   */
+  collapseIcon?: ReactNode;
+  /**
    * Whether the item is disabled
    */
   disabled?: boolean;
@@ -49,6 +67,11 @@ export interface AccordionProps {
    * @default 'single'
    */
   type?: AccordionType;
+  /**
+   * When type is 'single', allows closing the open item
+   * @default true
+   */
+  collapsible?: boolean;
   /**
    * Visual variant of the accordion
    * @default 'bordered'
@@ -81,7 +104,11 @@ export interface AccordionProps {
    */
   fullWidth?: boolean;
   /**
-   * Custom icon to replace the default chevron
+   * Custom icon to replace the default chevron or a render function (isOpen: boolean) => ReactNode
    */
-  expandIcon?: ReactNode;
+  expandIcon?: ReactNode | ((isOpen: boolean) => ReactNode);
+  /**
+   * Custom icon to display when expanded (e.g. Minus or X icon)
+   */
+  collapseIcon?: ReactNode;
 }

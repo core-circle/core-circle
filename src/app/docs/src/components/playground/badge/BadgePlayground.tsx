@@ -9,10 +9,11 @@ import { DOC_TEXT } from '../../../constants/common-constants';
 
 export const BadgePlayground = () => {
   const [state, setState] = useState({
-    content: 'New Feature',
-    variant: 'success',
+    content: 'Live Status',
+    variant: 'gradient',
     size: 'md',
     shape: 'pill',
+    dot: false,
     removable: false,
     pulse: false,
     withIcon: true,
@@ -24,9 +25,10 @@ export const BadgePlayground = () => {
 
   const generateCode = () => {
     let props = `variant="${state.variant}"\n  size="${state.size}"\n  shape="${state.shape}"`;
+    if (state.dot) props += `\n  dot`;
     if (state.removable) props += `\n  removable\n  onRemove={() => console.log('Removed')}`;
     if (state.pulse) props += `\n  pulse`;
-    if (state.withIcon) props += `\n  startIcon={<Sparkles size={12} />}`;
+    if (state.withIcon && !state.dot) props += `\n  startIcon={<Sparkles size={12} />}`;
 
     return `<Badge \n  ${props} \n>\n  ${state.content}\n</Badge>`;
   };
@@ -35,59 +37,67 @@ export const BadgePlayground = () => {
     <div className={s.container}>
       <div className={s.layout}>
         <div className={s.controlsWrapper}>
-          <div className={s.gridTwoCols}>
-            <TextInput
-              label="Content"
-              value={state.content}
-              onChange={(e) => updateState('content', e.target.value)}
-              placeholder="Badge text..."
-              fullWidth
-            />
-            <Select
-              label="Variant"
-              value={state.variant}
-              onChange={(e) => updateState('variant', e.target.value)}
-              options={[
-                { value: 'primary', label: 'Primary' },
-                { value: 'secondary', label: 'Secondary' },
-                { value: 'success', label: 'Success' },
-                { value: 'warning', label: 'Warning' },
-                { value: 'danger', label: 'Danger' },
-                { value: 'ghost', label: 'Ghost' },
-                { value: 'outline', label: 'Outline' },
-              ]}
-              fullWidth
-            />
-            <Select
-              label="Size"
-              value={state.size}
-              onChange={(e) => updateState('size', e.target.value)}
-              options={[
-                { value: 'sm', label: 'Small' },
-                { value: 'md', label: 'Medium' },
-                { value: 'lg', label: 'Large' },
-              ]}
-              fullWidth
-            />
-            <Select
-              label="Shape"
-              value={state.shape}
-              onChange={(e) => updateState('shape', e.target.value)}
-              options={[
-                { value: 'rounded', label: 'Rounded' },
-                { value: 'pill', label: 'Pill Shape' },
-                { value: 'square', label: 'Square' },
-              ]}
-              fullWidth
-            />
-            <div className="flex items-end pb-2 gap-4 flex-wrap">
+          <div className="flex flex-col gap-5">
+            {/* 1. Select Dropdowns Horizontally */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <Select
+                label="Variant"
+                value={state.variant}
+                onChange={(e) => updateState('variant', e.target.value)}
+                options={[
+                  { value: 'primary', label: 'Primary (Solid Blue)' },
+                  { value: 'secondary', label: 'Secondary (Solid Green)' },
+                  { value: 'success', label: 'Success (Soft Emerald)' },
+                  { value: 'warning', label: 'Warning (Soft Amber)' },
+                  { value: 'destructive', label: 'Destructive (Soft Red)' },
+                  { value: 'info', label: 'Info (Soft Blue)' },
+                  { value: 'gradient', label: 'Gradient (Radiant Glow)' },
+                  { value: 'glassmorphic', label: 'Glassmorphic (Frosted)' },
+                  { value: 'floating', label: 'Floating (Drop Shadow)' },
+                  { value: 'dot', label: 'Dot (Live Status Ping)' },
+                  { value: 'outline', label: 'Outline (Border)' },
+                  { value: 'ghost', label: 'Ghost (Muted)' },
+                ]}
+                fullWidth
+              />
+              <Select
+                label="Size"
+                value={state.size}
+                onChange={(e) => updateState('size', e.target.value)}
+                options={[
+                  { value: 'sm', label: 'Small' },
+                  { value: 'md', label: 'Medium' },
+                  { value: 'lg', label: 'Large' },
+                ]}
+                fullWidth
+              />
+              <Select
+                label="Shape"
+                value={state.shape}
+                onChange={(e) => updateState('shape', e.target.value)}
+                options={[
+                  { value: 'pill', label: 'Pill Shape' },
+                  { value: 'rounded', label: 'Rounded' },
+                  { value: 'square', label: 'Square' },
+                ]}
+                fullWidth
+              />
+            </div>
+
+            {/* 2. Checkboxes & Switches Horizontally */}
+            <div className="flex flex-wrap items-center gap-6 py-1">
+              <Checkbox
+                label="Status Dot"
+                checked={state.dot}
+                onChange={(checked) => updateState('dot', checked)}
+              />
               <Checkbox
                 label="Removable"
                 checked={state.removable}
                 onChange={(checked) => updateState('removable', checked)}
               />
               <Checkbox
-                label="Pulse"
+                label="Pulse Animation"
                 checked={state.pulse}
                 onChange={(checked) => updateState('pulse', checked)}
               />
@@ -95,6 +105,17 @@ export const BadgePlayground = () => {
                 label="With Icon"
                 checked={state.withIcon}
                 onChange={(checked) => updateState('withIcon', checked)}
+              />
+            </div>
+
+            {/* 3. Text Inputs Horizontally */}
+            <div className="border-t border-core-circle-border-main/60 pt-4">
+              <TextInput
+                label="Badge Content"
+                value={state.content}
+                onChange={(e) => updateState('content', e.target.value)}
+                placeholder="Badge text..."
+                fullWidth
               />
             </div>
           </div>
@@ -106,10 +127,11 @@ export const BadgePlayground = () => {
               variant={state.variant as any}
               size={state.size as any}
               shape={state.shape as any}
+              dot={state.dot}
               removable={state.removable}
               pulse={state.pulse}
-              startIcon={state.withIcon ? <Sparkles size={12} /> : undefined}
-              onRemove={state.removable ? () => alert('Remove clicked') : undefined}
+              startIcon={state.withIcon && !state.dot ? <Sparkles size={12} /> : undefined}
+              onRemove={state.removable ? () => alert('Removed') : undefined}
             >
               {state.content}
             </Badge>
