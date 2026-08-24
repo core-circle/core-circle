@@ -1,33 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Button, Select, TextInput, useToast, Toaster } from '@core-circle/ui';
-import { CodeIcon, CopyIcon, Bell } from '@core-circle/icons';
+import { Button, Select, TextInput, useToast, Toaster, Toast } from '@core-circle/ui';
+import { CodeIcon, CopyIcon, Bell, Sparkles, CircleCheck } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { toastPlaygroundStyles as s } from './toastPlayground.styles';
-
-const SelectField = ({ label, value, options, onChange }: any) => {
-  const formattedOptions = Object.entries(options).map(([val, lbl]) => ({
-    value: val,
-    label: lbl as string,
-  }));
-  return (
-    <Select
-      label={label}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      options={formattedOptions}
-      fullWidth
-    />
-  );
-};
 
 export const ToastPlayground = () => {
   const { toast } = useToast();
   const [state, setState] = useState({
-    title: 'Success!',
-    description: 'Your action was completed successfully.',
-    variant: 'success',
+    title: 'Deployment Successful',
+    description: 'Your changes have been deployed to production edge nodes.',
+    variant: 'gradient',
     duration: 5000,
     position: 'bottom-right',
   });
@@ -47,84 +31,110 @@ export const ToastPlayground = () => {
 
   const generateCode = () => {
     const { title, description, variant, duration, position } = state;
-    return `// In your Root Layout\n<Toaster position="${position}" />\n\n// In your Component\nconst { toast } = useToast();\n\ntoast({\n  title: "${title}",\n  description: "${description}",\n  variant: "${variant}",\n  duration: ${duration}\n});`;
+    return `// In your App Root Layout\n<Toaster position="${position}" />\n\n// In your Action Handler\nconst { toast } = useToast();\n\ntoast({\n  title: "${title}",\n  description: "${description}",\n  variant: "${variant}",\n  duration: ${duration}\n});`;
   };
 
   return (
     <div className={s.container}>
-      <Toaster position={state.position as any} /> {/* Ensure toaster is present to see the result */}
+      <Toaster position={state.position as any} />
       <div className={s.layout}>
         {/* Controls */}
         <div className={s.controlsWrapper}>
-          <div className={s.gridTwoCols}>
-            <SelectField
-              label="Variant"
-              value={state.variant}
-              onChange={(v: string) => updateState('variant', v)}
-              options={{
-                default: 'Default',
-                success: 'Success',
-                error: 'Error',
-                warning: 'Warning',
-                info: 'Info'
-              }}
-            />
-            <SelectField
-              label="Duration (ms)"
-              value={state.duration.toString()}
-              onChange={(v: string) => updateState('duration', parseInt(v))}
-              options={{
-                3000: '3000ms',
-                5000: '5000ms',
-                10000: '10000ms',
-                0: 'Persistent (0)'
-              }}
-            />
-            <SelectField
-              label="Position"
-              value={state.position}
-              onChange={(v: string) => updateState('position', v)}
-              options={{
-                'top-left': 'Top Left',
-                'top-right': 'Top Right',
-                'top-center': 'Top Center',
-                'bottom-left': 'Bottom Left',
-                'bottom-right': 'Bottom Right',
-                'bottom-center': 'Bottom Center'
-              }}
-            />
-          </div>
+          <div className="flex flex-col gap-5">
+            {/* 1. Select Dropdowns Horizontally */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <Select
+                label="Variant"
+                value={state.variant}
+                onChange={(e) => updateState('variant', e.target.value)}
+                options={[
+                  { value: 'default', label: 'Default (White Elevated)' },
+                  { value: 'success', label: 'Success (Soft Emerald)' },
+                  { value: 'warning', label: 'Warning (Soft Amber)' },
+                  { value: 'destructive', label: 'Destructive (Soft Red)' },
+                  { value: 'info', label: 'Info (Soft Blue)' },
+                  { value: 'card', label: 'Card (Strong Border)' },
+                  { value: 'glassmorphic', label: 'Glassmorphic (Frosted Glass)' },
+                  { value: 'gradient', label: 'Gradient (Radiant Glow)' },
+                  { value: 'floating', label: 'Floating (High Elevation)' },
+                  { value: 'pill', label: 'Pill (Curved Capsule)' },
+                  { value: 'minimal', label: 'Minimal (Left Accent Line)' },
+                ]}
+                fullWidth
+              />
+              <Select
+                label="Duration (ms)"
+                value={state.duration.toString()}
+                onChange={(e) => updateState('duration', parseInt(e.target.value))}
+                options={[
+                  { value: '3000', label: '3000ms (3s)' },
+                  { value: '5000', label: '5000ms (5s)' },
+                  { value: '10000', label: '10000ms (10s)' },
+                  { value: '0', label: 'Persistent (Manual Dismiss)' },
+                ]}
+                fullWidth
+              />
+              <Select
+                label="Position"
+                value={state.position}
+                onChange={(e) => updateState('position', e.target.value)}
+                options={[
+                  { value: 'bottom-right', label: 'Bottom Right' },
+                  { value: 'bottom-left', label: 'Bottom Left' },
+                  { value: 'bottom-center', label: 'Bottom Center' },
+                  { value: 'top-right', label: 'Top Right' },
+                  { value: 'top-left', label: 'Top Left' },
+                  { value: 'top-center', label: 'Top Center' },
+                ]}
+                fullWidth
+              />
+            </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-core-circle-border-main pt-6">
-            <TextInput label="Title" value={state.title} onChange={(e) => updateState('title', e.target.value)} fullWidth />
-            <TextInput label="Description" value={state.description} onChange={(e) => updateState('description', e.target.value)} fullWidth />
-          </div>
+            {/* 2. Text Inputs Horizontally */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-core-circle-border-main/60 pt-4">
+              <TextInput label="Title" value={state.title} onChange={(e) => updateState('title', e.target.value)} fullWidth />
+              <TextInput label="Description" value={state.description} onChange={(e) => updateState('description', e.target.value)} fullWidth />
+            </div>
 
-          <div className="flex justify-end mt-4">
-            <Button
-              variant="primary"
-              onClick={showToast}
-              startIcon={<Bell size={18} />}
-            >
-              Trigger Toast
-            </Button>
+            {/* 3. Action Buttons Row */}
+            <div className="flex justify-end pt-1">
+              <Button
+                variant="primary"
+                onClick={showToast}
+                startIcon={<Bell size={18} />}
+              >
+                Trigger Live Toast
+              </Button>
+            </div>
           </div>
         </div>
 
-        {/* Preview & Code */}
+        {/* Inline Preview & Code */}
         <div className={s.previewWrapper}>
+          <div className="p-6 bg-slate-50 rounded-2xl border border-core-circle-border-main flex flex-col items-center justify-center">
+            <span className="text-xs font-bold text-core-circle-text-muted uppercase tracking-wider mb-4">Static Appearance Preview</span>
+            <Toast
+              variant={state.variant as any}
+              title={state.title}
+              description={state.description}
+              icon={<Sparkles size={18} className="text-core-circle-primary" />}
+              action={<Button size="sm" variant="ghost">Undo</Button>}
+              onClose={() => {}}
+            />
+          </div>
+
           <div className={s.codeSection}>
             <div className={s.codeHeader}>
               <span className={s.codeTitle}>
                 <CodeIcon className="w-3.5 h-3.5" />
-                Example Code
+                Live Code
               </span>
               <Button
                 variant="ghost"
                 size="sm"
                 onClick={() => navigator.clipboard.writeText(generateCode())}
                 className={s.copyButton}
-                startIcon={<CopyIcon className="w-3.5 h-3.5" />}
+                startIcon={<CopyIcon size={14} />}
               >
                 Copy Snippet
               </Button>
@@ -133,9 +143,6 @@ export const ToastPlayground = () => {
               <code dangerouslySetInnerHTML={{ __html: highlightCode(generateCode()) }} />
             </pre>
           </div>
-          <p className="text-xs text-core-circle-text-muted mt-4 text-center italic">
-            Click "Trigger Toast" to see the notification in the corner of your screen.
-          </p>
         </div>
       </div>
     </div>

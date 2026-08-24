@@ -34,7 +34,9 @@ import {
   Layers as LayersIcon,
   Grid as DialogIcon,
   Key,
-  Palette
+  Palette,
+  Calendar as CalendarIcon,
+  List as ListIcon,
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -51,11 +53,11 @@ export const ATOMS_BREADCRUMB_ITEMS = [
  */
 export const ATOMS_HEADER_CONTENT = {
   title: 'Atoms',
-  description: 'Atoms are the basic building blocks of matter. Applied to web interfaces, atoms are our HTML tags, such as a form label, an input or a button.',
+  description: 'Atoms are the basic building blocks of matter. Applied to web interfaces, atoms are our foundational UI elements, such as inputs, buttons, badges, cards, and typography.',
 };
 
 /**
- * Atoms List for the main grid
+ * Atoms List for the main grid (Alphabetically Arranged)
  */
 export const ATOM_CARDS = [
   {
@@ -63,6 +65,12 @@ export const ATOM_CARDS = [
     description: 'A vertically stacked set of interactive headings that reveal content sections.',
     href: '/atoms/accordion',
     icon: AccordionIcon,
+  },
+  {
+    title: 'Alert',
+    description: 'Displays a callout for user attention or information with various visual styles.',
+    href: '/atoms/alert',
+    icon: AlertIcon,
   },
   {
     title: 'Avatar',
@@ -77,12 +85,6 @@ export const ATOM_CARDS = [
     icon: Tag,
   },
   {
-    title: 'AspectRatio',
-    description: 'Ensuring media (images, videos) maintains a specific ratio during resize.',
-    href: '/atoms/aspect-ratio',
-    icon: AspectRatioIcon,
-  },
-  {
     title: 'Breadcrumb',
     description: 'Navigation path component with dynamic items and back support.',
     href: '/atoms/breadcrumb',
@@ -95,10 +97,22 @@ export const ATOM_CARDS = [
     icon: MousePointer,
   },
   {
+    title: 'Card',
+    description: 'Flexible content container with support for headers, footers, and elevation variants.',
+    href: '/atoms/card',
+    icon: LayersIcon,
+  },
+  {
     title: 'Checkbox',
     description: 'Toggleable selection control for single or multiple choices.',
     href: '/atoms/checkbox',
     icon: CircleCheck,
+  },
+  {
+    title: 'Color Picker',
+    description: 'A visual tool for selecting colors with support for various output formats.',
+    href: '/atoms/color-picker',
+    icon: Palette,
   },
   {
     title: 'Counter',
@@ -107,20 +121,26 @@ export const ATOM_CARDS = [
     icon: CounterIcon,
   },
   {
+    title: 'DatePicker',
+    description: 'A visual interface for selecting dates from an interactive calendar popup.',
+    href: '/atoms/date-picker',
+    icon: CalendarIcon,
+  },
+  {
+    title: 'Dialog',
+    description: 'A window overlaid on the primary window, rendering the content underneath inert.',
+    href: '/atoms/dialog',
+    icon: DialogIcon,
+  },
+  {
     title: 'Divider',
     description: 'Clean visual separation of content with horizontal and vertical variants.',
     href: '/atoms/divider',
     icon: DividerIcon,
   },
   {
-    title: 'MultiSelect',
-    description: 'Advanced dropdown for multiple selections with tag visualization.',
-    href: '/atoms/multi-select',
-    icon: RowsIcon,
-  },
-  {
     title: 'Icons',
-    description: '110+ high-quality vector icons for the Core Circle ecosystem.',
+    description: '130+ high-quality vector icons for the Core Circle ecosystem.',
     href: '/atoms/icons',
     icon: Sparkles,
   },
@@ -149,6 +169,24 @@ export const ATOM_CARDS = [
     icon: TypeIcon,
   },
   {
+    title: 'MultiSelect',
+    description: 'Advanced dropdown for multiple selections with tag visualization.',
+    href: '/atoms/multi-select',
+    icon: RowsIcon,
+  },
+  {
+    title: 'OTP Input',
+    description: 'A specialized input for one-time passwords and verification codes.',
+    href: '/atoms/otp-input',
+    icon: Key,
+  },
+  {
+    title: 'Popover',
+    description: 'Displays rich content in a portal, triggered by a button or other interactive element.',
+    href: '/atoms/popover',
+    icon: LayersIcon,
+  },
+  {
     title: 'Progress',
     description: 'Visual indicator of task completion with support for variants and labels.',
     href: '/atoms/progress',
@@ -161,16 +199,46 @@ export const ATOM_CARDS = [
     icon: CircleDot,
   },
   {
+    title: 'RichText',
+    description: 'Render complex HTML or formatted content with design system styles.',
+    href: '/atoms/rich-text',
+    icon: DocumentText,
+  },
+  {
     title: 'Select',
     description: 'Customizable dropdown selection component with variant support.',
     href: '/atoms/select',
     icon: ChevronDown,
   },
   {
+    title: 'Skeleton',
+    description: 'Provide a placeholder for content that is still loading with smooth animations.',
+    href: '/atoms/skeleton',
+    icon: SkeletonIcon,
+  },
+  {
     title: 'SliderInput',
     description: 'A range input component for selecting values by sliding a thumb.',
     href: '/atoms/slider-input',
     icon: SlidersHorizontalIcon,
+  },
+  {
+    title: 'Spinner',
+    description: 'An indeterminate circular progress indicator for loading states.',
+    href: '/atoms/spinner',
+    icon: SpinnerIcon,
+  },
+  {
+    title: 'Stepper',
+    description: 'A visual progress indicator for multi-stage workflows and wizards.',
+    href: '/atoms/stepper',
+    icon: ListIcon,
+  },
+  {
+    title: 'Switch',
+    description: 'A toggle component that allows users to switch between two states: on and off.',
+    href: '/atoms/switch',
+    icon: SwitchIcon,
   },
   {
     title: 'Tabs',
@@ -185,22 +253,16 @@ export const ATOM_CARDS = [
     icon: SquareEdit,
   },
   {
-    title: 'Switch',
-    description: 'A toggle component that allows users to switch between two states: on and off.',
-    href: '/atoms/switch',
-    icon: SwitchIcon,
+    title: 'Textarea',
+    description: 'Multi-line text input for longer content with support for variants and resizing.',
+    href: '/atoms/textarea',
+    icon: DocumentText,
   },
   {
-    title: 'Skeleton',
-    description: 'Provide a placeholder for content that is still loading with smooth animations.',
-    href: '/atoms/skeleton',
-    icon: SkeletonIcon,
-  },
-  {
-    title: 'Spinner',
-    description: 'An indeterminate circular progress indicator for loading states.',
-    href: '/atoms/spinner',
-    icon: SpinnerIcon,
+    title: 'Toast',
+    description: 'A succinct message that is displayed temporarily and non-interruptively.',
+    href: '/atoms/toast',
+    icon: BellIcon,
   },
   {
     title: 'Tooltip',
@@ -213,53 +275,5 @@ export const ATOM_CARDS = [
     description: 'A fundamental component for consistent text styles, headings, and paragraphs.',
     href: '/atoms/typography',
     icon: TypographyIcon,
-  },
-  {
-    title: 'RichText',
-    description: 'Render complex HTML or formatted content with design system styles.',
-    href: '/atoms/rich-text',
-    icon: DocumentText,
-  },
-  {
-    title: 'Alert',
-    description: 'Displays a callout for user attention or information with various visual styles.',
-    href: '/atoms/alert',
-    icon: AlertIcon,
-  },
-  {
-    title: 'Toast',
-    description: 'A succinct message that is displayed temporarily and non-interruptively.',
-    href: '/atoms/toast',
-    icon: BellIcon,
-  },
-  {
-    title: 'Popover',
-    description: 'Displays rich content in a portal, triggered by a button or other interactive element.',
-    href: '/atoms/popover',
-    icon: LayersIcon,
-  },
-  {
-    title: 'Dialog',
-    description: 'A window overlaid on the primary window, rendering the content underneath inert.',
-    href: '/atoms/dialog',
-    icon: DialogIcon,
-  },
-  {
-    title: 'Textarea',
-    description: 'Multi-line text input for longer content with support for variants and resizing.',
-    href: '/atoms/textarea',
-    icon: DocumentText,
-  },
-  {
-    title: 'OTP Input',
-    description: 'A specialized input for one-time passwords and verification codes.',
-    href: '/atoms/otp-input',
-    icon: Key,
-  },
-  {
-    title: 'Color Picker',
-    description: 'A visual tool for selecting colors with support for various output formats.',
-    href: '/atoms/color-picker',
-    icon: Palette,
   },
 ];

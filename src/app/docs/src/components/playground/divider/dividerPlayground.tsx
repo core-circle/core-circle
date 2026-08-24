@@ -7,28 +7,13 @@ import { highlightCode } from '../../../utils/highlight';
 import { buttonPlaygroundStyles as s } from '../button/buttonPlayground.styles';
 import { DOC_TEXT } from '../../../constants/common-constants';
 
-const SelectField = ({ label, value, options, onChange }: any) => {
-  const formattedOptions = Object.entries(options).map(([val, lbl]) => ({
-    value: val,
-    label: lbl as string,
-  }));
-  return (
-    <Select
-      label={label}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      options={formattedOptions}
-      fullWidth
-    />
-  );
-};
-
 export const DividerPlayground = () => {
   const [state, setState] = useState({
     orientation: 'horizontal',
-    variant: 'solid',
-    thickness: 'sm',
-    label: '',
+    variant: 'gradient',
+    thickness: 'md',
+    align: 'center',
+    label: 'OR CONTINUE WITH',
   });
 
   const updateState = (key: string, value: any) => {
@@ -36,69 +21,118 @@ export const DividerPlayground = () => {
   };
 
   const generateCode = () => {
-    const { orientation, variant, thickness, label } = state;
-    const props = `orientation="${orientation}" variant="${variant}" thickness="${thickness}"`;
-    return label && orientation === 'horizontal' 
-      ? `<Divider ${props}>${label}</Divider>`
-      : `<Divider ${props} />`;
+    const { orientation, variant, thickness, align, label } = state;
+    let props = `variant="${variant}"\n  orientation="${orientation}"\n  thickness="${thickness}"`;
+    if (label && orientation === 'horizontal') {
+      props += `\n  align="${align}"`;
+      return `<Divider \n  ${props} \n>\n  ${label}\n</Divider>`;
+    }
+    return `<Divider \n  ${props} \n/>`;
   };
 
   return (
     <div className={s.container}>
       <div className={s.layout}>
         <div className={s.controlsWrapper}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
-            <SelectField
-              label="Orientation"
-              value={state.orientation}
-              onChange={(v: string) => updateState('orientation', v)}
-              options={{ horizontal: 'Horizontal', vertical: 'Vertical' }}
-            />
-            <SelectField
-              label="Variant"
-              value={state.variant}
-              onChange={(v: string) => updateState('variant', v)}
-              options={{ solid: 'Solid', dashed: 'Dashed', dotted: 'Dotted' }}
-            />
-            <SelectField
-              label="Thickness"
-              value={state.thickness}
-              onChange={(v: string) => updateState('thickness', v)}
-              options={{ sm: 'Small', md: 'Medium', lg: 'Large' }}
-            />
-            <TextInput
-              label="Label (Horizontal only)"
-              value={state.label}
-              onChange={(e) => updateState('label', e.target.value)}
-              disabled={state.orientation === 'vertical'}
-              fullWidth
-            />
+          <div className="flex flex-col gap-5">
+            {/* 1. Select Dropdowns Horizontally */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+              <Select
+                label="Variant"
+                value={state.variant}
+                onChange={(e) => updateState('variant', e.target.value)}
+                options={[
+                  { value: 'solid', label: 'Solid Line' },
+                  { value: 'dashed', label: 'Dashed Line' },
+                  { value: 'dotted', label: 'Dotted Line' },
+                  { value: 'gradient', label: 'Gradient (Blue/Purple)' },
+                  { value: 'fade', label: 'Fade (Center Glow)' },
+                  { value: 'accent', label: 'Accent (Primary Blue)' },
+                  { value: 'subtle', label: 'Subtle (Faint Muted)' },
+                  { value: 'thick', label: 'Thick Bar' },
+                  { value: 'double', label: 'Double Line' },
+                  { value: 'glow', label: 'Glow (Luminous)' },
+                ]}
+                fullWidth
+              />
+              <Select
+                label="Orientation"
+                value={state.orientation}
+                onChange={(e) => updateState('orientation', e.target.value)}
+                options={[
+                  { value: 'horizontal', label: 'Horizontal' },
+                  { value: 'vertical', label: 'Vertical' },
+                ]}
+                fullWidth
+              />
+              <Select
+                label="Thickness"
+                value={state.thickness}
+                onChange={(e) => updateState('thickness', e.target.value)}
+                options={[
+                  { value: 'sm', label: 'Small (1px)' },
+                  { value: 'md', label: 'Medium (2px)' },
+                  { value: 'lg', label: 'Large (4px)' },
+                ]}
+                fullWidth
+              />
+              <Select
+                label="Label Align"
+                value={state.align}
+                onChange={(e) => updateState('align', e.target.value)}
+                options={[
+                  { value: 'center', label: 'Center' },
+                  { value: 'start', label: 'Start (Left)' },
+                  { value: 'end', label: 'End (Right)' },
+                ]}
+                disabled={state.orientation === 'vertical'}
+                fullWidth
+              />
+            </div>
+
+            {/* 2. Text Inputs Horizontally */}
+            <div className="border-t border-core-circle-border-main/60 pt-4">
+              <TextInput
+                label="Label (Horizontal only)"
+                value={state.label}
+                onChange={(e) => updateState('label', e.target.value)}
+                disabled={state.orientation === 'vertical'}
+                fullWidth
+              />
+            </div>
           </div>
         </div>
 
         <div className={s.previewWrapper}>
           <div className={s.previewArea}>
             {state.orientation === 'vertical' ? (
-              <div className="flex h-20 items-center gap-4 text-sm text-core-circle-text-muted">
-                Section A
+              <div className="flex h-28 items-center gap-6 text-sm text-core-circle-text-muted">
+                <span className="font-semibold text-core-circle-text-main">Navigation Bar</span>
                 <Divider 
                   orientation="vertical" 
                   variant={state.variant as any} 
                   thickness={state.thickness as any} 
                 />
-                Section B
+                <span className="font-semibold text-core-circle-text-main">Workspace Profile</span>
               </div>
             ) : (
-              <div className="w-full max-w-md text-sm text-core-circle-text-muted">
-                <p className="mb-4">Top Content Area</p>
+              <div className="w-full max-w-lg text-sm text-core-circle-text-muted">
+                <div className="p-4 bg-core-circle-bg-page/70 rounded-core-circle-xl border border-core-circle-border-main mb-2">
+                  <p className="font-semibold text-core-circle-text-main">Account Authorization</p>
+                  <p className="text-xs text-core-circle-text-muted mt-1">Sign in with email address.</p>
+                </div>
                 <Divider 
                   orientation="horizontal" 
                   variant={state.variant as any} 
                   thickness={state.thickness as any}
+                  align={state.align as any}
                 >
                   {state.label}
                 </Divider>
-                <p className="mt-4">Bottom Content Area</p>
+                <div className="p-4 bg-core-circle-bg-page/70 rounded-core-circle-xl border border-core-circle-border-main mt-2">
+                  <p className="font-semibold text-core-circle-text-main">Third-Party SSO</p>
+                  <p className="text-xs text-core-circle-text-muted mt-1">Sign in with Google or GitHub.</p>
+                </div>
               </div>
             )}
           </div>
@@ -114,7 +148,7 @@ export const DividerPlayground = () => {
                 size="sm"
                 onClick={() => navigator.clipboard.writeText(generateCode())}
                 className="text-xs text-core-circle-text-muted hover:text-core-circle-primary transition-colors h-7"
-                startIcon={<CopyIcon className="w-3.5 h-3.5" />}
+                startIcon={<CopyIcon size={14} />}
               >
                 {DOC_TEXT.PLAYGROUND.COPY_SNIPPET}
               </Button>

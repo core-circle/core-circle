@@ -6,7 +6,18 @@ import { DividerProps } from '../../../interface/atoms/divider/divider.types';
 import { dividerVariants } from './divider.styles';
 
 const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
-  ({ className, orientation, variant, thickness, children, ...props }, ref) => {
+  (
+    {
+      className,
+      orientation = 'horizontal',
+      variant = 'solid',
+      thickness = 'sm',
+      align = 'center',
+      children,
+      ...props
+    },
+    ref
+  ) => {
     const hasChildren = !!children && orientation === 'horizontal';
 
     if (hasChildren) {
@@ -14,18 +25,19 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
         <div
           ref={ref}
           role="separator"
-          aria-orientation={orientation || undefined}
-          className={cn(
-            'flex items-center w-full my-4',
-            className
-          )}
+          aria-orientation={orientation}
+          className={cn('flex items-center w-full my-4 gap-4', className)}
           {...props}
         >
-          <div className={cn(dividerVariants({ orientation, variant, thickness }), 'flex-1 border-b-0 border-t')} />
-          <span className="mx-4 text-xs font-core-circle-medium text-core-circle-text-muted whitespace-nowrap uppercase tracking-wider">
+          {align !== 'start' && (
+            <div className={cn(dividerVariants({ orientation, variant, thickness }), align === 'end' ? 'flex-1' : 'flex-1')} />
+          )}
+          <span className="text-xs font-core-circle-bold text-core-circle-text-muted whitespace-nowrap tracking-wider uppercase">
             {children}
           </span>
-          <div className={cn(dividerVariants({ orientation, variant, thickness }), 'flex-1 border-b-0 border-t')} />
+          {align !== 'end' && (
+            <div className={cn(dividerVariants({ orientation, variant, thickness }), align === 'start' ? 'flex-1' : 'flex-1')} />
+          )}
         </div>
       );
     }
@@ -34,8 +46,8 @@ const Divider = React.forwardRef<HTMLDivElement, DividerProps>(
       <div
         ref={ref}
         role="separator"
-        aria-orientation={orientation || undefined}
-        className={cn(dividerVariants({ orientation, variant, thickness }), className)}
+        aria-orientation={orientation}
+        className={cn(dividerVariants({ orientation, variant, thickness, align }), className)}
         {...props}
       />
     );

@@ -7,31 +7,86 @@ import { Typography } from '../typography/typography';
 import { Button } from '../button/button';
 
 export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
-  ({ className, variant, title, children, icon, onClose, ...props }, ref) => {
+  (
+    {
+      className,
+      variant = 'info',
+      title,
+      description,
+      children,
+      icon,
+      action,
+      dismissible = false,
+      onDismiss,
+      onClose,
+      fullWidth = true,
+      ...props
+    },
+    ref
+  ) => {
+    const handleClose = onDismiss || onClose;
+    const shouldShowClose = dismissible || Boolean(handleClose);
+    const content = description || children;
+
     return (
       <div
         ref={ref}
         role="alert"
-        className={cn(alertVariants({ variant }), className)}
+        className={cn(
+          alertVariants({ variant }),
+          !fullWidth && 'w-fit',
+          className
+        )}
         {...props}
       >
-        {icon && <span className="mr-3 mt-0.5">{icon}</span>}
-        <div className="flex-1">
-          {title && (
+        {/* Title row with icon on the same line */}
+        {title ? (
+          <div className="flex items-center gap-2 mb-1.5 min-w-0">
+            {icon && (
+              <span className="shrink-0 text-core-circle-primary/90 inline-flex items-center">
+                {icon}
+              </span>
+            )}
             <Typography variant="h4" className={alertTitleStyles}>
               {title}
             </Typography>
+          </div>
+        ) : null}
+
+        {/* Content & Action Area */}
+        <div className={cn(
+          "flex-1 min-w-0",
+          !title && icon ? "flex items-start gap-2.5" : ""
+        )}>
+          {!title && icon && (
+            <span className="shrink-0 mt-0.5 text-core-circle-primary/90 inline-flex items-center">
+              {icon}
+            </span>
           )}
-          <div className={alertDescriptionStyles}>{children}</div>
+
+          <div className="flex-1 min-w-0">
+            {content && (
+              <div className={alertDescriptionStyles}>
+                {content}
+              </div>
+            )}
+            {action && (
+              <div className="mt-3 flex items-center gap-3">
+                {action}
+              </div>
+            )}
+          </div>
         </div>
-        {onClose && (
+
+        {/* Top-Right Dismiss Icon Button */}
+        {shouldShowClose && (
           <Button
             variant="ghost"
-            onClick={onClose}
+            onClick={handleClose}
             className={alertCloseButtonStyles}
             aria-label="Close alert"
           >
-            <XIcon size={16} />
+            <XIcon size={18} />
           </Button>
         )}
       </div>
