@@ -1,7 +1,6 @@
-
 export const BADGE_HEADER_CONTENT = {
   title: 'Badge',
-  description: 'A small visual indicator used for status, counts, or categorization.',
+  description: 'A versatile visual indicator used for status signaling, numeric counts, feature tags, and categorization.',
 };
 
 export const BADGE_BREADCRUMB_ITEMS = [
@@ -13,9 +12,9 @@ export const BADGE_BREADCRUMB_ITEMS = [
 export const BADGE_PROPS_DATA = [
   {
     name: 'variant',
-    type: '"primary" | "secondary" | "success" | "warning" | "danger" | "ghost" | "outline"',
+    type: '"primary" | "secondary" | "success" | "warning" | "destructive" | "info" | "ghost" | "outline" | "glassmorphic" | "gradient" | "floating" | "dot"',
     defaultValue: '"primary"',
-    description: 'The visual theme of the badge.',
+    description: 'The visual styling variant of the badge (12 variants).',
   },
   {
     name: 'size',
@@ -27,19 +26,43 @@ export const BADGE_PROPS_DATA = [
     name: 'shape',
     type: '"rounded" | "pill" | "square"',
     defaultValue: '"rounded"',
-    description: 'The border-radius style.',
+    description: 'The border radius geometry of the badge.',
+  },
+  {
+    name: 'dot',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Whether to display an animated active status dot.',
+  },
+  {
+    name: 'startIcon',
+    type: 'ReactNode',
+    defaultValue: '-',
+    description: 'Optional leading icon.',
+  },
+  {
+    name: 'endIcon',
+    type: 'ReactNode',
+    defaultValue: '-',
+    description: 'Optional trailing icon.',
   },
   {
     name: 'removable',
     type: 'boolean',
     defaultValue: 'false',
-    description: 'Whether to show a remove button.',
+    description: 'Whether to show a dismissible remove button.',
+  },
+  {
+    name: 'onRemove',
+    type: '() => void',
+    defaultValue: '-',
+    description: 'Callback executed when the remove button is clicked.',
   },
   {
     name: 'pulse',
     type: 'boolean',
     defaultValue: 'false',
-    description: 'Whether to add a pulse animation.',
+    description: 'Whether to apply a gentle pulse animation.',
   },
 ];
 
@@ -47,7 +70,7 @@ export const BADGE_SECTIONS = [
   {
     id: 'overview',
     title: 'Overview',
-    description: 'Badges are used to highlight specific information such as counts, status, or labels.',
+    description: 'Badges highlight statuses, tags, counts, and metadata.',
   },
   {
     id: 'variants',

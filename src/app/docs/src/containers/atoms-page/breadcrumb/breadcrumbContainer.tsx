@@ -2,102 +2,111 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Breadcrumb, Tabs, Typography } from '@core-circle/ui';
-import { HomeIcon, ArrowRight, ShoppingBag, Info, Layers, Play, CodeIcon } from '@core-circle/icons';
+import { Breadcrumb, Tabs, Typography, Badge, Button } from '@core-circle/ui';
+import {
+  Info,
+  Layers,
+  Play,
+  CodeIcon,
+  HomeIcon,
+  ChevronRight,
+  Sparkles,
+  ArrowRight,
+  Star,
+  Shield,
+  Palette,
+} from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { BreadcrumbPlayground } from '../../../components/playground/breadcrumb/breadcrumbPlayground';
-import { breadcrumbPageStyles as s } from './breadcrumb.styles';
-import {
-  BREADCRUMB_PROPS_DATA
-} from '../../../constants/atoms-page/breadcrumb/breadcrumbConstants';
-import { BreadcrumbContainerProps } from '../../../interface/containers/atoms/breadcrumb.types';
 import CodeSnippet from '../../../components/code-snippet';
 import PropsTable from '../../../components/props-table';
+import { BreadcrumbPlayground } from '../../../components/playground/breadcrumb/breadcrumbPlayground';
+import { BREADCRUMB_PROPS_DATA } from '../../../constants/atoms-page/breadcrumb/breadcrumbConstants';
+import { atomsPageStyles as s } from '../atoms.styles';
+import { BreadcrumbContainerProps } from '../../../interface/containers/atoms/breadcrumb.types';
 
-export default function BreadcrumbContainer({ sections, headerContent, breadcrumbItems }: BreadcrumbContainerProps) {
-  const defaultItems = [
+export default function BreadcrumbContainer({
+  headerContent,
+  breadcrumbItems: pageBreadcrumbs,
+}: BreadcrumbContainerProps) {
+  const sampleItems = [
     { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },
-    { label: 'Products', href: '#' },
-    { label: 'Categories', href: '#' },
-    { label: 'Electronics' }
+    { label: 'Components', href: '/atoms' },
+    { label: 'Navigation', href: '/atoms/navigation' },
+    { label: 'Breadcrumb' },
   ];
-
-  const getSectionContent = (sectionId: string) => {
-    const section = sections.find(s => s.id === sectionId);
-    if (!section) return null;
-
-    switch (sectionId) {
-      case 'playground':
-        return <BreadcrumbPlayground />;
-      case 'variants':
-        return (
-          <div className="flex flex-col gap-12">
-            <DocSection id="breadcrumb-variants" title="Visual Variants" description="Three distinct styles to match your application's aesthetic.">
-              <div className="flex flex-col gap-8">
-                {section?.previews?.map((preview: any) => (
-                  <ComponentPreview key={preview.id} title={preview.title} code={preview.code}>
-                    {preview.id === 'standard' && <Breadcrumb items={defaultItems} renderLink={(props) => <Link {...props} />} />}
-                    {preview.id === 'ghost' && <Breadcrumb variant="ghost" items={defaultItems} renderLink={(props) => <Link {...props} />} />}
-                    {preview.id === 'pills' && <Breadcrumb variant="pills" items={defaultItems} renderLink={(props) => <Link {...props} />} />}
-                  </ComponentPreview>
-                ))}
-              </div>
-            </DocSection>
-
-            <DocSection id="breadcrumb-back" title="Go Back Support" description="Built-in support for browser history navigation.">
-              <ComponentPreview title="With Back Link" code={sections.find(s => s.id === 'back-link')?.previews?.[0].code}>
-                <Breadcrumb showBack backLabel="Go Back" items={defaultItems} renderLink={(props) => <Link {...props} />} />
-              </ComponentPreview>
-            </DocSection>
-
-            <DocSection id="breadcrumb-separators" title="Custom Separators" description="Easily change the icon or element between items.">
-              <ComponentPreview title="Custom Separator" code={sections.find(s => s.id === 'customization')?.previews?.[0].code}>
-                <Breadcrumb
-                  separator={<ArrowRight size={14} className="opacity-30 mx-1" />}
-                  items={defaultItems}
-                  renderLink={(props) => <Link {...props} />}
-                />
-              </ComponentPreview>
-            </DocSection>
-
-            <DocSection id="breadcrumb-custom-items" title="Item Prefix & Suffix" description="Add labels, emojis, or status indicators to individual breadcrumb items.">
-              <ComponentPreview title="Custom Labels" code={sections.find(s => s.id === 'item-prefix-suffix')?.previews?.[0].code}>
-                <Breadcrumb
-                  items={[
-                    { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },
-                    { label: 'Orders', href: '#', prefix: <ShoppingBag size={14} /> },
-                    { label: 'Checkout', suffix: <span className="text-[10px] bg-emerald-500/10 text-emerald-500 px-1.5 py-0.5 rounded ml-1">Active</span> }
-                  ]}
-                  renderLink={(props) => <Link {...props} />}
-                />
-              </ComponentPreview>
-            </DocSection>
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
 
   const tabItems = [
     {
-      id: 'overview',
-      label: 'Overview',
-      icon: <Info size={16} />,
+      id: 'theming',
+      label: 'Theming',
+      icon: <Palette size={16} />,
       content: (
         <div className="flex flex-col gap-12 max-w-5xl">
-          <DocSection id="breadcrumb-intro" title="Introduction" description="Breadcrumb is a navigation aid that helps users understand their current location in the application hierarchy. It supports various visual styles, custom separators, and integrated back-navigation.">
-            <div className="flex flex-col gap-8 mt-6">
-              <CodeSnippet
-                label="Quick Usage"
-                code={`import { Breadcrumb } from '@core-circle/ui';\n\n<Breadcrumb \n  items={[\n    { label: 'Home', href: '/' },\n    { label: 'Dashboard' }\n  ]} \n/>`}
-              />
-              <div className="flex flex-col gap-4">
-                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
-                <PropsTable data={BREADCRUMB_PROPS_DATA} />
+          <DocSection
+            id="theming-store-breadcrumb"
+            title="E-Commerce Product Trail Theme"
+            description="Pill-style interactive breadcrumb with active stock status and department filters."
+          >
+            <ComponentPreview
+              title="Branded Product Category Path"
+              code={`<Breadcrumb
+  variant="pills"
+  size="md"
+  items={[
+    { label: 'Store', href: '/store', icon: <HomeIcon size={14} /> },
+    { label: 'Laptops', href: '/store/laptops' },
+    { label: 'MacBook Pro M3 Max 16"' }
+  ]}
+/>`}
+            >
+              <div className="w-full">
+                <Breadcrumb
+                  variant="pills"
+                  size="md"
+                  items={[
+                    { label: 'Store', href: '#', icon: <HomeIcon size={14} /> },
+                    { label: 'Laptops & Workstations', href: '#' },
+                    { label: 'MacBook Pro M3 Max 16"' }
+                  ]}
+                />
               </div>
-            </div>
+            </ComponentPreview>
+          </DocSection>
+
+          <DocSection
+            id="theming-enterprise-audit"
+            title="Enterprise Financial Audit Hierarchy Theme"
+            description="Glassmorphic breadcrumb with subtle backdrop border and slash delimiters for multi-account governance."
+          >
+            <ComponentPreview
+              title="Multi-Account Audit Trail"
+              code={`<Breadcrumb
+  variant="glassmorphic"
+  size="md"
+  separator="/"
+  items={[
+    { label: 'Accounts', href: '#', icon: <Shield size={14} className="text-core-circle-primary" /> },
+    { label: 'Treasury & Liquidity', href: '#' },
+    { label: 'Transactions' },
+    { label: 'Wire #8942-NY' }
+  ]}
+/>`}
+            >
+              <div className="w-full">
+                <Breadcrumb
+                  variant="glassmorphic"
+                  size="md"
+                  separator="/"
+                  items={[
+                    { label: 'Accounts', href: '#', icon: <Shield size={14} className="text-core-circle-primary" /> },
+                    { label: 'Treasury & Liquidity', href: '#' },
+                    { label: 'Transactions', href: '#' },
+                    { label: 'Wire #8942-NY' }
+                  ]}
+                />
+              </div>
+            </ComponentPreview>
           </DocSection>
         </div>
       )
@@ -106,37 +115,145 @@ export default function BreadcrumbContainer({ sections, headerContent, breadcrum
       id: 'variants',
       label: 'Variants',
       icon: <Layers size={16} />,
-      content: getSectionContent('variants')
+      content: (
+        <div className="flex flex-col gap-12 max-w-5xl">
+          <DocSection id="breadcrumb-variants-standard" title="1. Standard & Pills" description="Clean row-based text links or elevated interactive pill tabs.">
+            <div className="flex flex-col gap-6 w-full">
+              <ComponentPreview title="Standard Style" code={`<Breadcrumb items={items} variant="standard" />`}>
+                <div className="w-full">
+                  <Breadcrumb items={sampleItems} variant="standard" />
+                </div>
+              </ComponentPreview>
+
+              <ComponentPreview title="Pills Style" code={`<Breadcrumb items={items} variant="pills" />`}>
+                <div className="w-full">
+                  <Breadcrumb items={sampleItems} variant="pills" />
+                </div>
+              </ComponentPreview>
+            </div>
+          </DocSection>
+
+          <DocSection id="breadcrumb-variants-elevated" title="2. Card & Floating" description="Encapsulated elevated background surfaces for distinct header sections.">
+            <div className="flex flex-col gap-6 w-full">
+              <ComponentPreview title="Card Style" code={`<Breadcrumb items={items} variant="card" />`}>
+                <div className="w-full">
+                  <Breadcrumb items={sampleItems} variant="card" />
+                </div>
+              </ComponentPreview>
+
+              <ComponentPreview title="Floating Style" code={`<Breadcrumb items={items} variant="floating" />`}>
+                <div className="w-full">
+                  <Breadcrumb items={sampleItems} variant="floating" />
+                </div>
+              </ComponentPreview>
+            </div>
+          </DocSection>
+
+          <DocSection id="breadcrumb-variants-glassmorphic" title="3. Glassmorphic & Gradient" description="Translucent frosted backdrop or radiant multi-tone accent backgrounds.">
+            <div className="flex flex-col gap-6 w-full">
+              <ComponentPreview title="Glassmorphic Style" code={`<Breadcrumb items={items} variant="glassmorphic" />`}>
+                <div className="w-full p-4 bg-gradient-to-br from-blue-50/60 to-purple-50/60 rounded-3xl">
+                  <Breadcrumb items={sampleItems} variant="glassmorphic" />
+                </div>
+              </ComponentPreview>
+
+              <ComponentPreview title="Gradient Accent Style" code={`<Breadcrumb items={items} variant="gradient" />`}>
+                <div className="w-full">
+                  <Breadcrumb items={sampleItems} variant="gradient" />
+                </div>
+              </ComponentPreview>
+            </div>
+          </DocSection>
+        </div>
+      )
     },
     {
       id: 'playground',
       label: 'Playground',
       icon: <Play size={16} />,
-      content: getSectionContent('playground')
+      content: (
+        <DocSection
+          id="breadcrumb-playground-section"
+          title="Interactive Breadcrumb Playground"
+          description="Explore all 10 visual variants, 3 size scales, custom separator delimiters, and history back actions."
+        >
+          <BreadcrumbPlayground />
+        </DocSection>
+      )
     },
     {
       id: 'mock-code',
       label: 'Mock Code',
       icon: <CodeIcon size={16} />,
       content: (
-        <div className="max-w-5xl">
-          <DocSection id="breadcrumb-mock" title="Dynamic Integration" description="Example of building a dynamic breadcrumb navigation from hierarchical data.">
-            <div className="flex flex-col gap-10 mt-8">
+        <div className="flex flex-col gap-12 max-w-5xl">
+          <DocSection
+            id="breadcrumb-mock"
+            title="Dynamic Next.js Route Tree Integration"
+            description="Automatically generate breadcrumbs from dynamic Next.js App Router paths."
+          >
+            <div className="flex flex-col gap-8 mt-6">
               <CodeSnippet
-                label="Sample API Response"
-                code={JSON.stringify({
-                  navigation: [
-                    { title: "Home", url: "/", icon: "HomeIcon" },
-                    { title: "Category", url: "/category" },
-                    { title: "Product", url: "/product" }
-                  ]
-                }, null, 2)}
-              />
+                label="Dynamic Route Consumer Component"
+                code={`'use client';
 
-              <CodeSnippet
-                label="Dynamic Integration"
-                code={`const DynamicNav = ({ path }) => {\n  return (\n    <Breadcrumb\n      variant="standard"\n      items={path.map(node => ({\n        label: node.title,\n        href: node.url\n      }))}\n      renderLink={(props) => <Link {...props} />}\n    />\n  );\n};`}
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
+import { Breadcrumb } from '@core-circle/ui';
+import { HomeIcon } from '@core-circle/icons';
+
+export const AutoRouteBreadcrumb = () => {
+  const pathname = usePathname();
+  const segments = pathname.split('/').filter(Boolean);
+
+  const items = [
+    { label: 'Home', href: '/', icon: <HomeIcon size={14} /> },
+    ...segments.map((seg, idx) => {
+      const href = '/' + segments.slice(0, idx + 1).join('/');
+      const isLast = idx === segments.length - 1;
+      const label = seg.charAt(0).toUpperCase() + seg.slice(1).replace(/-/g, ' ');
+      return isLast ? { label } : { label, href };
+    })
+  ];
+
+  return (
+    <Breadcrumb
+      items={items}
+      variant="pills"
+      renderLink={(props) => <Link {...props} />}
+    />
+  );
+};`}
               />
+            </div>
+          </DocSection>
+        </div>
+      )
+    },
+    {
+      id: 'overview',
+      label: 'Overview',
+      icon: <Info size={16} />,
+      content: (
+        <div className="flex flex-col gap-12 max-w-5xl">
+          <DocSection id="breadcrumb-intro" title="Introduction" description="The Breadcrumb component reveals the user's current location within a website or application hierarchy.">
+            <div className="flex flex-col gap-8 mt-6">
+              <CodeSnippet
+                label="Quick Usage"
+                code={`import { Breadcrumb } from '@core-circle/ui';
+
+const items = [
+  { label: 'Home', href: '/' },
+  { label: 'Dashboard', href: '/dashboard' },
+  { label: 'Analytics' }
+];
+
+<Breadcrumb items={items} variant="pills" />`}
+              />
+              <div className="flex flex-col gap-4">
+                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
+                <PropsTable data={BREADCRUMB_PROPS_DATA} />
+              </div>
             </div>
           </DocSection>
         </div>
@@ -147,13 +264,15 @@ export default function BreadcrumbContainer({ sections, headerContent, breadcrum
   return (
     <div className={s.container}>
       <header className={s.header}>
-        <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
+        {pageBreadcrumbs && (
+          <Breadcrumb items={pageBreadcrumbs} renderLink={(props) => <Link {...props} />} className="mb-4" />
+        )}
         <Typography variant="h1" className={s.title}>{headerContent.title}</Typography>
         <Typography variant="p" className={s.description}>{headerContent.description}</Typography>
       </header>
 
       <div className="mt-8">
-        <Tabs items={tabItems} variant="underline" />
+        <Tabs items={tabItems} variant="underline" size="lg" className="w-full" />
       </div>
     </div>
   );

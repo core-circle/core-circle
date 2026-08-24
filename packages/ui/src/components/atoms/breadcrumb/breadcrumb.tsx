@@ -9,6 +9,7 @@ import { ChevronRight, ArrowLeft } from '@core-circle/icons';
 export const Breadcrumb = ({
   items,
   variant = 'standard',
+  size = 'md',
   separator = <ChevronRight size={12} className="text-core-circle-text-muted/50" />,
   showBack = false,
   backLabel = 'Back',
@@ -31,14 +32,14 @@ export const Breadcrumb = ({
   return (
     <nav 
       aria-label="Breadcrumb"
-      className={cn(breadcrumbVariants({ variant }), className)}
+      className={cn(breadcrumbVariants({ variant, size }), className)}
     >
       {showBack && (
         <Link 
           href="#" 
           className={backLinkStyles}
         >
-          <div onClick={handleBack} className="flex items-center gap-1.5">
+          <div onClick={handleBack} className="flex items-center gap-1.5 cursor-pointer">
             <ArrowLeft size={14} />
             {backLabel}
           </div>
@@ -51,7 +52,7 @@ export const Breadcrumb = ({
           const itemClassName = cn(breadcrumbItemVariants({ variant, isCurrent: isLast }));
           
           return (
-            <React.Fragment key={`${item.label}-${index}`}>
+            <React.Fragment key={index}>
               <li className="flex items-center">
                 <Link
                   href={item.href || '#'}
@@ -67,7 +68,7 @@ export const Breadcrumb = ({
               </li>
               
               {!isLast && (
-                <li aria-hidden="true" className="flex items-center">
+                <li aria-hidden="true" className="flex items-center px-1">
                   {separator}
                 </li>
               )}

@@ -6,12 +6,18 @@ export const badgeVariants = cva(
     variants: {
       variant: {
         primary: 'bg-core-circle-primary text-white border-transparent shadow-core-circle-subtle',
-        secondary: 'bg-core-circle-secondary text-white border-transparent',
-        success: 'bg-core-circle-success/10 text-core-circle-success border-core-circle-success/20',
-        warning: 'bg-core-circle-warning/10 text-core-circle-warning border-core-circle-warning/20',
-        danger: 'bg-core-circle-danger/10 text-core-circle-danger border-core-circle-danger/20',
-        ghost: 'bg-core-circle-bg-muted text-core-circle-text-muted border-transparent',
+        secondary: 'bg-core-circle-secondary text-white border-transparent shadow-core-circle-subtle',
+        success: 'bg-core-circle-green-50 text-core-circle-green-700 border-core-circle-green-200',
+        warning: 'bg-core-circle-orange-50 text-core-circle-orange-700 border-core-circle-orange-200',
+        destructive: 'bg-core-circle-red-50 text-core-circle-red-700 border-core-circle-red-200',
+        danger: 'bg-core-circle-red-50 text-core-circle-red-700 border-core-circle-red-200',
+        info: 'bg-core-circle-blue-50 text-core-circle-blue-700 border-core-circle-blue-200',
+        ghost: 'bg-core-circle-bg-page text-core-circle-text-muted border-transparent',
         outline: 'bg-transparent text-core-circle-text-main border-core-circle-border-strong',
+        glassmorphic: 'backdrop-blur-md bg-white/70 text-core-circle-text-main border-white/80 shadow-core-circle-subtle',
+        gradient: 'bg-gradient-to-r from-core-circle-blue-600 via-core-circle-indigo-600 to-core-circle-purple-600 text-white border-transparent shadow-core-circle-subtle',
+        floating: 'bg-white text-core-circle-text-main border-core-circle-border-main shadow-core-circle-elevated hover:-translate-y-0.5',
+        dot: 'bg-white text-core-circle-text-main border-core-circle-border-main shadow-core-circle-subtle',
       },
       size: {
         sm: 'px-1.5 py-0.5 text-[10px] h-5',

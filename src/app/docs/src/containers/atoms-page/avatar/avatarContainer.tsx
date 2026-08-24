@@ -6,7 +6,7 @@ import { Breadcrumb, Tabs, Avatar, Typography } from '@core-circle/ui';
 import { Info, Image, SettingsIcon, CodeIcon } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { accordionPageStyles as s } from '../accordion/accordion.styles';
+import { atomsPageStyles as s } from '../atoms.styles';
 import {
   AVATAR_PROPS_DATA,
 } from '../../../constants/atoms-page/avatar/avatarConstants';

@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { ToastProps } from '../interface/molecules/toast/toast.types';
+import { ToastProps } from '../interface/atoms/toast/toast.types';
 
 const TOAST_LIMIT = 5;
 

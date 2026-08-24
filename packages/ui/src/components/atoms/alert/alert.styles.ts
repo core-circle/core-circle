@@ -1,15 +1,22 @@
 import { cva } from 'class-variance-authority';
 
 export const alertVariants = cva(
-  'relative w-full rounded-core-circle-lg border p-4 [&>svg~*]:pl-7 [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-4 [&>svg]:text-core-circle-text-main transition-all duration-200',
+  'relative flex w-full flex-col p-4 pr-11 transition-all duration-300',
   {
     variants: {
       variant: {
-        info: 'bg-blue-50 text-blue-900 border-blue-200 dark:bg-blue-950/30 dark:text-blue-200 dark:border-blue-800 shadow-sm',
-        success: 'bg-emerald-50 text-emerald-900 border-emerald-200 dark:bg-emerald-950/30 dark:text-emerald-200 dark:border-emerald-800 shadow-sm',
-        warning: 'bg-amber-50 text-amber-900 border-amber-200 dark:bg-amber-950/30 dark:text-amber-200 dark:border-amber-800 shadow-sm',
-        destructive: 'bg-red-50 text-red-900 border-red-200 dark:bg-red-950/30 dark:text-red-200 dark:border-red-800 shadow-sm',
-        outline: 'bg-white text-core-circle-text-main border-core-circle-border-main dark:bg-slate-950 dark:text-slate-200 dark:border-slate-800',
+        info: 'bg-core-circle-blue-50/80 text-core-circle-text-main border border-core-circle-blue-200 rounded-core-circle-2xl shadow-core-circle-subtle',
+        success: 'bg-core-circle-green-50/80 text-core-circle-text-main border border-core-circle-green-200 rounded-core-circle-2xl shadow-core-circle-subtle',
+        warning: 'bg-core-circle-orange-50/80 text-core-circle-text-main border border-core-circle-orange-200 rounded-core-circle-2xl shadow-core-circle-subtle',
+        destructive: 'bg-core-circle-red-50/80 text-core-circle-text-main border border-core-circle-red-200 rounded-core-circle-2xl shadow-core-circle-subtle',
+        card: 'bg-white text-core-circle-text-main border border-core-circle-border-main rounded-core-circle-2xl shadow-core-circle-elevated hover:shadow-core-circle-floating',
+        floating: 'bg-white text-core-circle-text-main border border-core-circle-border-main/50 rounded-core-circle-2xl shadow-core-circle-floating hover:-translate-y-0.5',
+        glassmorphic: 'backdrop-blur-md bg-white/75 text-core-circle-text-main border border-core-circle-border-main/80 rounded-core-circle-2xl shadow-core-circle-subtle',
+        gradient: 'bg-gradient-to-r from-core-circle-blue-50/90 via-core-circle-indigo-50/80 to-core-circle-purple-50/90 text-core-circle-text-main border border-core-circle-blue-200/60 rounded-core-circle-2xl shadow-core-circle-subtle',
+        pill: 'bg-white text-core-circle-text-main border border-core-circle-border-main rounded-full px-6 py-3.5 shadow-core-circle-subtle',
+        minimal: 'bg-transparent text-core-circle-text-main border-l-4 border-core-circle-primary rounded-none pl-4 py-2 border-y-0 border-r-0',
+        outline: 'bg-white text-core-circle-text-main border-2 border-core-circle-border-strong rounded-core-circle-2xl shadow-core-circle-subtle',
+        soft: 'bg-core-circle-bg-page text-core-circle-text-main border border-transparent rounded-core-circle-2xl',
       },
     },
     defaultVariants: {
@@ -18,6 +25,6 @@ export const alertVariants = cva(
   }
 );
 
-export const alertTitleStyles = 'mb-1 font-core-circle-bold leading-none tracking-tight';
-export const alertDescriptionStyles = 'text-sm [&_p]:leading-relaxed opacity-90';
-export const alertCloseButtonStyles = 'absolute right-2 top-2 rounded-md p-1 opacity-50 transition-opacity hover:opacity-100 focus:outline-none';
+export const alertTitleStyles = 'font-core-circle-bold leading-tight tracking-tight text-core-circle-text-main';
+export const alertDescriptionStyles = 'text-sm leading-relaxed text-core-circle-text-muted/90';
+export const alertCloseButtonStyles = 'absolute top-3.5 right-3.5 inline-flex items-center justify-center rounded-full p-1.5 text-core-circle-text-muted hover:bg-black/5 hover:text-core-circle-text-main transition-colors focus:outline-none cursor-pointer h-8 w-8 min-w-0 border-0 shadow-none';

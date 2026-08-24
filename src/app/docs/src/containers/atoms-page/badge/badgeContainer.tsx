@@ -2,19 +2,16 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Breadcrumb, Tabs, Badge, Typography } from '@core-circle/ui';
-import { Info, Image, SettingsIcon, CodeIcon, Sparkles, CheckIcon, Alert } from '@core-circle/icons';
+import { Breadcrumb, Tabs, Badge, Typography, Button } from '@core-circle/ui';
+import { Info, Layers, Play, CodeIcon, Sparkles, CheckIcon, Alert as AlertIcon, Star, Shield, Palette, ArrowRight } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { accordionPageStyles as s } from '../accordion/accordion.styles';
-import {
-  BADGE_PROPS_DATA,
-} from '../../../constants/atoms-page/badge/badgeConstants';
+import { atomsPageStyles as s } from '../atoms.styles';
+import { BADGE_PROPS_DATA } from '../../../constants/atoms-page/badge/badgeConstants';
 import { BadgePlayground } from '../../../components/playground/badge/BadgePlayground';
 import PropsTable from '../../../components/props-table';
 import CodeSnippet from '../../../components/code-snippet';
 import { BadgeContainerProps } from '../../../interface/containers/atoms/badge.types';
-import { DOC_TEXT } from '../../../constants/common-constants';
 
 export default function BadgeContainer({
   headerContent,
@@ -22,69 +19,119 @@ export default function BadgeContainer({
 }: BadgeContainerProps) {
   const tabItems = [
     {
-      id: 'overview',
-      label: DOC_TEXT.COMMON.OVERVIEW,
-      icon: <Info size={16} />,
+      id: 'theming',
+      label: 'Theming',
+      icon: <Palette size={16} />,
       content: (
         <div className="flex flex-col gap-12 max-w-5xl">
-          <DocSection id="badge-usage" title={DOC_TEXT.COMMON.USAGE} description="The Badge component is used to highlight specific information such as counts, status, or labels.">
-            <div className="flex flex-col gap-8 mt-6">
-              <CodeSnippet
-                label="Basic Usage"
-                code={`import { Badge } from '@core-circle/ui';\n\n<Badge variant="primary">New Feature</Badge>`}
-              />
-            </div>
+          <DocSection
+            id="theming-live-server-badges"
+            title="Live Infrastructure & Security Badges"
+            description="Status tags with pulsing indicators, verified security icons, and clean pill capsules."
+          >
+            <ComponentPreview
+              title="Cloud Cluster Node Statuses"
+              code={`<div className="flex flex-wrap gap-4 items-center">
+  <Badge variant="success" shape="pill" pulse startIcon={<span className="h-2 w-2 rounded-full bg-emerald-500" />}>
+    Live Cluster (99.99%)
+  </Badge>
+  <Badge variant="primary" shape="pill" startIcon={<Shield size={12} />}>
+    TLS 1.3 Active
+  </Badge>
+  <Badge variant="warning" shape="pill" startIcon={<Sparkles size={12} />}>
+    Auto-Scaling (24 Nodes)
+  </Badge>
+</div>`}
+            >
+              <div className="flex flex-wrap gap-4 items-center">
+                <Badge variant="success" shape="pill" pulse startIcon={<span className="h-2 w-2 rounded-full bg-emerald-500" />}>
+                  Live Cluster (99.99%)
+                </Badge>
+                <Badge variant="primary" shape="pill" startIcon={<Shield size={12} />}>
+                  TLS 1.3 Active
+                </Badge>
+                <Badge variant="warning" shape="pill" startIcon={<Sparkles size={12} />}>
+                  Auto-Scaling (24 Nodes)
+                </Badge>
+              </div>
+            </ComponentPreview>
           </DocSection>
 
-          <DocSection id="badge-props" title={DOC_TEXT.COMMON.PROPERTIES} description="Explore the available props for the Badge component.">
-            <PropsTable data={BADGE_PROPS_DATA} />
+          <DocSection
+            id="theming-vip-badges"
+            title="VIP Loyalty & Tier Badges"
+            description="Luminous gradient badges with custom star icons and capsule pill shapes."
+          >
+            <ComponentPreview
+              title="Membership Tier Chips"
+              code={`<div className="flex flex-wrap gap-4 items-center">
+  <Badge variant="gradient" shape="pill" size="lg" startIcon={<Star size={14} />}>
+    Diamond VIP Member
+  </Badge>
+  <Badge variant="floating" shape="pill" size="md" startIcon={<Sparkles size={12} />}>
+    Early Access Pass
+  </Badge>
+  <Badge variant="glassmorphic" shape="pill" size="sm">
+    Top 1% Creator
+  </Badge>
+</div>`}
+            >
+              <div className="flex flex-wrap gap-4 items-center">
+                <Badge variant="gradient" shape="pill" size="lg" startIcon={<Star size={14} />}>
+                  Diamond VIP Member
+                </Badge>
+                <Badge variant="floating" shape="pill" size="md" startIcon={<Sparkles size={12} className="text-amber-500" />}>
+                  Early Access Pass
+                </Badge>
+                <Badge variant="glassmorphic" shape="pill" size="sm">
+                  Top 1% Creator
+                </Badge>
+              </div>
+            </ComponentPreview>
           </DocSection>
         </div>
       )
     },
     {
       id: 'variants',
-      label: DOC_TEXT.COMMON.VARIANTS,
-      icon: <Image size={16} />,
+      label: 'Variants',
+      icon: <Layers size={16} />,
       content: (
         <div className="flex flex-col gap-12 max-w-5xl">
-          <DocSection id="badge-variants-styles" title="Visual Styles" description="Semantic colors and outlines to convey different meanings and importance.">
+          <DocSection
+            id="badge-variants-semantic"
+            title="1. Semantic Status Variants"
+            description="Essential status tags communicating state, category, and priority."
+          >
             <ComponentPreview
-              title="Style Variants"
-              code={`<Badge variant="success">Success</Badge>\n<Badge variant="ghost">Ghost</Badge>\n<Badge variant="outline">Outline</Badge>`}
+              title="Primary, Secondary, Success, Warning & Destructive"
+              code={`<Badge variant="primary">Primary</Badge>\n<Badge variant="secondary">Secondary</Badge>\n<Badge variant="success">Success</Badge>\n<Badge variant="warning">Warning</Badge>\n<Badge variant="destructive">Destructive</Badge>`}
             >
-              <div className="flex items-center gap-4 flex-wrap">
-                <Badge variant="success">Active</Badge>
-                <Badge variant="warning">Pending</Badge>
-                <Badge variant="danger">Error</Badge>
-                <Badge variant="ghost">Archived</Badge>
-                <Badge variant="outline">Draft</Badge>
+              <div className="flex flex-wrap gap-3 items-center">
+                <Badge variant="primary">Primary</Badge>
+                <Badge variant="secondary">Secondary</Badge>
+                <Badge variant="success">Success</Badge>
+                <Badge variant="warning">Warning</Badge>
+                <Badge variant="destructive">Destructive</Badge>
               </div>
             </ComponentPreview>
           </DocSection>
 
-          <DocSection id="badge-variants-icons" title="With Icons" description="Incorporate icons to improve scanability and provide visual context.">
+          <DocSection
+            id="badge-variants-advanced"
+            title="2. Advanced Surface Variants"
+            description="Modern surface treatments including glassmorphism, gradient glow, floating depth, soft tint, and segmented outline."
+          >
             <ComponentPreview
-              title="Icon Integration"
-              code={`<Badge startIcon={<Sparkles size={12} />}>Premium</Badge>\n<Badge startIcon={<CheckIcon size={12} />}>Verified</Badge>`}
+              title="Glassmorphic, Gradient, Floating, Soft & Pill"
+              code={`<Badge variant="glassmorphic">Glassmorphic</Badge>\n<Badge variant="gradient">Gradient</Badge>\n<Badge variant="floating">Floating</Badge>\n<Badge variant="soft">Soft Tint</Badge>`}
             >
-              <div className="flex items-center gap-4 flex-wrap">
-                <Badge variant="primary" startIcon={<Sparkles size={12} />}>Premium</Badge>
-                <Badge variant="success" startIcon={<CheckIcon size={12} />}>Verified</Badge>
-                <Badge variant="danger" startIcon={<Alert size={12} />}>High Priority</Badge>
-              </div>
-            </ComponentPreview>
-          </DocSection>
-
-          <DocSection id="badge-variants-removable" title="Removable" description="Allow users to dismiss tags or remove filters.">
-            <ComponentPreview
-              title="Interactive Tags"
-              code={`<Badge removable onRemove={() => {}}>Removable Tag</Badge>`}
-            >
-              <div className="flex items-center gap-4 flex-wrap">
-                <Badge variant="primary" removable shape="pill" onRemove={() => { /* no-op */ }}>Design</Badge>
-                <Badge variant="secondary" removable shape="pill" onRemove={() => { /* no-op */ }}>React</Badge>
-                <Badge variant="ghost" removable shape="pill" onRemove={() => { /* no-op */ }}>Typescript</Badge>
+              <div className="flex flex-wrap gap-3 items-center p-4 bg-gradient-to-br from-blue-50/60 to-purple-50/60 rounded-3xl">
+                <Badge variant="glassmorphic">Glassmorphic</Badge>
+                <Badge variant="gradient">Gradient</Badge>
+                <Badge variant="floating">Floating</Badge>
+                <Badge variant="soft">Soft Tint</Badge>
+                <Badge variant="bordered-segment">Segmented</Badge>
               </div>
             </ComponentPreview>
           </DocSection>
@@ -94,35 +141,87 @@ export default function BadgeContainer({
     {
       id: 'playground',
       label: 'Playground',
-      icon: <SettingsIcon size={16} />,
+      icon: <Play size={16} />,
       content: (
-        <DocSection id="badge-playground" title={DOC_TEXT.PLAYGROUND.TITLE} description="Customize the badge variants, sizes, and behavior in real-time.">
+        <DocSection
+          id="badge-playground-section"
+          title="Interactive Playground"
+          description="Customize all 12 badge variants, sizes, shapes, icons, and text labels."
+        >
           <BadgePlayground />
         </DocSection>
       )
     },
     {
       id: 'mock-code',
-      label: DOC_TEXT.COMMON.MOCK_CODE,
+      label: 'Mock Code',
       icon: <CodeIcon size={16} />,
       content: (
-        <div className="max-w-5xl">
-          <DocSection id="badge-mock" title="Dynamic Status List" description="Example of rendering badges based on an API response.">
-            <div className="flex flex-col gap-10 mt-8">
+        <div className="flex flex-col gap-12 max-w-5xl">
+          <DocSection
+            id="badge-mock"
+            title="Dynamic Inventory Status API Integration"
+            description="Render contextual badges based on remote warehouse stock counts."
+          >
+            <div className="flex flex-col gap-8 mt-6">
               <CodeSnippet
-                label="Sample API Response"
+                label="Sample Backend Inventory Payload"
                 code={JSON.stringify({
-                  orders: [
-                    { id: "ORD-123", status: "delivered", total: "$120.00" },
-                    { id: "ORD-124", status: "pending", total: "$45.00" },
-                    { id: "ORD-125", status: "cancelled", total: "$0.00" }
-                  ]
+                  sku: "PROD-MACBOOK-M3",
+                  name: "MacBook Pro 16-inch",
+                  stock_count: 3,
+                  is_featured: true,
+                  status: "LOW_STOCK"
                 }, null, 2)}
               />
+
               <CodeSnippet
-                label="Implementation"
-                code={`const StatusBadge = ({ status }) => {\n  const config = {\n    delivered: { variant: 'success', label: 'Delivered' },\n    pending: { variant: 'warning', label: 'Pending' },\n    cancelled: { variant: 'danger', label: 'Cancelled' }\n  };\n  \n  const { variant, label } = config[status] || { variant: 'ghost', label: status };\n\n  return <Badge variant={variant} shape="pill">{label}</Badge>;\n};`}
+                label="Dynamic Consumer Component"
+                code={`import React from 'react';
+import { Badge } from '@core-circle/ui';
+
+export const StockStatusBadge = ({ item }) => {
+  const getBadgeConfig = () => {
+    if (item.stock_count === 0) return { variant: 'destructive', label: 'Out of Stock' };
+    if (item.stock_count < 5) return { variant: 'warning', label: \`Only \${item.stock_count} Left\` };
+    return { variant: 'success', label: 'In Stock' };
+  };
+
+  const config = getBadgeConfig();
+
+  return (
+    <div className="flex items-center gap-2">
+      {item.is_featured && <Badge variant="gradient" shape="pill">Featured</Badge>}
+      <Badge variant={config.variant} shape="pill">
+        {config.label}
+      </Badge>
+    </div>
+  );
+};`}
               />
+            </div>
+          </DocSection>
+        </div>
+      )
+    },
+    {
+      id: 'overview',
+      label: 'Overview',
+      icon: <Info size={16} />,
+      content: (
+        <div className="flex flex-col gap-12 max-w-5xl">
+          <DocSection id="badge-intro" title="Introduction" description="The Badge primitive highlights status, categories, or numeric indicators with customizable shapes and colors.">
+            <div className="flex flex-col gap-8 mt-6">
+              <CodeSnippet
+                label="Quick Usage"
+                code={`import { Badge } from '@core-circle/ui';
+
+<Badge variant="primary" shape="pill">New Feature</Badge>`}
+              />
+              <div className="flex flex-col gap-4">
+                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
+                <PropsTable data={BADGE_PROPS_DATA} />
+              </div>
             </div>
           </DocSection>
         </div>
@@ -133,13 +232,15 @@ export default function BadgeContainer({
   return (
     <div className={s.container}>
       <header className={s.header}>
-        <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
+        {breadcrumbItems && (
+          <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
+        )}
         <Typography variant="h1" className={s.title}>{headerContent.title}</Typography>
         <Typography variant="p" className={s.description}>{headerContent.description}</Typography>
       </header>
 
       <div className="mt-8">
-        <Tabs items={tabItems} variant="underline" />
+        <Tabs items={tabItems} variant="underline" size="lg" className="w-full" />
       </div>
     </div>
   );

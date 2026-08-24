@@ -2,91 +2,54 @@
 
 import React, { useState } from 'react';
 import { Button, Select, Checkbox, TextInput } from '@core-circle/ui';
-import { CodeIcon, CopyIcon, Mail, ArrowRight, Star, SettingsIcon, Rotate, Clock } from '@core-circle/icons';
+import { CodeIcon, CopyIcon, Mail, ArrowRight, Star, SettingsIcon, Rotate, Sparkles, Shield, Bell } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { buttonPlaygroundStyles as s } from './buttonPlayground.styles';
 import { DOC_TEXT } from '../../../constants/common-constants';
 
-const ICONS = {
+const ICONS: Record<string, { icon: React.ReactNode; pos: 'start' | 'end'; name: string } | null> = {
   none: null,
-  email: <Mail size={16} />,
-  arrow: <ArrowRight size={16} />,
-  star: <Star size={16} />,
-  settings: <SettingsIcon size={16} />,
-  refresh: <Rotate size={16} />,
-  clock: <Clock size={16} />,
-};
-
-const ICON_LABELS: Record<string, string> = {
-  none: 'None',
-  email: 'Email',
-  arrow: 'Arrow',
-  star: 'Star',
-  settings: 'Settings',
-  refresh: 'Refresh',
-  clock: 'Clock',
-};
-
-const ICON_MAP: Record<string, string> = {
-  email: 'Mail',
-  arrow: 'ArrowRight',
-  star: 'Star',
-  settings: 'SettingsIcon',
-  refresh: 'Rotate',
-  clock: 'Clock',
-};
-
-const SelectField = ({ label, value, options, onChange }: any) => {
-  const formattedOptions = Object.entries(options).map(([val, lbl]) => ({
-    value: val,
-    label: lbl as string,
-  }));
-  return (
-    <Select
-      label={label}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      options={formattedOptions}
-      fullWidth
-    />
-  );
+  sparkles_start: { icon: <Sparkles size={16} />, pos: 'start', name: 'Sparkles' },
+  shield_start: { icon: <Shield size={16} />, pos: 'start', name: 'Shield' },
+  email_start: { icon: <Mail size={16} />, pos: 'start', name: 'Mail' },
+  arrow_end: { icon: <ArrowRight size={16} />, pos: 'end', name: 'ArrowRight' },
+  star_end: { icon: <Star size={16} />, pos: 'end', name: 'Star' },
+  bell_end: { icon: <Bell size={16} />, pos: 'end', name: 'Bell' },
 };
 
 export const ButtonPlayground = () => {
   const [state, setState] = useState({
     variant: 'primary',
     size: 'md',
+    shape: 'rounded',
+    iconKey: 'sparkles_start',
     loading: false,
     disabled: false,
-    text: 'Button Label',
-    startIcon: 'none',
-    endIcon: 'none',
-    startLoadingIcon: 'none',
-    endLoadingIcon: 'none',
-    labelSize: 'sm',
-    labelWeight: 'medium',
+    fullWidth: false,
+    text: 'Explore Platform',
   });
 
   const updateState = (key: string, value: any) => {
     setState(prev => ({ ...prev, [key]: value }));
   };
 
+  const currentIconConfig = ICONS[state.iconKey];
+
   const generateCode = () => {
-    const { variant, size, loading, disabled, text, startIcon, endIcon, startLoadingIcon, endLoadingIcon, labelSize, labelWeight } = state;
+    const { variant, size, shape, loading, disabled, fullWidth, text } = state;
     let props = `variant="${variant}" size="${size}"`;
-    if (labelSize !== 'sm') props += ` labelSize="${labelSize}"`;
-    if (labelWeight !== 'medium') props += ` labelWeight="${labelWeight}"`;
+    if (shape !== 'rounded') props += ` shape="${shape}"`;
     if (loading) props += ' loading';
     if (disabled) props += ' disabled';
+    if (fullWidth) props += ' fullWidth';
 
-    const addIcon = (name: string, val: string) => {
-      if (val !== 'none') props += `\n  ${name}={<${ICON_MAP[val]} size={16} />}`;
-    };
-
-    addIcon('startIcon', startIcon);
-    addIcon('endIcon', endIcon);
-    addIcon('startLoadingIcon', startLoadingIcon);
-    addIcon('endLoadingIcon', endLoadingIcon);
+    if (currentIconConfig) {
+      if (currentIconConfig.pos === 'start') {
+        props += `\n  startIcon={<${currentIconConfig.name} size={16} />}`;
+      } else {
+        props += `\n  endIcon={<${currentIconConfig.name} size={16} />}`;
+      }
+    }
 
     return `<Button ${props}>\n  ${text}\n</Button>`;
   };
@@ -94,57 +57,99 @@ export const ButtonPlayground = () => {
   return (
     <div className={s.container}>
       <div className={s.layout}>
-        {/* Controls */}
+        {/* Controls Panel (Max 4 Dropdowns per row) */}
         <div className={s.controlsWrapper}>
-          {/* Row 1: All select controls in one flat grid */}
-          <div className={s.gridTwoCols}>
-            <SelectField
-              label="Variant"
-              value={state.variant}
-              onChange={(v: string) => updateState('variant', v)}
-              options={{ primary: 'Primary', secondary: 'Secondary', warning: 'Warning', destructive: 'Destructive', outline: 'Outline', ghost: 'Ghost' }}
-            />
-            <SelectField
-              label="Size"
-              value={state.size}
-              onChange={(v: string) => updateState('size', v)}
-              options={{ sm: 'Small', md: 'Medium', lg: 'Large', icon: 'Icon' }}
-            />
-            <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
-            <SelectField label="End Icon" value={state.endIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endIcon', v)} />
-            <SelectField label="Start Loader" value={state.startLoadingIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startLoadingIcon', v)} />
-            <SelectField label="End Loader" value={state.endLoadingIcon} options={ICON_LABELS} onChange={(v: string) => updateState('endLoadingIcon', v)} />
-          </div>
+          <div className="flex flex-col gap-5">
+            {/* 1. Select Dropdowns (Strict 4 Columns Max) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+              <Select
+                label="Variant"
+                value={state.variant}
+                onChange={(e) => updateState('variant', e.target.value)}
+                options={[
+                  { value: 'primary', label: 'Primary (Brand Blue)' },
+                  { value: 'secondary', label: 'Secondary (Purple)' },
+                  { value: 'success', label: 'Success (Emerald)' },
+                  { value: 'warning', label: 'Warning (Amber)' },
+                  { value: 'destructive', label: 'Destructive (Red)' },
+                  { value: 'outline', label: 'Outline (Bordered)' },
+                  { value: 'ghost', label: 'Ghost (Borderless)' },
+                  { value: 'glassmorphic', label: 'Glassmorphic (Frosted)' },
+                  { value: 'gradient', label: 'Gradient (Radiant Glow)' },
+                  { value: 'floating', label: 'Floating (Elevated Lift)' },
+                  { value: 'pill', label: 'Pill (Capsule)' },
+                  { value: 'soft', label: 'Soft (Tone-on-Tone)' },
+                ]}
+                fullWidth
+              />
+              <Select
+                label="Size"
+                value={state.size}
+                onChange={(e) => updateState('size', e.target.value)}
+                options={[
+                  { value: 'sm', label: 'Small (32px)' },
+                  { value: 'md', label: 'Medium (40px)' },
+                  { value: 'lg', label: 'Large (48px)' },
+                  { value: 'icon', label: 'Icon (Circle 40px)' },
+                ]}
+                fullWidth
+              />
+              <Select
+                label="Shape"
+                value={state.shape}
+                onChange={(e) => updateState('shape', e.target.value)}
+                options={[
+                  { value: 'rounded', label: 'Rounded' },
+                  { value: 'pill', label: 'Pill (Capsule)' },
+                  { value: 'square', label: 'Square' },
+                ]}
+                fullWidth
+              />
+              <Select
+                label="Icon Placement"
+                value={state.iconKey}
+                onChange={(e) => updateState('iconKey', e.target.value)}
+                options={[
+                  { value: 'none', label: 'None' },
+                  { value: 'sparkles_start', label: 'Sparkles (Start)' },
+                  { value: 'shield_start', label: 'Shield (Start)' },
+                  { value: 'email_start', label: 'Email (Start)' },
+                  { value: 'arrow_end', label: 'Arrow (End)' },
+                  { value: 'star_end', label: 'Star (End)' },
+                  { value: 'bell_end', label: 'Bell (End)' },
+                ]}
+                fullWidth
+              />
+            </div>
 
-          <div className={s.dividerSection}>
-            <SelectField
-              label="Label Size"
-              value={state.labelSize}
-              onChange={(v: string) => updateState('labelSize', v)}
-              options={{ xs: 'Extra Small', sm: 'Small', base: 'Base', lg: 'Large', xl: 'Extra Large', '2xl': '2XL' }}
-            />
-            <SelectField
-              label="Label Weight"
-              value={state.labelWeight}
-              onChange={(v: string) => updateState('labelWeight', v)}
-              options={{ light: 'Light', normal: 'Normal', medium: 'Medium', semibold: 'Semibold', bold: 'Bold' }}
-            />
-            <TextInput
-              label="Label"
-              value={state.text}
-              onChange={(e) => updateState('text', e.target.value)}
-              placeholder="Enter label..."
-              fullWidth
-            />
-            <div className="flex items-center gap-6 pb-2 ml-auto lg:col-span-3">
-              {['loading', 'disabled'].map((key) => (
-                <Checkbox
-                  key={key}
-                  label={key}
-                  checked={(state as any)[key]}
-                  onChange={(checked) => updateState(key, checked)}
-                />
-              ))}
+            {/* 2. Checkboxes & Switches Horizontally */}
+            <div className="flex flex-wrap items-center gap-6 py-1">
+              <Checkbox
+                label="Loading State"
+                checked={state.loading}
+                onChange={(checked) => updateState('loading', checked)}
+              />
+              <Checkbox
+                label="Disabled State"
+                checked={state.disabled}
+                onChange={(checked) => updateState('disabled', checked)}
+              />
+              <Checkbox
+                label="Full Width"
+                checked={state.fullWidth}
+                onChange={(checked) => updateState('fullWidth', checked)}
+              />
+            </div>
+
+            {/* 3. Text Inputs Horizontally */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-core-circle-border-main/60 pt-4">
+              <TextInput
+                label="Button Text Label"
+                value={state.text}
+                onChange={(e) => updateState('text', e.target.value)}
+                placeholder="Enter button label..."
+                fullWidth
+              />
             </div>
           </div>
         </div>
@@ -152,20 +157,20 @@ export const ButtonPlayground = () => {
         {/* Preview & Code */}
         <div className={s.previewWrapper}>
           <div className={s.previewArea}>
-            <Button
-              variant={state.variant as any}
-              size={state.size as any}
-              loading={state.loading}
-              disabled={state.disabled}
-              startIcon={(ICONS as any)[state.startIcon]}
-              endIcon={(ICONS as any)[state.endIcon]}
-              startLoadingIcon={(ICONS as any)[state.startLoadingIcon]}
-              endLoadingIcon={(ICONS as any)[state.endLoadingIcon]}
-              labelSize={state.labelSize as any}
-              labelWeight={state.labelWeight as any}
-            >
-              {state.text}
-            </Button>
+            <div className={state.fullWidth ? "w-full max-w-md" : "flex justify-center"}>
+              <Button
+                variant={state.variant as any}
+                size={state.size as any}
+                shape={state.shape as any}
+                loading={state.loading}
+                disabled={state.disabled}
+                fullWidth={state.fullWidth}
+                startIcon={currentIconConfig?.pos === 'start' ? currentIconConfig.icon : undefined}
+                endIcon={currentIconConfig?.pos === 'end' ? currentIconConfig.icon : undefined}
+              >
+                {state.size === 'icon' ? (currentIconConfig?.icon || <Bell size={18} />) : state.text}
+              </Button>
+            </div>
           </div>
 
           <div className={s.codeSection}>
@@ -179,7 +184,7 @@ export const ButtonPlayground = () => {
                 size="sm"
                 onClick={() => navigator.clipboard.writeText(generateCode())}
                 className={s.copyButton}
-                startIcon={<CopyIcon className="w-3.5 h-3.5" />}
+                startIcon={<CopyIcon size={14} />}
               >
                 {DOC_TEXT.PLAYGROUND.COPY_SNIPPET}
               </Button>
