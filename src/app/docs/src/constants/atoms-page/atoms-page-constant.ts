@@ -38,6 +38,8 @@ import {
   Calendar as CalendarIcon,
   List as ListIcon,
   Star,
+  Cloud,
+  Clock,
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -72,6 +74,12 @@ export const ATOM_CARDS = [
     description: 'Displays a callout for user attention or information with various visual styles.',
     href: '/atoms/alert',
     icon: AlertIcon,
+  },
+  {
+    title: 'AspectRatio',
+    description: 'A responsive layout container enforcing strict proportional dimensions.',
+    href: '/atoms/aspect-ratio',
+    icon: AspectRatioIcon,
   },
   {
     title: 'Avatar',
@@ -150,6 +158,12 @@ export const ATOM_CARDS = [
     description: 'A slide-over overlay panel anchored to any viewport edge.',
     href: '/atoms/drawer',
     icon: LayersIcon,
+  },
+  {
+    title: 'FileUpload',
+    description: 'An interactive drag-and-drop file upload dropzone with multi-file support.',
+    href: '/atoms/file-upload',
+    icon: Cloud,
   },
   {
     title: 'Icons',
@@ -272,6 +286,12 @@ export const ATOM_CARDS = [
     icon: TabIcon,
   },
   {
+    title: 'TagInput',
+    description: 'An interactive chip and tag creation input with duplicate checks and limit rules.',
+    href: '/atoms/tag-input',
+    icon: Tag,
+  },
+  {
     title: 'TextInput',
     description: 'Versatile input field with Material Design support and icons.',
     href: '/atoms/text-input',
@@ -282,6 +302,12 @@ export const ATOM_CARDS = [
     description: 'Multi-line text input for longer content with support for variants and resizing.',
     href: '/atoms/textarea',
     icon: DocumentText,
+  },
+  {
+    title: 'TimePicker',
+    description: 'An interactive time selection input supporting 12h/24h formats and minute steps.',
+    href: '/atoms/time-picker',
+    icon: Clock,
   },
   {
     title: 'Toast',
