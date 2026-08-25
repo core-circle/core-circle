@@ -37,6 +37,7 @@ import {
   Palette,
   Calendar as CalendarIcon,
   List as ListIcon,
+  Star,
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -76,6 +77,12 @@ export const ATOM_CARDS = [
     title: 'Avatar',
     description: 'Visual representation of a user or entity with fallback support.',
     href: '/atoms/avatar',
+    icon: UserCircle,
+  },
+  {
+    title: 'AvatarGroup',
+    description: 'A stacked cluster of user identity avatars with overflow badge support.',
+    href: '/atoms/avatar-group',
     icon: UserCircle,
   },
   {
@@ -139,6 +146,12 @@ export const ATOM_CARDS = [
     icon: DividerIcon,
   },
   {
+    title: 'Drawer',
+    description: 'A slide-over overlay panel anchored to any viewport edge.',
+    href: '/atoms/drawer',
+    icon: LayersIcon,
+  },
+  {
     title: 'Icons',
     description: '130+ high-quality vector icons for the Core Circle ecosystem.',
     href: '/atoms/icons',
@@ -199,10 +212,22 @@ export const ATOM_CARDS = [
     icon: CircleDot,
   },
   {
+    title: 'Rating',
+    description: 'An interactive satisfaction and star evaluation rating component.',
+    href: '/atoms/rating',
+    icon: Star,
+  },
+  {
     title: 'RichText',
     description: 'Render complex HTML or formatted content with design system styles.',
     href: '/atoms/rich-text',
     icon: DocumentText,
+  },
+  {
+    title: 'ScrollArea',
+    description: 'A cross-browser custom smooth scrollable viewport with custom scrollbars.',
+    href: '/atoms/scroll-area',
+    icon: RowsIcon,
   },
   {
     title: 'Select',
