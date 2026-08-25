@@ -17,6 +17,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       defaultChecked = false,
       indeterminate = false,
       label,
+      labelClassName,
       description,
       badge,
       error,
@@ -88,7 +89,8 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
                   <span className={cn(
                     "font-core-circle-medium text-slate-900 leading-tight",
                     size === 'sm' ? "text-xs" : size === 'lg' ? "text-base" : "text-sm",
-                    disabled && "text-slate-400"
+                    disabled && "text-slate-400",
+                    labelClassName
                   )}>
                     {label}
                   </span>

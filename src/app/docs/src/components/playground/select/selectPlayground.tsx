@@ -91,7 +91,25 @@ export const SelectPlayground = () => {
       <div className={s.layout}>
         <div className={s.controlsWrapper}>
           <div className={s.gridTwoCols}>
-            <SelectField label="Variant" value={state.variant} onChange={(v: string) => updateState('variant', v)} options={{ outline: 'Outline', material: 'Material', 'material-animated': 'Material Animated', ghost: 'Ghost', standard: 'Standard' }} />
+            <SelectField 
+              label="Variant" 
+              value={state.variant} 
+              onChange={(v: string) => updateState('variant', v)} 
+              options={{ 
+                outline: 'Outline', 
+                material: 'Material', 
+                'material-animated': 'Material Animated', 
+                ghost: 'Ghost', 
+                standard: 'Standard',
+                filled: 'Filled',
+                glassmorphic: 'Glassmorphic',
+                floating: 'Floating',
+                gradient: 'Gradient',
+                pill: 'Pill',
+                accent: 'Accent',
+                dark: 'Dark Mode'
+              }} 
+            />
             <SelectField label="Size" value={state.size} onChange={(v: string) => updateState('size', v)} options={{ sm: 'Small', md: 'Medium', lg: 'Large' }} />
             <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
             <SelectField

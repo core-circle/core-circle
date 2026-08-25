@@ -1,5 +1,17 @@
 import { HTMLAttributes, ReactNode } from 'react';
 
+export type StepperVariant = 
+  | 'numbers' 
+  | 'dots' 
+  | 'circles' 
+  | 'pill' 
+  | 'gradient' 
+  | 'glow' 
+  | 'glassmorphic' 
+  | 'cards' 
+  | 'timeline' 
+  | 'dark';
+
 export interface StepItem {
   /**
    * Title of the step
@@ -38,10 +50,11 @@ export interface StepperProps extends HTMLAttributes<HTMLDivElement> {
    * Visual variant
    * @default 'numbers'
    */
-  variant?: 'numbers' | 'circles' | 'dots';
+  variant?: StepperVariant;
   /**
    * Whether to show the step description
    * @default true
    */
   showDescription?: boolean;
 }
+

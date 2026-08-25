@@ -59,6 +59,9 @@ export const ToastPlayground = () => {
                   { value: 'floating', label: 'Floating (High Elevation)' },
                   { value: 'pill', label: 'Pill (Curved Capsule)' },
                   { value: 'minimal', label: 'Minimal (Left Accent Line)' },
+                  { value: 'glow', label: 'Neon Glow (Emerald Accent)' },
+                  { value: 'accent', label: 'Accent Blue (Strong Focus)' },
+                  { value: 'dark', label: 'Dark Mode (Slate High-Contrast)' },
                 ]}
                 fullWidth
               />

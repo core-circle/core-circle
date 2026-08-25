@@ -12,7 +12,10 @@ export type ToastVariant =
   | 'gradient'
   | 'floating'
   | 'pill'
-  | 'minimal';
+  | 'minimal'
+  | 'glow'
+  | 'accent'
+  | 'dark';
 
 export interface ToastProps {
   id?: string;

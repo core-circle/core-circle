@@ -1,11 +1,26 @@
 import { InputHTMLAttributes } from 'react';
 
+export type SliderInputVariant = 
+  | 'standard' 
+  | 'primary' 
+  | 'secondary' 
+  | 'success' 
+  | 'warning' 
+  | 'danger' 
+  | 'info' 
+  | 'gradient' 
+  | 'glassmorphic' 
+  | 'glow' 
+  | 'floating' 
+  | 'accent' 
+  | 'dark';
+
 export interface SliderInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'type'> {
   /**
    * Visual style of the slider
    * @default 'standard'
    */
-  variant?: 'standard' | 'primary' | 'success' | 'warning' | 'danger';
+  variant?: SliderInputVariant;
   
   /**
    * Size of the slider track

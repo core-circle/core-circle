@@ -1,127 +1,110 @@
-import { HomeIcon } from '@core-circle/icons';
 import React from 'react';
 import { PropItem } from '../../../interface/components/props-table.types';
 
 export const TEXTAREA_BREADCRUMB_ITEMS = [
-  { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
+  { label: 'Home', href: '/' },
   { label: 'Atoms', href: '/atoms' },
   { label: 'Textarea' }
 ];
 
 export const TEXTAREA_HEADER_CONTENT = {
   title: 'Textarea',
-  description: 'A multi-line input component for handling longer text entries, supporting variants, floating labels, and custom resizing behavior.',
+  description: 'A multi-line text input component supporting 12 visual styling variants, Material animated floating labels, custom resize behaviors, icon adornments, and error validation states.',
 };
 
 export const TEXTAREA_SECTIONS = [
   {
-    id: 'playground',
-    title: 'Live Playground',
-    description: 'Experiment with variants, sizes, and resizing behaviors live.',
-    showBorder: true,
-    isPlayground: true
+    id: 'theming',
+    title: 'Theming',
+    description: 'Production-grade multi-line text areas for AI reasoning directives, IAM policy JSON editors, SLA incident dispatch, real-estate descriptions, and customer review consoles.',
   },
   {
     id: 'variants',
-    title: 'Visual Variants',
-    description: 'Multiple styles to match your application design.',
-    previews: [
-      {
-        id: 'material-animated',
-        title: 'Material Animated',
-        code: '<Textarea variant="material-animated" label="Floating Label" placeholder="" rows={4} />'
-      },
-      {
-        id: 'outline',
-        title: 'Outline (Default)',
-        code: '<Textarea variant="outline" label="Description" placeholder="Enter description" rows={4} />'
-      },
-      {
-        id: 'material',
-        title: 'Material Design',
-        code: '<Textarea variant="material" label="Bio" placeholder="Tell us about yourself" rows={4} />'
-      },
-      {
-        id: 'standard',
-        title: 'Standard',
-        code: '<Textarea variant="standard" label="Feedback" placeholder="How can we improve?" rows={4} />'
-      }
-    ]
+    title: 'Variants',
+    description: 'Explore 12 distinct border, surface, and interaction styling variants.',
   },
   {
-    id: 'resize',
-    title: 'Resizing Behavior',
-    description: 'Control how the user can resize the textarea.',
-    previews: [
-      {
-        id: 'none',
-        title: 'No Resize',
-        code: '<Textarea resize="none" label="Fixed Height" placeholder="I cannot be resized" rows={4} />'
-      },
-      {
-        id: 'vertical',
-        title: 'Vertical Only (Default)',
-        code: '<Textarea resize="vertical" label="Vertical Resize" placeholder="I can only be resized vertically" rows={4} />'
-      }
-    ]
+    id: 'playground',
+    title: 'Playground',
+    description: 'Interactive property playground with live variant selection, resize modes, and code snippet generator.',
   },
   {
-    id: 'validation',
-    title: 'Validation States',
-    description: 'Error messages and helper text support.',
-    previews: [
-      {
-        title: 'Errors and Helpers',
-        code: `<Textarea label="Comment" helperText="Maximum 500 characters" rows={3} />\n<Textarea label="Message" error="Message is too short" defaultValue="Hi" rows={3} />`
-      }
-    ]
-  }
+    id: 'mock-code',
+    title: 'Mock Code',
+    description: 'Dynamic API ticket creation and prompt engineering integration example.',
+  },
+  {
+    id: 'overview',
+    title: 'Overview',
+    description: 'Quick usage snippet and props reference.',
+  },
 ];
 
 export const TEXTAREA_PROPS_DATA: PropItem[] = [
   {
     name: 'variant',
-    type: "'outline' | 'material' | 'material-animated' | 'ghost' | 'standard'",
+    type: "'outline' | 'material' | 'material-animated' | 'ghost' | 'standard' | 'filled' | 'glassmorphic' | 'floating' | 'gradient' | 'pill' | 'accent' | 'dark'",
     defaultValue: "'outline'",
-    description: 'Visual style of the textarea.'
+    description: 'Visual styling and container surface treatment variant.'
   },
   {
     name: 'size',
     type: "'sm' | 'md' | 'lg'",
     defaultValue: "'md'",
-    description: 'Size of the textarea.'
+    description: 'Padding and typography scale of the textarea.'
   },
   {
     name: 'resize',
     type: "'none' | 'vertical' | 'horizontal' | 'both'",
     defaultValue: "'vertical'",
-    description: 'Resizing behavior of the textarea.'
+    description: 'CSS resize handle behavior.'
   },
   {
     name: 'label',
     type: 'string',
-    description: 'Label text for the textarea.'
-  },
-  {
-    name: 'error',
-    type: 'string',
-    description: 'Error message displayed below.'
-  },
-  {
-    name: 'helperText',
-    type: 'string',
-    description: 'Guidance text displayed below.'
+    description: 'Label text rendered above or inside the animated textarea container.'
   },
   {
     name: 'rows',
     type: 'number',
     defaultValue: '4',
-    description: 'Number of visible text lines.'
+    description: 'Initial number of visible text lines.'
+  },
+  {
+    name: 'startIcon',
+    type: 'React.ReactNode',
+    description: 'Leading icon displayed in the top-left corner.'
+  },
+  {
+    name: 'endIcon',
+    type: 'React.ReactNode',
+    description: 'Trailing icon displayed in the top-right corner.'
+  },
+  {
+    name: 'error',
+    type: 'string',
+    description: 'Validation error message displaying beneath the field.'
+  },
+  {
+    name: 'helperText',
+    type: 'string',
+    description: 'Subtle guidance or character limit counter beneath the field.'
   },
   {
     name: 'fullWidth',
     type: 'boolean',
     defaultValue: 'false',
-    description: 'Whether it takes full width.'
+    description: 'Whether the textarea stretches to fill container width.'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Whether the textarea is interactive.'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    description: 'Additional CSS classes.'
   }
 ];

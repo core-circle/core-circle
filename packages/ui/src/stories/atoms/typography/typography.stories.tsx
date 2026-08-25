@@ -15,6 +15,10 @@ const meta: Meta<typeof Typography> = {
         'large', 'small', 'muted'
       ],
     },
+    color: {
+      control: 'select',
+      options: ['default', 'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'gradient', 'glow', 'accent', 'muted', 'white'],
+    },
     weight: {
       control: 'select',
       options: ['light', 'normal', 'medium', 'semibold', 'bold'],

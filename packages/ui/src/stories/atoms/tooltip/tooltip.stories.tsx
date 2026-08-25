@@ -10,7 +10,7 @@ const meta: Meta<typeof Tooltip> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'info', 'warning', 'destructive'],
+      options: ['primary', 'secondary', 'success', 'warning', 'danger', 'destructive', 'info', 'gradient', 'glow', 'glassmorphic', 'dark'],
     },
     position: {
       control: 'select',

@@ -88,3 +88,28 @@ packages/ui/src/
 - **NEVER run `build`, `test`, `lint`, or other long-running verification commands automatically** after code edits.
 - Only run `npm run build`, `npm run build:packages`, `npm test`, or `npm run lint` when the user **specifically and explicitly asks** for it.
 
+---
+
+## 6. Canonical Documentation Standard (Always Refer to `Accordion`)
+
+When developing or upgrading documentation containers, pages, and constants in `src/app/docs/`:
+
+1. **Golden Benchmark**: Always reference `Accordion` (`src/app/docs/src/containers/atoms-page/accordion/accordionContainer.tsx`, `accordion.styles.ts`, `accordionConstants.tsx`) as the canonical pattern before starting development.
+2. **Standard Page Layout & Breadcrumbs**:
+   - Container styles MUST use `import { atomsPageStyles as s } from '../atoms.styles';` (or `export const [name]PageStyles = atomsPageStyles;` with `container: 'max-w-5xl mx-auto px-6 py-10'` and `header: 'mb-8'`). Never introduce ad-hoc `p-12 lg:p-20` padding.
+   - Breadcrumb items must follow standard string labels:
+     ```ts
+     export const [NAME]_BREADCRUMB_ITEMS = [
+       { label: 'Home', href: '/' },
+       { label: 'Atoms', href: '/atoms' },
+       { label: '[ComponentName]' },
+     ];
+     ```
+3. **Standard 5-Tab Order**:
+   - **`Theming`** (Tab 1, default active, `Palette` icon): 5 real-world production themes utilizing full `w-full` width.
+   - **`Variants`** (Tab 2, `Layers` icon): Minimum 10 variants grouped cleanly in `DocSection`s utilizing full `w-full` width.
+   - **`Playground`** (Tab 3, `Play` icon): Interactive playground with live property controls and code generator.
+   - **`Mock Code`** (Tab 4, `CodeIcon`): Dynamic backend API/CMS payload and consumer component example.
+   - **`Overview`** (Tab 5, `Info` icon): Quick usage snippet and comprehensive `PropsTable`.
+
+

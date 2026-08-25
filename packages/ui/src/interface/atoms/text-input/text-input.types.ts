@@ -1,11 +1,26 @@
 import { InputHTMLAttributes, ReactNode } from 'react';
 
+export type TextInputVariant = 
+  | 'outline' 
+  | 'material' 
+  | 'material-animated' 
+  | 'ghost' 
+  | 'standard' 
+  | 'filled' 
+  | 'glassmorphic' 
+  | 'floating' 
+  | 'gradient' 
+  | 'pill' 
+  | 'accent' 
+  | 'dark';
+
 export interface TextInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
   /**
    * Visual style of the input
    * @default 'outline'
    */
-  variant?: 'outline' | 'material' | 'material-animated' | 'ghost' | 'standard';
+  variant?: TextInputVariant;
+
   
   /**
    * Size of the input

@@ -53,13 +53,32 @@ export const SkeletonPlayground = () => {
               label="Variant"
               value={state.variant}
               onChange={(v: string) => updateState('variant', v)}
-              options={{ text: 'Text', circular: 'Circular', rectangular: 'Rectangular' }}
+              options={{ 
+                default: 'Default',
+                rectangular: 'Rectangular', 
+                circular: 'Circular', 
+                text: 'Text Line',
+                card: 'Card Block',
+                avatar: 'Avatar Circle',
+                button: 'Button Pill',
+                badge: 'Badge Pill',
+                image: 'Media Image',
+                glassmorphic: 'Glassmorphic',
+                gradient: 'Gradient',
+                dark: 'Dark Mode'
+              }}
             />
             <SelectField
               label="Animation"
               value={state.animation}
               onChange={(v: string) => updateState('animation', v)}
-              options={{ none: 'None', pulse: 'Pulse', shimmer: 'Shimmer' }}
+              options={{ 
+                shimmer: 'Shimmer Wave (Default)', 
+                pulse: 'Pulse', 
+                wave: 'Fast Wave', 
+                glow: 'Neon Glow', 
+                none: 'None' 
+              }}
             />
             <TextInput
               label="Width"

@@ -68,7 +68,18 @@ export const TooltipPlayground = () => {
               label="Variant"
               value={state.variant}
               onChange={(v: string) => updateState('variant', v)}
-              options={{ primary: 'Primary', info: 'Info', warning: 'Warning', destructive: 'Destructive' }}
+              options={{ 
+                primary: 'Primary', 
+                secondary: 'Secondary',
+                success: 'Success',
+                warning: 'Warning', 
+                danger: 'Danger',
+                info: 'Info', 
+                gradient: 'Radiant Gradient',
+                glow: 'Neon Glow',
+                glassmorphic: 'Glassmorphic',
+                dark: 'Dark Mode'
+              }}
             />
             <SelectField
               label="Position"

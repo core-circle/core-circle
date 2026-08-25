@@ -22,7 +22,7 @@ import {
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { atomsPageStyles as s } from '../atoms.styles';
+import { toastPageStyles as s } from './toast.styles';
 import { TOAST_PROPS_DATA } from '../../../constants/atoms-page/toast/toastConstants';
 import { ToastPlayground } from '../../../components/playground/toast/toastPlayground';
 import PropsTable from '../../../components/props-table';

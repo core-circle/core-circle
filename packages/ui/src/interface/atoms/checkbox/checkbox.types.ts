@@ -94,6 +94,11 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
   disabled?: boolean;
 
   /**
+   * Additional class names for the label text.
+   */
+  labelClassName?: string;
+
+  /**
    * Additional container class names.
    */
   className?: string;

@@ -9,11 +9,11 @@ const meta: Meta<typeof Spinner> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['primary', 'secondary', 'warning', 'destructive', 'info', 'white'],
+      options: ['primary', 'secondary', 'success', 'warning', 'danger', 'info', 'gradient', 'glow', 'glassmorphic', 'accent', 'dark', 'white'],
     },
     size: {
       control: 'select',
-      options: ['sm', 'md', 'lg', 'xl'],
+      options: ['xs', 'sm', 'md', 'lg', 'xl'],
     },
   },
 };
@@ -21,28 +21,49 @@ const meta: Meta<typeof Spinner> = {
 export default meta;
 type Story = StoryObj<typeof Spinner>;
 
-export const Default: Story = {
+export const Primary: Story = {
   args: {
     variant: 'primary',
     size: 'md',
   },
 };
 
-export const Large: Story = {
+export const Gradient: Story = {
   args: {
-    variant: 'secondary',
+    variant: 'gradient',
     size: 'lg',
   },
 };
 
-export const Colors: Story = {
+export const Glow: Story = {
+  args: {
+    variant: 'glow',
+    size: 'lg',
+  },
+};
+
+export const Dark: Story = {
+  args: {
+    variant: 'dark',
+    size: 'lg',
+  },
+};
+
+export const AllVariants: Story = {
   render: () => (
-    <div className="flex items-center gap-6">
-      <Spinner variant="primary" />
-      <Spinner variant="secondary" />
-      <Spinner variant="warning" />
-      <Spinner variant="destructive" />
-      <Spinner variant="info" />
+    <div className="flex flex-wrap items-center gap-6 p-6 bg-slate-900 rounded-2xl">
+      <Spinner variant="primary" size="lg" />
+      <Spinner variant="secondary" size="lg" />
+      <Spinner variant="success" size="lg" />
+      <Spinner variant="warning" size="lg" />
+      <Spinner variant="danger" size="lg" />
+      <Spinner variant="info" size="lg" />
+      <Spinner variant="gradient" size="lg" />
+      <Spinner variant="glow" size="lg" />
+      <Spinner variant="glassmorphic" size="lg" />
+      <Spinner variant="accent" size="lg" />
+      <Spinner variant="dark" size="lg" />
+      <Spinner variant="white" size="lg" />
     </div>
   ),
 };
@@ -50,6 +71,7 @@ export const Colors: Story = {
 export const Sizes: Story = {
   render: () => (
     <div className="flex items-center gap-6">
+      <Spinner size="xs" />
       <Spinner size="sm" />
       <Spinner size="md" />
       <Spinner size="lg" />
@@ -58,9 +80,3 @@ export const Sizes: Story = {
   ),
 };
 
-export const CustomThickness: Story = {
-  args: {
-    size: 'lg',
-    thickness: 8,
-  },
-};

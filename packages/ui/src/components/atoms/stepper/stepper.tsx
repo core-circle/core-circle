@@ -28,7 +28,7 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
     return (
       <div
         ref={ref}
-        className={cn(stepperContainerVariants({ orientation }), className)}
+        className={cn(stepperContainerVariants({ orientation, variant }), className)}
         {...props}
       >
         {steps.map((step, index) => {
@@ -46,26 +46,31 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
           return (
             <div
               key={index}
-              className={cn(stepItemVariants({ orientation }))}
+              className={cn(stepItemVariants({ orientation, variant }))}
             >
               {/* Connector Line */}
               {!isLast && (
                 <div 
                   className={cn(connectorVariants({ 
                     orientation, 
-                    status: isCompleted ? 'completed' : 'pending' 
+                    status: isCompleted ? 'completed' : 'pending',
+                    variant
                   }))} 
                 />
               )}
 
               {/* Step Indicator */}
-              <div className={cn(stepIndicatorVariants({ status: currentStatus }))}>
+              <div className={cn(stepIndicatorVariants({ status: currentStatus, variant }))}>
                 {currentStatus === 'completed' ? (
                   <CheckIcon size={14} />
                 ) : currentStatus === 'error' ? (
                   <CircleX size={14} />
-                ) : variant === 'numbers' ? (
+                ) : step.icon ? (
+                  step.icon
+                ) : variant === 'numbers' || variant === 'cards' || variant === 'timeline' || variant === 'dark' || variant === 'glassmorphic' || variant === 'gradient' ? (
                   index + 1
+                ) : variant === 'pill' ? (
+                  `Step ${index + 1}`
                 ) : (
                   <div className="w-2 h-2 rounded-full bg-current" />
                 )}
@@ -75,13 +80,16 @@ export const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
               <div className={cn(stepContentVariants({ orientation }))}>
                 <span className={cn(
                   "text-xs font-core-circle-bold transition-colors duration-300",
-                  isActive ? "text-core-circle-primary" : "text-core-circle-text-main",
-                  isPending && "text-core-circle-text-muted"
+                  isActive ? "text-core-circle-primary" : variant === 'dark' ? "text-slate-200" : "text-core-circle-text-main",
+                  isPending && (variant === 'dark' ? "text-slate-500" : "text-core-circle-text-muted")
                 )}>
                   {step.title}
                 </span>
                 {showDescription && step.description && (
-                  <span className="text-[10px] text-core-circle-text-muted mt-0.5 line-clamp-1 max-w-[120px]">
+                  <span className={cn(
+                    "text-[10px] mt-0.5 line-clamp-1 max-w-[140px]",
+                    variant === 'dark' ? "text-slate-400" : "text-core-circle-text-muted"
+                  )}>
                     {step.description}
                   </span>
                 )}
