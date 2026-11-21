@@ -160,4 +160,6 @@ export const OtpInput = React.forwardRef<HTMLDivElement, OTPInputProps>(
 
 OtpInput.displayName = 'OtpInput';
 
+export const OTPInput = OtpInput;
+
 export default OtpInput;

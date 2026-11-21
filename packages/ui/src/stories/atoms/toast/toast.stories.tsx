@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Toast } from './toast';
+import { Toast } from '../../../components/atoms/toast/toast';
 import { Info, CircleCheck, Alert as AlertIcon, CircleX } from '@core-circle/icons';
 import React from 'react';
 

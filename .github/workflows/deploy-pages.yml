@@ -109,7 +109,9 @@ jobs:
           
           # 2. Copy Storybook into /storybook subfolder
           mkdir -p dist/gh-pages/storybook
-          if [ -d "dist/storybook/@core-circle/ui" ]; then
+          if [ -d "packages/ui/storybook-static" ]; then
+            cp -r packages/ui/storybook-static/* dist/gh-pages/storybook/
+          elif [ -d "dist/storybook/@core-circle/ui" ]; then
             cp -r dist/storybook/@core-circle/ui/* dist/gh-pages/storybook/
           elif [ -d "dist/storybook/packages/ui" ]; then
             cp -r dist/storybook/packages/ui/* dist/gh-pages/storybook/

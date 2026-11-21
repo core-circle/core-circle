@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { OTPInput } from '../../../components/atoms/otp-input/otp-input';
+import { OtpInput } from '../../../components/atoms/otp-input/otp-input';
 
-const meta: Meta<typeof OTPInput> = {
-  title: 'Atoms/OTPInput',
-  component: OTPInput,
+const meta: Meta<typeof OtpInput> = {
+  title: 'Atoms/OtpInput',
+  component: OtpInput,
   tags: ['autodocs'],
   argTypes: {
     variant: {
@@ -27,7 +27,7 @@ const meta: Meta<typeof OTPInput> = {
 };
 
 export default meta;
-type Story = StoryObj<typeof OTPInput>;
+type Story = StoryObj<typeof OtpInput>;
 
 export const Outline: Story = {
   args: {
