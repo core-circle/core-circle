@@ -1,11 +1,9 @@
 name: Deploy Web Docs & Storybook to GitHub Pages
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-    types:
-      - closed
   workflow_dispatch:
 
 permissions:
@@ -20,12 +18,52 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
+  check-deploy:
+    name: check-deployment-trigger
+    runs-on: ubuntu-latest
+    outputs:
+      should_deploy: ${{ steps.check.outputs.should_deploy }}
+      pr_number: ${{ steps.check.outputs.pr_number }}
+    steps:
+      - name: Verify Trigger Conditions
+        id: check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            if (context.eventName === 'workflow_dispatch') {
+              console.log('Manual workflow_dispatch: proceeding with deployment.');
+              core.setOutput('should_deploy', 'true');
+              core.setOutput('pr_number', '');
+              return;
+            }
+
+            console.log(`Checking PRs associated with commit ${context.sha}...`);
+            const prs = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: context.sha,
+            });
+
+            const pr = prs.data.find(p => p.merged_at !== null) || prs.data[0];
+
+            if (!pr) {
+              console.log('No PR associated with commit. Skipping deployment.');
+              core.setOutput('should_deploy', 'false');
+              core.setOutput('pr_number', '');
+              return;
+            }
+
+            console.log(`Found PR #${pr.number}: ${pr.title}`);
+            const hasLabel = pr.labels.some(l => l.name === 'deploy_pages');
+            console.log(`PR #${pr.number} has 'deploy_pages' label: ${hasLabel}`);
+
+            core.setOutput('should_deploy', hasLabel ? 'true' : 'false');
+            core.setOutput('pr_number', String(pr.number));
+
   deploy:
     name: deploy-gh-pages
-    # Only run when:
-    # 1. A PR into main is merged AND has the 'deploy_pages' label, OR
-    # 2. Triggered manually via workflow_dispatch
-    if: (github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'deploy_pages')) || github.event_name == 'workflow_dispatch'
+    needs: check-deploy
+    if: needs.check-deploy.outputs.should_deploy == 'true'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -95,11 +133,11 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Comment on PR on Successful Deployment
-        if: success() && (github.event.pull_request.number || github.event.issue.number)
+        if: success() && needs.check-deploy.outputs.pr_number != ''
         uses: actions/github-script@v7
         with:
           script: |
-            const prNumber = context.payload.pull_request?.number || context.issue?.number;
+            const prNumber = parseInt('${{ needs.check-deploy.outputs.pr_number }}', 10);
             const body = `### 🚀 Deployed Successfully to GitHub Pages!\n\nYour changes from this PR are now live:\n\n* 📖 **Web Docs**: [https://1694srinivasan.github.io/core-circle/](https://1694srinivasan.github.io/core-circle/)\n* 🎨 **UI Storybook**: [https://1694srinivasan.github.io/core-circle/storybook/](https://1694srinivasan.github.io/core-circle/storybook/)\n\n*Deployment automated via GitHub Actions.*`;
             if (prNumber) {
               await github.rest.issues.createComment({
@@ -111,11 +149,11 @@ jobs:
             }
 
       - name: Comment on PR on Deployment Failure
-        if: failure() && (github.event.pull_request.number || github.event.issue.number)
+        if: failure() && needs.check-deploy.outputs.pr_number != ''
         uses: actions/github-script@v7
         with:
           script: |
-            const prNumber = context.payload.pull_request?.number || context.issue?.number;
+            const prNumber = parseInt('${{ needs.check-deploy.outputs.pr_number }}', 10);
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const body = `### ❌ GitHub Pages Deployment Failed\n\nThe automated deployment to GitHub Pages failed.\n\n🔍 **View Logs**: [GitHub Actions Run](${runUrl})`;
             if (prNumber) {

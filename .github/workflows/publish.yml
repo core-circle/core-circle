@@ -1,11 +1,9 @@
 name: Publish Packages
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-    types:
-      - closed
   workflow_dispatch:
     inputs:
       package:
@@ -18,19 +16,73 @@ on:
           - '@core-circle/icons'
         default: all
 
+permissions:
+  contents: read
+  packages: write
+  pull-requests: write
+  issues: write
+
 jobs:
+  check-publish:
+    name: check-publish-trigger
+    runs-on: ubuntu-latest
+    outputs:
+      should_publish: ${{ steps.check.outputs.should_publish }}
+      pr_number: ${{ steps.check.outputs.pr_number }}
+      project_selector: ${{ steps.check.outputs.project_selector }}
+    steps:
+      - name: Verify Publish Trigger
+        id: check
+        uses: actions/github-script@v7
+        with:
+          script: |
+            if (context.eventName === 'workflow_dispatch') {
+              const selected = '${{ github.event.inputs.package }}' || 'all';
+              const selector = (selected !== 'all' && selected !== '') ? `-p ${selected}` : '-p tag:package';
+              core.setOutput('should_publish', 'true');
+              core.setOutput('pr_number', '');
+              core.setOutput('project_selector', selector);
+              return;
+            }
+
+            const prs = await github.rest.repos.listPullRequestsAssociatedWithCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              commit_sha: context.sha,
+            });
+
+            const pr = prs.data.find(p => p.merged_at !== null) || prs.data[0];
+
+            if (!pr) {
+              core.setOutput('should_publish', 'false');
+              core.setOutput('pr_number', '');
+              core.setOutput('project_selector', '');
+              return;
+            }
+
+            const hasPublishLabel = pr.labels.some(l => l.name === 'build_publish_package');
+            if (!hasPublishLabel) {
+              core.setOutput('should_publish', 'false');
+              core.setOutput('pr_number', String(pr.number));
+              core.setOutput('project_selector', '');
+              return;
+            }
+
+            let projects = [];
+            if (pr.labels.some(l => l.name === 'pkg:ui')) projects.push('@core-circle/ui');
+            if (pr.labels.some(l => l.name === 'pkg:theme')) projects.push('@core-circle/theme');
+            if (pr.labels.some(l => l.name === 'pkg:icons')) projects.push('@core-circle/icons');
+
+            const selector = projects.length > 0 ? `-p ${projects.join(',')}` : '-p tag:package';
+            core.setOutput('should_publish', 'true');
+            core.setOutput('pr_number', String(pr.number));
+            core.setOutput('project_selector', selector);
+
   publish:
     name: publish-packages
-    # Only run when:
-    # 1. A PR into main was actually merged AND has the 'build_publish_package' label, OR
-    # 2. Triggered manually via workflow_dispatch
-    if: (github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'build_publish_package')) || github.event_name == 'workflow_dispatch'
+    needs: check-publish
+    if: needs.check-publish.outputs.should_publish == 'true'
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      pull-requests: write
-      issues: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -48,58 +100,21 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Determine Target Packages from Scope Labels
-        run: |
-          # 1. Manual trigger via workflow_dispatch
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            SELECTED_PKG="${{ github.event.inputs.package }}"
-            if [ "$SELECTED_PKG" != "all" ] && [ -n "$SELECTED_PKG" ]; then
-              echo "Manual trigger selected: $SELECTED_PKG"
-              echo "PROJECT_SELECTOR=-p $SELECTED_PKG" >> $GITHUB_ENV
-              exit 0
-            fi
-          fi
-
-          # 2. Resolve from PR labels (smart scope)
-          PROJECTS=""
-
-          if [ "${{ contains(github.event.pull_request.labels.*.name, 'pkg:ui') }}" = "true" ]; then
-            PROJECTS="${PROJECTS:+$PROJECTS,}@core-circle/ui"
-          fi
-
-          if [ "${{ contains(github.event.pull_request.labels.*.name, 'pkg:theme') }}" = "true" ]; then
-            PROJECTS="${PROJECTS:+$PROJECTS,}@core-circle/theme"
-          fi
-
-          if [ "${{ contains(github.event.pull_request.labels.*.name, 'pkg:icons') }}" = "true" ]; then
-            PROJECTS="${PROJECTS:+$PROJECTS,}@core-circle/icons"
-          fi
-
-          if [ -z "$PROJECTS" ]; then
-            echo "No scope label found. Targeting all packages: tag:package"
-            echo "PROJECT_SELECTOR=-p tag:package" >> $GITHUB_ENV
-          else
-            echo "Smart Scope activated: Targeting $PROJECTS"
-            echo "PROJECT_SELECTOR=-p $PROJECTS" >> $GITHUB_ENV
-          fi
-
       - name: Build target packages
-        run: npx nx run-many -t build $PROJECT_SELECTOR
+        run: npx nx run-many -t build ${{ needs.check-publish.outputs.project_selector }}
 
       - name: Publish target packages
-        run: npx nx run-many -t publish $PROJECT_SELECTOR
+        run: npx nx run-many -t publish ${{ needs.check-publish.outputs.project_selector }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Comment on PR on Successful Package Publish
-        if: success() && (github.event.pull_request.number || github.event.issue.number)
+        if: success() && needs.check-publish.outputs.pr_number != ''
         uses: actions/github-script@v7
-        env:
-          PROJECT_SELECTOR: ${{ env.PROJECT_SELECTOR }}
         with:
           script: |
-            const prNumber = context.payload.pull_request?.number || context.issue?.number;
-            const selector = process.env.PROJECT_SELECTOR || 'All Packages';
+            const prNumber = parseInt('${{ needs.check-publish.outputs.pr_number }}', 10);
+            const selector = '${{ needs.check-publish.outputs.project_selector }}' || 'All Packages';
             const body = `### 📦 Packages Published Successfully!\n\nThe automated release has published to GitHub Packages:\n\n* **Packages targeted**: \`${selector}\`\n* **Registry**: \`https://npm.pkg.github.com/@core-circle\`\n\nTo install downstream:\n\`\`\`bash\nnpm install @core-circle/ui@latest\n\`\`\``;
             if (prNumber) {
               await github.rest.issues.createComment({
@@ -111,11 +126,11 @@ jobs:
             }
 
       - name: Comment on PR on Package Publish Failure
-        if: failure() && (github.event.pull_request.number || github.event.issue.number)
+        if: failure() && needs.check-publish.outputs.pr_number != ''
         uses: actions/github-script@v7
         with:
           script: |
-            const prNumber = context.payload.pull_request?.number || context.issue?.number;
+            const prNumber = parseInt('${{ needs.check-publish.outputs.pr_number }}', 10);
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const body = `### ❌ Package Publishing Failed\n\nThe automated package publish encountered an error.\n\n🔍 **View Error Logs**: [GitHub Actions Run](${runUrl})\n\n💡 *Tip: Ensure the \`"version"\` field in \`package.json\` was bumped from the previous release.*`;
             if (prNumber) {
