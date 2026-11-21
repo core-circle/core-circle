@@ -65,7 +65,26 @@ export const SliderInputPlayground = () => {
         {/* Controls */}
         <div className={s.controlsWrapper}>
           <div className={s.gridTwoCols}>
-            <SelectField label="Variant" value={state.variant} onChange={(v: string) => updateState('variant', v)} options={{ standard: 'Standard', primary: 'Primary', success: 'Success', warning: 'Warning', danger: 'Danger' }} />
+            <SelectField 
+              label="Variant" 
+              value={state.variant} 
+              onChange={(v: string) => updateState('variant', v)} 
+              options={{ 
+                standard: 'Standard', 
+                primary: 'Primary', 
+                secondary: 'Secondary',
+                success: 'Success', 
+                warning: 'Warning', 
+                danger: 'Danger',
+                info: 'Info Sky',
+                gradient: 'Radiant Gradient',
+                glassmorphic: 'Glassmorphic',
+                glow: 'Neon Glow',
+                floating: 'Floating Elevated',
+                accent: 'Accent Ring',
+                dark: 'Dark Mode'
+              }} 
+            />
             <SelectField label="Size" value={state.size} onChange={(v: string) => updateState('size', v)} options={{ sm: 'Small', md: 'Medium', lg: 'Large' }} />
             <div className="flex gap-8 items-end pb-2 lg:col-span-2 justify-between">
               {['showValue', 'disabled', 'fullWidth'].map((key) => (

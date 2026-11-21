@@ -1,16 +1,43 @@
 import * as React from 'react';
-import { type VariantProps } from 'class-variance-authority';
-import { spinnerVariants } from '../../../components/atoms/spinner/spinner.styles';
 
-export interface SpinnerProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof spinnerVariants> {
+export type SpinnerVariant = 
+  | 'primary' 
+  | 'secondary' 
+  | 'success' 
+  | 'warning' 
+  | 'danger' 
+  | 'info' 
+  | 'gradient' 
+  | 'glow' 
+  | 'glassmorphic' 
+  | 'accent' 
+  | 'dark' 
+  | 'white';
+
+export type SpinnerSize = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+
+export interface SpinnerProps extends React.HTMLAttributes<HTMLDivElement> {
   /**
-   * Custom thickness for the spinner circle.
+   * Color theme variant of the spinner.
+   * @default 'primary'
+   */
+  variant?: SpinnerVariant;
+
+  /**
+   * Predefined diameter and border thickness size scale.
+   * @default 'md'
+   */
+  size?: SpinnerSize;
+
+  /**
+   * Custom thickness for the spinner circle (in px).
    */
   thickness?: number;
+
   /**
-   * Animation speed in seconds.
+   * Animation rotation speed in seconds.
+   * @default 0.8
    */
   speed?: number;
 }
+

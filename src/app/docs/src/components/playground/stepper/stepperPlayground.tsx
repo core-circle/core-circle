@@ -59,7 +59,23 @@ export const StepperPlayground = () => {
         <div className={s.controlsWrapper}>
           <div className={s.gridTwoCols}>
             <SelectField label="Orientation" value={state.orientation} onChange={(v: string) => updateState('orientation', v)} options={{ horizontal: 'Horizontal', vertical: 'Vertical' }} />
-            <SelectField label="Variant" value={state.variant} onChange={(v: string) => updateState('variant', v)} options={{ numbers: 'Numbers', circles: 'Circles', dots: 'Dots' }} />
+            <SelectField 
+              label="Variant" 
+              value={state.variant} 
+              onChange={(v: string) => updateState('variant', v)} 
+              options={{ 
+                numbers: 'Numbers', 
+                dots: 'Dots', 
+                circles: 'Circles',
+                pill: 'Pill Badges',
+                gradient: 'Radiant Gradient',
+                glow: 'Neon Glow',
+                glassmorphic: 'Glassmorphic',
+                cards: 'Card Boxes',
+                timeline: 'Timeline Pins',
+                dark: 'Dark Mode'
+              }} 
+            />
             
             <div className="flex gap-4 items-end pb-2">
               <Checkbox

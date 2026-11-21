@@ -10,7 +10,7 @@ const meta: Meta<typeof TextInput> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['outline', 'material', 'material-animated', 'ghost', 'standard'],
+      options: ['outline', 'material', 'material-animated', 'ghost', 'standard', 'filled', 'glassmorphic', 'floating', 'gradient', 'pill', 'accent', 'dark'],
     },
     size: {
       control: 'select',

@@ -1,7 +1,21 @@
 import { ReactNode } from 'react';
 
-export type ProgressVariant = 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'ghost';
+export type ProgressVariant =
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'info'
+  | 'gradient'
+  | 'glassmorphic'
+  | 'striped'
+  | 'glow'
+  | 'floating'
+  | 'ghost';
+
 export type ProgressSize = 'sm' | 'md' | 'lg';
+export type ProgressShape = 'pill' | 'rounded' | 'square';
 export type LabelPosition = 'inside' | 'outside-end' | 'outside-top';
 
 export interface ProgressProps {
@@ -25,6 +39,16 @@ export interface ProgressProps {
    * @default 'md'
    */
   size?: ProgressSize;
+  /**
+   * The shape of the progress bar container and indicator
+   * @default 'pill'
+   */
+  shape?: ProgressShape;
+  /**
+   * Whether to display animated diagonal stripes
+   * @default false
+   */
+  striped?: boolean;
   /**
    * Whether to show the percentage label
    * @default false

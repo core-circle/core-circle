@@ -1,10 +1,12 @@
+import React from 'react';
 import { IconProps } from './types';
 
-const Crop = ({ 
-  className = 'w-3.5 h-3.5', 
+const Crop: React.FC<IconProps> = ({
+  size = 24,
   color = 'currentColor',
-  size,
-  ...props 
+  strokeWidth = 2,
+  className = '',
+  ...props
 }: IconProps) => (
   <svg 
     className={className} 
@@ -15,7 +17,7 @@ const Crop = ({
     height={size}
     {...props}
   >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v14c0 1.1.9 2 2 2h14M3 5h14c1.1 0 2 .9 2 2v14" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M5 3v14c0 1.1.9 2 2 2h14M3 5h14c1.1 0 2 .9 2 2v14" />
   </svg>
 );
 

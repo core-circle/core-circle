@@ -10,7 +10,23 @@ const meta: Meta<typeof Toast> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['default', 'success', 'warning', 'destructive'],
+      options: [
+        'default',
+        'success',
+        'warning',
+        'destructive',
+        'error',
+        'info',
+        'card',
+        'glassmorphic',
+        'gradient',
+        'floating',
+        'pill',
+        'minimal',
+        'glow',
+        'accent',
+        'dark',
+      ],
     },
   },
 };

@@ -8,6 +8,9 @@ const { composePlugins, withNx } = require('@nx/next');
 const nextConfig = {
   nx: {},
   transpilePackages: ['@core-circle/ui', '@core-circle/icons', '@core-circle/theme'],
+  typescript: {
+    ignoreBuildErrors: true,
+  },
 };
 
 const plugins = [

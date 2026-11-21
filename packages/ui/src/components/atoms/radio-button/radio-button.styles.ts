@@ -1,74 +1,94 @@
 import { cva } from 'class-variance-authority';
 
 export const radioWrapperVariants = cva(
-  "inline-flex items-center gap-3 cursor-pointer group select-none transition-all duration-200",
+  'group relative transition-all duration-200 select-none cursor-pointer',
   {
     variants: {
+      variant: {
+        outline: 'inline-flex items-start gap-2.5',
+        solid: 'inline-flex items-start gap-2.5',
+        card: 'flex items-start gap-3.5 p-4 bg-white border border-core-circle-border-main rounded-core-circle-2xl shadow-core-circle-subtle hover:border-core-circle-primary/50 w-full',
+        floating: 'flex items-start gap-3.5 p-4 bg-white border border-core-circle-border-main/50 rounded-core-circle-2xl shadow-core-circle-elevated hover:shadow-core-circle-floating hover:-translate-y-0.5 w-full',
+        glassmorphic: 'flex items-start gap-3.5 p-4 backdrop-blur-md bg-white/85 border border-core-circle-border-main/70 rounded-core-circle-2xl shadow-core-circle-subtle w-full',
+        pill: 'inline-flex items-center gap-2.5 px-4 py-2 bg-slate-50 border border-slate-200 rounded-full hover:bg-slate-100',
+        bordered: 'flex items-start gap-3.5 p-4 bg-white border-2 border-core-circle-border-strong rounded-core-circle-2xl shadow-sm w-full',
+        gradient: 'inline-flex items-start gap-2.5',
+        success: 'inline-flex items-start gap-2.5',
+        ghost: 'inline-flex items-start gap-2.5 hover:bg-core-circle-bg-page p-1.5 rounded-core-circle-lg',
+      },
       disabled: {
-        true: "cursor-not-allowed opacity-50",
-        false: "",
+        true: 'opacity-50 cursor-not-allowed pointer-events-none',
+        false: '',
       },
     },
     defaultVariants: {
+      variant: 'outline',
       disabled: false,
     },
   }
 );
 
-export const radioVariants = cva(
-  "flex items-center justify-center rounded-full border transition-all duration-200 ring-offset-white focus-visible:ring-2 focus-visible:ring-core-circle-primary focus-visible:ring-offset-2",
+export const radioCircleVariants = cva(
+  'relative shrink-0 flex items-center justify-center rounded-full border-2 transition-all duration-200',
   {
     variants: {
       variant: {
-        outline: "bg-white border-core-circle-border-main group-hover:border-core-circle-primary/50",
-        solid: "bg-core-circle-bg-page border-transparent",
+        outline: 'border-slate-300 bg-white group-hover:border-core-circle-primary/60 data-[state=checked]:border-core-circle-primary',
+        solid: 'border-slate-300 bg-white group-hover:border-core-circle-primary/60 data-[state=checked]:border-core-circle-primary data-[state=checked]:bg-core-circle-primary/10',
+        card: 'border-slate-300 bg-white group-hover:border-core-circle-primary/60 data-[state=checked]:border-core-circle-primary',
+        floating: 'border-slate-300 bg-white group-hover:border-core-circle-primary/60 data-[state=checked]:border-core-circle-primary',
+        glassmorphic: 'border-slate-300 bg-white group-hover:border-core-circle-primary/60 data-[state=checked]:border-core-circle-primary',
+        pill: 'border-slate-300 bg-white group-hover:border-core-circle-primary/60 data-[state=checked]:border-core-circle-primary',
+        bordered: 'border-slate-400 bg-white group-hover:border-core-circle-primary/60 data-[state=checked]:border-core-circle-primary',
+        gradient: 'border-slate-300 bg-white group-hover:border-core-circle-primary/60 data-[state=checked]:border-core-circle-primary',
+        success: 'border-slate-300 bg-white group-hover:border-emerald-500/60 data-[state=checked]:border-emerald-500',
+        ghost: 'border-slate-300 bg-transparent group-hover:border-core-circle-primary/60 data-[state=checked]:border-core-circle-primary',
       },
       size: {
-        sm: "w-3.5 h-3.5",
-        md: "w-4.5 h-4.5",
-        lg: "w-5.5 h-5.5",
-      },
-      checked: {
-        true: "border-core-circle-primary",
-        false: "",
+        sm: 'h-4 w-4',
+        md: 'h-5 w-5',
+        lg: 'h-6 w-6',
       },
       hasError: {
-        true: "border-core-circle-warning",
-        false: "",
+        true: 'border-core-circle-warning ring-2 ring-core-circle-warning/20',
       },
     },
-    compoundVariants: [
-      {
-        variant: "solid",
-        checked: true,
-        className: "bg-core-circle-primary/10 border-core-circle-primary shadow-inner",
-      },
-    ],
     defaultVariants: {
-      variant: "outline",
-      size: "md",
-      checked: false,
-      hasError: false,
+      variant: 'outline',
+      size: 'md',
     },
   }
 );
 
-export const innerCircleVariants = cva(
-  "rounded-full bg-core-circle-primary transition-all duration-200 transform scale-0",
+export const innerDotVariants = cva(
+  'rounded-full transition-all duration-200 transform scale-0',
   {
     variants: {
+      variant: {
+        outline: 'bg-core-circle-primary',
+        solid: 'bg-core-circle-primary',
+        card: 'bg-core-circle-primary',
+        floating: 'bg-core-circle-primary',
+        glassmorphic: 'bg-core-circle-primary',
+        pill: 'bg-core-circle-primary',
+        bordered: 'bg-core-circle-primary',
+        gradient: 'bg-gradient-to-r from-blue-600 to-purple-600',
+        success: 'bg-emerald-500',
+        ghost: 'bg-core-circle-primary',
+      },
       size: {
-        sm: "w-1.5 h-1.5",
-        md: "w-2 h-2",
-        lg: "w-2.5 h-2.5",
+        sm: 'h-1.5 w-1.5',
+        md: 'h-2 w-2',
+        lg: 'h-2.5 w-2.5',
       },
       checked: {
-        true: "scale-100",
-        false: "scale-0",
+        true: 'scale-100',
+        false: 'scale-0',
       },
     },
     defaultVariants: {
-      size: "md",
+      variant: 'outline',
+      size: 'md',
       checked: false,
     },
   }

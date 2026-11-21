@@ -16,6 +16,8 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
       max = 100,
       variant = 'primary',
       size = 'md',
+      shape = 'pill',
+      striped = false,
       showLabel = false,
       labelPosition = 'outside-end',
       label,
@@ -55,12 +57,12 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
             aria-valuemin={0}
             aria-valuemax={max}
             aria-valuenow={indeterminate ? undefined : value}
-            className={cn(progressContainerVariants({ size }))}
+            className={cn(progressContainerVariants({ variant, size, shape }))}
             {...props}
           >
             <div
               className={cn(
-                progressIndicatorVariants({ variant, indeterminate }),
+                progressIndicatorVariants({ variant, shape, indeterminate, striped }),
                 !animate && 'transition-none',
                 barClassName
               )}

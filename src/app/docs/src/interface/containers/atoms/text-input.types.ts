@@ -5,7 +5,7 @@ import {
 } from '../../../constants/atoms-page/text-input/textInputConstants';
 
 export interface TextInputContainerProps {
-  sections: typeof TEXT_INPUT_SECTIONS;
+  sections?: typeof TEXT_INPUT_SECTIONS;
   headerContent: typeof TEXT_INPUT_HEADER_CONTENT;
   breadcrumbItems: typeof TEXT_INPUT_BREADCRUMB_ITEMS;
 }

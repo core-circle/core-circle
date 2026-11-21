@@ -1,10 +1,12 @@
+import React from 'react';
 import { IconProps } from './types';
 
-const Trophy = ({ 
-  className = 'w-3.5 h-3.5', 
+const Trophy: React.FC<IconProps> = ({
+  size = 24,
   color = 'currentColor',
-  size,
-  ...props 
+  strokeWidth = 2,
+  className = '',
+  ...props
 }: IconProps) => (
   <svg 
     className={className} 
@@ -15,7 +17,7 @@ const Trophy = ({
     height={size}
     {...props}
   >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 14l3 3m0 0l3-3m-3 3V10m5-1a3 3 0 11-6 0 3 3 0 016 0z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M12 14l3 3m0 0l3-3m-3 3V10m5-1a3 3 0 11-6 0 3 3 0 016 0z" />
   </svg>
 );
 

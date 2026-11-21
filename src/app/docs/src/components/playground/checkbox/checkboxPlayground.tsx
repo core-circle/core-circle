@@ -1,137 +1,173 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Checkbox, Select, TextInput, Button } from '@core-circle/ui';
-import { CodeIcon, CopyIcon } from '@core-circle/icons';
-import { highlightCode } from '../../../utils/highlight';
-import { textInputPlaygroundStyles as s } from '../text-input/textInputPlayground.styles';
+import { 
+  Checkbox, 
+  Select, 
+  TextInput, 
+  Typography, 
+  Badge, 
+  Card,
+  CheckboxVariant,
+  CheckboxSize,
+  CheckboxShape 
+} from '@core-circle/ui';
+import ComponentPreview from '../../component-preview';
 
-const SelectField = ({ label, value, options, onChange }: any) => {
-  const formattedOptions = Object.entries(options).map(([val, lbl]) => ({
-    value: val,
-    label: lbl as string,
-  }));
-  return (
-    <Select
-      label={label}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      options={formattedOptions}
-      fullWidth
-    />
-  );
-};
+export const CheckboxPlayground: React.FC = () => {
+  const [checked, setChecked] = useState(true);
+  const [indeterminate, setIndeterminate] = useState(false);
+  const [variant, setVariant] = useState<CheckboxVariant>('card');
+  const [size, setSize] = useState<CheckboxSize>('md');
+  const [shape, setShape] = useState<CheckboxShape>('rounded');
 
-export const CheckboxPlayground = () => {
-  const [state, setState] = useState({
-    variant: 'outline',
-    size: 'md',
-    label: 'Subscribe to our newsletter',
-    error: '',
-    helperText: 'We will only send you important updates.',
-    disabled: false,
-    indeterminate: false,
-    checked: false,
-    labelSize: 'sm',
-    labelWeight: 'medium',
-  });
+  const [disabled, setDisabled] = useState(false);
+  const [showDescription, setShowDescription] = useState(true);
+  const [showBadge, setShowBadge] = useState(true);
 
-  const updateState = (key: string, value: any) => {
-    setState(prev => ({ ...prev, [key]: value }));
+  const [label, setLabel] = useState('Enable Continuous Security Scans');
+  const [description, setDescription] = useState('Automatically scans pull requests for CVE vulnerabilities and leaked API keys.');
+
+  const variantOptions = [
+    { label: 'Card Container (Default)', value: 'card' },
+    { label: 'Floating Card', value: 'floating' },
+    { label: 'Glassmorphic Card', value: 'glassmorphic' },
+    { label: 'Solid Brand', value: 'solid' },
+    { label: 'Outline Clean', value: 'outline' },
+    { label: 'Pill Toggle', value: 'pill' },
+    { label: 'Bordered Strong', value: 'bordered' },
+    { label: 'Success Emerald', value: 'success' },
+    { label: 'Gradient Glow', value: 'gradient' },
+    { label: 'Ghost Minimal', value: 'ghost' },
+  ];
+
+  const sizeOptions = [
+    { label: 'Small (sm: 16px)', value: 'sm' },
+    { label: 'Medium (md: 20px)', value: 'md' },
+    { label: 'Large (lg: 24px)', value: 'lg' },
+  ];
+
+  const shapeOptions = [
+    { label: 'Rounded Square (Default)', value: 'rounded' },
+    { label: 'Circular Ring', value: 'circle' },
+    { label: 'Sharp Square', value: 'square' },
+  ];
+
+  const generateCodeSnippet = () => {
+    let props = `checked={${checked}}\n  onChange={(e) => setChecked(e.target.checked)}`;
+    if (variant !== 'solid') props += `\n  variant="${variant}"`;
+    if (size !== 'md') props += `\n  size="${size}"`;
+    if (shape !== 'rounded') props += `\n  shape="${shape}"`;
+    if (indeterminate) props += `\n  indeterminate`;
+    if (label) props += `\n  label="${label}"`;
+    if (showDescription && description) props += `\n  description="${description}"`;
+    if (showBadge) props += `\n  badge={<Badge variant="primary" shape="pill" size="sm">RECOMMENDED</Badge>}`;
+    if (disabled) props += `\n  disabled`;
+
+    return `<Checkbox\n  ${props}\n/>`;
   };
 
-  const generateCode = () => {
-    const { variant, size, label, error, helperText, disabled, indeterminate, checked, labelSize, labelWeight } = state;
-    let props = `variant="${variant}" size="${size}"`;
-    if (labelSize !== 'sm') props += ` labelSize="${labelSize}"`;
-    if (labelWeight !== 'medium') props += ` labelWeight="${labelWeight}"`;
-    if (label) props += ` label="${label}"`;
-    if (error) props += ` error="${error}"`;
-    if (helperText) props += ` helperText="${helperText}"`;
-    if (disabled) props += ' disabled';
-    if (indeterminate) props += ' indeterminate';
-    if (checked) props += ' checked';
-
-    return `<Checkbox ${props} />`;
-  };
-
   return (
-    <div className={s.container}>
-      <div className={s.layout}>
-        <div className={s.controlsWrapper}>
-          <div className={s.gridTwoCols}>
-            <SelectField label="Variant" value={state.variant} onChange={(v: string) => updateState('variant', v)} options={{ outline: 'Outline', solid: 'Solid' }} />
-            <SelectField label="Size" value={state.size} onChange={(v: string) => updateState('size', v)} options={{ sm: 'Small', md: 'Medium', lg: 'Large' }} />
-            <SelectField
-              label="Label Size"
-              value={state.labelSize}
-              onChange={(v: string) => updateState('labelSize', v)}
-              options={{ xs: 'Extra Small', sm: 'Small', base: 'Base', lg: 'Large', xl: 'Extra Large', '2xl': '2XL' }}
-            />
-            <SelectField
-              label="Label Weight"
-              value={state.labelWeight}
-              onChange={(v: string) => updateState('labelWeight', v)}
-              options={{ light: 'Light', normal: 'Normal', medium: 'Medium', semibold: 'Semibold', bold: 'Bold' }}
-            />
-            <div className="flex gap-4 items-end pb-2 ml-auto">
-              {['disabled', 'indeterminate', 'checked'].map((key) => (
-                <Checkbox
-                  key={key}
-                  label={key}
-                  checked={(state as any)[key]}
-                  onChange={(checked) => updateState(key, checked)}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className={s.dividerSection}>
-            <TextInput label="Label" value={state.label} onChange={(e) => updateState('label', e.target.value)} fullWidth />
-            <TextInput label="Error" value={state.error} onChange={(e) => updateState('error', e.target.value)} placeholder="Error message..." fullWidth />
-            <TextInput label="Helper Text" value={state.helperText} onChange={(e) => updateState('helperText', e.target.value)} fullWidth />
-          </div>
-        </div>
-
-        <div className={s.previewWrapper}>
-          <div className={s.previewArea}>
+    <div className="flex flex-col gap-8 w-full">
+      <ComponentPreview title="Interactive Checkbox Sandbox" code={generateCodeSnippet()}>
+        <div className="flex items-center justify-center p-8 w-full min-h-[220px] bg-slate-50/50 rounded-2xl border border-slate-100">
+          <div className="w-full max-w-md">
             <Checkbox
-              variant={state.variant as any}
-              size={state.size as any}
-              label={state.label}
-              error={state.error}
-              helperText={state.helperText}
-              disabled={state.disabled}
-              indeterminate={state.indeterminate}
-              checked={state.checked}
-              onChange={(checked) => updateState('checked', checked)}
-              labelSize={state.labelSize as any}
-              labelWeight={state.labelWeight as any}
+              checked={checked}
+              onChange={(e) => setChecked(e.target.checked)}
+              indeterminate={indeterminate}
+              variant={variant}
+              size={size}
+              shape={shape}
+              label={label}
+              description={showDescription ? description : undefined}
+              badge={showBadge ? <Badge variant="primary" shape="pill" size="sm">RECOMMENDED</Badge> : undefined}
+              disabled={disabled}
+            />
+          </div>
+        </div>
+      </ComponentPreview>
+
+      {/* Control Configuration Panel */}
+      <Card variant="outline" className="p-6 bg-white border border-core-circle-border-main/70">
+        <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted mb-6">
+          Checkbox Controls
+        </Typography>
+
+        <div className="flex flex-col gap-6">
+          {/* Tier 1: Exactly 3 Select Dropdowns */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Select
+              label="Visual Variant"
+              value={variant}
+              options={variantOptions}
+              onChange={(val) => setVariant(val as CheckboxVariant)}
+            />
+            <Select
+              label="Size Scale"
+              value={size}
+              options={sizeOptions}
+              onChange={(val) => setSize(val as CheckboxSize)}
+            />
+            <Select
+              label="Contour Shape"
+              value={shape}
+              options={shapeOptions}
+              onChange={(val) => setShape(val as CheckboxShape)}
             />
           </div>
 
-          <div className={s.codeSection}>
-            <div className={s.codeHeader}>
-              <span className={s.codeTitle}>
-                <CodeIcon className="w-3.5 h-3.5" />
-                Live Code
-              </span>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigator.clipboard.writeText(generateCode())}
-                className={s.copyButton}
-                startIcon={<CopyIcon className="w-3.5 h-3.5" />}
-              >
-                Copy Snippet
-              </Button>
-            </div>
-            <pre className={s.codeBlock}>
-              <code dangerouslySetInnerHTML={{ __html: highlightCode(generateCode()) }} />
-            </pre>
+          {/* Tier 2: Horizontal Checkboxes Row */}
+          <div className="flex flex-wrap items-center gap-6 py-2 border-t border-core-circle-border-main/40">
+            <Checkbox
+              id="checked-flag"
+              label="Checked"
+              checked={checked}
+              onChange={(e) => setChecked(e.target.checked)}
+            />
+            <Checkbox
+              id="indet-flag"
+              label="Indeterminate (-)"
+              checked={indeterminate}
+              onChange={(e) => setIndeterminate(e.target.checked)}
+            />
+            <Checkbox
+              id="desc-flag"
+              label="Description Subtitle"
+              checked={showDescription}
+              onChange={(e) => setShowDescription(e.target.checked)}
+            />
+            <Checkbox
+              id="badge-flag"
+              label="Attached Badge"
+              checked={showBadge}
+              onChange={(e) => setShowBadge(e.target.checked)}
+            />
+            <Checkbox
+              id="dis-flag"
+              label="Disabled"
+              checked={disabled}
+              onChange={(e) => setDisabled(e.target.checked)}
+            />
+          </div>
+
+          {/* Tier 3: Text Inputs */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-core-circle-border-main/60 pt-4">
+            <TextInput
+              label="Label Text"
+              value={label}
+              onChange={(e) => setLabel(e.target.value)}
+              placeholder="e.g. Enable Continuous Security Scans"
+            />
+            <TextInput
+              label="Subtitle Description"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="e.g. Scans pull requests..."
+            />
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

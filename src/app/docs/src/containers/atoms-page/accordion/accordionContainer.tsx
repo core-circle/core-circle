@@ -2,8 +2,25 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Breadcrumb, Tabs, Accordion, Typography, Badge } from '@core-circle/ui';
-import { Info, CodeIcon, Sparkles, Shield, Star, Palette, Layers, Play, CheckIcon } from '@core-circle/icons';
+import { Breadcrumb, Tabs, Accordion, Typography, Badge, Button } from '@core-circle/ui';
+import { 
+  Info, 
+  CodeIcon, 
+  Sparkles, 
+  Shield, 
+  Star, 
+  Palette, 
+  Layers, 
+  Play, 
+  CheckIcon, 
+  CreditCard, 
+  ShoppingBag, 
+  Key, 
+  Terminal, 
+  Clock, 
+  Banknotes,
+  Lock
+} from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
 import { atomsPageStyles as s } from '../atoms.styles';
@@ -27,9 +44,10 @@ export default function AccordionContainer({
       icon: <Palette size={16} />,
       content: (
         <div className="flex flex-col gap-12 max-w-5xl">
+          {/* 1. Security & Compliance FAQ */}
           <DocSection
             id="theming-security-audit"
-            title="Enterprise Security & Compliance FAQ Theme"
+            title="1. Enterprise Security & Compliance FAQ Theme"
             description="Crisp card layout with verified status badges and clear typography for governance and audit documentation."
           >
             <ComponentPreview
@@ -104,10 +122,11 @@ export default function AccordionContainer({
             </ComponentPreview>
           </DocSection>
 
+          {/* 2. Royal VIP Subscription FAQ */}
           <DocSection
             id="theming-luxury-purple"
-            title="Royal VIP Knowledge Base Theme"
-            description="Luminous gradient cards with purple badges and gold accent highlights."
+            title="2. Royal VIP Knowledge Base Theme"
+            description="Luminous gradient cards with purple badges and gold accent highlights for high-tier memberships."
           >
             <ComponentPreview
               title="Royal VIP Subscription FAQ"
@@ -128,6 +147,18 @@ export default function AccordionContainer({
         </div>
       ),
       content: 'Access a dedicated engineering war room with guaranteed 15-minute response times and quarterly on-site system audits.'
+    },
+    {
+      id: '2',
+      title: (
+        <div className="flex items-center gap-3 text-purple-950 font-bold">
+          <span className="flex items-center gap-2">
+            <Lock size={16} className="text-purple-600" /> Custom SSO & Okta SCIM Provisioning
+          </span>
+          <Badge variant="outline" size="sm" shape="pill">Enterprise</Badge>
+        </div>
+      ),
+      content: 'Automate team access controls and single sign-on across SAML 2.0, Microsoft Entra ID, and Google Workspace.'
     }
   ]}
 />`}
@@ -155,11 +186,247 @@ export default function AccordionContainer({
                       id: '2',
                       title: (
                         <div className="flex items-center gap-3 text-purple-950 font-bold">
-                          <span>Custom SSO & Okta SCIM Provisioning</span>
+                          <span className="flex items-center gap-2">
+                            <Lock size={16} className="text-purple-600" /> Custom SSO & Okta SCIM Provisioning
+                          </span>
                           <Badge variant="outline" size="sm" shape="pill">Enterprise</Badge>
                         </div>
                       ),
                       content: 'Automate team access controls and single sign-on across SAML 2.0, Microsoft Entra ID, and Google Workspace.'
+                    }
+                  ]}
+                />
+              </div>
+            </ComponentPreview>
+          </DocSection>
+
+          {/* 3. E-Commerce Order & Fulfillment Theme */}
+          <DocSection
+            id="theming-ecommerce-orders"
+            title="3. E-Commerce Orders & Delivery Policy Theme"
+            description="Floating surface accordion with order timeline badges and international return terms."
+          >
+            <ComponentPreview
+              title="Order Fulfillment & Returns"
+              code={`<Accordion
+  variant="floating"
+  type="single"
+  collapsible
+  defaultValue="1"
+  items={[
+    {
+      id: '1',
+      title: (
+        <div className="flex items-center gap-3">
+          <span className="text-core-circle-text-main font-bold flex items-center gap-2">
+            <ShoppingBag size={16} className="text-blue-600" /> Worldwide Express Air Shipping
+          </span>
+          <Badge variant="info" size="sm" shape="pill">2-4 Business Days</Badge>
+        </div>
+      ),
+      content: 'All global orders are fulfilled within 24 hours from our automated logistics hubs with real-time GPS parcel tracking.'
+    },
+    {
+      id: '2',
+      title: (
+        <div className="flex items-center gap-3">
+          <span className="text-core-circle-text-main font-bold flex items-center gap-2">
+            <Clock size={16} className="text-emerald-600" /> 30-Day Hassle-Free Return Guarantee
+          </span>
+          <Badge variant="success" size="sm" shape="pill">Prepaid Labels</Badge>
+        </div>
+      ),
+      content: 'Return unused items in their original packaging within 30 days for an instant 100% refund to your original payment method.'
+    }
+  ]}
+/>`}
+            >
+              <div className="w-full">
+                <Accordion
+                  variant="floating"
+                  type="single"
+                  collapsible
+                  defaultValue="1"
+                  items={[
+                    {
+                      id: '1',
+                      title: (
+                        <div className="flex items-center gap-3">
+                          <span className="text-core-circle-text-main font-bold flex items-center gap-2">
+                            <ShoppingBag size={16} className="text-blue-600" /> Worldwide Express Air Shipping
+                          </span>
+                          <Badge variant="info" size="sm" shape="pill">2-4 Business Days</Badge>
+                        </div>
+                      ),
+                      content: 'All global orders are fulfilled within 24 hours from our automated logistics hubs with real-time GPS parcel tracking.'
+                    },
+                    {
+                      id: '2',
+                      title: (
+                        <div className="flex items-center gap-3">
+                          <span className="text-core-circle-text-main font-bold flex items-center gap-2">
+                            <Clock size={16} className="text-emerald-600" /> 30-Day Hassle-Free Return Guarantee
+                          </span>
+                          <Badge variant="success" size="sm" shape="pill">Prepaid Labels</Badge>
+                        </div>
+                      ),
+                      content: 'Return unused items in their original packaging within 30 days for an instant 100% refund to your original payment method.'
+                    }
+                  ]}
+                />
+              </div>
+            </ComponentPreview>
+          </DocSection>
+
+          {/* 4. Developer API & Webhooks Theme */}
+          <DocSection
+            id="theming-dev-api"
+            title="4. Developer API & Webhook Specs Theme"
+            description="Flat minimal line entries with developer endpoint badges and security signatures."
+          >
+            <ComponentPreview
+              title="API Integration Specs"
+              code={`<Accordion
+  variant="minimal"
+  type="single"
+  collapsible
+  defaultValue="1"
+  items={[
+    {
+      id: '1',
+      title: (
+        <div className="flex items-center gap-3">
+          <span className="text-core-circle-text-main font-bold flex items-center gap-2">
+            <Key size={16} className="text-amber-600" /> API Authentication & HMAC Signatures
+          </span>
+          <Badge variant="outline" size="sm" shape="pill">v2.4 Core</Badge>
+        </div>
+      ),
+      content: 'Authenticate all incoming HTTP requests using Bearer JWT tokens with SHA-256 HMAC payload signatures in the header.'
+    },
+    {
+      id: '2',
+      title: (
+        <div className="flex items-center gap-3">
+          <span className="text-core-circle-text-main font-bold flex items-center gap-2">
+            <Terminal size={16} className="text-core-circle-primary" /> Webhook Retry Backoff Logic
+          </span>
+          <Badge variant="primary" size="sm" shape="pill">Exponential</Badge>
+        </div>
+      ),
+      content: 'Failed delivery attempts are retried up to 5 times using exponential backoff with jitter (5s, 15s, 45s, 2m, 10m).'
+    }
+  ]}
+/>`}
+            >
+              <div className="w-full">
+                <Accordion
+                  variant="minimal"
+                  type="single"
+                  collapsible
+                  defaultValue="1"
+                  items={[
+                    {
+                      id: '1',
+                      title: (
+                        <div className="flex items-center gap-3">
+                          <span className="text-core-circle-text-main font-bold flex items-center gap-2">
+                            <Key size={16} className="text-amber-600" /> API Authentication & HMAC Signatures
+                          </span>
+                          <Badge variant="outline" size="sm" shape="pill">v2.4 Core</Badge>
+                        </div>
+                      ),
+                      content: 'Authenticate all incoming HTTP requests using Bearer JWT tokens with SHA-256 HMAC payload signatures in the header.'
+                    },
+                    {
+                      id: '2',
+                      title: (
+                        <div className="flex items-center gap-3">
+                          <span className="text-core-circle-text-main font-bold flex items-center gap-2">
+                            <Terminal size={16} className="text-core-circle-primary" /> Webhook Retry Backoff Logic
+                          </span>
+                          <Badge variant="primary" size="sm" shape="pill">Exponential</Badge>
+                        </div>
+                      ),
+                      content: 'Failed delivery attempts are retried up to 5 times using exponential backoff with jitter (5s, 15s, 45s, 2m, 10m).'
+                    }
+                  ]}
+                />
+              </div>
+            </ComponentPreview>
+          </DocSection>
+
+          {/* 5. Billing & Subscription Tiers Theme */}
+          <DocSection
+            id="theming-billing-tiers"
+            title="5. Billing & Subscription Tiers Theme"
+            description="Soft filled surface accordion with billing frequency chips and enterprise cost calculators."
+          >
+            <ComponentPreview
+              title="Subscription Tier Details"
+              code={`<Accordion
+  variant="filled"
+  type="single"
+  collapsible
+  defaultValue="1"
+  items={[
+    {
+      id: '1',
+      title: (
+        <div className="flex items-center gap-3">
+          <span className="text-core-circle-text-main font-bold flex items-center gap-2">
+            <CreditCard size={16} className="text-indigo-600" /> Metered API Usage & Overage Billing
+          </span>
+          <Badge variant="primary" size="sm" shape="pill">Monthly</Badge>
+        </div>
+      ),
+      content: 'Requests beyond the monthly tier allowance are charged at $0.002 per 1,000 requests without throttling your services.'
+    },
+    {
+      id: '2',
+      title: (
+        <div className="flex items-center gap-3">
+          <span className="text-core-circle-text-main font-bold flex items-center gap-2">
+            <Banknotes size={16} className="text-emerald-600" /> Volume Discounts & Annual Contracts
+          </span>
+          <Badge variant="success" size="sm" shape="pill">Save 20%</Badge>
+        </div>
+      ),
+      content: 'Annual billing locks in a 20% discount across all compute tiers with custom PO and invoicing options for enterprise teams.'
+    }
+  ]}
+/>`}
+            >
+              <div className="w-full">
+                <Accordion
+                  variant="filled"
+                  type="single"
+                  collapsible
+                  defaultValue="1"
+                  items={[
+                    {
+                      id: '1',
+                      title: (
+                        <div className="flex items-center gap-3">
+                          <span className="text-core-circle-text-main font-bold flex items-center gap-2">
+                            <CreditCard size={16} className="text-indigo-600" /> Metered API Usage & Overage Billing
+                          </span>
+                          <Badge variant="primary" size="sm" shape="pill">Monthly</Badge>
+                        </div>
+                      ),
+                      content: 'Requests beyond the monthly tier allowance are charged at $0.002 per 1,000 requests without throttling your services.'
+                    },
+                    {
+                      id: '2',
+                      title: (
+                        <div className="flex items-center gap-3">
+                          <span className="text-core-circle-text-main font-bold flex items-center gap-2">
+                            <Banknotes size={16} className="text-emerald-600" /> Volume Discounts & Annual Contracts
+                          </span>
+                          <Badge variant="success" size="sm" shape="pill">Save 20%</Badge>
+                        </div>
+                      ),
+                      content: 'Annual billing locks in a 20% discount across all compute tiers with custom PO and invoicing options for enterprise teams.'
                     }
                   ]}
                 />

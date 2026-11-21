@@ -53,7 +53,20 @@ export const SwitchPlayground = () => {
               label="Variant"
               value={state.variant}
               onChange={(v: string) => updateState('variant', v)}
-              options={{ primary: 'Primary', secondary: 'Secondary', warning: 'Warning', destructive: 'Destructive' }}
+              options={{ 
+                primary: 'Primary', 
+                secondary: 'Secondary', 
+                success: 'Success', 
+                warning: 'Warning',
+                danger: 'Danger',
+                info: 'Info Sky',
+                gradient: 'Radiant Gradient',
+                glassmorphic: 'Glassmorphic',
+                glow: 'Neon Glow',
+                floating: 'Floating Inset',
+                accent: 'Accent Blue',
+                dark: 'Dark Mode'
+              }}
             />
             <SelectField
               label="Size"

@@ -12,7 +12,7 @@ const meta: Meta<typeof Tabs> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['underline', 'pills', 'enclosed'],
+      options: ['underline', 'pills', 'enclosed', 'cards', 'glassmorphic', 'gradient', 'glow', 'segmented', 'bordered', 'dark'],
     },
     size: {
       control: 'select',

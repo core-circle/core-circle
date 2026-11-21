@@ -1,50 +1,50 @@
-import { HomeIcon } from '@core-circle/icons';
 import React from 'react';
 import { PropItem } from '../../../interface/components/props-table.types';
 
 export const STEPPER_BREADCRUMB_ITEMS = [
-  { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
+  { label: 'Home', href: '/' },
   { label: 'Atoms', href: '/atoms' },
   { label: 'Stepper' }
 ];
 
 export const STEPPER_HEADER_CONTENT = {
   title: 'Stepper',
-  description: 'A progress indicator that displays a sequence of steps to guide users through a multi-stage process.',
+  description: 'A multi-stage progress component supporting 10 visual variants, horizontal and vertical orientations, dynamic error states, custom step cards, and milestone timelines.',
 };
 
 export const STEPPER_SECTIONS = [
   {
-    id: 'playground',
-    title: 'Live Playground',
-    description: 'Interact with orientation, variants, and step progress in real-time.',
-    showBorder: true,
-    isPlayground: true
+    id: 'theming',
+    title: 'Theming',
+    description: 'Production-grade multi-step implementations for enterprise SaaS onboarding, CI/CD pipelines, KYC identity checks, and checkout flows.',
   },
   {
-    id: 'orientations',
-    title: 'Orientations',
-    description: 'Switch between horizontal and vertical layouts based on your UI space.',
-    previews: [
-      {
-        id: 'horizontal',
-        title: 'Horizontal',
-        code: `<Stepper orientation="horizontal" activeStep={1} steps={steps} />`
-      },
-      {
-        id: 'vertical',
-        title: 'Vertical',
-        code: `<Stepper orientation="vertical" activeStep={2} steps={steps} />`
-      }
-    ]
-  }
+    id: 'variants',
+    title: 'Variants',
+    description: 'Explore 10 distinct layout and indicator surface styling variants.',
+  },
+  {
+    id: 'playground',
+    title: 'Playground',
+    description: 'Interactive property playground with live step navigation and orientation controls.',
+  },
+  {
+    id: 'mock-code',
+    title: 'Mock Code',
+    description: 'Dynamic API multi-stage workflow integration and state machine example.',
+  },
+  {
+    id: 'overview',
+    title: 'Overview',
+    description: 'Quick usage snippet and props reference.',
+  },
 ];
 
 export const STEPPER_PROPS_DATA: PropItem[] = [
   {
     name: 'steps',
     type: 'StepItem[]',
-    description: 'Array of objects containing title, description, and status for each step.'
+    description: 'Array of step descriptor objects ({ title, description?, icon?, status? }).'
   },
   {
     name: 'activeStep',
@@ -60,14 +60,19 @@ export const STEPPER_PROPS_DATA: PropItem[] = [
   },
   {
     name: 'variant',
-    type: "'numbers' | 'circles' | 'dots'",
+    type: "'numbers' | 'dots' | 'circles' | 'pill' | 'gradient' | 'glow' | 'glassmorphic' | 'cards' | 'timeline' | 'dark'",
     defaultValue: "'numbers'",
-    description: 'The visual style of the step indicators.'
+    description: 'Visual indicator geometry and surface container styling.'
   },
   {
     name: 'showDescription',
     type: 'boolean',
     defaultValue: 'true',
-    description: 'Whether to display the optional description text below/beside the title.'
+    description: 'Whether to render optional subtitle descriptions beneath/beside step titles.'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    description: 'Additional CSS classes for outer container customization.'
   }
 ];

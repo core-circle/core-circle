@@ -9,9 +9,11 @@ import { DOC_TEXT } from '../../../constants/common-constants';
 
 export const ProgressPlayground = () => {
   const [state, setState] = useState({
-    value: 60,
-    variant: 'primary',
+    value: 65,
+    variant: 'gradient',
     size: 'md',
+    shape: 'pill',
+    striped: false,
     showLabel: true,
     labelPosition: 'outside-end',
     indeterminate: false,
@@ -22,11 +24,15 @@ export const ProgressPlayground = () => {
   };
 
   const generateCode = () => {
-    let props = `value={${state.value}}\n  variant="${state.variant}"\n  size="${state.size}"`;
+    let props = `value={${state.value}}`;
+    if (state.variant !== 'primary') props += `\n  variant="${state.variant}"`;
+    if (state.size !== 'md') props += `\n  size="${state.size}"`;
+    if (state.shape !== 'pill') props += `\n  shape="${state.shape}"`;
+    if (state.striped) props += `\n  striped`;
     if (state.showLabel) props += `\n  showLabel\n  labelPosition="${state.labelPosition}"`;
     if (state.indeterminate) props += `\n  indeterminate`;
 
-    return `<Progress \n  ${props} \n/>`;
+    return `<Progress\n  ${props}\n/>`;
   };
 
   return (
@@ -55,7 +61,13 @@ export const ProgressPlayground = () => {
                 { value: 'success', label: 'Success' },
                 { value: 'warning', label: 'Warning' },
                 { value: 'danger', label: 'Danger' },
-                { value: 'ghost', label: 'Ghost' },
+                { value: 'info', label: 'Info' },
+                { value: 'gradient', label: 'Gradient VIP' },
+                { value: 'glassmorphic', label: 'Glassmorphic Glow' },
+                { value: 'striped', label: 'Striped Pattern' },
+                { value: 'glow', label: 'Neon Glow' },
+                { value: 'floating', label: 'Floating Depth' },
+                { value: 'ghost', label: 'Ghost Minimal' },
               ]}
               fullWidth
             />
@@ -64,9 +76,20 @@ export const ProgressPlayground = () => {
               value={state.size}
               onChange={(e) => updateState('size', e.target.value)}
               options={[
-                { value: 'sm', label: 'Small' },
-                { value: 'md', label: 'Medium' },
-                { value: 'lg', label: 'Large' },
+                { value: 'sm', label: 'Small (h-1.5)' },
+                { value: 'md', label: 'Medium (h-2.5)' },
+                { value: 'lg', label: 'Large (h-4)' },
+              ]}
+              fullWidth
+            />
+            <Select
+              label="Shape"
+              value={state.shape}
+              onChange={(e) => updateState('shape', e.target.value)}
+              options={[
+                { value: 'pill', label: 'Pill (Full)' },
+                { value: 'rounded', label: 'Rounded' },
+                { value: 'square', label: 'Square (Flat)' },
               ]}
               fullWidth
             />
@@ -77,33 +100,42 @@ export const ProgressPlayground = () => {
               options={[
                 { value: 'outside-end', label: 'Outside End' },
                 { value: 'outside-top', label: 'Outside Top' },
-                { value: 'inside', label: 'Inside' },
+                { value: 'inside', label: 'Inside (Best for lg)' },
               ]}
               fullWidth
               disabled={!state.showLabel}
             />
-            <div className="flex items-end pb-2 gap-12 whitespace-nowrap">
-              <Checkbox
-                label="Show Label"
-                checked={state.showLabel}
-                onChange={(checked) => updateState('showLabel', checked)}
-              />
-              <Checkbox
-                label="Indeterminate"
-                checked={state.indeterminate}
-                onChange={(checked) => updateState('indeterminate', checked)}
-              />
+            <div className="flex flex-col gap-3 justify-center">
+              <div className="flex items-center gap-6">
+                <Checkbox
+                  label="Show Label"
+                  checked={state.showLabel}
+                  onChange={(checked) => updateState('showLabel', checked)}
+                />
+                <Checkbox
+                  label="Striped"
+                  checked={state.striped}
+                  onChange={(checked) => updateState('striped', checked)}
+                />
+                <Checkbox
+                  label="Indeterminate"
+                  checked={state.indeterminate}
+                  onChange={(checked) => updateState('indeterminate', checked)}
+                />
+              </div>
             </div>
           </div>
         </div>
 
         <div className={s.previewWrapper}>
           <div className={s.previewArea}>
-            <div className="w-full max-w-md">
+            <div className="w-full max-w-md p-4">
               <Progress
                 value={state.value}
                 variant={state.variant as any}
                 size={state.size as any}
+                shape={state.shape as any}
+                striped={state.striped}
                 showLabel={state.showLabel}
                 labelPosition={state.labelPosition as any}
                 indeterminate={state.indeterminate}

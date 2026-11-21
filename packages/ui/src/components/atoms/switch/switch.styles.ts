@@ -1,14 +1,22 @@
 import { cva } from 'class-variance-authority';
 
 export const switchVariants = cva(
-  'relative inline-flex shrink-0 cursor-pointer items-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-core-circle-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+  'relative inline-flex shrink-0 cursor-pointer items-center rounded-full transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-core-circle-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
   {
     variants: {
       variant: {
-        primary: 'bg-core-circle-gray-200 data-[state=checked]:bg-core-circle-primary',
-        secondary: 'bg-core-circle-gray-200 data-[state=checked]:bg-core-circle-secondary',
-        warning: 'bg-core-circle-gray-200 data-[state=checked]:bg-core-circle-warning',
-        destructive: 'bg-core-circle-gray-200 data-[state=checked]:bg-core-circle-destructive',
+        primary: 'bg-slate-200 data-[state=checked]:bg-core-circle-primary',
+        secondary: 'bg-slate-200 data-[state=checked]:bg-slate-800',
+        success: 'bg-slate-200 data-[state=checked]:bg-emerald-600',
+        warning: 'bg-slate-200 data-[state=checked]:bg-amber-500',
+        danger: 'bg-slate-200 data-[state=checked]:bg-rose-600',
+        info: 'bg-slate-200 data-[state=checked]:bg-sky-500',
+        gradient: 'bg-slate-200 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-purple-600 data-[state=checked]:to-indigo-600',
+        glassmorphic: 'bg-slate-200/60 backdrop-blur-sm border border-slate-300/50 data-[state=checked]:bg-blue-600/80 data-[state=checked]:border-blue-400',
+        glow: 'bg-slate-900 border border-slate-800 data-[state=checked]:bg-emerald-950 data-[state=checked]:border-emerald-400 data-[state=checked]:shadow-[0_0_15px_rgba(52,211,153,0.5)]',
+        floating: 'bg-slate-200 shadow-inner data-[state=checked]:bg-core-circle-primary data-[state=checked]:shadow-md',
+        accent: 'bg-slate-200 data-[state=checked]:bg-blue-600',
+        dark: 'bg-slate-800 border border-slate-700 data-[state=checked]:bg-core-circle-primary data-[state=checked]:border-core-circle-primary',
       },
       size: {
         sm: 'h-5 w-9',
@@ -24,7 +32,7 @@ export const switchVariants = cva(
 );
 
 export const switchThumbVariants = cva(
-  'pointer-events-none block rounded-full bg-white shadow-lg ring-0 transition-transform',
+  'pointer-events-none block rounded-full bg-white shadow-md ring-0 transition-transform duration-300 flex items-center justify-center',
   {
     variants: {
       size: {
@@ -38,3 +46,4 @@ export const switchThumbVariants = cva(
     },
   }
 );
+

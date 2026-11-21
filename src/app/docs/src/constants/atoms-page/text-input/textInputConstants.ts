@@ -1,169 +1,108 @@
-import { HomeIcon } from '@core-circle/icons';
 import React from 'react';
 import { PropItem } from '../../../interface/components/props-table.types';
 
 export const TEXT_INPUT_BREADCRUMB_ITEMS = [
-  { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
+  { label: 'Home', href: '/' },
   { label: 'Atoms', href: '/atoms' },
   { label: 'TextInput' }
 ];
 
 export const TEXT_INPUT_HEADER_CONTENT = {
   title: 'TextInput',
-  description: 'A highly versatile input component supporting multiple visual styles, including Google Material design, with integrated icon slots and validation states.',
+  description: 'A versatile single-line text field supporting 12 visual styling variants, prefix/suffix adornments, leading/trailing icons, size scales, error states, and animated floating labels.',
 };
 
 export const TEXT_INPUT_SECTIONS = [
   {
-    id: 'playground',
-    title: 'Live Playground',
-    description: 'Experiment with variants, sizes, and icon positions live.',
-    showBorder: true,
-    isPlayground: true
+    id: 'theming',
+    title: 'Theming',
+    description: 'Production-grade text field themes for multi-currency wire transfers, zero-trust login, AI hyperparameters, SSH commit search, and VIP checkout.',
   },
   {
     id: 'variants',
-    title: 'Visual Variants',
-    description: 'Five distinct styles to fit any design requirement.',
-    previews: [
-      {
-        id: 'material-animated',
-        title: 'Material Animated',
-        code: '<TextInput variant="material-animated" label="Floating Label" placeholder="" />'
-      },
-      {
-        id: 'outline',
-        title: 'Outline (Default)',
-        code: '<TextInput variant="outline" label="Username" placeholder="Enter username" />'
-      },
-      {
-        id: 'material',
-        title: 'Material Design (Static)',
-        code: '<TextInput variant="material" label="Email Address" placeholder="name@example.com" />'
-      },
-      {
-        id: 'standard',
-        title: 'Standard (Minimal)',
-        code: '<TextInput variant="standard" label="Company Name" placeholder="Google" />'
-      },
-      {
-        id: 'ghost',
-        title: 'Ghost',
-        code: '<TextInput variant="ghost" placeholder="Search components..." />'
-      }
-    ]
+    title: 'Variants',
+    description: 'Explore 12 distinct border, surface, and interaction styling variants.',
   },
   {
-    id: 'icons',
-    title: 'With Icons',
-    description: 'Enhance usability with contextual icons at the start or end of the input.',
-    previews: [
-      {
-        title: 'Icon Positions',
-        code: `<TextInput startIcon={<Mail />} placeholder="Email" />\n<TextInput endIcon={<SearchIcon />} placeholder="Search..." />\n<TextInput startIcon={<Lock />} type="password" placeholder="Password" />`
-      }
-    ]
+    id: 'playground',
+    title: 'Playground',
+    description: 'Interactive property playground with live variant selection, icon toggling, and snippet generation.',
   },
   {
-    id: 'prefix-suffix',
-    title: 'Prefix and Suffix',
-    description: 'Add non-editable text or symbols at the start or end of the input field.',
-    previews: [
-      {
-        id: 'currency',
-        title: 'Currency & Units',
-        code: `<TextInput \n  label="Price" \n  prefix={<span className="font-bold">$</span>} \n  suffix="USD" \n  placeholder="0.00" \n/>`
-      },
-      {
-        id: 'titles',
-        title: 'Titles & Measurements',
-        code: `<TextInput prefix="Mr." placeholder="Full Name" />\n<TextInput suffix="kgs" placeholder="Weight" />`
-      }
-    ]
+    id: 'mock-code',
+    title: 'Mock Code',
+    description: 'Dynamic backend API user registration and form validation integration example.',
   },
   {
-    id: 'validation',
-    title: 'Validation States',
-    description: 'Built-in error and helper text support for clear user feedback.',
-    previews: [
-      {
-        title: 'Errors and Helpers',
-        code: `<TextInput label="Password" type="password" helperText="Must be at least 8 characters" />\n<TextInput label="Email" error="Please enter a valid email address" defaultValue="invalid-email" />`
-      }
-    ]
-  }
+    id: 'overview',
+    title: 'Overview',
+    description: 'Quick usage snippet and props reference.',
+  },
 ];
 
 export const TEXT_INPUT_PROPS_DATA: PropItem[] = [
   {
     name: 'variant',
-    type: "'outline' | 'material' | 'material-animated' | 'ghost' | 'standard'",
+    type: "'outline' | 'material' | 'material-animated' | 'ghost' | 'standard' | 'filled' | 'glassmorphic' | 'floating' | 'gradient' | 'pill' | 'accent' | 'dark'",
     defaultValue: "'outline'",
-    description: 'Visual style of the input.'
+    description: 'Visual styling and container surface treatment variant.'
   },
   {
     name: 'size',
     type: "'sm' | 'md' | 'lg'",
     defaultValue: "'md'",
-    description: 'Vertical size of the input field.'
+    description: 'Height and typography scale of the input.'
   },
   {
     name: 'label',
     type: 'string',
-    description: 'Floating or static label text for the input.'
-  },
-  {
-    name: 'labelSize',
-    type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
-    defaultValue: "'sm'",
-    description: 'Typography size for the label.'
-  },
-  {
-    name: 'labelWeight',
-    type: "'light' | 'normal' | 'medium' | 'semibold' | 'bold'",
-    defaultValue: "'medium'",
-    description: 'Typography weight for the label.'
+    description: 'Label text rendered above or inside the animated input container.'
   },
   {
     name: 'startIcon',
-    type: 'ReactNode',
-    description: 'Icon element to display at the beginning of the input.'
+    type: 'React.ReactNode',
+    description: 'Leading icon displayed before input text.'
   },
   {
     name: 'endIcon',
-    type: 'ReactNode',
-    description: 'Icon element to display at the end of the input.'
+    type: 'React.ReactNode',
+    description: 'Trailing icon or action indicator displayed after input text.'
   },
   {
     name: 'prefix',
-    type: 'ReactNode',
-    description: 'Non-editable content at the start of the input (after icon).'
+    type: 'React.ReactNode',
+    description: 'Fixed adornment text/symbol rendered immediately before user text (e.g. $, https://).'
   },
   {
     name: 'suffix',
-    type: 'ReactNode',
-    description: 'Non-editable content at the end of the input (before icon).'
+    type: 'React.ReactNode',
+    description: 'Fixed adornment text/symbol rendered immediately after user text (e.g. USD, kgs).'
   },
   {
     name: 'error',
     type: 'string',
-    description: 'Error message that changes input color and displays below.'
+    description: 'Validation error feedback message displaying beneath the field.'
   },
   {
     name: 'helperText',
     type: 'string',
-    description: 'Additional guidance text displayed below the input.'
+    description: 'Subtle guidance or informative footnote beneath the field.'
   },
   {
     name: 'fullWidth',
     type: 'boolean',
     defaultValue: 'false',
-    description: 'Whether the input takes the full width of its container.'
+    description: 'Whether the field stretches to fill container width.'
   },
   {
     name: 'disabled',
     type: 'boolean',
     defaultValue: 'false',
-    description: 'Prevents user interaction with the input.'
+    description: 'Whether the input field is interactive.'
+  },
+  {
+    name: 'className',
+    type: 'string',
+    description: 'Additional CSS classes.'
   }
 ];

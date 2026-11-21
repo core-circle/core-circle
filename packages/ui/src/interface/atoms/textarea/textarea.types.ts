@@ -1,11 +1,26 @@
 import { TextareaHTMLAttributes, ReactNode } from 'react';
 
+export type TextareaVariant = 
+  | 'outline' 
+  | 'material' 
+  | 'material-animated' 
+  | 'ghost' 
+  | 'standard' 
+  | 'filled' 
+  | 'glassmorphic' 
+  | 'floating' 
+  | 'gradient' 
+  | 'pill' 
+  | 'accent' 
+  | 'dark';
+
 export interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
   /**
    * Visual style of the textarea
    * @default 'outline'
    */
-  variant?: 'outline' | 'material' | 'material-animated' | 'ghost' | 'standard';
+  variant?: TextareaVariant;
+
   
   /**
    * Size of the textarea

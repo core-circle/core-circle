@@ -4,13 +4,13 @@ import { TypographyProps } from '../../../interface/atoms/typography/typography.
 import { typographyVariants } from './typography.styles';
 
 export const Typography = React.forwardRef<HTMLElement, TypographyProps>(
-  ({ className, variant = 'p', weight, align, italic, underline, as, children, ...props }, ref) => {
+  ({ className, variant = 'p', color = 'default', weight, align, italic, underline, as, children, ...props }, ref) => {
     const Component = as || (variant === 'lead' || variant === 'large' || variant === 'muted' ? 'p' : variant) || 'p';
 
     return (
       <Component
         ref={ref}
-        className={cn(typographyVariants({ variant, weight, align, italic, underline, className }))}
+        className={cn(typographyVariants({ variant, color, weight, align, italic, underline, className }))}
         {...props}
       >
         {children}

@@ -1,10 +1,12 @@
+import React from 'react';
 import { IconProps } from './types';
 
-const LoadingIcon = ({ 
-  className = 'w-3.5 h-3.5', 
+const LoadingIcon: React.FC<IconProps> = ({
+  size = 24,
   color = 'currentColor',
-  size,
-  ...props 
+  strokeWidth = 2,
+  className = '',
+  ...props
 }: IconProps) => (
   <svg 
     className={`animate-spin ${className}`} 
@@ -19,8 +21,10 @@ const LoadingIcon = ({
       cx="12" 
       cy="12" 
       r="10" 
-      stroke={color} 
-      strokeWidth="4" 
+      stroke={color}
+      strokeWidth={strokeWidth}
+      strokeLinecap="round"
+      strokeLinejoin="round" 
     />
     <path 
       className="opacity-75" 

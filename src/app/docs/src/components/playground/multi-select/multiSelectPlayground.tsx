@@ -1,182 +1,190 @@
 'use client';
 
 import React, { useState } from 'react';
-import { MultiSelect, Select, TextInput, Checkbox, Button } from '@core-circle/ui';
-import { CodeIcon, CopyIcon, Filter, Map, SettingsIcon, UserIcon, Tag } from '@core-circle/icons';
-import { highlightCode } from '../../../utils/highlight';
-import { textInputPlaygroundStyles as s } from '../text-input/textInputPlayground.styles';
+import { 
+  MultiSelect, 
+  Select, 
+  Checkbox, 
+  TextInput, 
+  Typography, 
+  Card,
+  MultiSelectVariant,
+  MultiSelectSize 
+} from '@core-circle/ui';
+import ComponentPreview from '../../component-preview';
 
-const ICONS = {
-  none: null,
-  filter: <Filter size={16} />,
-  map: <Map size={16} />,
-  settings: <SettingsIcon size={16} />,
-  user: <UserIcon size={16} />,
-  tag: <Tag size={16} />,
-};
-
-const ICON_LABELS: Record<string, string> = {
-  none: 'None',
-  filter: 'Filter',
-  map: 'Map',
-  settings: 'Settings',
-  user: 'User',
-  tag: 'Tag',
-};
-
-const OPTIONS = [
-  { value: 'react', label: 'React' },
-  { value: 'nextjs', label: 'Next.js' },
-  { value: 'vite', label: 'Vite' },
+const SAMPLE_TECH_OPTIONS = [
+  { value: 'react', label: 'React.js' },
+  { value: 'nextjs', label: 'Next.js 15' },
+  { value: 'typescript', label: 'TypeScript' },
   { value: 'tailwind', label: 'Tailwind CSS' },
-  { value: 'typescript', label: 'TypeScript', disabled: true },
+  { value: 'nodejs', label: 'Node.js' },
+  { value: 'graphql', label: 'GraphQL' },
+  { value: 'docker', label: 'Docker' },
+  { value: 'kubernetes', label: 'Kubernetes' },
 ];
 
-const SelectField = ({ label, value, options, onChange }: any) => {
-  const formattedOptions = Object.entries(options).map(([val, lbl]) => ({
-    value: val,
-    label: lbl as string,
-  }));
-  return (
-    <Select
-      label={label}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      options={formattedOptions}
-      fullWidth
-    />
-  );
-};
+export const MultiSelectPlayground: React.FC = () => {
+  const [selected, setSelected] = useState<string[]>(['react', 'typescript']);
+  const [variant, setVariant] = useState<MultiSelectVariant>('outline');
+  const [size, setSize] = useState<MultiSelectSize>('md');
+  const [maxTags, setMaxTags] = useState('3');
 
-export const MultiSelectPlayground = () => {
-  const [state, setState] = useState({
-    variant: 'outline',
-    size: 'md',
-    label: 'Label Text',
-    error: '',
-    helperText: 'Select multiple items',
-    disabled: false,
-    fullWidth: true,
-    startIcon: 'none',
-    prefix: '',
-    placeholder: 'Select...',
-    labelSize: 'xs',
-    labelWeight: 'bold',
-  });
+  const [label, setLabel] = useState('Required Core Technologies');
+  const [placeholder, setPlaceholder] = useState('Select tech stack...');
 
-  const [selected, setSelected] = useState(['react', 'nextjs']);
+  const [searchable, setSearchable] = useState(true);
+  const [showSelectAll, setShowSelectAll] = useState(true);
+  const [showClearAll, setShowClearAll] = useState(true);
+  const [fullWidth, setFullWidth] = useState(false);
+  const [disabled, setDisabled] = useState(false);
 
-  const updateState = (key: string, value: any) => {
-    setState(prev => ({ ...prev, [key]: value }));
-  };
+  const variantOptions = [
+    { label: 'Outline (Default)', value: 'outline' },
+    { label: 'Filled Surface', value: 'filled' },
+    { label: 'Floating Depth', value: 'floating' },
+    { label: 'Glassmorphic Blur', value: 'glassmorphic' },
+    { label: 'Pill Capsule', value: 'pill' },
+    { label: 'Material Underline', value: 'material' },
+    { label: 'Gradient Glow', value: 'gradient' },
+    { label: 'Chips Container', value: 'chips' },
+    { label: 'Compact Trigger', value: 'compact' },
+    { label: 'Ghost Minimal', value: 'ghost' },
+  ];
 
-  const generateCode = () => {
-    const { variant, size, label, error, helperText, disabled, fullWidth, startIcon, prefix, placeholder, labelSize, labelWeight } = state;
-    let props = `variant="${variant}" size="${size}"`;
-    if (labelSize !== 'xs') props += ` labelSize="${labelSize}"`;
-    if (labelWeight !== 'bold') props += ` labelWeight="${labelWeight}"`;
-    if (label) props += ` label="${label}"`;
-    if (placeholder) props += ` placeholder="${placeholder}"`;
-    if (error) props += ` error="${error}"`;
-    if (helperText) props += ` helperText="${helperText}"`;
-    if (disabled) props += ' disabled';
-    if (fullWidth) props += ' fullWidth';
-    if (prefix) props += ` prefix="${prefix}"`;
+  const sizeOptions = [
+    { label: 'Small (sm)', value: 'sm' },
+    { label: 'Medium (md)', value: 'md' },
+    { label: 'Large (lg)', value: 'lg' },
+  ];
 
-    if (startIcon !== 'none') {
-        const iconName = startIcon === 'settings' ? 'SettingsIcon' : startIcon === 'user' ? 'UserIcon' : startIcon.charAt(0).toUpperCase() + startIcon.slice(1);
-        props += `\n  startIcon={<${iconName} size={16} />}`;
-    }
+  const maxTagOptions = [
+    { label: '2 Tags (Collapse +N)', value: '2' },
+    { label: '3 Tags (Default)', value: '3' },
+    { label: '5 Tags', value: '5' },
+    { label: 'Unlimited (99)', value: '99' },
+  ];
 
-    return `<MultiSelect \n  ${props} \n  value={['react', 'nextjs']} \n  options={[\n    { value: 'react', label: 'React' },\n    { value: 'nextjs', label: 'Next.js' }\n  ]} \n/>`;
+  const generateCodeSnippet = () => {
+    let props = `options={techOptions}\n  value={selected}\n  onChange={setSelected}`;
+    if (variant !== 'outline') props += `\n  variant="${variant}"`;
+    if (size !== 'md') props += `\n  size="${size}"`;
+    if (label) props += `\n  label="${label}"`;
+    if (placeholder) props += `\n  placeholder="${placeholder}"`;
+    if (maxTags !== '3') props += `\n  maxTags={${maxTags}}`;
+    if (!searchable) props += `\n  searchable={false}`;
+    if (showSelectAll) props += `\n  showSelectAll`;
+    if (!showClearAll) props += `\n  showClearAll={false}`;
+    if (fullWidth) props += `\n  fullWidth`;
+    if (disabled) props += `\n  disabled`;
+
+    return `<MultiSelect\n  ${props}\n/>`;
   };
 
   return (
-    <div className={s.container}>
-      <div className={s.layout}>
-        <div className={s.controlsWrapper}>
-          <div className={s.gridTwoCols}>
-            <SelectField label="Variant" value={state.variant} onChange={(v: string) => updateState('variant', v)} options={{ outline: 'Outline', material: 'Material', 'material-animated': 'Material Animated', ghost: 'Ghost', standard: 'Standard' }} />
-            <SelectField label="Size" value={state.size} onChange={(v: string) => updateState('size', v)} options={{ sm: 'Small', md: 'Medium', lg: 'Large' }} />
-            <SelectField label="Start Icon" value={state.startIcon} options={ICON_LABELS} onChange={(v: string) => updateState('startIcon', v)} />
-            <SelectField
-              label="Label Size"
-              value={state.labelSize}
-              onChange={(v: string) => updateState('labelSize', v)}
-              options={{ xs: 'Extra Small', sm: 'Small', base: 'Base', lg: 'Large', xl: 'Extra Large', '2xl': '2XL' }}
+    <div className="flex flex-col gap-8 w-full">
+      <ComponentPreview title="Interactive MultiSelect Sandbox" code={generateCodeSnippet()}>
+        <div className="flex items-center justify-center p-8 w-full min-h-[260px] bg-slate-50/50 rounded-2xl border border-slate-100">
+          <div className="w-full max-w-md">
+            <MultiSelect
+              options={SAMPLE_TECH_OPTIONS}
+              value={selected}
+              onChange={setSelected}
+              variant={variant}
+              size={size}
+              label={label}
+              placeholder={placeholder}
+              maxTags={Number(maxTags)}
+              searchable={searchable}
+              showSelectAll={showSelectAll}
+              showClearAll={showClearAll}
+              fullWidth={fullWidth}
+              disabled={disabled}
             />
-            <SelectField
-              label="Label Weight"
-              value={state.labelWeight}
-              onChange={(v: string) => updateState('labelWeight', v)}
-              options={{ light: 'Light', normal: 'Normal', medium: 'Medium', semibold: 'Semibold', bold: 'Bold' }}
-            />
-            <div className="flex gap-4 items-end pb-2 ml-auto">
-              {['disabled', 'fullWidth'].map((key) => (
-                <Checkbox
-                  key={key}
-                  label={key}
-                  checked={(state as any)[key]}
-                  onChange={(checked) => updateState(key, checked)}
-                />
-              ))}
-            </div>
-          </div>
-
-          <div className={s.dividerSection}>
-            <TextInput label="Placeholder" value={state.placeholder} onChange={(e) => updateState('placeholder', e.target.value)} fullWidth />
-            <TextInput label="Label" value={state.label} onChange={(e) => updateState('label', e.target.value)} fullWidth />
-            <TextInput label="Prefix" value={state.prefix} onChange={(e) => updateState('prefix', e.target.value)} fullWidth />
-            <TextInput label="Error" value={state.error} onChange={(e) => updateState('error', e.target.value)} placeholder="Error message..." fullWidth />
-            <TextInput label="Helper Text" value={state.helperText} onChange={(e) => updateState('helperText', e.target.value)} fullWidth />
           </div>
         </div>
+      </ComponentPreview>
 
-        <div className={s.previewWrapper}>
-          <div className={s.previewArea}>
-            <div className={state.fullWidth ? "w-full" : "w-[300px]"}>
-              <MultiSelect
-                variant={state.variant as any}
-                size={state.size as any}
-                label={state.label}
-                error={state.error}
-                helperText={state.helperText}
-                disabled={state.disabled}
-                fullWidth={state.fullWidth}
-                startIcon={(ICONS as any)[state.startIcon]}
-                prefix={state.prefix}
-                placeholder={state.placeholder}
-                options={OPTIONS}
-                value={selected}
-                onChange={setSelected}
-                labelSize={state.labelSize as any}
-                labelWeight={state.labelWeight as any}
-              />
-            </div>
+      {/* Control Configuration Panel */}
+      <Card variant="outline" className="p-6 bg-white border border-core-circle-border-main/70">
+        <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted mb-6">
+          MultiSelect Controls
+        </Typography>
+
+        <div className="flex flex-col gap-6">
+          {/* Tier 1: Exactly 3 Select Dropdowns */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <Select
+              label="Visual Variant"
+              value={variant}
+              options={variantOptions}
+              onChange={(val) => setVariant(val as MultiSelectVariant)}
+            />
+            <Select
+              label="Size Scale"
+              value={size}
+              options={sizeOptions}
+              onChange={(val) => setSize(val as MultiSelectSize)}
+            />
+            <Select
+              label="Max Visible Tags"
+              value={maxTags}
+              options={maxTagOptions}
+              onChange={(val) => setMaxTags(val as string)}
+            />
           </div>
 
-          <div className={s.codeSection}>
-            <div className={s.codeHeader}>
-              <span className={s.codeTitle}>
-                <CodeIcon className="w-3.5 h-3.5" />
-                Live Code
-              </span>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigator.clipboard.writeText(generateCode())}
-                className={s.copyButton}
-                startIcon={<CopyIcon className="w-3.5 h-3.5" />}
-              >
-                Copy Snippet
-              </Button>
-            </div>
-            <pre className={s.codeBlock}>
-              <code dangerouslySetInnerHTML={{ __html: highlightCode(generateCode()) }} />
-            </pre>
+          {/* Tier 2: Horizontal Checkboxes Row */}
+          <div className="flex flex-wrap items-center gap-6 py-2 border-t border-core-circle-border-main/40">
+            <Checkbox
+              id="search-toggle"
+              label="Search Filtering"
+              checked={searchable}
+              onChange={(e) => setSearchable(e.target.checked)}
+            />
+            <Checkbox
+              id="select-all-toggle"
+              label="Select All Button"
+              checked={showSelectAll}
+              onChange={(e) => setShowSelectAll(e.target.checked)}
+            />
+            <Checkbox
+              id="clear-all-toggle"
+              label="Clear (X) Button"
+              checked={showClearAll}
+              onChange={(e) => setShowClearAll(e.target.checked)}
+            />
+            <Checkbox
+              id="fullwidth-toggle"
+              label="Full Width"
+              checked={fullWidth}
+              onChange={(e) => setFullWidth(e.target.checked)}
+            />
+            <Checkbox
+              id="disabled-toggle"
+              label="Disabled"
+              checked={disabled}
+              onChange={(e) => setDisabled(e.target.checked)}
+            />
+          </div>
+
+          {/* Tier 3: Text Inputs */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-core-circle-border-main/60 pt-4">
+            <TextInput
+              label="Input Label"
+              value={label}
+              onChange={(e) => setLabel(e.target.value)}
+              placeholder="e.g. Core Technologies"
+            />
+            <TextInput
+              label="Placeholder Text"
+              value={placeholder}
+              onChange={(e) => setPlaceholder(e.target.value)}
+              placeholder="e.g. Select options..."
+            />
           </div>
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

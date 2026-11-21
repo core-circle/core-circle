@@ -1,11 +1,22 @@
 {
   "name": "@core-circle/ui",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "./dist/index.mjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com"
+  },
+  "dependencies": {
+    "@core-circle/icons": "^0.0.8",
+    "@core-circle/theme": "^0.0.8",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "tailwind-merge": "^3.5.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "files": [
     "dist"

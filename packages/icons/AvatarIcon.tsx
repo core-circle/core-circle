@@ -1,10 +1,12 @@
+import React from 'react';
 import { IconProps } from './types';
 
-const AvatarIcon = ({ 
-  className = 'w-3.5 h-3.5', 
+const AvatarIcon: React.FC<IconProps> = ({
+  size = 24,
   color = 'currentColor',
-  size,
-  ...props 
+  strokeWidth = 2,
+  className = '',
+  ...props
 }: IconProps) => (
   <svg 
     className={className} 
@@ -13,7 +15,7 @@ const AvatarIcon = ({
     viewBox="0 0 24 24"
     width={size}
     height={size}
-    strokeWidth="2"
+    strokeWidth={strokeWidth}
     strokeLinecap="round"
     strokeLinejoin="round"
     {...props}

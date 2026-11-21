@@ -173,7 +173,11 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
             </div>
           </div>
 
-          <div className={cn(dropdownVariants({ isOpen }))}>
+          <div className={cn(
+            dropdownVariants({ isOpen }),
+            variant === 'dark' && "bg-slate-900 border-slate-700 text-slate-100",
+            variant === 'glassmorphic' && "bg-white/85 backdrop-blur-xl border-white/70 shadow-2xl"
+          )}>
             {options.length > 0 ? (
               options.map((option) => {
                 const isSelected = option.value === selectedValue;
@@ -184,7 +188,11 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                       e.stopPropagation();
                       if (!option.disabled) handleSelect(option.value);
                     }}
-                    className={cn(optionVariants({ isSelected, disabled: option.disabled }))}
+                    className={cn(
+                      optionVariants({ isSelected, disabled: option.disabled }),
+                      variant === 'dark' && !isSelected && "text-slate-200 hover:bg-slate-800",
+                      variant === 'dark' && isSelected && "bg-core-circle-primary/20 text-core-circle-primary font-bold border-core-circle-primary"
+                    )}
                   >
                     <span className="text-sm">{option.label}</span>
                     {isSelected && <CheckIcon className="text-core-circle-primary" size={16} />}

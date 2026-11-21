@@ -26,6 +26,7 @@ const SelectField = ({ label, value, options, onChange }: any) => {
 export const TypographyPlayground = () => {
   const [state, setState] = useState({
     variant: 'p',
+    color: 'default',
     weight: 'normal',
     align: 'left',
     italic: false,
@@ -38,8 +39,9 @@ export const TypographyPlayground = () => {
   };
 
   const generateCode = () => {
-    const { variant, weight, align, italic, underline, text } = state;
+    const { variant, color, weight, align, italic, underline, text } = state;
     let props = `variant="${variant}"`;
+    if (color !== 'default') props += ` color="${color}"`;
     if (weight !== 'normal') props += ` weight="${weight}"`;
     if (align !== 'left') props += ` align="${align}"`;
     if (italic) props += ' italic';
@@ -63,6 +65,24 @@ export const TypographyPlayground = () => {
                 p: 'Paragraph', lead: 'Lead', large: 'Large', 
                 small: 'Small', muted: 'Muted', blockquote: 'Blockquote', 
                 code: 'Code' 
+              }}
+            />
+            <SelectField
+              label="Color Token"
+              value={state.color}
+              onChange={(v: string) => updateState('color', v)}
+              options={{
+                default: 'Default Text',
+                primary: 'Primary Blue',
+                secondary: 'Secondary Slate',
+                success: 'Success Emerald',
+                warning: 'Warning Amber',
+                danger: 'Danger Rose',
+                info: 'Info Blue',
+                gradient: 'Radiant Gradient',
+                glow: 'Neon Glow',
+                accent: 'Accent Indigo',
+                muted: 'Muted Gray'
               }}
             />
             <SelectField
@@ -105,6 +125,7 @@ export const TypographyPlayground = () => {
           <div className={s.previewArea}>
             <Typography
               variant={state.variant as any}
+              color={state.color as any}
               weight={state.weight as any}
               align={state.align as any}
               italic={state.italic}
