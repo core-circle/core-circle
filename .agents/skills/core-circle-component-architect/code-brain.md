@@ -228,12 +228,19 @@ When building or updating documentation pages in `src/app/docs/`:
 
 ---
 
-## 7. Token Optimization Strategies for AI Agents
+## 7. Token Optimization & Code Quality Strategies for AI Agents
 
 1. **Zero-Turn Navigation**: Use this Code Brain instead of searching directories or querying file trees.
 2. **Selective File Edits**: When adding a variant, only touch `[name].styles.ts` and `[name].types.ts`.
 3. **Compose, Don't Code**: Assemble existing Atoms (`Card`, `Typography`, `Badge`, `Button`) instead of writing raw HTML and custom CSS.
 4. **Strict Command Policy**: NEVER run `build`, `test`, or `lint` commands unless specifically and explicitly requested by the user.
+5. **Strict Lint Warning Metric (< 100 Warnings)**:
+   - Monorepo lint warnings must strictly never exceed 100 (`nx run-many -t lint`).
+   - Primitives in `@core-circle/ui`, `@core-circle/theme`, and `@core-circle/icons` must maintain **0 errors and 0 warnings**.
+   - Build artifacts (`storybook-static/`, `dist/`, `.next/`) must be ignored in ESLint flat configs.
+6. **Clean React 19 Imports**: Never import unused `React` in `.ts` constants or stories.
+7. **Hook Dependency Safety**: Wrap event listener callbacks in `useCallback` when consumed by `useEffect`.
+8. **Accessibility & Fragments**: Emojis must use `<span role="img" aria-label="...">`; avoid single-child `<>{child}</>` wrappers.
 
 ---
 

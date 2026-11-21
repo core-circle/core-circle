@@ -71,7 +71,7 @@ Pull requests targeting `development` enforce two mandatory gatekeeper checks:
 
 | Mandatory Label | Gatekeeper Role | CI Enforcement & Behavior |
 | :--- | :--- | :--- |
-| `build` | **Compilation & Lint Gate** | Strictly mandatory. Triggers and enforces full monorepo linting (`nx run-many -t lint`), all package builds (`@core-circle/ui`, `@core-circle/theme`, `@core-circle/icons`), web docs build, and UI Storybook compilation. PR cannot merge into `development` until this check passes. |
+| `build` | **Compilation & Lint Gate** | Strictly mandatory. Triggers and enforces full monorepo linting (`nx run-many -t lint`), all package builds (`@core-circle/ui`, `@core-circle/theme`, `@core-circle/icons`), web docs build, and UI Storybook compilation. PR cannot merge into `development` until this check passes with **zero errors** and **total warnings strictly under 100**. |
 | `ready_to_merge` | **Reviewer Sign-off Gate** | Strictly mandatory. Attached by an authorized reviewer or Code Owner once code review is complete. Blocks PR merge until attached. |
 
 ### 🛡️ Main Gatekeeper Labels (`.github/workflows/enforce-main-pr.yml`)

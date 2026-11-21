@@ -116,3 +116,10 @@ Always consult `src/app/docs/src/containers/atoms-page/accordion/accordionContai
 7. **Zero Ad-Hoc Dark Containers**:
    - Always use clean surface tokens (`bg-white` or `bg-core-circle-bg-surface`, `border-core-circle-border-main`, `text-core-circle-text-main`) in showcase cards.
    - Never introduce localized dark wrappers (`bg-slate-900`, `bg-slate-950`, `dark:bg-slate-900`), which cause black-on-black invisible text and inverted hover states. Full dark mode will be ported globally at the root level once the webapp is completed.
+
+8. **Strict Quality Gates & Lint Warning Metric (< 100 Warnings)**:
+   - Monorepo lint warnings must **never exceed 100** (`nx run-many -t lint`).
+   - Primitives in `@core-circle/ui`, `@core-circle/theme`, and `@core-circle/icons` must maintain **0 errors and 0 warnings**.
+   - React 19 Clean Imports: No dead `import React from 'react'` in `.ts` constants or stories.
+   - React Hooks: Memoize effect callbacks (`useCallback`) and declare all effect dependencies (`react-hooks/exhaustive-deps`).
+   - Accessibility: Wrap all JSX emojis in `<span role="img" aria-label="...">`. Avoid single-child fragments `<>{child}</>`.
