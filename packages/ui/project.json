@@ -14,7 +14,7 @@
       }
     },
     "publish": {
-      "command": "npm publish --access restricted",
+      "command": "npm publish --access public",
       "options": {
         "cwd": "packages/ui"
       }
