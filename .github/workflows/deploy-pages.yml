@@ -1,0 +1,93 @@
+name: Deploy Web Docs & Storybook to GitHub Pages
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: deploy-gh-pages
+    # Only run when:
+    # 1. A PR into main is merged AND has the 'deploy_pages' label, OR
+    # 2. Triggered manually via workflow_dispatch
+    if: (github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'deploy_pages')) || github.event_name == 'workflow_dispatch'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'npm'
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Next.js Web Docs
+        env:
+          DEPLOY_TARGET: gh-pages
+        run: npx nx build @core-circle/docs
+
+      - name: Build UI Storybook
+        run: npm run build-storybook
+
+      - name: Consolidate GitHub Pages Bundle
+        run: |
+          mkdir -p dist/gh-pages
+          
+          # 1. Copy Next.js exported docs to root of dist/gh-pages
+          if [ -d "dist/src/app/docs/out" ]; then
+            cp -r dist/src/app/docs/out/* dist/gh-pages/
+          elif [ -d "src/app/docs/out" ]; then
+            cp -r src/app/docs/out/* dist/gh-pages/
+          elif [ -d "dist/src/app/docs" ]; then
+            cp -r dist/src/app/docs/* dist/gh-pages/
+          fi
+          
+          # 2. Copy Storybook into /storybook subfolder
+          mkdir -p dist/gh-pages/storybook
+          if [ -d "dist/storybook/@core-circle/ui" ]; then
+            cp -r dist/storybook/@core-circle/ui/* dist/gh-pages/storybook/
+          elif [ -d "dist/storybook/packages/ui" ]; then
+            cp -r dist/storybook/packages/ui/* dist/gh-pages/storybook/
+          elif [ -d "storybook-static" ]; then
+            cp -r storybook-static/* dist/gh-pages/storybook/
+          fi
+          
+          # 3. Disable Jekyll processing so _next assets load properly
+          touch dist/gh-pages/.nojekyll
+          
+          echo "GitHub Pages bundle prepared at dist/gh-pages"
+          ls -la dist/gh-pages
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/gh-pages
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
