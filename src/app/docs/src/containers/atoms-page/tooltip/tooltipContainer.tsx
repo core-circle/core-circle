@@ -1,5 +1,6 @@
 'use client';
 
+import { TooltipContainerProps } from '../../../interface/containers/atoms/tooltip.types';
 import React from 'react';
 import Link from 'next/link';
 import { Tooltip, Breadcrumb, Tabs, Typography, Badge, Button } from '@core-circle/ui';
@@ -26,16 +27,9 @@ import PropsTable from '../../../components/props-table';
 import { TooltipPlayground } from '../../../components/playground/tooltip/tooltipPlayground';
 import { tooltipPageStyles as s } from './tooltip.styles';
 import { TOOLTIP_PROPS_DATA } from '../../../constants/atoms-page/tooltip/tooltipConstants';
-export interface TooltipContainerProps {
-  sections?: any[];
-  headerContent?: {
-    title: string;
-    description: string;
-  };
-  breadcrumbItems?: any[];
-}
 
-export default function TooltipContainer({ headerContent, breadcrumbItems }: any) {
+
+export default function TooltipContainer({ headerContent, breadcrumbItems }: TooltipContainerProps) {
   const tabItems = [
     {
       id: 'theming',
@@ -99,12 +93,12 @@ export default function TooltipContainer({ headerContent, breadcrumbItems }: any
           >
             <ComponentPreview
               title="Kubernetes Pod Telemetry Tooltip"
-              code={`<div className="flex items-center justify-between p-6 bg-slate-950 text-white border border-slate-800 rounded-2xl shadow-xl w-full">
+              code={`<div className="flex items-center justify-between p-6 bg-white text-core-circle-text-main border border-core-circle-border-main rounded-core-circle-xl shadow-core-circle-subtle w-full">
   <div className="flex items-center gap-3">
-    <Terminal size={20} className="text-emerald-400" />
+    <Terminal size={20} className="text-emerald-500" />
     <div>
-      <span className="font-mono text-xs font-bold text-slate-200">pod/ingress-controller-7f9b</span>
-      <p className="font-mono text-[11px] text-slate-400">Node: us-east-1a • 4 Replicas</p>
+      <span className="font-mono text-xs font-bold text-core-circle-text-main">pod/ingress-controller-7f9b</span>
+      <p className="font-mono text-[11px] text-core-circle-text-muted">Node: us-east-1a • 4 Replicas</p>
     </div>
   </div>
   
@@ -118,12 +112,12 @@ export default function TooltipContainer({ headerContent, breadcrumbItems }: any
   />
 </div>`}
             >
-              <div className="flex items-center justify-between p-6 bg-slate-950 text-white border border-slate-800 rounded-2xl shadow-xl w-full">
+              <div className="flex items-center justify-between p-6 bg-white text-core-circle-text-main border border-core-circle-border-main rounded-core-circle-xl shadow-core-circle-subtle w-full">
                 <div className="flex items-center gap-3">
-                  <Terminal size={20} className="text-emerald-400" />
+                  <Terminal size={20} className="text-emerald-500" />
                   <div>
-                    <span className="font-mono text-xs font-bold text-slate-200">pod/ingress-controller-7f9b</span>
-                    <p className="font-mono text-[11px] text-slate-400">Node: us-east-1a • 4 Replicas</p>
+                    <span className="font-mono text-xs font-bold text-core-circle-text-main">pod/ingress-controller-7f9b</span>
+                    <p className="font-mono text-[11px] text-core-circle-text-muted">Node: us-east-1a • 4 Replicas</p>
                   </div>
                 </div>
                 
@@ -351,7 +345,7 @@ export default function TooltipContainer({ headerContent, breadcrumbItems }: any
             title="3. Radiant Gradient & Neon Glow Styles"
             description="Vibrant purple gradients and high-contrast luminous emerald haloes."
           >
-            <div className="flex flex-wrap gap-12 items-center justify-center p-8 bg-slate-950 rounded-2xl border border-slate-800 w-full">
+            <div className="flex flex-wrap gap-12 items-center justify-center p-8 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main w-full">
               <div className="flex flex-col items-center gap-2">
                 <Tooltip variant="gradient" trigger="click" title="VIP Status" description="Platinum tier active" />
                 <span className="text-xs font-bold text-purple-300">Gradient</span>

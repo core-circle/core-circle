@@ -19,7 +19,7 @@ export const AspectRatioPlayground = () => {
   const generateCode = () => {
     const { ratio, variant } = state;
     return `<AspectRatio ratio="${ratio}" variant="${variant}" className="w-full max-w-lg">
-  <div className="bg-slate-900 text-white flex items-center justify-center p-4">
+  <div className="bg-slate-100 text-slate-800 flex items-center justify-center p-4">
     <p className="font-bold text-base">Responsive Content (${ratio})</p>
   </div>
 </AspectRatio>`;
@@ -69,10 +69,10 @@ export const AspectRatioPlayground = () => {
 
         {/* Preview & Code */}
         <div className={s.previewWrapper}>
-          <div className="p-8 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-core-circle-border-main flex flex-col items-center justify-center min-h-[220px]">
+          <div className="p-8 bg-core-circle-bg-surface rounded-2xl border border-core-circle-border-main flex flex-col items-center justify-center min-h-[220px]">
             <div className="w-full max-w-sm">
               <AspectRatio ratio={state.ratio} variant={state.variant as any}>
-                <div className="bg-slate-900 text-white flex flex-col items-center justify-center p-6 h-full w-full">
+                <div className="bg-slate-100 text-slate-800 flex flex-col items-center justify-center p-6 h-full w-full">
                   <p className="font-bold text-sm text-emerald-400 font-mono">
                     RATIO: {state.ratio}
                   </p>

@@ -39,14 +39,14 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     ref
   ) => {
     const renderFallback = () => {
-      if (fallback) return fallback;
+      if (fallback) return <span className="font-core-circle-bold leading-none">{fallback}</span>;
       const content = customInitials || (name ? getInitials(name) : null);
       
       if (content) {
         return (
-          <Typography variant="p" className="font-core-circle-bold">
+          <span className="font-core-circle-bold leading-none">
             {content}
-          </Typography>
+          </span>
         );
       }
 
@@ -61,22 +61,29 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
         className={cn(avatarContainerVariants({ size, shape, bordered }), className)}
         {...props}
       >
-        <Image
-          src={src || ''}
-          alt={alt || name || 'avatar'}
-          className={cn(avatarImageVariants({ shape }), imageClassName)}
-          rounded={shape === 'circle' ? 'full' : (shape === 'rounded' ? 'md' : 'none')}
-          onError={onError}
-          fallback={
-            <div className={cn(avatarFallbackVariants({ shape }))}>
-              {renderFallback()}
-            </div>
-          }
-        />
+        {src ? (
+          <Image
+            src={src}
+            alt={alt || name || 'avatar'}
+            variant="circular"
+            aspectRatio="1:1"
+            className={cn(avatarImageVariants({ shape }), imageClassName)}
+            rounded={shape === 'circle' ? 'full' : (shape === 'rounded' ? 'md' : 'none')}
+            onError={onError}
+            fallback={
+              <div className={cn(avatarFallbackVariants({ shape }))}>
+                {renderFallback()}
+              </div>
+            }
+          />
+        ) : (
+          <div className={cn(avatarFallbackVariants({ shape }))}>
+            {renderFallback()}
+          </div>
+        )}
 
         {status && (
-          <Typography
-            as="span"
+          <span
             className={cn(avatarStatusVariants({ status, size }))}
             role="status"
             aria-label={status}

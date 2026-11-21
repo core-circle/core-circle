@@ -32,9 +32,9 @@ export const timePickerInputContainerVariants = cva(
         filled: 'border-0 bg-slate-100 hover:bg-slate-200/80 focus-within:bg-slate-100 focus-within:ring-core-circle-primary/20',
         glassmorphic: 'backdrop-blur-md bg-white/70 border border-white/80 focus-within:bg-white/90 shadow-sm',
         gradient: 'border border-purple-200 bg-gradient-to-r from-purple-50/50 to-indigo-50/50 focus-within:border-purple-500 focus-within:ring-purple-500/20',
-        glow: 'bg-slate-950 border border-emerald-500/50 text-white focus-within:ring-emerald-500/30 focus-within:shadow-[0_0_15px_rgba(16,185,129,0.3)]',
+        glow: 'bg-emerald-50 border border-emerald-300 text-emerald-950 focus-within:ring-emerald-500/30 focus-within:shadow-[0_0_15px_rgba(16,185,129,0.2)]',
         accent: 'border-2 border-core-circle-primary focus-within:ring-core-circle-primary/30',
-        dark: 'bg-slate-900 border border-slate-700 text-white focus-within:border-slate-500',
+        dark: 'bg-slate-50 border border-slate-300 text-slate-900 focus-within:border-core-circle-primary',
       },
       size: {
         sm: 'px-2.5 py-1 text-xs h-8',

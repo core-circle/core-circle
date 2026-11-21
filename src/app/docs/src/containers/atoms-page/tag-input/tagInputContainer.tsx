@@ -1,5 +1,6 @@
 'use client';
 
+import { TagInputContainerProps } from '../../../interface/containers/atoms/tag-input.types';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { TagInput, Breadcrumb, Tabs, Button, Badge, Typography } from '@core-circle/ui';
@@ -23,7 +24,10 @@ import { TagInputPlayground } from '../../../components/playground/tag-input/tag
 import { tagInputPageStyles as s } from './tag-input.styles';
 import { TAG_INPUT_PROPS_DATA } from '../../../constants/atoms-page/tag-input/tagInputConstants';
 
-export default function TagInputContainer({ headerContent, breadcrumbItems }: any) {
+export default function TagInputContainer({
+  headerContent,
+  breadcrumbItems
+}: TagInputContainerProps) {
   const [emailRecipients, setEmailRecipients] = useState(['alex@corecircle.io', 'sarah@corecircle.io']);
   const [k8sLabels, setK8sLabels] = useState(['env=production', 'tier=frontend', 'region=us-east-1']);
 
@@ -80,7 +84,7 @@ export default function TagInputContainer({ headerContent, breadcrumbItems }: an
           >
             <ComponentPreview
               title="Kubernetes Pod Metadata Tags"
-              code={`<div className="p-6 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl space-y-4 w-full">
+              code={`<div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle space-y-4 w-full">
   <div className="flex items-center justify-between">
     <span className="font-mono text-xs font-bold text-emerald-400">POD: ingress-controller-v2</span>
     <Badge variant="info" size="sm" shape="pill">Selectors</Badge>
@@ -94,7 +98,7 @@ export default function TagInputContainer({ headerContent, breadcrumbItems }: an
   />
 </div>`}
             >
-              <div className="p-6 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl space-y-4 w-full">
+              <div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle space-y-4 w-full">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-bold text-emerald-400">POD: ingress-controller-v2</span>
                   <Badge variant="info" size="sm" shape="pill">Selectors</Badge>
@@ -221,7 +225,7 @@ export default function TagInputContainer({ headerContent, breadcrumbItems }: an
             title="2. Radiant Gradient & Neon Glow Styles"
             description="Purple-indigo gradients, cyber emerald halos, and translucent glass."
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-8 bg-slate-950 rounded-2xl border border-slate-800 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-8 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main w-full">
               <TagInput label="Gradient" variant="gradient" defaultValue={['neural', 'agents']} />
               <TagInput label="Neon Glow" variant="glow" defaultValue={['cluster', '120fps']} />
               <TagInput label="Glassmorphic" variant="glassmorphic" defaultValue={['cloud', 'edge']} />

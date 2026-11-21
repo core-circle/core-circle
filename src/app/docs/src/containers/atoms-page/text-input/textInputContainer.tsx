@@ -202,11 +202,11 @@ export default function TextInputContainer({ headerContent, breadcrumbItems }: T
           >
             <ComponentPreview
               title="Git Commit SHA Finder"
-              code={`<div className="flex flex-col gap-4 p-6 bg-slate-950 text-white border border-slate-800 rounded-2xl shadow-xl w-full">
+              code={`<div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main border border-core-circle-border-main rounded-core-circle-xl shadow-core-circle-subtle w-full">
   <div className="flex items-center justify-between">
     <div className="flex items-center gap-2">
       <Terminal size={18} className="text-core-circle-primary" />
-      <span className="font-mono text-xs font-bold text-slate-200">REPOSITORY REVISION LOCATOR</span>
+      <span className="font-mono text-xs font-bold text-core-circle-text-main">REPOSITORY REVISION LOCATOR</span>
     </div>
     <Badge variant="info" size="sm" shape="pill">main@origin</Badge>
   </div>
@@ -222,11 +222,11 @@ export default function TextInputContainer({ headerContent, breadcrumbItems }: T
   />
 </div>`}
             >
-              <div className="flex flex-col gap-4 p-6 bg-slate-950 text-white border border-slate-800 rounded-2xl shadow-xl w-full">
+              <div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main border border-core-circle-border-main rounded-core-circle-xl shadow-core-circle-subtle w-full">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Terminal size={18} className="text-core-circle-primary" />
-                    <span className="font-mono text-xs font-bold text-slate-200">REPOSITORY REVISION LOCATOR</span>
+                    <span className="font-mono text-xs font-bold text-core-circle-text-main">REPOSITORY REVISION LOCATOR</span>
                   </div>
                   <Badge variant="info" size="sm" shape="pill">main@origin</Badge>
                 </div>
@@ -403,7 +403,7 @@ export default function TextInputContainer({ headerContent, breadcrumbItems }: T
                 title="Dark Mode Terminal"
                 code={`<TextInput variant="dark" label="SSH Host" placeholder="root@192.168.1.1" />`}
               >
-                <div className="p-4 bg-slate-950 rounded-2xl w-full">
+                <div className="p-4 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main w-full">
                   <TextInput variant="dark" label="SSH Host" placeholder="root@192.168.1.1" fullWidth />
                 </div>
               </ComponentPreview>

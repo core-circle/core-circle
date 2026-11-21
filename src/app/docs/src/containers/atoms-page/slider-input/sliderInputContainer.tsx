@@ -52,11 +52,11 @@ export default function SliderInputContainer({ headerContent, breadcrumbItems }:
           >
             <ComponentPreview
               title="Studio Master Gain Decibels"
-              code={`<div className="flex flex-col gap-4 p-6 bg-slate-950 text-white border border-emerald-900/40 rounded-2xl shadow-xl w-full">
+              code={`<div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main border border-emerald-500/30 rounded-core-circle-xl shadow-core-circle-subtle w-full">
   <div className="flex items-center justify-between">
     <div className="flex items-center gap-2">
-      <Speaker size={18} className="text-emerald-400" />
-      <span className="font-mono text-xs font-bold text-slate-200">MASTER AUDIO GAIN (+dB)</span>
+      <Speaker size={18} className="text-emerald-600" />
+      <span className="font-mono text-xs font-bold text-core-circle-text-main">MASTER AUDIO GAIN (+dB)</span>
     </div>
     <Badge variant="success" size="sm" shape="pill">+{audioGain} dB</Badge>
   </div>
@@ -74,11 +74,11 @@ export default function SliderInputContainer({ headerContent, breadcrumbItems }:
   />
 </div>`}
             >
-              <div className="flex flex-col gap-4 p-6 bg-slate-950 text-white border border-emerald-900/40 rounded-2xl shadow-xl w-full max-w-xl">
+              <div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main border border-emerald-500/30 rounded-core-circle-xl shadow-core-circle-subtle w-full max-w-xl">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Speaker size={18} className="text-emerald-400" />
-                    <span className="font-mono text-xs font-bold text-slate-200">MASTER AUDIO GAIN (+dB)</span>
+                    <Speaker size={18} className="text-emerald-600" />
+                    <span className="font-mono text-xs font-bold text-core-circle-text-main">MASTER AUDIO GAIN (+dB)</span>
                   </div>
                   <Badge variant="success" size="sm" shape="pill">{audioGain > 0 ? `+${audioGain}` : audioGain} dB</Badge>
                 </div>
@@ -268,11 +268,11 @@ export default function SliderInputContainer({ headerContent, breadcrumbItems }:
           >
             <ComponentPreview
               title="Video Live Bitrate Transcoder"
-              code={`<div className="flex flex-col gap-4 p-6 bg-slate-900 text-white rounded-2xl shadow-xl w-full">
+              code={`<div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle w-full">
   <div className="flex items-center justify-between">
     <div className="flex items-center gap-2">
-      <Video size={18} className="text-indigo-400" />
-      <span className="font-mono text-xs font-bold text-slate-200">HEVC/H.265 STREAM BITRATE</span>
+      <Video size={18} className="text-indigo-600" />
+      <span className="font-mono text-xs font-bold text-core-circle-text-main">HEVC/H.265 STREAM BITRATE</span>
     </div>
     <Badge variant="info" size="sm" shape="pill">{bitrate} kbps</Badge>
   </div>
@@ -290,11 +290,11 @@ export default function SliderInputContainer({ headerContent, breadcrumbItems }:
   />
 </div>`}
             >
-              <div className="flex flex-col gap-4 p-6 bg-slate-900 text-white rounded-2xl shadow-xl w-full max-w-xl">
+              <div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle w-full max-w-xl">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Video size={18} className="text-indigo-400" />
-                    <span className="font-mono text-xs font-bold text-slate-200">HEVC/H.265 STREAM BITRATE</span>
+                    <Video size={18} className="text-indigo-600" />
+                    <span className="font-mono text-xs font-bold text-core-circle-text-main">HEVC/H.265 STREAM BITRATE</span>
                   </div>
                   <Badge variant="info" size="sm" shape="pill">{bitrate} kbps</Badge>
                 </div>
@@ -369,7 +369,7 @@ export default function SliderInputContainer({ headerContent, breadcrumbItems }:
                 title="Neon Glow Track"
                 code={`<SliderInput variant="glow" label="Audio Threshold" defaultValue={85} showValue fullWidth />`}
               >
-                <div className="w-full p-4 bg-slate-950 rounded-2xl">
+                <div className="w-full p-4 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main">
                   <SliderInput variant="glow" label="Audio Threshold" defaultValue={85} showValue fullWidth />
                 </div>
               </ComponentPreview>
@@ -450,7 +450,7 @@ export default function SliderInputContainer({ headerContent, breadcrumbItems }:
                 title="Dark Mode Style"
                 code={`<SliderInput variant="dark" label="Server Bitrate" defaultValue={55} showValue fullWidth />`}
               >
-                <div className="w-full p-4 bg-slate-950 rounded-2xl">
+                <div className="w-full p-4 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main">
                   <SliderInput variant="dark" label="Server Bitrate" defaultValue={55} showValue fullWidth />
                 </div>
               </ComponentPreview>

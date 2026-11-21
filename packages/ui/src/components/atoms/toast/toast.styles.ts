@@ -17,9 +17,9 @@ export const toastVariants = cva(
         floating: 'bg-white border border-core-circle-border-main/50 text-core-circle-text-main shadow-core-circle-floating hover:-translate-y-0.5',
         pill: 'bg-white border border-core-circle-border-main rounded-full px-6 py-3.5 shadow-core-circle-floating',
         minimal: 'bg-white border-l-4 border-core-circle-primary border-y border-r border-core-circle-border-main text-core-circle-text-main shadow-core-circle-subtle',
-        glow: 'bg-slate-950 border border-emerald-500/40 text-white shadow-[0_0_20px_rgba(16,185,129,0.25)]',
+        glow: 'bg-emerald-50 border border-emerald-300 text-emerald-950 shadow-[0_0_20px_rgba(16,185,129,0.25)]',
         accent: 'bg-blue-50 border-2 border-blue-500 text-blue-950 shadow-core-circle-elevated',
-        dark: 'bg-slate-900 border border-slate-700 text-white shadow-2xl',
+        dark: 'bg-slate-100 border border-slate-300 text-slate-900 shadow-core-circle-floating',
       },
     },
     defaultVariants: {

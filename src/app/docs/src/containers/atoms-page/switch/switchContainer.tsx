@@ -52,18 +52,18 @@ export default function SwitchContainer({ headerContent, breadcrumbItems }: Swit
           <DocSection
             id="theming-dark-mode"
             title="1. System Appearance & Dark Mode Toggle Theme"
-            description="Deep slate-800 container switch with active primary toggle."
+            description="Clean surface card with dark variant high-contrast toggle."
           >
             <ComponentPreview
               title="System Appearance Mode"
-              code={`<div className="flex items-center justify-between p-6 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-xl w-full">
+              code={`<div className="flex items-center justify-between p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle w-full">
   <div className="flex items-center gap-4">
-    <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-core-circle-primary">
+    <div className="w-10 h-10 rounded-xl bg-core-circle-bg-surface flex items-center justify-center text-core-circle-primary border border-core-circle-border-main">
       <Sun size={20} />
     </div>
     <div className="space-y-0.5">
-      <h4 className="font-bold text-sm text-slate-100">High-Contrast Dark Theme</h4>
-      <p className="text-xs text-slate-400">Reduce eye strain with OLED optimized black palette</p>
+      <h4 className="font-bold text-sm text-core-circle-text-main">High-Contrast Dark Theme</h4>
+      <p className="text-xs text-core-circle-text-muted">Reduce eye strain with OLED optimized black palette</p>
     </div>
   </div>
   <Switch
@@ -74,14 +74,14 @@ export default function SwitchContainer({ headerContent, breadcrumbItems }: Swit
   />
 </div>`}
             >
-              <div className="flex items-center justify-between p-6 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-xl w-full max-w-xl">
+              <div className="flex items-center justify-between p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle w-full max-w-xl">
                 <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-slate-800 flex items-center justify-center text-core-circle-primary">
+                  <div className="w-10 h-10 rounded-xl bg-core-circle-bg-surface flex items-center justify-center text-core-circle-primary border border-core-circle-border-main">
                     <Sun size={20} />
                   </div>
                   <div className="space-y-0.5">
-                    <h4 className="font-bold text-sm text-slate-100">High-Contrast Dark Theme</h4>
-                    <p className="text-xs text-slate-400">Reduce eye strain with OLED optimized black palette</p>
+                    <h4 className="font-bold text-sm text-core-circle-text-main">High-Contrast Dark Theme</h4>
+                    <p className="text-xs text-core-circle-text-muted">Reduce eye strain with OLED optimized black palette</p>
                   </div>
                 </div>
                 <Switch
@@ -350,7 +350,7 @@ export default function SwitchContainer({ headerContent, breadcrumbItems }: Swit
                 title="Gradient & Glow"
                 code={`<Switch variant="gradient" defaultChecked />\n<Switch variant="glow" defaultChecked />`}
               >
-                <div className="flex items-center gap-12 p-6 bg-slate-950 rounded-2xl">
+                <div className="flex items-center gap-12 p-6 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main">
                   <div className="flex flex-col items-center gap-2">
                     <Switch variant="gradient" defaultChecked />
                     <span className="text-xs text-purple-300">Gradient</span>
@@ -408,7 +408,7 @@ export default function SwitchContainer({ headerContent, breadcrumbItems }: Swit
                 title="Surface Variants"
                 code={`<Switch variant="glassmorphic" defaultChecked />\n<Switch variant="floating" defaultChecked />\n<Switch variant="dark" defaultChecked />`}
               >
-                <div className="flex items-center gap-12 p-6 bg-slate-900 rounded-2xl">
+                <div className="flex items-center gap-12 p-6 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main">
                   <div className="flex flex-col items-center gap-2">
                     <Switch variant="glassmorphic" defaultChecked />
                     <span className="text-xs text-slate-300">Glassmorphic</span>

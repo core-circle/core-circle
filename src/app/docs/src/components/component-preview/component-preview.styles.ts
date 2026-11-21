@@ -9,7 +9,7 @@ export const componentPreviewStyles = {
   // Toggle Code/Preview button
   toggleButton: {
     base: "flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-core-circle-medium rounded-core-circle-md border transition-all h-8",
-    active: "bg-core-circle-primary text-white border-core-circle-primary shadow-sm",
+    active: "bg-core-circle-primary text-white hover:bg-core-circle-primary-hover border-core-circle-primary shadow-sm",
     inactive: "text-core-circle-text-muted hover:text-core-circle-text-main hover:bg-slate-50 border-transparent hover:border-core-circle-border-main",
   },
 

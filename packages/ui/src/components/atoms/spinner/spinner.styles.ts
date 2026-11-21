@@ -15,7 +15,7 @@ export const spinnerVariants = cva(
         glow: 'border-emerald-400 border-t-transparent shadow-[0_0_15px_rgba(52,211,153,0.8)]',
         glassmorphic: 'border-white/80 border-t-transparent backdrop-blur-sm shadow-sm',
         accent: 'border-blue-600 border-t-transparent',
-        dark: 'border-slate-400 border-t-slate-900',
+        dark: 'border-slate-300 border-t-slate-700',
         white: 'border-white border-t-transparent',
       },
       size: {

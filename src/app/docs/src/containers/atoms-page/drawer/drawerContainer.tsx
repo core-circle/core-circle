@@ -1,5 +1,6 @@
 'use client';
 
+import { DrawerContainerProps } from '../../../interface/containers/atoms/drawer.types';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Drawer, Breadcrumb, Tabs, Button, Badge, Typography } from '@core-circle/ui';
@@ -25,7 +26,10 @@ import { DrawerPlayground } from '../../../components/playground/drawer/drawerPl
 import { drawerPageStyles as s } from './drawer.styles';
 import { DRAWER_PROPS_DATA } from '../../../constants/atoms-page/drawer/drawerConstants';
 
-export default function DrawerContainer({ headerContent, breadcrumbItems }: any) {
+export default function DrawerContainer({
+  headerContent,
+  breadcrumbItems
+}: DrawerContainerProps) {
   const [activeThemeDrawer, setActiveThemeDrawer] = useState<string | null>(null);
 
   const tabItems = [
@@ -140,12 +144,12 @@ export default function DrawerContainer({ headerContent, breadcrumbItems }: any)
   {/* IAM Scope Tree */}
 </Drawer>`}
             >
-              <div className="flex items-center justify-between p-6 bg-slate-950 text-white border border-slate-800 rounded-2xl shadow-xl w-full">
+              <div className="flex items-center justify-between p-6 bg-white text-core-circle-text-main border border-core-circle-border-main rounded-core-circle-xl shadow-core-circle-subtle w-full">
                 <div className="flex items-center gap-3">
-                  <Shield size={20} className="text-emerald-400" />
+                  <Shield size={20} className="text-emerald-500" />
                   <div>
-                    <span className="font-mono text-xs font-bold text-slate-200">iam:role/k8s-prod-admin</span>
-                    <p className="text-xs text-slate-400">14 policies attached • 0 expired tokens</p>
+                    <span className="font-mono text-xs font-bold text-core-circle-text-main">iam:role/k8s-prod-admin</span>
+                    <p className="text-xs text-core-circle-text-muted">14 policies attached • 0 expired tokens</p>
                   </div>
                 </div>
                 <Button variant="secondary" size="sm" onClick={() => setActiveThemeDrawer('iam')}>
@@ -210,7 +214,7 @@ export default function DrawerContainer({ headerContent, breadcrumbItems }: any)
   {/* Terminal output */}
 </Drawer>`}
             >
-              <div className="flex items-center justify-between p-6 bg-slate-950 text-white border border-emerald-500/30 rounded-2xl shadow-[0_0_20px_rgba(16,185,129,0.15)] w-full">
+              <div className="flex items-center justify-between p-6 bg-white text-core-circle-text-main border border-emerald-500/30 rounded-core-circle-xl shadow-core-circle-subtle w-full">
                 <div className="flex items-center gap-3">
                   <Terminal size={20} className="text-emerald-400" />
                   <div>
@@ -264,7 +268,7 @@ export default function DrawerContainer({ headerContent, breadcrumbItems }: any)
             title="3. Cyber Neon Glow & Dark Mode Styles"
             description="Luminous emerald halo outlines and deep slate-900 monospace console surfaces."
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-8 bg-slate-950 rounded-2xl border border-slate-800 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 p-8 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main w-full">
               <Button variant="primary" onClick={() => setActiveThemeDrawer('var-glow')}>Neon Glow Drawer</Button>
               <Button variant="secondary" onClick={() => setActiveThemeDrawer('var-dark')}>Dark Mode Drawer</Button>
             </div>
@@ -533,7 +537,7 @@ const [isOpen, setIsOpen] = useState(false);
         description="Granted to 12 active SSO enterprise identities"
       >
         <div className="space-y-4 font-mono text-xs text-slate-300">
-          <div className="p-4 bg-slate-950 border border-slate-800 rounded-xl">
+          <div className="p-4 bg-white border border-core-circle-border-main rounded-core-circle-xl">
             <p className="text-emerald-400 font-bold mb-2">Attached Scopes:</p>
             <ul className="list-disc pl-4 space-y-1">
               <li>k8s:pods:exec</li>
@@ -554,9 +558,9 @@ const [isOpen, setIsOpen] = useState(false);
         description="Main monorepo switcher"
       >
         <div className="space-y-2 text-sm">
-          <Link href="/atoms" className="block p-3 rounded-lg hover:bg-slate-800 text-slate-200">Atoms Library</Link>
-          <Link href="/molecules" className="block p-3 rounded-lg hover:bg-slate-800 text-slate-200">Molecules</Link>
-          <Link href="/themes" className="block p-3 rounded-lg hover:bg-slate-800 text-slate-200">Design Tokens</Link>
+          <Link href="/atoms" className="block p-3 rounded-lg hover:bg-slate-100 text-core-circle-text-main">Atoms Library</Link>
+          <Link href="/molecules" className="block p-3 rounded-lg hover:bg-slate-100 text-core-circle-text-main">Molecules</Link>
+          <Link href="/themes" className="block p-3 rounded-lg hover:bg-slate-100 text-core-circle-text-main">Design Tokens</Link>
         </div>
       </Drawer>
 

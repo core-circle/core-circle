@@ -1,5 +1,6 @@
 'use client';
 
+import { TimePickerContainerProps } from '../../../interface/containers/atoms/time-picker.types';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { TimePicker, Breadcrumb, Tabs, Button, Badge, Typography } from '@core-circle/ui';
@@ -23,7 +24,10 @@ import { TimePickerPlayground } from '../../../components/playground/time-picker
 import { timePickerPageStyles as s } from './time-picker.styles';
 import { TIME_PICKER_PROPS_DATA } from '../../../constants/atoms-page/time-picker/timePickerConstants';
 
-export default function TimePickerContainer({ headerContent, breadcrumbItems }: any) {
+export default function TimePickerContainer({
+  headerContent,
+  breadcrumbItems
+}: TimePickerContainerProps) {
   const [flightTime, setFlightTime] = useState('14:45');
   const [cronTime, setCronTime] = useState('02:00:00');
 
@@ -122,7 +126,7 @@ export default function TimePickerContainer({ headerContent, breadcrumbItems }: 
           >
             <ComponentPreview
               title="Cron Job Scheduler"
-              code={`<div className="p-6 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl space-y-4 w-full">
+              code={`<div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle space-y-4 w-full">
   <div className="flex items-center justify-between">
     <span className="font-mono text-xs font-bold text-emerald-400">CRON: nightly_db_backup</span>
     <Badge variant="info" size="sm" shape="pill">Daily Trigger</Badge>
@@ -136,7 +140,7 @@ export default function TimePickerContainer({ headerContent, breadcrumbItems }: 
   />
 </div>`}
             >
-              <div className="p-6 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl space-y-4 w-full">
+              <div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle space-y-4 w-full">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-bold text-emerald-400">CRON: nightly_db_backup</span>
                   <Badge variant="info" size="sm" shape="pill">Daily Trigger</Badge>
@@ -243,7 +247,7 @@ export default function TimePickerContainer({ headerContent, breadcrumbItems }: 
             title="2. Radiant Gradient & Neon Glow Styles"
             description="Translucent glassmorphism, purple gradient rings, and cyber emerald halos."
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-8 bg-slate-950 rounded-2xl border border-slate-800 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-8 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main w-full">
               <TimePicker label="Glassmorphic" variant="glassmorphic" defaultValue="08:45 AM" />
               <TimePicker label="Gradient" variant="gradient" defaultValue="06:30 PM" />
               <TimePicker label="Neon Glow" variant="glow" defaultValue="23:00" format="24h" />

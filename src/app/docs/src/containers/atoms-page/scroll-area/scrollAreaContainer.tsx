@@ -1,5 +1,6 @@
 'use client';
 
+import { ScrollAreaContainerProps } from '../../../interface/containers/atoms/scroll-area.types';
 import React from 'react';
 import Link from 'next/link';
 import { ScrollArea, Breadcrumb, Tabs, Button, Badge, Typography } from '@core-circle/ui';
@@ -23,7 +24,10 @@ import { ScrollAreaPlayground } from '../../../components/playground/scroll-area
 import { scrollAreaPageStyles as s } from './scroll-area.styles';
 import { SCROLL_AREA_PROPS_DATA } from '../../../constants/atoms-page/scroll-area/scrollAreaConstants';
 
-export default function ScrollAreaContainer({ headerContent, breadcrumbItems }: any) {
+export default function ScrollAreaContainer({
+  headerContent,
+  breadcrumbItems
+}: ScrollAreaContainerProps) {
   const tabItems = [
     {
       id: 'theming',
@@ -42,7 +46,7 @@ export default function ScrollAreaContainer({ headerContent, breadcrumbItems }: 
               code={`<ScrollArea
   variant="glow"
   maxHeight="180px"
-  className="p-4 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl font-mono text-xs w-full"
+  className="p-4 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle font-mono text-xs w-full"
 >
   <div className="space-y-2">
     <p className="text-emerald-400">[16:52:01Z] gRPC listener initialized on port 50051</p>
@@ -57,7 +61,7 @@ export default function ScrollAreaContainer({ headerContent, breadcrumbItems }: 
               <ScrollArea
                 variant="glow"
                 maxHeight="180px"
-                className="p-4 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl font-mono text-xs w-full"
+                className="p-4 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle font-mono text-xs w-full"
               >
                 <div className="space-y-2">
                   <p className="text-emerald-400">[16:52:01Z] gRPC listener initialized on port 50051</p>
@@ -167,7 +171,7 @@ export default function ScrollAreaContainer({ headerContent, breadcrumbItems }: 
   orientation="both"
   variant="dark"
   maxHeight="160px"
-  className="p-4 bg-slate-900 text-slate-200 rounded-2xl border border-slate-800 font-mono text-xs w-full"
+  className="p-4 bg-slate-50 text-slate-800 rounded-core-circle-xl border border-core-circle-border-main font-mono text-xs w-full"
 >
   <pre className="w-[600px] leading-relaxed">
     {\`export const fetchTelemetry = async (clusterId: string): Promise<ClusterMetrics> => {
@@ -182,7 +186,7 @@ export default function ScrollAreaContainer({ headerContent, breadcrumbItems }: 
                 orientation="both"
                 variant="dark"
                 maxHeight="160px"
-                className="p-4 bg-slate-900 text-slate-200 rounded-2xl border border-slate-800 font-mono text-xs w-full"
+                className="p-4 bg-slate-50 text-slate-800 rounded-core-circle-xl border border-core-circle-border-main font-mono text-xs w-full"
               >
                 <pre className="w-[600px] leading-relaxed">
 {`export const fetchTelemetry = async (clusterId: string): Promise<ClusterMetrics> => {
@@ -278,7 +282,7 @@ export default function ScrollAreaContainer({ headerContent, breadcrumbItems }: 
                   {Array.from({ length: 8 }, (_, i) => <p key={i}>Purple gradient scrollbar item #{i + 1}</p>)}
                 </div>
               </ScrollArea>
-              <ScrollArea variant="glow" maxHeight="120px" className="p-4 bg-slate-950 text-white border border-slate-800 rounded-xl">
+              <ScrollArea variant="glow" maxHeight="120px" className="p-4 bg-white text-core-circle-text-main border border-core-circle-border-main rounded-core-circle-xl">
                 <div className="space-y-2 text-xs text-emerald-400 font-mono">
                   {Array.from({ length: 8 }, (_, i) => <p key={i}>Neon glow scrollbar item #{i + 1}</p>)}
                 </div>
@@ -366,7 +370,7 @@ export const LiveTelemetryFeed = () => {
   }, []);
 
   return (
-    <ScrollArea variant="glow" maxHeight="240px" className="p-4 bg-slate-950 text-white rounded-xl font-mono text-xs">
+    <ScrollArea variant="glow" maxHeight="240px" className="p-4 bg-slate-50 text-slate-800 rounded-core-circle-xl border border-core-circle-border-main font-mono text-xs">
       <div className="space-y-1">
         {logs.map((log, i) => (
           <p key={i} className="text-emerald-400">

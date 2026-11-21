@@ -16,7 +16,7 @@ export const selectWrapperVariants = cva(
         gradient: 'border border-indigo-500/30 bg-gradient-to-r from-blue-50/50 via-indigo-50/30 to-purple-50/50 hover:border-indigo-500/60 focus-within:border-indigo-600 rounded-core-circle-lg shadow-sm',
         pill: 'border border-core-circle-border-main bg-white rounded-full px-2 focus-within:border-core-circle-primary focus-within:ring-2 focus-within:ring-core-circle-primary/10',
         accent: 'border-l-4 border-l-core-circle-primary border-y border-r border-core-circle-border-main bg-white rounded-r-core-circle-lg hover:border-core-circle-primary/40',
-        dark: 'border border-slate-700 bg-slate-900 text-white rounded-core-circle-lg focus-within:border-core-circle-primary focus-within:ring-2 focus-within:ring-core-circle-primary/20 hover:border-slate-600',
+        dark: 'border border-slate-300 bg-slate-50 text-slate-900 rounded-core-circle-lg focus-within:border-core-circle-primary focus-within:ring-2 focus-within:ring-core-circle-primary/20 hover:border-slate-400',
       },
       hasError: {
         true: 'border-core-circle-warning focus-within:border-core-circle-warning focus-within:ring-core-circle-warning/10',
@@ -52,7 +52,7 @@ export const selectVariants = cva(
         gradient: 'text-indigo-950 font-semibold',
         pill: 'text-core-circle-text-main',
         accent: 'text-core-circle-text-main',
-        dark: 'text-slate-100',
+        dark: 'text-slate-900',
       }
     },
     compoundVariants: [
@@ -84,7 +84,7 @@ export const labelVariants = cva(
         gradient: 'text-indigo-900 font-bold',
         pill: 'text-core-circle-text-muted px-2',
         accent: 'text-core-circle-primary font-semibold',
-        dark: 'text-slate-300 font-medium',
+        dark: 'text-slate-700 font-medium',
       },
       hasError: {
         true: 'text-core-circle-warning',

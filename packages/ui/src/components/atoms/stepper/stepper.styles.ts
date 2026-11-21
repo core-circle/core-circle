@@ -18,7 +18,7 @@ export const stepperContainerVariants = cva(
         glassmorphic: 'p-4 bg-white/40 backdrop-blur-md border border-white/60 rounded-2xl shadow-sm',
         cards: 'gap-3',
         timeline: '',
-        dark: 'p-6 bg-slate-950 text-white rounded-2xl border border-slate-800',
+        dark: 'p-6 bg-slate-50 text-slate-900 rounded-2xl border border-slate-200',
       }
     },
     defaultVariants: {
@@ -98,22 +98,22 @@ export const stepIndicatorVariants = cva(
       {
         variant: 'glow',
         status: 'active',
-        className: 'bg-emerald-950 border-emerald-400 text-emerald-400',
+        className: 'bg-emerald-50 border-emerald-400 text-emerald-700',
       },
       {
         variant: 'glow',
         status: 'completed',
-        className: 'bg-emerald-500 border-emerald-400 text-slate-950',
+        className: 'bg-emerald-500 border-emerald-400 text-white',
       },
       {
         variant: 'dark',
         status: 'pending',
-        className: 'bg-slate-900 border-slate-700 text-slate-400',
+        className: 'bg-slate-100 border-slate-300 text-slate-500',
       },
       {
         variant: 'dark',
         status: 'active',
-        className: 'bg-core-circle-primary/20 border-core-circle-primary text-white',
+        className: 'bg-core-circle-primary/10 border-core-circle-primary text-core-circle-primary',
       },
       {
         variant: 'dark',
@@ -153,7 +153,7 @@ export const connectorVariants = cva(
         glassmorphic: 'bg-white/60',
         cards: 'hidden',
         timeline: 'bg-slate-300',
-        dark: 'bg-slate-800',
+        dark: 'bg-slate-200',
       }
     },
     compoundVariants: [

@@ -1,5 +1,6 @@
 'use client';
 
+import { AlertContainerProps } from '../../../interface/containers/atoms/alert.types';
 import React from 'react';
 import Link from 'next/link';
 import { Breadcrumb, Tabs, Alert, Button, Typography, Badge } from '@core-circle/ui';
@@ -21,13 +22,16 @@ import {
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { atomsPageStyles as s } from '../atoms.styles';
+import { alertPageStyles as s } from './alert.styles';
 import { ALERT_PROPS_DATA } from '../../../constants/atoms-page/alert/alertConstants';
 import { AlertPlayground } from '../../../components/playground/alert/alertPlayground';
 import PropsTable from '../../../components/props-table';
 import CodeSnippet from '../../../components/code-snippet';
 
-export default function AlertContainer({ headerContent, breadcrumbItems }: any) {
+export default function AlertContainer({
+  headerContent,
+  breadcrumbItems
+}: AlertContainerProps) {
   const tabItems = [
     {
       id: 'theming',

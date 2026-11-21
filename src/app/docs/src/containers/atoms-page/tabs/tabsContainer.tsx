@@ -69,10 +69,10 @@ export default function TabsContainer({ headerContent, breadcrumbItems }: TabsCo
       label: 'Spot Trading',
       icon: <Banknotes size={16} />,
       content: (
-        <div className="p-6 bg-slate-950 text-white border border-purple-900/50 rounded-2xl flex items-center justify-between">
+        <div className="p-6 bg-white text-core-circle-text-main border border-purple-200 rounded-core-circle-xl shadow-core-circle-subtle flex items-center justify-between">
           <div>
-            <span className="font-mono text-xs text-purple-300">BTC/USD REAL-TIME ORDERBOOK</span>
-            <h3 className="font-mono text-2xl font-bold text-slate-100">$92,450.00</h3>
+            <span className="font-mono text-xs text-purple-600">BTC/USD REAL-TIME ORDERBOOK</span>
+            <h3 className="font-mono text-2xl font-bold text-core-circle-text-main">$92,450.00</h3>
           </div>
           <Badge variant="gradient" size="sm" shape="pill">+4.82% 24h</Badge>
         </div>
@@ -82,10 +82,10 @@ export default function TabsContainer({ headerContent, breadcrumbItems }: TabsCo
       id: 'futures',
       label: 'Perp Futures (20x)',
       content: (
-        <div className="p-6 bg-slate-950 text-white border border-purple-900/50 rounded-2xl flex items-center justify-between">
+        <div className="p-6 bg-white text-core-circle-text-main border border-purple-200 rounded-core-circle-xl shadow-core-circle-subtle flex items-center justify-between">
           <div>
-            <span className="font-mono text-xs text-purple-300">CROSS MARGIN LEVERAGE</span>
-            <h3 className="font-mono text-xl font-bold text-slate-100">$480,000.00 Open Interest</h3>
+            <span className="font-mono text-xs text-purple-600">CROSS MARGIN LEVERAGE</span>
+            <h3 className="font-mono text-xl font-bold text-core-circle-text-main">$480,000.00 Open Interest</h3>
           </div>
           <Badge variant="warning" size="sm" shape="pill">High Leverage</Badge>
         </div>
@@ -99,7 +99,7 @@ export default function TabsContainer({ headerContent, breadcrumbItems }: TabsCo
       label: 'Stdout Stream',
       icon: <Terminal size={16} />,
       content: (
-        <div className="p-4 bg-slate-950 text-emerald-400 font-mono text-xs rounded-xl border border-slate-800 space-y-1">
+        <div className="p-4 bg-slate-50 text-emerald-600 font-mono text-xs rounded-xl border border-slate-800 space-y-1">
           <p>[2026-08-25T16:20:00Z] INF: worker cluster sync completed in 14ms</p>
           <p>[2026-08-25T16:20:01Z] INF: grpc listener online: 0.0.0.0:50051</p>
         </div>
@@ -109,7 +109,7 @@ export default function TabsContainer({ headerContent, breadcrumbItems }: TabsCo
       id: 'telemetry',
       label: 'Prometheus Metrics',
       content: (
-        <div className="p-4 bg-slate-950 text-slate-300 font-mono text-xs rounded-xl border border-slate-800">
+        <div className="p-4 bg-slate-50 text-slate-700 font-mono text-xs rounded-core-circle-xl border border-core-circle-border-main">
           <p>http_requests_total&#123;code=&quot;200&quot;&#125; 1,489,201 req/sec</p>
         </div>
       ),
@@ -211,17 +211,17 @@ export default function TabsContainer({ headerContent, breadcrumbItems }: TabsCo
           >
             <ComponentPreview
               title="Institutional Crypto Exchange Tabs"
-              code={`<div className="flex flex-col gap-4 p-6 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-xl w-full">
+              code={`<div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle w-full">
   <div className="flex items-center justify-between">
-    <h4 className="font-bold text-sm text-slate-100">Derivatives Trading Console</h4>
+    <h4 className="font-bold text-sm text-core-circle-text-main">Derivatives Trading Console</h4>
     <Badge variant="gradient" size="sm" shape="pill">VIP Tier 4</Badge>
   </div>
   <Tabs variant="gradient" items={cryptoTabs} fullWidth />
 </div>`}
             >
-              <div className="flex flex-col gap-4 p-6 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-xl w-full">
+              <div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle w-full">
                 <div className="flex items-center justify-between">
-                  <h4 className="font-bold text-sm text-slate-100">Derivatives Trading Console</h4>
+                  <h4 className="font-bold text-sm text-core-circle-text-main">Derivatives Trading Console</h4>
                   <Badge variant="gradient" size="sm" shape="pill">VIP Tier 4</Badge>
                 </div>
                 <Tabs variant="gradient" items={cryptoTabs} fullWidth />
@@ -237,17 +237,17 @@ export default function TabsContainer({ headerContent, breadcrumbItems }: TabsCo
           >
             <ComponentPreview
               title="DevOps Terminal Log Tabs"
-              code={`<div className="flex flex-col gap-4 p-6 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl w-full">
+              code={`<div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle w-full">
   <div className="flex items-center justify-between">
-    <span className="font-mono text-xs font-bold text-slate-200">CLUSTER TELEMETRY ENGINE</span>
+    <span className="font-mono text-xs font-bold text-core-circle-text-main">CLUSTER TELEMETRY ENGINE</span>
     <Badge variant="info" size="sm" shape="pill">Real-Time</Badge>
   </div>
   <Tabs variant="glow" items={devopsTabs} fullWidth />
 </div>`}
             >
-              <div className="flex flex-col gap-4 p-6 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl w-full">
+              <div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle w-full">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono text-xs font-bold text-slate-200">CLUSTER TELEMETRY ENGINE</span>
+                  <span className="font-mono text-xs font-bold text-core-circle-text-main">CLUSTER TELEMETRY ENGINE</span>
                   <Badge variant="info" size="sm" shape="pill">Real-Time</Badge>
                 </div>
                 <Tabs variant="glow" items={devopsTabs} fullWidth />
@@ -362,7 +362,7 @@ export default function TabsContainer({ headerContent, breadcrumbItems }: TabsCo
                 title="Neon Glow Style"
                 code={`<Tabs variant="glow" items={items} />`}
               >
-                <div className="w-full p-4 bg-slate-950 rounded-2xl">
+                <div className="w-full p-4 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main">
                   <Tabs variant="glow" items={standardDemoItems} />
                 </div>
               </ComponentPreview>
@@ -454,7 +454,7 @@ export default function TabsContainer({ headerContent, breadcrumbItems }: TabsCo
                 title="Dark Mode Terminal"
                 code={`<Tabs variant="dark" items={items} />`}
               >
-                <div className="w-full p-4 bg-slate-950 rounded-2xl">
+                <div className="w-full p-4 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main">
                   <Tabs variant="dark" items={standardDemoItems} />
                 </div>
               </ComponentPreview>

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { cn } from '../../../utils/cn';
 import { TooltipProps } from '../../../interface/atoms/tooltip/tooltip.types';
-import { tooltipVariants } from './tooltip.styles';
+import { tooltipVariants, tooltipArrowVariants } from './tooltip.styles';
 import { Info, XIcon } from '@core-circle/icons';
 
 export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
@@ -70,7 +70,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
         >
           <div className="flex flex-col gap-1">
             <div className="flex items-center justify-between gap-4">
-              <h4 className="text-sm font-core-circle-bold text-core-circle-text-main m-0">
+              <h4 className="text-sm font-core-circle-bold text-inherit m-0">
                 {title}
               </h4>
               {showCloseIcon && trigger === 'click' && (
@@ -79,13 +79,13 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
                     e.stopPropagation();
                     setOpen(false);
                   }}
-                  className="text-core-circle-text-subtle hover:text-core-circle-text-main transition-colors"
+                  className="text-inherit opacity-70 hover:opacity-100 transition-opacity"
                 >
                   <XIcon size={16} />
                 </button>
               )}
             </div>
-            <p className="text-xs text-core-circle-text-muted m-0 leading-relaxed">
+            <p className="text-xs opacity-80 m-0 leading-relaxed text-inherit">
               {description}
             </p>
           </div>
@@ -93,7 +93,7 @@ export const Tooltip = React.forwardRef<HTMLDivElement, TooltipProps>(
           {/* Arrow */}
           <div 
             className={cn(
-              "absolute w-2 h-2 bg-white border border-core-circle-border-main rotate-45 z-[-1]",
+              tooltipArrowVariants({ variant }),
               position === 'top' && "bottom-[-5px] left-1/2 -translate-x-1/2 border-t-0 border-l-0",
               position === 'bottom' && "top-[-5px] left-1/2 -translate-x-1/2 border-b-0 border-r-0",
               position === 'left' && "right-[-5px] top-1/2 -translate-y-1/2 border-b-0 border-l-0",
