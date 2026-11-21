@@ -1,6 +1,4 @@
 
-import React from 'react';
-import { HomeIcon } from '@core-circle/icons';
 import { PropItem } from '../../../interface/components/props-table.types';
 
 export const PROGRESS_HEADER_CONTENT = {

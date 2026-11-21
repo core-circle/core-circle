@@ -25,6 +25,7 @@ Never write raw HTML elements when a CoreCircle component exists:
 | Paragraphs / Headings | `<Typography variant="...">` | `import { Typography } from '@core-circle/ui'` |
 | Popovers / Floating tooltips | `<Popover>` / `<Tooltip>` | `import { Popover, Tooltip } from '@core-circle/ui'` |
 | Progress bars | `<Progress>` | `import { Progress } from '@core-circle/ui'` |
+| Project Scaffolder / Boilerplate | `<ProjectScaffolder>` | `import { ProjectScaffolder } from '@core-circle/ui'` |
 | Sliders | `<SliderInput>` | `import { SliderInput } from '@core-circle/ui'` |
 | Status tags / Chips / Pills | `<Badge>` | `import { Badge } from '@core-circle/ui'` |
 | Tab navigation | `<Tabs>` | `import { Tabs } from '@core-circle/ui'` |
@@ -61,15 +62,25 @@ packages/ui/src/
 │   ├── atoms/[name]/
 │   │   ├── [name].tsx             # Component definition with React.forwardRef
 │   │   └── [name].styles.ts       # CVA variant definition
-│   └── molecules/[name]/
-│       ├── [name].tsx             # Composed component using existing Atoms
+│   ├── molecules/[name]/
+│   │   ├── [name].tsx             # Composed component using existing Atoms
+│   │   └── [name].styles.ts       # CVA variant definition
+│   ├── organisms/[name]/
+│   │   ├── [name].tsx             # High-level section components & layouts
+│   │   └── [name].styles.ts       # CVA variant definition
+│   └── generators/[name]/
+│       ├── [name].tsx             # Standalone code & boilerplate generators / studios
 │       └── [name].styles.ts       # CVA variant definition
 ├── interface/
 │   ├── atoms/[name]/[name].types.ts       # TypeScript interfaces & props
-│   └── molecules/[name]/[name].types.ts
+│   ├── molecules/[name]/[name].types.ts
+│   ├── organisms/[name]/[name].types.ts
+│   └── generators/[name]/[name].types.ts
 ├── stories/
 │   ├── atoms/[name].stories.tsx   # Storybook stories with args & variants
-│   └── molecules/[name].stories.tsx
+│   ├── molecules/[name].stories.tsx
+│   ├── organisms/[name].stories.tsx
+│   └── generators/[name].stories.tsx
 └── components/index.ts            # Export component & type definitions
 ```
 
@@ -156,13 +167,14 @@ When developing or upgrading documentation containers, pages, and constants in `
 
 ## 7. Mandatory Storybook Companion Protocol
 
-Every new UI component (Atom or Molecule) in `@core-circle/ui` must have a corresponding Storybook story file before it can be merged into `main`.
+Every new UI component (Atom, Molecule, or Generator) in `@core-circle/ui` must have a corresponding Storybook story file before it can be merged into `main`.
 
 1. **Colocation & Naming**:
    - Atoms: `packages/ui/src/stories/atoms/[name]/[name].stories.tsx`
    - Molecules: `packages/ui/src/stories/molecules/[name]/[name].stories.tsx`
+   - Generators: `packages/ui/src/stories/generators/[name]/[name].stories.tsx`
 2. **Strict Relative Component Import**:
-   - Must import component relatively from `../../../components/atoms/[name]/[name]` (or `../../../components/molecules/[name]/[name]`).
+   - Must import component relatively from `../../../components/atoms/[name]/[name]` (or `../../../components/molecules/[name]/[name]`, `../../../components/generators/[name]/[name]`).
    - Never import from `./[name]` or `../[name]`.
 3. **Story Requirements**:
    - Must export default `Meta` with `tags: ['autodocs']`.

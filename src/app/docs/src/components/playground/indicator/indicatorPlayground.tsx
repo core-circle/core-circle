@@ -3,8 +3,6 @@
 import React, { useState } from 'react';
 import { 
   Indicator, 
-  Avatar, 
-  Button, 
   Select, 
   Checkbox, 
   TextInput, 
@@ -15,7 +13,7 @@ import {
   IndicatorPosition,
   IndicatorShape 
 } from '@core-circle/ui';
-import { Bell, ShoppingBag, Mail } from '@core-circle/icons';
+import { Bell } from '@core-circle/icons';
 import ComponentPreview from '../../component-preview';
 
 export const IndicatorPlayground: React.FC = () => {

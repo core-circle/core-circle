@@ -92,8 +92,11 @@ export * from '../interface/atoms/toast/toast.types';
 export * from '../interface/atoms/tooltip/tooltip.types';
 export * from '../interface/atoms/typography/typography.types';
 
-// Organisms
-export * from './organisms/theme-generator/theme-generator';
-export * from '../interface/organisms/theme-generator/theme-generator.types';
+// Generators
+export * from './generators/theme-generator/theme-generator';
+export * from '../interface/generators/theme-generator/theme-generator.types';
+export * from './generators/project-scaffolder/project-scaffolder';
+export * from '../interface/generators/project-scaffolder/project-scaffolder.types';
+
 
 

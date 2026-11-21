@@ -277,7 +277,7 @@ export const IconGalleryShowcase = () => {
       {/* Empty State */}
       {filteredIcons.length === 0 && (
         <div className="py-16 text-center bg-white rounded-2xl border border-slate-200/80 mt-4">
-          <div className="text-4xl mb-3">🔍</div>
+          <div className="text-4xl mb-3"><span role="img" aria-label="Search">🔍</span></div>
           <h3 className="text-base font-bold text-slate-800">No icons found</h3>
           <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
             No icons matched "{search}". Try searching for terms like "arrow", "check", "user", "file", or "mail".

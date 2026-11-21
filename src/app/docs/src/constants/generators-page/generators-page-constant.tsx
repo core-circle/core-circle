@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeIcon, Palette } from '@core-circle/icons';
+import { HomeIcon, Palette, Rocket } from '@core-circle/icons';
 
 /**
  * Generators Page Header Content
@@ -26,5 +26,11 @@ export const GENERATOR_CARDS = [
     description: 'Generate customized Tailwind CSS v4 [product].theme.css stylesheets and design tokens for custom customer brand lines.',
     href: '/generators/theme-generator',
     icon: Palette,
+  },
+  {
+    title: 'Project Scaffolder',
+    description: 'Generate and download complete, production-ready Next.js or React boilerplates with CoreCircle and Tailwind v4 preconfigured.',
+    href: '/generators/project-scaffolder',
+    icon: Rocket,
   },
 ];

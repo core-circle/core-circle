@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ThemeGenerator } from '../../../components/organisms/theme-generator/theme-generator';
+import { ThemeGenerator } from '../../../components/generators/theme-generator/theme-generator';
 
 const meta: Meta<typeof ThemeGenerator> = {
-  title: 'Organisms/ThemeGenerator',
+  title: 'Generators/ThemeGenerator',
   component: ThemeGenerator,
   tags: ['autodocs'],
   parameters: {
