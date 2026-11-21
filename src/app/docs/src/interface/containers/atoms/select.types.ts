@@ -5,7 +5,7 @@ import {
 } from '../../../constants/atoms-page/select/selectConstants';
 
 export interface SelectContainerProps {
-  sections: typeof SELECT_SECTIONS;
+  sections?: typeof SELECT_SECTIONS;
   headerContent: typeof SELECT_HEADER_CONTENT;
   breadcrumbItems: typeof SELECT_BREADCRUMB_ITEMS;
 }

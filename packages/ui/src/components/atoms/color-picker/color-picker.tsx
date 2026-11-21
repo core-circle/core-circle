@@ -43,14 +43,14 @@ function hexToHsl(hex: string): string {
   let c = hex.replace('#', '');
   if (c.length === 3) c = c.split('').map(x => x + x).join('');
   const num = parseInt(c, 16);
-  let r = ((num >> 16) & 255) / 255;
-  let g = ((num >> 8) & 255) / 255;
-  let b = (num & 255) / 255;
+  const r = ((num >> 16) & 255) / 255;
+  const g = ((num >> 8) & 255) / 255;
+  const b = (num & 255) / 255;
   const max = Math.max(r, g, b);
   const min = Math.min(r, g, b);
   let h = 0;
   let s = 0;
-  let l = (max + min) / 2;
+  const l = (max + min) / 2;
 
   if (max !== min) {
     const d = max - min;

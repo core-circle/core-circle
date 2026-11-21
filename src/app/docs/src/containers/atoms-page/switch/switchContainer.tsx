@@ -26,6 +26,7 @@ import { switchPageStyles as s } from './switch.styles';
 import { SWITCH_PROPS_DATA } from '../../../constants/atoms-page/switch/switchConstants';
 
 export interface SwitchContainerProps {
+  sections?: any[];
   headerContent?: {
     title: string;
     description: string;

@@ -44,9 +44,9 @@ export const AlertPlayground = () => {
     else if (iconType === 'shield') iconStr = '\n  icon={<Shield />}';
     else if (iconType === 'info') iconStr = '\n  icon={<Info />}';
 
-    let actionStr = showAction ? `\n  action={<Button size="sm" variant="primary" endIcon={<ArrowRight size={14} />}>Upgrade Now</Button>}` : '';
-    let closeStr = isDismissible ? '\n  onClose={() => {}}' : '';
-    let fullWidthStr = !fullWidth ? '\n  fullWidth={false}' : '';
+    const actionStr = showAction ? `\n  action={<Button size="sm" variant="primary" endIcon={<ArrowRight size={14} />}>Upgrade Now</Button>}` : '';
+    const closeStr = isDismissible ? '\n  onClose={() => {}}' : '';
+    const fullWidthStr = !fullWidth ? '\n  fullWidth={false}' : '';
 
     return `<Alert\n  variant="${variant}"\n  title="${title}"${iconStr}${actionStr}${closeStr}${fullWidthStr}\n>\n  ${description}\n</Alert>`;
   };
@@ -146,7 +146,7 @@ export const AlertPlayground = () => {
                   </Button>
                 ) : undefined
               }
-              onClose={state.isDismissible ? () => {} : undefined}
+              onClose={state.isDismissible ? () => undefined : undefined}
               fullWidth={state.fullWidth}
               className="max-w-xl"
             >

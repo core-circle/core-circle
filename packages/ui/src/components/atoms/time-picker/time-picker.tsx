@@ -23,7 +23,7 @@ const parseInitialTime = (value?: string | TimeValue, format: '12h' | '24h' = '1
   }
   if (typeof value === 'string' && value.includes(':')) {
     const parts = value.trim().split(/[:\s]/);
-    let hours = parseInt(parts[0], 10) || 12;
+    const hours = parseInt(parts[0], 10) || 12;
     const minutes = parseInt(parts[1], 10) || 0;
     const period = parts[2]?.toUpperCase() === 'PM' ? 'PM' : 'AM';
     return { hours, minutes, period };

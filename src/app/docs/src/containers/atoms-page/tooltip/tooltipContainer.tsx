@@ -26,7 +26,14 @@ import PropsTable from '../../../components/props-table';
 import { TooltipPlayground } from '../../../components/playground/tooltip/tooltipPlayground';
 import { tooltipPageStyles as s } from './tooltip.styles';
 import { TOOLTIP_PROPS_DATA } from '../../../constants/atoms-page/tooltip/tooltipConstants';
-import { TooltipContainerProps } from '../../../interface/containers/atoms/tooltip.types';
+export interface TooltipContainerProps {
+  sections?: any[];
+  headerContent?: {
+    title: string;
+    description: string;
+  };
+  breadcrumbItems?: any[];
+}
 
 export default function TooltipContainer({ headerContent, breadcrumbItems }: any) {
   const tabItems = [

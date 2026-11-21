@@ -1,5 +1,5 @@
 export interface AvatarContainerProps {
-  sections: any[];
+  sections?: any[];
   headerContent: {
     title: string;
     description: string;

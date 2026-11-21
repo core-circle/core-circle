@@ -5,7 +5,7 @@ import {
 } from '../../../constants/atoms-page/slider-input/sliderInputConstants';
 
 export interface SliderInputContainerProps {
-  sections: typeof SLIDER_INPUT_SECTIONS;
+  sections?: typeof SLIDER_INPUT_SECTIONS;
   headerContent: typeof SLIDER_INPUT_HEADER_CONTENT;
   breadcrumbItems: typeof SLIDER_INPUT_BREADCRUMB_ITEMS;
 }

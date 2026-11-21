@@ -27,7 +27,14 @@ import { TOAST_PROPS_DATA } from '../../../constants/atoms-page/toast/toastConst
 import { ToastPlayground } from '../../../components/playground/toast/toastPlayground';
 import PropsTable from '../../../components/props-table';
 import CodeSnippet from '../../../components/code-snippet';
-import { ToastContainerProps } from '../../../interface/containers/atoms/toast.types';
+export interface ToastContainerProps {
+  sections?: any[];
+  headerContent?: {
+    title: string;
+    description: string;
+  };
+  breadcrumbItems?: any[];
+}
 
 export default function ToastContainer({
   headerContent,

@@ -122,7 +122,7 @@ export const ToastPlayground = () => {
               description={state.description}
               icon={<Sparkles size={18} className="text-core-circle-primary" />}
               action={<Button size="sm" variant="ghost">Undo</Button>}
-              onClose={() => {}}
+              onClose={() => undefined}
             />
           </div>
 

@@ -23,7 +23,14 @@ import PropsTable from '../../../components/props-table';
 import { TypographyPlayground } from '../../../components/playground/typography/typographyPlayground';
 import { typographyPageStyles as s } from './typography.styles';
 import { TYPOGRAPHY_PROPS_DATA } from '../../../constants/atoms-page/typography/typographyConstants';
-import { TypographyContainerProps } from '../../../interface/containers/atoms/typography.types';
+export interface TypographyContainerProps {
+  sections?: any[];
+  headerContent?: {
+    title: string;
+    description: string;
+  };
+  breadcrumbItems?: any[];
+}
 
 export default function TypographyContainer({ headerContent, breadcrumbItems }: any) {
   const tabItems = [

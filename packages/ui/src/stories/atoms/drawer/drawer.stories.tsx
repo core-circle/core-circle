@@ -37,32 +37,34 @@ const meta: Meta<typeof Drawer> = {
 export default meta;
 type Story = StoryObj<typeof Drawer>;
 
-export const Default: Story = {
-  render: (args) => {
-    const [open, setOpen] = useState(false);
-    return (
-      <div className="p-8">
-        <Button onClick={() => setOpen(true)}>Open Drawer</Button>
-        <Drawer
-          {...args}
-          isOpen={open}
-          onClose={() => setOpen(false)}
-          title="Account Settings"
-          description="Manage your enterprise profile preferences"
-          footer={
-            <div className="flex justify-end gap-3">
-              <Button variant="ghost" onClick={() => setOpen(false)}>Cancel</Button>
-              <Button variant="primary" onClick={() => setOpen(false)}>Save Changes</Button>
-            </div>
-          }
-        >
-          <div className="space-y-4 text-sm text-slate-600">
-            <p>Configure notifications, security credentials, and organization team memberships.</p>
+const DrawerDefaultStory = (args: any) => {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="p-8">
+      <Button onClick={() => setOpen(true)}>Open Drawer</Button>
+      <Drawer
+        {...args}
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        title="Account Settings"
+        description="Manage your enterprise profile preferences"
+        footer={
+          <div className="flex justify-end gap-3">
+            <Button variant="ghost" onClick={() => setOpen(false)}>Cancel</Button>
+            <Button variant="primary" onClick={() => setOpen(false)}>Save Changes</Button>
           </div>
-        </Drawer>
-      </div>
-    );
-  },
+        }
+      >
+        <div className="space-y-4 text-sm text-slate-600">
+          <p>Configure notifications, security credentials, and organization team memberships.</p>
+        </div>
+      </Drawer>
+    </div>
+  );
+};
+
+export const Default: Story = {
+  render: (args) => <DrawerDefaultStory {...args} />,
   args: {
     variant: 'default',
     position: 'right',
