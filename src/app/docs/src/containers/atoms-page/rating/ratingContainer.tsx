@@ -1,5 +1,6 @@
 'use client';
 
+import { RatingContainerProps } from '../../../interface/containers/atoms/rating.types';
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { Rating, Breadcrumb, Tabs, Button, Badge, Typography } from '@core-circle/ui';
@@ -23,7 +24,10 @@ import { RatingPlayground } from '../../../components/playground/rating/ratingPl
 import { ratingPageStyles as s } from './rating.styles';
 import { RATING_PROPS_DATA } from '../../../constants/atoms-page/rating/ratingConstants';
 
-export default function RatingContainer({ headerContent, breadcrumbItems }: any) {
+export default function RatingContainer({
+  headerContent,
+  breadcrumbItems
+}: RatingContainerProps) {
   const [productRating, setProductRating] = useState(4.5);
   const [npsScore, setNpsScore] = useState(9);
 
@@ -70,9 +74,9 @@ export default function RatingContainer({ headerContent, breadcrumbItems }: any)
           >
             <ComponentPreview
               title="NPS 10-Point Scale"
-              code={`<div className="p-6 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-xl space-y-4 w-full">
+              code={`<div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle space-y-4 w-full">
   <div>
-    <h4 className="font-bold text-sm text-white">How likely are you to recommend CoreCircle?</h4>
+    <h4 className="font-bold text-sm text-core-circle-text-main">How likely are you to recommend CoreCircle?</h4>
     <p className="text-xs text-slate-400">1 = Not Likely, 10 = Extremely Likely</p>
   </div>
   <Rating
@@ -86,9 +90,9 @@ export default function RatingContainer({ headerContent, breadcrumbItems }: any)
   />
 </div>`}
             >
-              <div className="p-6 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-xl space-y-4 w-full">
+              <div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle space-y-4 w-full">
                 <div>
-                  <h4 className="font-bold text-sm text-white">How likely are you to recommend CoreCircle?</h4>
+                  <h4 className="font-bold text-sm text-core-circle-text-main">How likely are you to recommend CoreCircle?</h4>
                   <p className="text-xs text-slate-400">1 = Not Likely, 10 = Extremely Likely</p>
                 </div>
                 <Rating
@@ -138,18 +142,18 @@ export default function RatingContainer({ headerContent, breadcrumbItems }: any)
           >
             <ComponentPreview
               title="3-Star Michelin Award"
-              code={`<div className="p-6 bg-slate-950 text-white rounded-2xl border border-yellow-500/30 shadow-[0_0_20px_rgba(234,179,8,0.15)] flex items-center justify-between w-full">
+              code={`<div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-yellow-500/30 shadow-core-circle-subtle flex items-center justify-between w-full">
   <div>
-    <span className="text-xs font-mono font-bold text-yellow-400">MICHELIN GUIDE 2026</span>
-    <h4 className="font-bold text-base text-white mt-1">L&apos;Ambroisie Paris</h4>
+    <span className="text-xs font-mono font-bold text-yellow-500">MICHELIN GUIDE 2026</span>
+    <h4 className="font-bold text-base text-core-circle-text-main mt-1">L&apos;Ambroisie Paris</h4>
   </div>
   <Rating value={3} max={3} readOnly variant="gold" size="xl" />
 </div>`}
             >
-              <div className="p-6 bg-slate-950 text-white rounded-2xl border border-yellow-500/30 shadow-[0_0_20px_rgba(234,179,8,0.15)] flex items-center justify-between w-full">
+              <div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-yellow-500/30 shadow-core-circle-subtle flex items-center justify-between w-full">
                 <div>
-                  <span className="text-xs font-mono font-bold text-yellow-400">MICHELIN GUIDE 2026</span>
-                  <h4 className="font-bold text-base text-white mt-1">L&apos;Ambroisie Paris</h4>
+                  <span className="text-xs font-mono font-bold text-yellow-500">MICHELIN GUIDE 2026</span>
+                  <h4 className="font-bold text-base text-core-circle-text-main mt-1">L&apos;Ambroisie Paris</h4>
                 </div>
                 <Rating value={3} max={3} readOnly variant="gold" size="xl" />
               </div>
@@ -240,7 +244,7 @@ export default function RatingContainer({ headerContent, breadcrumbItems }: any)
             title="3. Cyber Neon Glow & Dark Mode"
             description="Luminous halo stars designed for dark gaming interfaces and cyber terminals."
           >
-            <div className="flex flex-wrap gap-8 items-center justify-around p-8 bg-slate-950 rounded-2xl border border-slate-800 w-full">
+            <div className="flex flex-wrap gap-8 items-center justify-around p-8 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main w-full">
               <div className="text-center space-y-2">
                 <Rating defaultValue={5} variant="glow" size="lg" />
                 <p className="text-xs text-emerald-400">Neon Glow</p>

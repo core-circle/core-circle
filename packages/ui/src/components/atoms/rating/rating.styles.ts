@@ -34,7 +34,7 @@ export const ratingItemVariants = cva(
         gradient: 'text-purple-500',
         glow: 'text-emerald-400 drop-shadow-[0_0_12px_rgba(52,211,153,0.8)]',
         glassmorphic: 'text-blue-500',
-        dark: 'text-slate-200',
+        dark: 'text-slate-700',
       },
       size: {
         sm: 'w-4 h-4 text-sm',
@@ -50,5 +50,5 @@ export const ratingItemVariants = cva(
   }
 );
 
-export const ratingEmptyStyles = 'text-slate-300 dark:text-slate-700 transition-colors';
+export const ratingEmptyStyles = 'text-slate-300 transition-colors';
 export const ratingScoreStyles = 'ml-2.5 font-core-circle-bold text-core-circle-text-main leading-none';

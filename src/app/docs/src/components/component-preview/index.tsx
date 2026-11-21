@@ -28,21 +28,21 @@ const ComponentPreview = ({ title = '', code = '', children }: ComponentPreviewP
         {title && <Typography variant="h3" className={s.toolbarTitle}>{title}</Typography>}
         <div className={s.toolbarActions}>
           <Button
-            variant="ghost"
+            variant={showCode ? 'primary' : 'outline'}
             size="sm"
             onClick={() => setShowCode(!showCode)}
             startIcon={showCode ? <EyeIcon size={16} /> : <CodeIcon size={16} />}
-            className={`${s.toggleButton.base} ${showCode ? s.toggleButton.active : s.toggleButton.inactive}`}
+            className="h-8 text-xs font-core-circle-medium"
           >
             {showCode ? 'Preview' : 'Code'}
           </Button>
 
           <Button
-            variant="ghost"
+            variant="outline"
             size="sm"
             onClick={copyToClipboard}
             startIcon={copied ? <CheckIcon size={16} className={s.copySuccess} /> : <CopyIcon size={16} />}
-            className={s.copyButton}
+            className="h-8 text-xs font-core-circle-medium"
           >
             {copied ? (
               <Typography variant="p" as="span" className={s.copySuccessText}>Copied!</Typography>

@@ -196,7 +196,7 @@ export const DrawerPlayground = () => {
         }
       >
         <div className="space-y-4 text-sm">
-          <div className="p-4 bg-slate-100 dark:bg-slate-800 rounded-xl">
+          <div className="p-4 bg-slate-100 rounded-xl">
             <p className="font-semibold text-slate-900 dark:text-white">Active Session Details</p>
             <p className="text-xs text-slate-500 mt-1">Live updates streamed via WebSocket v2</p>
           </div>

@@ -75,7 +75,7 @@ export const FileUploadPlayground = () => {
 
         {/* Preview & Code */}
         <div className={s.previewWrapper}>
-          <div className="p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-core-circle-border-main flex flex-col items-center justify-center">
+          <div className="p-6 bg-core-circle-bg-surface rounded-2xl border border-core-circle-border-main flex flex-col items-center justify-center">
             <FileUpload
               variant={state.variant as any}
               multiple={state.multiple}

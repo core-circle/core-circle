@@ -57,6 +57,21 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
     };
 
     const isFloating = isMaterialAnimated && (isFocused || hasValue);
+    const isStandard = variant === 'standard';
+
+    const getLeftPadClass = () => {
+      if (isStandard) return 'pl-1';
+      if (size === 'sm') return 'pl-3';
+      if (size === 'lg') return 'pl-5';
+      return 'pl-4';
+    };
+
+    const getRightPadClass = () => {
+      if (isStandard) return 'pr-1';
+      if (size === 'sm') return 'pr-3';
+      if (size === 'lg') return 'pr-5';
+      return 'pr-4';
+    };
 
     return (
       <div className={cn(textareaContainerVariants({ fullWidth, hasFloatingLabel: isMaterialAnimated }), className)}>
@@ -89,9 +104,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
           {startIcon && (
             <div className={cn(
-              "flex items-center justify-center text-core-circle-text-muted group-focus-within:text-core-circle-primary transition-colors",
-              variant === 'outline' ? 'pl-4 pt-3' : 'pl-0 pt-3',
-              isMaterialAnimated && "mt-2"
+              "flex items-center justify-center text-core-circle-text-muted group-focus-within:text-core-circle-primary transition-colors shrink-0 pt-3",
+              getLeftPadClass()
             )}>
               {startIcon}
             </div>
@@ -102,10 +116,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             ref={ref}
             className={cn(
               textareaVariants({ size, variant, resize }),
-              variant === 'outline' && !startIcon && 'pl-4',
-              variant === 'outline' && !endIcon && 'pr-4',
-              (startIcon) && 'pl-2',
-              (endIcon) && 'pr-2'
+              startIcon ? 'pl-2' : getLeftPadClass(),
+              endIcon ? 'pr-2' : getRightPadClass()
             )}
             placeholder={isMaterialAnimated ? (isFloating ? placeholder : '') : placeholder}
             onFocus={handleFocus}
@@ -118,9 +130,8 @@ export const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
 
           {endIcon && (
             <div className={cn(
-              "flex items-center justify-center text-core-circle-text-muted group-focus-within:text-core-circle-primary transition-colors",
-              variant === 'outline' ? 'pr-4 pt-3' : 'pr-0 pt-3',
-              isMaterialAnimated && "mt-2"
+              "flex items-center justify-center text-core-circle-text-muted group-focus-within:text-core-circle-primary transition-colors shrink-0 pt-3",
+              getRightPadClass()
             )}>
               {endIcon}
             </div>

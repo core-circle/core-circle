@@ -40,10 +40,10 @@ export const sliderVariants = cva(
         info: '[&::-webkit-slider-runnable-track]:bg-sky-100 [&::-webkit-slider-thumb]:bg-sky-500 [&::-moz-range-track]:bg-sky-100 [&::-moz-range-thumb]:bg-sky-500',
         gradient: '[&::-webkit-slider-runnable-track]:bg-gradient-to-r [&::-webkit-slider-runnable-track]:from-indigo-400 [&::-webkit-slider-runnable-track]:via-purple-500 [&::-webkit-slider-runnable-track]:to-pink-500 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-purple-600',
         glassmorphic: '[&::-webkit-slider-runnable-track]:bg-white/40 [&::-webkit-slider-runnable-track]:backdrop-blur-md [&::-webkit-slider-runnable-track]:border [&::-webkit-slider-runnable-track]:border-white/60 [&::-webkit-slider-thumb]:bg-indigo-600 [&::-webkit-slider-thumb]:shadow-lg',
-        glow: '[&::-webkit-slider-runnable-track]:bg-emerald-950 [&::-webkit-slider-thumb]:bg-emerald-400 [&::-webkit-slider-thumb]:shadow-[0_0_12px_rgba(52,211,153,0.8)]',
+        glow: '[&::-webkit-slider-runnable-track]:bg-emerald-100 [&::-webkit-slider-thumb]:bg-emerald-500 [&::-webkit-slider-thumb]:shadow-[0_0_12px_rgba(52,211,153,0.8)]',
         floating: '[&::-webkit-slider-runnable-track]:bg-slate-200 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:shadow-core-circle-lg [&::-webkit-slider-thumb]:border [&::-webkit-slider-thumb]:border-slate-300',
         accent: '[&::-webkit-slider-runnable-track]:bg-blue-100 [&::-webkit-slider-thumb]:bg-core-circle-primary [&::-webkit-slider-thumb]:ring-4 [&::-webkit-slider-thumb]:ring-blue-100',
-        dark: '[&::-webkit-slider-runnable-track]:bg-slate-700 [&::-webkit-slider-thumb]:bg-slate-200 [&::-webkit-slider-thumb]:hover:bg-white',
+        dark: '[&::-webkit-slider-runnable-track]:bg-slate-200 [&::-webkit-slider-thumb]:bg-slate-700 [&::-webkit-slider-thumb]:hover:bg-slate-800',
       },
       size: {
         sm: '[&::-webkit-slider-runnable-track]:h-1 [&::-webkit-slider-thumb]:w-3.5 [&::-webkit-slider-thumb]:h-3.5 [&::-webkit-slider-thumb]:-mt-1.25',

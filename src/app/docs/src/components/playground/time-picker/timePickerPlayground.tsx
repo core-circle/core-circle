@@ -97,7 +97,7 @@ export const TimePickerPlayground = () => {
 
         {/* Preview & Code */}
         <div className={s.previewWrapper}>
-          <div className="p-8 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-core-circle-border-main flex flex-col items-center justify-center min-h-[140px]">
+          <div className="p-8 bg-core-circle-bg-surface rounded-2xl border border-core-circle-border-main flex flex-col items-center justify-center min-h-[140px]">
             <TimePicker
               label="Scheduled Departure"
               variant={state.variant as any}

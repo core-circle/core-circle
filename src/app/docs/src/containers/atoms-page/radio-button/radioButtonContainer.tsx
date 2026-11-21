@@ -24,7 +24,7 @@ import {
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { atomsPageStyles as s } from '../atoms.styles';
+import { radioButtonPageStyles as s } from './radio-button.styles';
 import { 
   RADIO_BUTTON_PROPS_DATA, 
   RADIO_BUTTON_BREADCRUMB_ITEMS 

@@ -144,11 +144,11 @@ export default function StepperContainer({ headerContent, breadcrumbItems }: Ste
           >
             <ComponentPreview
               title="Kubernetes CI/CD Release Pipeline"
-              code={`<div className="flex flex-col gap-6 p-6 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl w-full">
+              code={`<div className="flex flex-col gap-6 p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle w-full">
   <div className="flex items-center justify-between">
     <div className="flex items-center gap-2">
       <Cloud size={18} className="text-core-circle-primary" />
-      <span className="font-mono text-xs font-bold text-slate-200">RELEASE PIPELINE: git.commit#9b4f8a</span>
+      <span className="font-mono text-xs font-bold text-core-circle-text-main">RELEASE PIPELINE: git.commit#9b4f8a</span>
     </div>
     <Badge variant="info" size="sm" shape="pill">Building Image</Badge>
   </div>
@@ -161,11 +161,11 @@ export default function StepperContainer({ headerContent, breadcrumbItems }: Ste
   />
 </div>`}
             >
-              <div className="flex flex-col gap-6 p-6 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl w-full">
+              <div className="flex flex-col gap-6 p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle w-full">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Cloud size={18} className="text-core-circle-primary" />
-                    <span className="font-mono text-xs font-bold text-slate-200">RELEASE PIPELINE: git.commit#9b4f8a</span>
+                    <span className="font-mono text-xs font-bold text-core-circle-text-main">RELEASE PIPELINE: git.commit#9b4f8a</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Badge variant="info" size="sm" shape="pill">Building Image</Badge>
@@ -407,7 +407,7 @@ export default function StepperContainer({ headerContent, breadcrumbItems }: Ste
                 title="Neon Glow Style"
                 code={`<Stepper variant="glow" activeStep={1} steps={steps} />`}
               >
-                <div className="w-full p-4 bg-slate-950 rounded-2xl">
+                <div className="w-full p-4 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main">
                   <Stepper variant="glow" activeStep={1} steps={standardDemoSteps} />
                 </div>
               </ComponentPreview>

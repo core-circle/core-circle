@@ -1,7 +1,10 @@
 # @core-circle/theme
 
+[![Version](https://img.shields.io/badge/version-0.0.8-blue.svg)](https://github.com/core-circle/core-circle)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 The publishable, unified single source of truth for the **CoreCircle Design System**.
-Contains all design tokens, Tailwind v4 theme configuration, universal Tailwind v3 preset, dark mode support, and multiple font family options.
+Contains all design tokens, 22-hue color palette (242 shades), 10 categorical chart colors, Tailwind v4 theme configuration, universal Tailwind v3 preset, automatic dark mode support, and 6 curated font family options.
 
 ---
 
@@ -12,6 +15,11 @@ Install via npm or GitHub Packages:
 ```bash
 npm install @core-circle/theme
 ```
+
+> **Note**: To install from GitHub Packages, make sure your `.npmrc` includes the `@core-circle` scope:
+> ```ini
+> @core-circle:registry=https://npm.pkg.github.com
+> ```
 
 ---
 

@@ -1,0 +1,26 @@
+name: Enforce Main PR Source Branch
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  validate-source-branch:
+    name: Verify PR Source Branch
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate Source Branch
+        run: |
+          echo "Target branch: ${{ github.base_ref }}"
+          echo "Source branch: ${{ github.head_ref }}"
+          
+          if [ "${{ github.head_ref }}" != "development" ] && [ "${{ github.head_ref }}" != "develop" ]; then
+            echo "::error::Direct PRs to 'main' must originate from 'development' (or 'develop') only."
+            echo "Current source branch is '${{ github.head_ref }}'."
+            echo "Action required: Merge your changes into 'development' first, then open a PR from 'development' to 'main'."
+            exit 1
+          fi
+          
+          echo "Validation passed: Source branch is '${{ github.head_ref }}'."

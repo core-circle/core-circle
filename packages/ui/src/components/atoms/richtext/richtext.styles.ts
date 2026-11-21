@@ -26,7 +26,7 @@ export const richTextVariants = cva(
         accent:
           'bg-core-circle-blue-50/30 border-l-4 border-core-circle-primary rounded-r-core-circle-2xl p-6 sm:p-8 text-core-circle-text-main shadow-core-circle-subtle',
         dark:
-          'bg-core-circle-slate-900 border border-core-circle-slate-800 rounded-core-circle-2xl p-6 sm:p-8 text-core-circle-slate-100 [&_h1]:text-white [&_h2]:text-core-circle-slate-100 [&_h3]:text-core-circle-slate-200 [&_p]:text-core-circle-slate-300 [&_blockquote]:text-core-circle-slate-300 [&_blockquote]:border-core-circle-blue-400 [&_code]:bg-core-circle-slate-800 [&_code]:text-core-circle-blue-300 [&_a]:text-core-circle-blue-400',
+          'bg-slate-50 border border-slate-200 rounded-core-circle-2xl p-6 sm:p-8 text-core-circle-text-main [&_h1]:text-core-circle-text-main [&_h2]:text-core-circle-text-main [&_h3]:text-core-circle-text-main [&_p]:text-core-circle-text-muted [&_blockquote]:text-core-circle-text-muted [&_blockquote]:border-core-circle-primary [&_code]:bg-slate-100 [&_code]:text-core-circle-primary [&_a]:text-core-circle-primary',
       },
       size: {
         sm: 'text-xs [&_h1]:text-2xl [&_h2]:text-xl [&_h3]:text-lg [&_p]:text-xs [&_li]:text-xs [&_code]:text-[11px]',

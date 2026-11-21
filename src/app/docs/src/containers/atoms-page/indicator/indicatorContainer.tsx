@@ -27,7 +27,7 @@ import {
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { atomsPageStyles as s } from '../atoms.styles';
+import { indicatorPageStyles as s } from './indicator.styles';
 import { 
   INDICATOR_PROPS_DATA, 
   INDICATOR_BREADCRUMB_ITEMS 
@@ -167,22 +167,22 @@ export default function IndicatorContainer({
           >
             <ComponentPreview
               title="Release Pipeline Tag"
-              code={`<div className="p-4 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-sm flex items-center justify-between gap-4 max-w-md">
+              code={`<div className="p-4 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle shadow-sm flex items-center justify-between gap-4 max-w-md">
   <div className="flex items-center gap-3">
     <Terminal size={18} className="text-emerald-400" />
     <div>
-      <h4 className="font-bold text-sm text-white">Production Engine</h4>
+      <h4 className="font-bold text-sm text-core-circle-text-main">Production Engine</h4>
       <p className="text-xs text-slate-400">Deployed 2m ago to 14 regions</p>
     </div>
   </div>
   <Indicator variant="gradient" content="v3.2.0" size="lg" shape="pill" standalone />
 </div>`}
             >
-              <div className="w-full max-w-md mx-auto p-4 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-sm flex items-center justify-between gap-4">
+              <div className="w-full max-w-md mx-auto p-4 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle shadow-sm flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <Terminal size={18} className="text-emerald-400" />
                   <div>
-                    <h4 className="font-bold text-sm text-white">Production Engine</h4>
+                    <h4 className="font-bold text-sm text-core-circle-text-main">Production Engine</h4>
                     <p className="text-xs text-slate-400">Deployed 2m ago to 14 regions</p>
                   </div>
                 </div>

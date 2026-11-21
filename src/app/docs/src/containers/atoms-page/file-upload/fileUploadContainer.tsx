@@ -1,5 +1,6 @@
 'use client';
 
+import { FileUploadContainerProps } from '../../../interface/containers/atoms/file-upload.types';
 import React from 'react';
 import Link from 'next/link';
 import { FileUpload, Breadcrumb, Tabs, Button, Badge, Typography } from '@core-circle/ui';
@@ -23,7 +24,10 @@ import { FileUploadPlayground } from '../../../components/playground/file-upload
 import { fileUploadPageStyles as s } from './file-upload.styles';
 import { FILE_UPLOAD_PROPS_DATA } from '../../../constants/atoms-page/file-upload/fileUploadConstants';
 
-export default function FileUploadContainer({ headerContent, breadcrumbItems }: any) {
+export default function FileUploadContainer({
+  headerContent,
+  breadcrumbItems
+}: FileUploadContainerProps) {
   const tabItems = [
     {
       id: 'theming',
@@ -81,7 +85,7 @@ export default function FileUploadContainer({ headerContent, breadcrumbItems }: 
           >
             <ComponentPreview
               title="Binary Ingestion Dropzone"
-              code={`<div className="p-6 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl space-y-4 w-full">
+              code={`<div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle space-y-4 w-full">
   <div className="flex items-center justify-between">
     <span className="font-mono text-xs font-bold text-emerald-400">ARTIFACT REGISTRY v2</span>
     <Badge variant="info" size="sm" shape="pill">Wasm & OCI Layers</Badge>
@@ -94,7 +98,7 @@ export default function FileUploadContainer({ headerContent, breadcrumbItems }: 
   />
 </div>`}
             >
-              <div className="p-6 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl space-y-4 w-full">
+              <div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle space-y-4 w-full">
                 <div className="flex items-center justify-between">
                   <span className="font-mono text-xs font-bold text-emerald-400">ARTIFACT REGISTRY v2</span>
                   <Badge variant="info" size="sm" shape="pill">Wasm & OCI Layers</Badge>

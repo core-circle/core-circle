@@ -14,7 +14,6 @@ import {
   ShoppingBag, 
   Cloud, 
   Terminal, 
-  Music, 
   Video, 
   Rotate, 
   CheckIcon 
@@ -190,7 +189,7 @@ export default function SkeletonContainer({ headerContent, breadcrumbItems }: Sk
           >
             <ComponentPreview
               title="Dark Terminal Shell Skeleton"
-              code={`<div className="flex flex-col gap-4 p-6 bg-slate-900 border border-slate-800 text-white rounded-2xl shadow-xl w-full">
+              code={`<div className="flex flex-col gap-4 p-6 bg-white border border-core-circle-border-main text-core-circle-text-main rounded-core-circle-xl shadow-core-circle-subtle w-full">
   <div className="flex items-center justify-between border-b border-slate-800 pb-3">
     <div className="flex items-center gap-2">
       <Skeleton variant="dark" width={12} height={12} borderRadius="50%" />
@@ -207,7 +206,7 @@ export default function SkeletonContainer({ headerContent, breadcrumbItems }: Sk
   </div>
 </div>`}
             >
-              <div className="flex flex-col gap-4 p-6 bg-slate-900 border border-slate-800 text-white rounded-2xl shadow-xl w-full max-w-xl">
+              <div className="flex flex-col gap-4 p-6 bg-white border border-core-circle-border-main text-core-circle-text-main rounded-core-circle-xl shadow-core-circle-subtle w-full max-w-xl">
                 <div className="flex items-center justify-between border-b border-slate-800 pb-3">
                   <div className="flex items-center gap-2">
                     <Skeleton variant="dark" width={12} height={12} borderRadius="50%" />
@@ -357,7 +356,7 @@ export default function SkeletonContainer({ headerContent, breadcrumbItems }: Sk
                 code={`<Skeleton variant="dark" width="100%" height={90} />\n<Skeleton variant="card" width="100%" height={90} />`}
               >
                 <div className="flex flex-col gap-4 w-full">
-                  <div className="p-4 bg-slate-950 rounded-2xl">
+                  <div className="p-4 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main">
                     <Skeleton variant="dark" width="100%" height={80} />
                   </div>
                   <Skeleton variant="card" width="100%" height={80} />

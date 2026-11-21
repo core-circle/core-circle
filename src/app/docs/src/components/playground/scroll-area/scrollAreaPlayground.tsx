@@ -90,18 +90,18 @@ export const ScrollAreaPlayground = () => {
 
         {/* Preview & Code */}
         <div className={s.previewWrapper}>
-          <div className="p-6 bg-slate-50 dark:bg-slate-900 rounded-2xl border border-core-circle-border-main flex flex-col items-center justify-center">
+          <div className="p-6 bg-core-circle-bg-surface rounded-2xl border border-core-circle-border-main flex flex-col items-center justify-center">
             <ScrollArea
               variant={state.variant as any}
               orientation={state.orientation as any}
               maxHeight={state.maxHeight}
               hideScrollbar={state.hideScrollbar}
-              className="w-full bg-white dark:bg-slate-950 p-4 border rounded-xl"
+              className="w-full bg-white p-4 border rounded-xl"
             >
               {state.orientation === 'horizontal' ? (
                 <div className="flex gap-4 w-[800px] py-2">
                   {Array.from({ length: 8 }, (_, i) => (
-                    <div key={i} className="p-4 bg-slate-100 dark:bg-slate-800 rounded-xl shrink-0 w-48 text-center">
+                    <div key={i} className="p-4 bg-slate-100 rounded-xl shrink-0 w-48 text-center">
                       <p className="font-bold text-sm">Cluster Card #{i + 1}</p>
                       <p className="text-xs text-slate-500 mt-1">Status: OK (99.9%)</p>
                     </div>
@@ -110,7 +110,7 @@ export const ScrollAreaPlayground = () => {
               ) : (
                 <div className="space-y-3">
                   {Array.from({ length: 12 }, (_, i) => (
-                    <div key={i} className="p-2.5 bg-slate-50 dark:bg-slate-900 rounded-lg flex items-center justify-between">
+                    <div key={i} className="p-2.5 bg-core-circle-bg-surface rounded-lg flex items-center justify-between">
                       <span className="text-xs font-mono text-slate-700 dark:text-slate-300">
                         [2026-08-25T16:50:0{i}Z] event_id={1000 + i} payload_verified
                       </span>

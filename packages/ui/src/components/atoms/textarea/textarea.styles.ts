@@ -34,7 +34,7 @@ export const textareaWrapperVariants = cva(
         gradient: 'p-[1.5px] rounded-core-circle-lg bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-500 focus-within:from-purple-600 focus-within:to-indigo-600 shadow-sm',
         pill: 'border border-core-circle-border-main bg-white rounded-2xl focus-within:border-core-circle-primary focus-within:ring-2 focus-within:ring-core-circle-primary/10',
         accent: 'border-2 border-blue-500 bg-blue-50/20 rounded-core-circle-lg focus-within:bg-white focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-500/20',
-        dark: 'border border-slate-700 bg-slate-900 text-white rounded-core-circle-lg focus-within:border-core-circle-primary focus-within:ring-2 focus-within:ring-core-circle-primary/20',
+        dark: 'border border-slate-300 bg-slate-50 text-slate-900 rounded-core-circle-lg focus-within:border-core-circle-primary focus-within:ring-2 focus-within:ring-core-circle-primary/20',
       },
       hasError: {
         true: 'border-core-circle-warning focus-within:border-core-circle-warning focus-within:ring-core-circle-warning/10',
@@ -76,15 +76,9 @@ export const textareaVariants = cva(
         gradient: 'bg-white rounded-[7px]',
         pill: 'px-5 py-4',
         accent: '',
-        dark: 'text-white placeholder:text-slate-500',
+        dark: 'text-slate-900 placeholder:text-slate-400',
       }
     },
-    compoundVariants: [
-      {
-        variant: 'material-animated',
-        className: 'pt-6 pb-1.5',
-      }
-    ],
     defaultVariants: {
       size: 'md',
       resize: 'vertical',
@@ -108,7 +102,7 @@ export const labelVariants = cva(
         gradient: 'text-purple-900 font-bold',
         pill: 'text-core-circle-text-muted',
         accent: 'text-blue-900 font-bold',
-        dark: 'text-slate-300 font-bold',
+        dark: 'text-slate-700 font-bold',
       },
       hasError: {
         true: 'text-core-circle-warning',

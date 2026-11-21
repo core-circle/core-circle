@@ -282,7 +282,7 @@ export default function IconsContainer({ headerContent, breadcrumbItems }: Icons
             description="All icons inherit currentColor by default, allowing effortless theme switching and Tailwind hover / animation states."
           >
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-              <div className="bg-white dark:bg-slate-900 rounded-core-circle-xl p-8 flex items-center justify-around border border-core-circle-border-main shadow-core-circle-subtle">
+              <div className="bg-white rounded-core-circle-xl p-8 flex items-center justify-around border border-core-circle-border-main shadow-core-circle-subtle">
                 <div className="flex flex-col items-center gap-3">
                   <Sparkles size={36} className="text-core-circle-primary animate-pulse" />
                   <span className="text-[10px] text-core-circle-text-muted font-core-circle-bold uppercase tracking-wider">Pulse Animation</span>

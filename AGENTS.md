@@ -94,22 +94,61 @@ packages/ui/src/
 
 When developing or upgrading documentation containers, pages, and constants in `src/app/docs/`:
 
-1. **Golden Benchmark**: Always reference `Accordion` (`src/app/docs/src/containers/atoms-page/accordion/accordionContainer.tsx`, `accordion.styles.ts`, `accordionConstants.tsx`) as the canonical pattern before starting development.
-2. **Standard Page Layout & Breadcrumbs**:
-   - Container styles MUST use `import { atomsPageStyles as s } from '../atoms.styles';` (or `export const [name]PageStyles = atomsPageStyles;` with `container: 'max-w-5xl mx-auto px-6 py-10'` and `header: 'mb-8'`). Never introduce ad-hoc `p-12 lg:p-20` padding.
-   - Breadcrumb items must follow standard string labels:
+1. **Golden Benchmark**: Always reference `Accordion` (`src/app/docs/src/containers/atoms-page/accordion/accordionContainer.tsx`, `accordion.styles.ts`, `accordionConstants.tsx`) and the comprehensive [Documentation Standards Guide](DOCS_STANDARDS.md) before starting development.
+2. **Strict 6-File Documentation Anatomy**:
+   Every component showcase in the docs must provide:
+   ```text
+   src/app/docs/src/
+   ├── app/atoms/[name]/page.tsx                        # 1. Server Component Page route
+   ├── containers/atoms-page/[name]/
+   │   ├── [name]Container.tsx                          # 2. 5-Tab Client Component container
+   │   └── [name].styles.ts                             # 3. Colocated styles extending atomsPageStyles
+   ├── constants/atoms-page/[name]/[name]Constants.tsx  # 4. Header, Breadcrumbs & PropsTable data
+   ├── components/playground/[name]/[Name]Playground.tsx# 5. Interactive sandbox component
+   └── interface/containers/atoms/[name].types.ts       # 6. Centralized ContainerProps interface
+   ```
+3. **Directive Prologue Rule (`'use client';` on Line 1)**:
+   - In all interactive containers and playgrounds, `'use client';` MUST be placed on **Line 1** before any `import` statements. Placing imports before `'use client';` causes ESLint `@typescript-eslint/no-unused-expressions` build failures.
+4. **Colocated Styles & Layout Inheritance**:
+   - Every container MUST have a colocated `[name].styles.ts` importing `atomsPageStyles`:
      ```ts
-     export const [NAME]_BREADCRUMB_ITEMS = [
-       { label: 'Home', href: '/' },
-       { label: 'Atoms', href: '/atoms' },
-       { label: '[ComponentName]' },
-     ];
+     import { atomsPageStyles } from '../atoms.styles';
+     export const [name]PageStyles = atomsPageStyles;
      ```
-3. **Standard 5-Tab Order**:
+   - Container component MUST import from `./[name].styles`:
+     ```ts
+     import { [name]PageStyles as s } from './[name].styles';
+     ```
+   - Layout styles (`container: 'max-w-5xl mx-auto px-6 py-10'`, `header: 'mb-8'`) are mandatory. Never introduce ad-hoc `p-12 lg:p-20` padding.
+5. **Centralized Interface Types**:
+   - Container props interface MUST be located in `src/app/docs/src/interface/containers/atoms/[name].types.ts`:
+     ```ts
+     export interface [ComponentName]ContainerProps {
+       sections?: any[];
+       headerContent: {
+         title: string;
+         description: string;
+       };
+       breadcrumbItems: any[];
+     }
+     ```
+   - Containers MUST type their props with this interface instead of using `any`.
+6. **Standard 5-Tab Order**:
    - **`Theming`** (Tab 1, default active, `Palette` icon): 5 real-world production themes utilizing full `w-full` width.
    - **`Variants`** (Tab 2, `Layers` icon): Minimum 10 variants grouped cleanly in `DocSection`s utilizing full `w-full` width.
    - **`Playground`** (Tab 3, `Play` icon): Interactive playground with live property controls and code generator.
    - **`Mock Code`** (Tab 4, `CodeIcon`): Dynamic backend API/CMS payload and consumer component example.
    - **`Overview`** (Tab 5, `Info` icon): Quick usage snippet and comprehensive `PropsTable`.
+7. **Verified Icon Imports**:
+   - Only import icons that actually exist in `@core-circle/icons` (`packages/icons/index.ts`).
+   - Do not guess icon names (e.g. use `Cloud` not `Server`, `UserIcon` or `UserCircle` not `User`, `DocumentText` not `FileText`). Turbopack fails the build if an invalid named icon export is imported.
+8. **Zero Ad-Hoc Dark Containers**:
+   - Do NOT introduce localized dark wrappers (`bg-slate-900`, `bg-slate-950`, `bg-black`, `dark:bg-slate-900`) inside preview cards or theming showcases.
+   - Child elements resolve light-mode semantic tokens (`text-core-circle-text-main` = black), causing invisible black-on-black text and inverted hover flashes.
+   - Always use clean surface tokens (`bg-white` or `bg-core-circle-bg-surface`, `border-core-circle-border-main`, `text-core-circle-text-main`). Full dark mode will be ported globally at the root `<html>` level once the entire webapp is complete.
+9. **Tailwind v4 Dark Mode Isolation & Stacking Context**:
+   - In Tailwind CSS v4, dark variants are strictly isolated to class-based activation via `@custom-variant dark (&:where(.dark, .dark *));` in `global.css` and `tailwind.css`. Never allow media-query based dark bleeding from user OS themes.
+   - In component primitives (`packages/ui/`), avoid hardcoding pitch-black surfaces (`bg-slate-950`). Use semantic tokens or soft neutral surfaces (`bg-core-circle-bg-surface`, `bg-slate-50`, `bg-slate-100`).
+   - In overlapping cluster components (such as `AvatarGroup`), always enforce natural left-to-right stacking order with decreasing z-indexes (`style={{ zIndex: totalCount - idx }}`). This guarantees that bottom-right status indicators (`online`, `busy`) are never clipped into half-moons by adjacent sibling circles.
 
 

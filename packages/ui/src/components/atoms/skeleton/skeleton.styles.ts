@@ -16,10 +16,10 @@ export const skeletonVariants = cva(
         image: 'w-full aspect-video rounded-2xl bg-slate-200/80',
         glassmorphic: 'bg-white/40 backdrop-blur-md border border-white/50 shadow-sm rounded-2xl',
         gradient: 'bg-gradient-to-r from-indigo-100/80 via-purple-100/70 to-pink-100/80 rounded-2xl',
-        dark: 'bg-slate-800/90 border border-slate-700/60 rounded-2xl',
+        dark: 'bg-slate-200/90 border border-slate-300/60 rounded-2xl',
       },
       animation: {
-        shimmer: 'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/70 before:to-transparent dark:before:via-white/10',
+        shimmer: 'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/70 before:to-transparent',
         pulse: 'animate-pulse',
         wave: 'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/90 before:to-transparent',
         glow: 'animate-pulse ring-2 ring-emerald-400/30',

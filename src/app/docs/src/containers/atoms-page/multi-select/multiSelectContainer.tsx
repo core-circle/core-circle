@@ -26,7 +26,7 @@ import {
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { atomsPageStyles as s } from '../atoms.styles';
+import { multiSelectPageStyles as s } from './multi-select.styles';
 import { 
   MULTI_SELECT_PROPS_DATA, 
   MULTI_SELECT_BREADCRUMB_ITEMS 

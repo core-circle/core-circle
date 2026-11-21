@@ -1,5 +1,6 @@
 'use client';
 
+import { AvatarGroupContainerProps } from '../../../interface/containers/atoms/avatar-group.types';
 import React from 'react';
 import Link from 'next/link';
 import { AvatarGroup, Avatar, Breadcrumb, Tabs, Button, Badge, Typography } from '@core-circle/ui';
@@ -33,7 +34,10 @@ const COLLABORATORS = [
   { fallback: 'RB', name: 'Robert Bruce' },
 ];
 
-export default function AvatarGroupContainer({ headerContent, breadcrumbItems }: any) {
+export default function AvatarGroupContainer({
+  headerContent,
+  breadcrumbItems
+}: AvatarGroupContainerProps) {
   const tabItems = [
     {
       id: 'theming',
@@ -101,11 +105,11 @@ export default function AvatarGroupContainer({ headerContent, breadcrumbItems }:
           >
             <ComponentPreview
               title="Active Canvas Collaborators"
-              code={`<div className="p-6 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-xl flex items-center justify-between w-full">
+              code={`<div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle flex items-center justify-between w-full">
   <div className="flex items-center gap-3">
     <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
     <div>
-      <h4 className="font-bold text-sm text-white">Live Design Canvas: Design System v2</h4>
+      <h4 className="font-bold text-sm text-core-circle-text-main">Live Design Canvas: Design System v2</h4>
       <p className="text-xs text-slate-400">5 designers editing frame #MainLayout</p>
     </div>
   </div>
@@ -117,11 +121,11 @@ export default function AvatarGroupContainer({ headerContent, breadcrumbItems }:
   />
 </div>`}
             >
-              <div className="p-6 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-xl flex items-center justify-between w-full">
+              <div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle flex items-center justify-between w-full">
                 <div className="flex items-center gap-3">
                   <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 animate-pulse" />
                   <div>
-                    <h4 className="font-bold text-sm text-white">Live Design Canvas: Design System v2</h4>
+                    <h4 className="font-bold text-sm text-core-circle-text-main">Live Design Canvas: Design System v2</h4>
                     <p className="text-xs text-slate-400">5 designers editing frame #MainLayout</p>
                   </div>
                 </div>
@@ -143,10 +147,10 @@ export default function AvatarGroupContainer({ headerContent, breadcrumbItems }:
           >
             <ComponentPreview
               title="Esport Squad Roster"
-              code={`<div className="p-6 bg-slate-950 text-white rounded-2xl border border-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.2)] flex items-center justify-between w-full">
+              code={`<div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-emerald-500/30 shadow-core-circle-subtle flex items-center justify-between w-full">
   <div>
     <span className="text-xs font-mono font-bold text-emerald-400">SQUAD ALPHA (RANK: DIAMOND)</span>
-    <h4 className="font-bold text-base text-white mt-1">Apex Cyber Champions</h4>
+    <h4 className="font-bold text-base text-core-circle-text-main mt-1">Apex Cyber Champions</h4>
   </div>
   <AvatarGroup
     max={3}
@@ -161,10 +165,10 @@ export default function AvatarGroupContainer({ headerContent, breadcrumbItems }:
   />
 </div>`}
             >
-              <div className="p-6 bg-slate-950 text-white rounded-2xl border border-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.2)] flex items-center justify-between w-full">
+              <div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-emerald-500/30 shadow-core-circle-subtle flex items-center justify-between w-full">
                 <div>
                   <span className="text-xs font-mono font-bold text-emerald-400">SQUAD ALPHA (RANK: DIAMOND)</span>
-                  <h4 className="font-bold text-base text-white mt-1">Apex Cyber Champions</h4>
+                  <h4 className="font-bold text-base text-core-circle-text-main mt-1">Apex Cyber Champions</h4>
                 </div>
                 <AvatarGroup
                   max={3}
@@ -291,7 +295,7 @@ export default function AvatarGroupContainer({ headerContent, breadcrumbItems }:
             title="2. Gradient & Neon Glow Rings"
             description="Luminous emerald halos and purple gradient outlines."
           >
-            <div className="flex flex-wrap gap-8 items-center justify-around p-8 bg-slate-950 rounded-2xl border border-slate-800 w-full">
+            <div className="flex flex-wrap gap-8 items-center justify-around p-8 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main w-full">
               <div className="text-center space-y-2">
                 <AvatarGroup max={3} variant="gradient" items={COLLABORATORS.slice(0, 4)} />
                 <p className="text-xs text-purple-300">Gradient Ring</p>

@@ -58,6 +58,24 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     };
 
     const isFloating = isMaterialAnimated && (isFocused || hasValue);
+    const isPill = variant === 'pill';
+    const isStandard = variant === 'standard';
+
+    const getLeftPadClass = () => {
+      if (isStandard) return 'pl-1';
+      if (isPill) return size === 'sm' ? 'pl-4' : size === 'lg' ? 'pl-6' : 'pl-5';
+      if (size === 'sm') return 'pl-3';
+      if (size === 'lg') return 'pl-5';
+      return 'pl-4';
+    };
+
+    const getRightPadClass = () => {
+      if (isStandard) return 'pr-1';
+      if (isPill) return size === 'sm' ? 'pr-4' : size === 'lg' ? 'pr-6' : 'pr-5';
+      if (size === 'sm') return 'pr-3';
+      if (size === 'lg') return 'pr-5';
+      return 'pr-4';
+    };
 
     return (
       <div className={cn(inputContainerVariants({ fullWidth, hasFloatingLabel: isMaterialAnimated }), className)}>
@@ -90,9 +108,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 
           {startIcon && (
             <div className={cn(
-              "flex items-center justify-center text-core-circle-text-muted group-focus-within:text-core-circle-primary transition-colors",
-              variant === 'outline' ? 'pl-4' : 'pl-0',
-              isMaterialAnimated && "mt-2"
+              "flex items-center justify-center text-core-circle-text-muted group-focus-within:text-core-circle-primary transition-colors shrink-0",
+              getLeftPadClass()
             )}>
               {startIcon}
             </div>
@@ -101,9 +118,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           {prefix && (
             <div className={cn(
               prefixSuffixVariants({ size }),
-              variant === 'outline' && !startIcon && 'pl-4',
-              (startIcon) && 'pl-2',
-              isMaterialAnimated && "mt-2"
+              startIcon ? 'pl-2' : getLeftPadClass()
             )}>
               {prefix}
             </div>
@@ -114,10 +129,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
             ref={ref}
             className={cn(
               inputVariants({ size, variant }),
-              variant === 'outline' && !startIcon && !prefix && 'pl-4',
-              variant === 'outline' && !endIcon && !suffix && 'pr-4',
-              (startIcon || prefix) && 'pl-2',
-              (endIcon || suffix) && 'pr-2'
+              (startIcon || prefix) ? 'pl-2' : getLeftPadClass(),
+              (endIcon || suffix) ? 'pr-2' : getRightPadClass()
             )}
             placeholder={isMaterialAnimated ? (isFloating ? placeholder : '') : placeholder}
             onFocus={handleFocus}
@@ -131,9 +144,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           {suffix && (
             <div className={cn(
               prefixSuffixVariants({ size }),
-              variant === 'outline' && !endIcon && 'pr-4',
-              (endIcon) && 'pr-2',
-              isMaterialAnimated && "mt-2"
+              endIcon ? 'pr-2' : getRightPadClass()
             )}>
               {suffix}
             </div>
@@ -141,9 +152,8 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           
           {endIcon && (
             <div className={cn(
-              "flex items-center justify-center text-core-circle-text-muted group-focus-within:text-core-circle-primary transition-colors",
-              variant === 'outline' ? 'pr-4' : 'pr-0',
-              isMaterialAnimated && "mt-2"
+              "flex items-center justify-center text-core-circle-text-muted group-focus-within:text-core-circle-primary transition-colors shrink-0",
+              getRightPadClass()
             )}>
               {endIcon}
             </div>

@@ -1,5 +1,6 @@
 'use client';
 
+import { ToastContainerProps } from '../../../interface/containers/atoms/toast.types';
 import React from 'react';
 import Link from 'next/link';
 import { Breadcrumb, Tabs, Button, Badge, Typography } from '@core-circle/ui';
@@ -27,14 +28,7 @@ import { TOAST_PROPS_DATA } from '../../../constants/atoms-page/toast/toastConst
 import { ToastPlayground } from '../../../components/playground/toast/toastPlayground';
 import PropsTable from '../../../components/props-table';
 import CodeSnippet from '../../../components/code-snippet';
-export interface ToastContainerProps {
-  sections?: any[];
-  headerContent?: {
-    title: string;
-    description: string;
-  };
-  breadcrumbItems?: any[];
-}
+
 
 export default function ToastContainer({
   headerContent,
@@ -195,26 +189,26 @@ export default function ToastContainer({
           >
             <ComponentPreview
               title="Production Build Online"
-              code={`<div className="p-4 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-core-circle-floating flex items-center justify-between gap-4 max-w-md">
+              code={`<div className="p-4 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle shadow-core-circle-floating flex items-center justify-between gap-4 max-w-md">
   <div className="flex items-center gap-3">
     <div className="bg-emerald-500/20 text-emerald-400 p-2 rounded-full flex items-center justify-center">
       <CircleCheck size={18} />
     </div>
     <div>
-      <h4 className="font-bold text-sm text-white">Deployed Build #1042</h4>
+      <h4 className="font-bold text-sm text-core-circle-text-main">Deployed Build #1042</h4>
       <p className="text-xs text-slate-400">core-circle.design (sha: 8f92a1b)</p>
     </div>
   </div>
   <Button size="sm" variant="primary">Visit Site</Button>
 </div>`}
             >
-              <div className="w-full max-w-md mx-auto p-4 bg-slate-900 text-white rounded-2xl border border-slate-800 shadow-core-circle-floating flex items-center justify-between gap-4">
+              <div className="w-full max-w-md mx-auto p-4 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle shadow-core-circle-floating flex items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <div className="bg-emerald-500/20 text-emerald-400 p-2 rounded-full flex items-center justify-center">
                     <CircleCheck size={18} />
                   </div>
                   <div>
-                    <h4 className="font-bold text-sm text-white">Deployed Build #1042</h4>
+                    <h4 className="font-bold text-sm text-core-circle-text-main">Deployed Build #1042</h4>
                     <p className="text-xs text-slate-400">core-circle.design (sha: 8f92a1b)</p>
                   </div>
                 </div>
