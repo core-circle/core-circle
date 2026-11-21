@@ -13,6 +13,7 @@ concurrency:
 permissions:
   contents: read
   pull-requests: write
+  issues: write
 
 jobs:
   # 1. Gatekeeper: Validates that PR comes strictly from 'development' (or 'develop')
@@ -36,6 +37,22 @@ jobs:
           fi
           
           echo "Validation passed: Source branch is '${{ github.head_ref }}'."
+
+      - name: Comment on PR if Source Branch Invalid
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request?.number || context.issue?.number;
+            const body = `### ⛔ Direct PR to \`main\` Blocked\n\nDirect pull requests to \`main\` must originate strictly from the \`development\` (or \`develop\`) branch.\n\n* **Current source branch**: \`${context.payload.pull_request?.head?.ref || 'unknown'}\`\n* **Required source branch**: \`development\`\n\n👉 **Action Required**: Please merge your changes into \`development\` first, then open a PR from \`development\` to \`main\`.`;
+            if (prNumber) {
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            }
 
   # 2. Gatekeeper: Enforces that Code Owner applied 'ready_to_merge' label
   check-ready-to-merge:
@@ -85,16 +102,33 @@ jobs:
       - name: Build Web Docs
         run: npx nx build @core-circle/docs
 
+      - name: Comment on PR on Success
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request?.number || context.issue?.number;
+            const body = `### ✅ Lint & Build Passed!\n\nAll packages and web documentation compiled with zero errors on commit \`${context.sha.substring(0, 7)}\`.\n\n* ✨ **Status**: Clean build. Ready for review and merge.`;
+            if (prNumber) {
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            }
+
       - name: Comment on PR on Failure
         if: failure()
         uses: actions/github-script@v7
         with:
           script: |
+            const prNumber = context.payload.pull_request?.number || context.issue?.number;
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const body = `### ❌ Build & Lint Check Failed\n\nThe automated **lint-and-build** check encountered errors on commit \`${context.sha.substring(0, 7)}\`.\n\n🔍 **Action Required**: Please inspect the failure logs and fix the reported errors before merging:\n👉 [View Failure Logs in GitHub Actions](${runUrl})\n\n*Merging into \`main\` is blocked until this check passes.*`;
-            if (context.issue && context.issue.number) {
+            if (prNumber) {
               await github.rest.issues.createComment({
-                issue_number: context.issue.number,
+                issue_number: prNumber,
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 body: body
@@ -129,6 +163,39 @@ jobs:
       - name: Run Unit Tests
         run: npx nx run-many -t test
 
+      - name: Comment on PR on Test Success
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request?.number || context.issue?.number;
+            const body = `### ✅ Unit Tests Passed!\n\nAll unit test suites ran and passed successfully on commit \`${context.sha.substring(0, 7)}\`.`;
+            if (prNumber) {
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            }
+
+      - name: Comment on PR on Test Failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request?.number || context.issue?.number;
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `### ❌ Unit Tests Failed\n\nUnit tests failed on commit \`${context.sha.substring(0, 7)}\`.\n\n🔍 **View Test Logs**: [GitHub Actions Run](${runUrl})`;
+            if (prNumber) {
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            }
+
   # 5. On-Demand: Run Storybook build
   run-storybook:
     name: run-storybook
@@ -154,6 +221,39 @@ jobs:
 
       - name: Build Storybook
         run: npm run build-storybook
+
+      - name: Comment on PR on Storybook Success
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request?.number || context.issue?.number;
+            const body = `### ✅ Storybook Build Passed!\n\nUI Storybook was built successfully with zero errors on commit \`${context.sha.substring(0, 7)}\`.`;
+            if (prNumber) {
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            }
+
+      - name: Comment on PR on Storybook Failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request?.number || context.issue?.number;
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `### ❌ Storybook Build Failed\n\nStorybook build failed on commit \`${context.sha.substring(0, 7)}\`.\n\n🔍 **View Logs**: [GitHub Actions Run](${runUrl})`;
+            if (prNumber) {
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            }
 
   # 6. On-Demand: Verify Packages Build
   verify-packages-build:
@@ -198,3 +298,39 @@ jobs:
 
       - name: Build Packages (Pre-Publish Verification)
         run: npx nx run-many -t build $PROJECT_SELECTOR
+
+      - name: Comment on PR on Verification Success
+        if: success()
+        uses: actions/github-script@v7
+        env:
+          PROJECT_SELECTOR: ${{ env.PROJECT_SELECTOR }}
+        with:
+          script: |
+            const prNumber = context.payload.pull_request?.number || context.issue?.number;
+            const selector = process.env.PROJECT_SELECTOR || 'All Packages';
+            const body = `### ✅ Package Build Verification Passed!\n\nPre-publish package build verification completed successfully on commit \`${context.sha.substring(0, 7)}\`:\n\n* **Target**: \`${selector}\`\n* Packages are validated and ready for publish upon merge.`;
+            if (prNumber) {
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            }
+
+      - name: Comment on PR on Verification Failure
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request?.number || context.issue?.number;
+            const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = `### ❌ Package Build Verification Failed\n\nPackage build verification failed on commit \`${context.sha.substring(0, 7)}\`.\n\n🔍 **View Logs**: [GitHub Actions Run](${runUrl})`;
+            if (prNumber) {
+              await github.rest.issues.createComment({
+                issue_number: prNumber,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: body
+              });
+            }
