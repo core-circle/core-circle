@@ -79,8 +79,11 @@ jobs:
       - name: Run Lint
         run: npx nx run-many -t lint
 
-      - name: Run Build
-        run: npx nx run-many -t build
+      - name: Build Packages
+        run: npx nx run-many -t build -p tag:package
+
+      - name: Build Web Docs
+        run: npx nx build @core-circle/docs
 
       - name: Comment on PR on Failure
         if: failure()
