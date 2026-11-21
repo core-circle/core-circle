@@ -1,10 +1,12 @@
+import React from 'react';
 import { IconProps } from './types';
 
-const Water = ({ 
-  className = 'w-3.5 h-3.5', 
+const Water: React.FC<IconProps> = ({
+  size = 24,
   color = 'currentColor',
-  size,
-  ...props 
+  strokeWidth = 2,
+  className = '',
+  ...props
 }: IconProps) => (
   <svg 
     className={className} 
@@ -15,7 +17,7 @@ const Water = ({
     height={size}
     {...props}
   >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 21a6 6 0 01-6-6c0-4 6-9 6-9s6 5 6 9a6 6 0 01-6 6z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M12 21a6 6 0 01-6-6c0-4 6-9 6-9s6 5 6 9a6 6 0 01-6 6z" />
   </svg>
 );
 

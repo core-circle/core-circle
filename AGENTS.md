@@ -77,7 +77,7 @@ packages/ui/src/
 ## 4. Token-Efficient Workflow for AI Pair Programming
 
 1. **Activate the Skill**: When building or extending components, activate the workspace skill `.agents/skills/core-circle-component-architect/SKILL.md`.
-2. **Consult Reference Catalogs**: Check `references/component-catalog.md` in the skill for existing props and variants instead of reading large component source files.
+2. **Consult Code Brain**: Check `.agents/skills/core-circle-component-architect/code-brain.md` in the skill for existing props, variants, icons, and tokens instead of reading large component source files.
 3. **Extend with Variants**: When a new style or state is required, add a variant in `[name].styles.ts` and prop in `[name].types.ts` rather than duplicating or rewriting the component.
 4. **Compose Molecules**: Always build molecules by combining existing atoms (e.g. `Card` = `CardHeader` + `Typography` + `Badge` + `Button`).
 

@@ -1,10 +1,12 @@
+import React from 'react';
 import { IconProps } from './types';
 
-const ArrowDown = ({ 
-  className = 'w-3.5 h-3.5', 
+const ArrowDown: React.FC<IconProps> = ({
+  size = 24,
   color = 'currentColor',
-  size,
-  ...props 
+  strokeWidth = 2,
+  className = '',
+  ...props
 }: IconProps) => (
   <svg 
     className={className} 
@@ -15,7 +17,7 @@ const ArrowDown = ({
     height={size}
     {...props}
   >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
   </svg>
 );
 

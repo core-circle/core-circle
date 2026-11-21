@@ -5,9 +5,7 @@ import { cn } from '../../../utils/cn';
 import { 
   ChevronLeft, 
   ChevronRight, 
-  Clock, 
-  Rotate, 
-  Calendar as CalendarIcon 
+  Clock 
 } from '@core-circle/icons';
 import { CalendarProps, DateRange, DatePreset } from '../../../interface/atoms/date-picker/date-picker.types';
 import { dayCellVariants } from './date-picker.styles';

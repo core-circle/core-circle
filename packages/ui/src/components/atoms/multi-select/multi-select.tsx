@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { cn } from '../../../utils/cn';
-import { MultiSelectProps, MultiSelectOption } from '../../../interface/atoms/multi-select/multi-select.types';
+import { MultiSelectProps } from '../../../interface/atoms/multi-select/multi-select.types';
 import { 
   multiSelectContainerVariants, 
   multiSelectTriggerVariants, 

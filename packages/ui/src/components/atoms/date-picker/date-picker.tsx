@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { cn } from '../../../utils/cn';
-import { Calendar as CalendarIcon, Clock, ChevronDown, CircleX } from '@core-circle/icons';
+import { Calendar as CalendarIcon, ChevronDown } from '@core-circle/icons';
 import { DatePickerProps, DateRange } from '../../../interface/atoms/date-picker/date-picker.types';
 import { 
   datePickerContainerVariants, 

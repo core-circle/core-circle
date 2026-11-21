@@ -12,10 +12,14 @@ export default defineConfig({
   ],
   build: {
     lib: {
-      entry: resolve(__dirname, 'index.ts'),
+      entry: {
+        index: resolve(__dirname, 'index.ts'),
+        preset: resolve(__dirname, 'preset.ts'),
+      },
       name: 'CoreCircleTheme',
-      formats: ['es'],
-      fileName: 'index',
+      formats: ['es', 'cjs'],
+      fileName: (format, entryName) =>
+        `${entryName}.${format === 'es' ? 'mjs' : 'cjs'}`,
     },
     outDir: 'dist',
     emptyOutDir: true,

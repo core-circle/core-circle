@@ -24,7 +24,7 @@ export interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
     alt?: string;
     fallback?: string;
     name?: string;
-    variant?: AvatarProps['variant'];
+    shape?: AvatarProps['shape'];
     status?: AvatarProps['status'];
   }>;
   children?: React.ReactNode;

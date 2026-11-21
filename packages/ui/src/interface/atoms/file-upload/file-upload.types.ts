@@ -23,7 +23,7 @@ export interface UploadedFileItem {
   file?: File;
 }
 
-export interface FileUploadProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface FileUploadProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onChange' | 'title'> {
   variant?: FileUploadVariant;
   accept?: string;
   multiple?: boolean;

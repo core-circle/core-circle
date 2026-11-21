@@ -36,7 +36,7 @@ export const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
           alt={item.alt || item.name}
           fallback={item.fallback || item.name?.charAt(0) || 'U'}
           size={size}
-          variant={item.variant}
+          shape={item.shape}
           status={item.status}
         />
       ));

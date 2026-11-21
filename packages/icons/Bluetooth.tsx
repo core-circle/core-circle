@@ -1,10 +1,12 @@
+import React from 'react';
 import { IconProps } from './types';
 
-const Bluetooth = ({ 
-  className = 'w-3.5 h-3.5', 
+const Bluetooth: React.FC<IconProps> = ({
+  size = 24,
   color = 'currentColor',
-  size,
-  ...props 
+  strokeWidth = 2,
+  className = '',
+  ...props
 }: IconProps) => (
   <svg 
     className={className} 
@@ -15,7 +17,7 @@ const Bluetooth = ({
     height={size}
     {...props}
   >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 7l10 10-5 5V2l5 5L7 17" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M7 7l10 10-5 5V2l5 5L7 17" />
   </svg>
 );
 

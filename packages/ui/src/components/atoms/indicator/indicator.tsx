@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 import { cn } from '../../../utils/cn';
 import { IndicatorProps } from '../../../interface/atoms/indicator/indicator.types';
 import { indicatorBadgeVariants } from './indicator.styles';

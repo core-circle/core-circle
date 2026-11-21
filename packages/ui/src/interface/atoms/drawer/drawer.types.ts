@@ -14,7 +14,7 @@ export type DrawerVariant =
   | 'accent'
   | 'minimal';
 
-export interface DrawerProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface DrawerProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
   isOpen: boolean;
   onClose: () => void;
   position?: DrawerPosition;
