@@ -1,6 +1,6 @@
 import './global.css';
 
-const basePath = process.env.DEPLOY_TARGET === 'gh-pages' ? '/core-circle' : '';
+const basePath = process.env['DEPLOY_TARGET'] === 'gh-pages' ? '/core-circle' : '';
 
 export const metadata = {
   title: 'Core Circle UI | Premium Component Library',

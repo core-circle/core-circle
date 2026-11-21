@@ -29,6 +29,7 @@ Never write raw HTML elements when a CoreCircle component exists:
 | Status tags / Chips / Pills | `<Badge>` | `import { Badge } from '@core-circle/ui'` |
 | Tab navigation | `<Tabs>` | `import { Tabs } from '@core-circle/ui'` |
 | Text labels | `<Label>` / `<Typography>` | `import { Label, Typography } from '@core-circle/ui'` |
+| Theme Studio / Generator | `<ThemeGenerator>` | `import { ThemeGenerator } from '@core-circle/ui'` |
 | Toggle switch | `<Switch>` | `import { Switch } from '@core-circle/ui'` |
 | User profile / Avatar | `<Avatar>` | `import { Avatar } from '@core-circle/ui'` |
 | Verification code inputs | `<OtpInput>` | `import { OtpInput } from '@core-circle/ui'` |
@@ -167,7 +168,7 @@ Every new UI component (Atom or Molecule) in `@core-circle/ui` must have a corre
    - Must export default `Meta` with `tags: ['autodocs']`.
    - Provide stories demonstrating default state, key variants, sizes, and interactive states.
 4. **Pre-Merge CI Verification**:
-   - The PR gatekeeper job (`lint-and-build`) automatically builds Storybook (`npm run build-storybook`) on every PR to `main`.
+   - The PR gatekeeper job (`lint-and-build`) automatically builds Storybook (`npm run build-storybook`) on every PR to `main` and `development`.
    - Broken imports, missing component exports, or invalid args in Storybook will immediately fail the PR check and block merge.
 
 
