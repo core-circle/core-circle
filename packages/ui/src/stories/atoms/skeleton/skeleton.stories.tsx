@@ -9,11 +9,11 @@ const meta: Meta<typeof Skeleton> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['text', 'circular', 'rectangular'],
+      options: ['default', 'rectangular', 'circular', 'text', 'card', 'avatar', 'button', 'badge', 'image', 'glassmorphic', 'gradient', 'dark'],
     },
     animation: {
       control: 'select',
-      options: ['none', 'pulse', 'shimmer'],
+      options: ['shimmer', 'pulse', 'wave', 'glow', 'none'],
     },
   },
 };
@@ -23,44 +23,69 @@ type Story = StoryObj<typeof Skeleton>;
 
 export const Default: Story = {
   args: {
-    variant: 'rectangular',
+    variant: 'default',
     width: 300,
     height: 150,
   },
 };
 
-export const Text: Story = {
+export const Avatar: Story = {
   args: {
-    variant: 'text',
-    width: '100%',
+    variant: 'avatar',
   },
 };
 
-export const Circular: Story = {
+export const ButtonSkeleton: Story = {
   args: {
-    variant: 'circular',
-    width: 60,
-    height: 60,
+    variant: 'button',
   },
 };
 
-export const Pulse: Story = {
+export const CardSkeleton: Story = {
+  args: {
+    variant: 'card',
+    width: 320,
+    height: 180,
+  },
+};
+
+export const Glassmorphic: Story = {
+  args: {
+    variant: 'glassmorphic',
+    width: 320,
+    height: 140,
+  },
+};
+
+export const Gradient: Story = {
+  args: {
+    variant: 'gradient',
+    width: 320,
+    height: 140,
+  },
+};
+
+export const Dark: Story = {
+  args: {
+    variant: 'dark',
+    width: 320,
+    height: 140,
+  },
+};
+
+export const WaveAnimation: Story = {
   args: {
     variant: 'rectangular',
-    animation: 'pulse',
+    animation: 'wave',
     width: 300,
     height: 150,
   },
 };
 
-export const Combined: Story = {
-  render: () => (
-    <div className="flex items-center gap-4 p-4 border rounded-lg max-w-md">
-      <Skeleton variant="circular" width={48} height={48} />
-      <div className="flex-1">
-        <Skeleton variant="text" width="60%" />
-        <Skeleton variant="text" width="80%" />
-      </div>
-    </div>
-  ),
+export const GlowAnimation: Story = {
+  args: {
+    variant: 'button',
+    animation: 'glow',
+  },
 };
+

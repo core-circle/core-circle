@@ -1,86 +1,77 @@
+import { HomeIcon } from '@core-circle/icons';
+import React from 'react';
 import { PropItem } from '../../../interface/components/props-table.types';
 
-export const LABEL_HEADER_CONTENT = {
-  title: 'Label',
-  description: 'A primitive component for displaying text labels with various sizes, weights, and variants.',
-};
-
 export const LABEL_BREADCRUMB_ITEMS = [
-  { label: 'Home', href: '/' },
+  { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
   { label: 'Atoms', href: '/atoms' },
   { label: 'Label' },
 ];
 
-export const LABEL_SECTIONS = [
-  {
-    id: 'playground',
-    title: 'Interactive Playground',
-    description: 'Experiment with different label variants and properties in real-time.',
-    showBorder: true,
-  },
-  {
-    id: 'variants',
-    title: 'Variants',
-    description: 'Labels come in different semantic variants for different contexts.',
-    showBorder: true,
-    previews: [
-      { id: 'default', title: 'Default', code: '<Label>Default Label</Label>' },
-      { id: 'muted', title: 'Muted', code: '<Label variant="muted">Muted Label</Label>' },
-      { id: 'primary', title: 'Primary', code: '<Label variant="primary">Primary Label</Label>' },
-      { id: 'warning', title: 'Warning', code: '<Label variant="warning">Warning Label</Label>' },
-      { id: 'error', title: 'Error', code: '<Label variant="error">Error Label</Label>' },
-    ],
-  },
-  {
-    id: 'sizes',
-    title: 'Sizes',
-    description: 'Standardized sizes from extra small to 2xl.',
-    showBorder: true,
-    previews: [
-      { id: 'xs', title: 'Extra Small', code: '<Label size="xs">Extra Small</Label>' },
-      { id: 'sm', title: 'Small', code: '<Label size="sm">Small</Label>' },
-      { id: 'md', title: 'Medium', code: '<Label size="md">Medium</Label>' },
-      { id: 'lg', title: 'Large', code: '<Label size="lg">Large</Label>' },
-      { id: 'xl', title: 'Extra Large', code: '<Label size="xl">Extra Large</Label>' },
-      { id: '2xl', title: '2XL', code: '<Label size="2xl">2XL</Label>' },
-    ],
-  },
-];
+export const LABEL_HEADER_CONTENT = {
+  title: 'Label',
+  description: 'An accessible form label primitive with support for required indicators (*), optional tags, helper icon tooltips, sub-badges, 10 color styles, and responsive typography scales.',
+};
 
 export const LABEL_PROPS_DATA: PropItem[] = [
   {
     name: 'variant',
-    type: "'default' | 'muted' | 'primary' | 'warning' | 'error'",
+    type: "'default' | 'primary' | 'muted' | 'success' | 'warning' | 'destructive' | 'gradient' | 'glassmorphic' | 'pill' | 'badge-label'",
     defaultValue: "'default'",
-    description: 'The semantic variant of the label.'
+    description: 'Visual color and styling variant of the label text (10 options).'
   },
   {
     name: 'size',
     type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
     defaultValue: "'sm'",
-    description: 'The font size of the label.'
+    description: 'Typography size scale from 11px to 20px.'
   },
   {
     name: 'weight',
     type: "'light' | 'normal' | 'medium' | 'semibold' | 'bold'",
-    defaultValue: "'normal'",
-    description: 'The font weight of the label.'
+    defaultValue: "'medium'",
+    description: 'Font weight scale.'
+  },
+  {
+    name: 'required',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Whether to display the red required asterisk indicator (*).'
+  },
+  {
+    name: 'optional',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Whether to display the (Optional) subtitle tag.'
   },
   {
     name: 'uppercase',
     type: 'boolean',
     defaultValue: 'false',
-    description: 'Transforms the label text to uppercase.'
+    description: 'Transforms text to uppercase with wide tracking.'
+  },
+  {
+    name: 'helperIcon',
+    type: 'ReactNode',
+    defaultValue: '-',
+    description: 'Optional helper icon or info tooltip slot.'
+  },
+  {
+    name: 'badge',
+    type: 'ReactNode',
+    defaultValue: '-',
+    description: 'Optional sub-badge pill rendered alongside the label.'
   },
   {
     name: 'as',
     type: "'label' | 'span' | 'div'",
     defaultValue: "'label'",
-    description: 'The underlying HTML element to render.'
+    description: 'The underlying HTML tag to render.'
   },
   {
     name: 'htmlFor',
     type: 'string',
-    description: 'The ID of the input element this label is associated with.'
+    defaultValue: '-',
+    description: 'ID of the form input associated with this label.'
   }
 ];

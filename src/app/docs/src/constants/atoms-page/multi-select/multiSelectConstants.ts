@@ -10,120 +10,92 @@ export const MULTI_SELECT_BREADCRUMB_ITEMS = [
 
 export const MULTI_SELECT_HEADER_CONTENT = {
   title: 'MultiSelect',
-  description: 'A powerful dropdown component that allows users to select multiple options. Selected items are displayed as removable tags within the input field.',
+  description: 'A multi-item selection primitive featuring removable tag chips, live search filtering, select-all shortcuts, 10 visual variants, and overflow tag counters.',
 };
-
-export const MULTI_SELECT_SECTIONS = [
-  {
-    id: 'playground',
-    title: 'Live Playground',
-    description: 'Experiment with variants, sizes, and selection behavior live.',
-    showBorder: true,
-    isPlayground: true
-  },
-  {
-    id: 'variants',
-    title: 'Visual Variants',
-    description: 'Consistent styling across all input types.',
-    previews: [
-      {
-        id: 'material-animated',
-        title: 'Material Animated',
-        code: '<MultiSelect variant="material-animated" label="Skills" options={options} placeholder="Search skills..." />'
-      },
-      {
-        id: 'outline',
-        title: 'Outline',
-        code: '<MultiSelect variant="outline" label="Categories" options={options} />'
-      },
-      {
-        id: 'standard',
-        title: 'Standard',
-        code: '<MultiSelect variant="standard" label="Tags" options={options} />'
-      },
-      {
-        id: 'ghost',
-        title: 'Ghost',
-        code: '<MultiSelect variant="ghost" placeholder="Add filters..." options={options} />'
-      }
-    ]
-  },
-  {
-    id: 'icons',
-    title: 'With Icons',
-    description: 'Use start icons to provide visual cues for the selection type.',
-    previews: [
-      {
-        id: 'user-selection',
-        title: 'User Selection',
-        code: '<MultiSelect startIcon={<Users />} options={options} />'
-      },
-      {
-        id: 'tagging',
-        title: 'Tagging',
-        code: '<MultiSelect prefix={<Tag size={14} />} options={options} />'
-      }
-    ]
-  }
-];
 
 export const MULTI_SELECT_PROPS_DATA: PropItem[] = [
   {
     name: 'options',
     type: 'MultiSelectOption[]',
-    description: 'List of options to select from (label and value pair).'
+    defaultValue: '[]',
+    description: 'Array of option objects with label, value, group, and icon properties.'
+  },
+  {
+    name: 'value',
+    type: 'string[]',
+    defaultValue: '-',
+    description: 'Controlled array of selected value keys.'
+  },
+  {
+    name: 'defaultValue',
+    type: 'string[]',
+    defaultValue: '[]',
+    description: 'Initial selected values for uncontrolled usage.'
   },
   {
     name: 'variant',
-    type: "'outline' | 'material' | 'material-animated' | 'ghost' | 'standard'",
+    type: "'outline' | 'filled' | 'floating' | 'glassmorphic' | 'pill' | 'material' | 'gradient' | 'compact' | 'chips' | 'ghost'",
     defaultValue: "'outline'",
-    description: 'Visual layout style.'
+    description: 'Visual style variant of the input trigger (10 options).'
   },
   {
     name: 'size',
     type: "'sm' | 'md' | 'lg'",
     defaultValue: "'md'",
-    description: 'Overall component scale.'
-  },
-  {
-    name: 'value',
-    type: 'string[]',
-    description: 'Array of currently selected values (controlled).'
-  },
-  {
-    name: 'defaultValue',
-    type: 'string[]',
-    description: 'Initial values (uncontrolled).'
+    description: 'Size scale of the trigger bar and dropdown options.'
   },
   {
     name: 'label',
-    type: 'string',
-    description: 'Top-level label for the group.'
+    type: 'ReactNode',
+    defaultValue: '-',
+    description: 'Label displayed above the multi-select input.'
   },
   {
     name: 'placeholder',
     type: 'string',
-    description: 'Text shown when no items are selected.'
+    defaultValue: "'Select options...'",
+    description: 'Placeholder text shown when no options are selected.'
   },
   {
-    name: 'startIcon',
-    type: 'ReactNode',
-    description: 'Visual indicator at the start of the input.'
+    name: 'searchable',
+    type: 'boolean',
+    defaultValue: 'true',
+    description: 'Whether to show the search input inside the dropdown.'
   },
   {
-    name: 'error',
-    type: 'string',
-    description: 'Message displayed below on validation failure.'
+    name: 'showSelectAll',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Whether to display Select All / Deselect All toolbar buttons.'
+  },
+  {
+    name: 'showClearAll',
+    type: 'boolean',
+    defaultValue: 'true',
+    description: 'Whether to render the clear (x) button in the trigger.'
+  },
+  {
+    name: 'maxTags',
+    type: 'number',
+    defaultValue: '3',
+    description: 'Max chips displayed before collapsing remaining count into a +N badge.'
   },
   {
     name: 'fullWidth',
     type: 'boolean',
     defaultValue: 'false',
-    description: 'Expands to fill container width.'
+    description: 'Whether the multi-select expands to fill container width.'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Whether the component is disabled.'
   },
   {
     name: 'onChange',
     type: '(values: string[]) => void',
-    description: 'Callback triggered when selections change.'
+    defaultValue: '-',
+    description: 'Callback triggered when selected items change.'
   }
 ];

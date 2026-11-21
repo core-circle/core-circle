@@ -10,7 +10,7 @@ const meta: Meta<typeof Select> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['outline', 'material', 'material-animated', 'ghost', 'standard'],
+      options: ['outline', 'material', 'material-animated', 'ghost', 'standard', 'filled', 'glassmorphic', 'floating', 'gradient', 'pill', 'accent', 'dark'],
     },
     size: {
       control: 'select',
@@ -45,38 +45,75 @@ export const Outline: Story = {
   },
 };
 
+export const Floating: Story = {
+  args: {
+    variant: 'floating',
+    label: 'Floating Surface',
+    options: defaultOptions,
+    fullWidth: true,
+  },
+};
+
+export const Glassmorphic: Story = {
+  args: {
+    variant: 'glassmorphic',
+    label: 'Glassmorphic Select',
+    options: defaultOptions,
+    fullWidth: true,
+  },
+};
+
+export const Gradient: Story = {
+  args: {
+    variant: 'gradient',
+    label: 'VIP Selection',
+    options: defaultOptions,
+    fullWidth: true,
+  },
+};
+
+export const Accent: Story = {
+  args: {
+    variant: 'accent',
+    label: 'Required Field',
+    options: defaultOptions,
+    fullWidth: true,
+  },
+};
+
+export const Dark: Story = {
+  args: {
+    variant: 'dark',
+    label: 'Terminal Environment',
+    options: defaultOptions,
+    fullWidth: true,
+  },
+};
+
+export const Pill: Story = {
+  args: {
+    variant: 'pill',
+    label: 'Category Pill',
+    options: defaultOptions,
+    fullWidth: true,
+  },
+};
+
+export const Filled: Story = {
+  args: {
+    variant: 'filled',
+    label: 'Filled Style',
+    options: defaultOptions,
+    fullWidth: true,
+  },
+};
+
 export const MaterialAnimated: Story = {
   args: {
     variant: 'material-animated',
     label: 'Select Category',
     options: defaultOptions,
     placeholder: 'Choose one...',
-    fullWidth: true,
-  },
-};
-
-export const WithPlaceholder: Story = {
-  args: {
-    variant: 'outline',
-    label: 'Fruit Selection',
-    placeholder: 'Pick a fruit',
-    options: [
-      { value: 'apple', label: 'Apple' },
-      { value: 'banana', label: 'Banana' },
-    ],
-    fullWidth: true,
-  },
-};
-
-export const Material: Story = {
-  args: {
-    variant: 'material',
-    label: 'Choose Language',
-    options: [
-      { value: 'en', label: 'English' },
-      { value: 'es', label: 'Spanish' },
-      { value: 'fr', label: 'French' },
-    ],
     fullWidth: true,
   },
 };
@@ -114,29 +151,6 @@ export const Disabled: Story = {
     label: 'Disabled Select',
     options: defaultOptions,
     disabled: true,
-    fullWidth: true,
-  },
-};
-
-export const SelectWithPrefix: Story = {
-  args: {
-    variant: 'outline',
-    label: 'ID Number',
-    options: defaultOptions,
-    prefix: 'ID-',
-    fullWidth: true,
-  },
-};
-
-export const MaterialAnimatedWithIcons: Story = {
-  args: {
-    variant: 'material-animated',
-    label: 'Regional Settings',
-    options: [
-      { value: 'us', label: 'United States' },
-      { value: 'uk', label: 'United Kingdom' },
-    ],
-    startIcon: <Map size={18} />,
     fullWidth: true,
   },
 };

@@ -103,6 +103,13 @@ ${itemsCode}
                 underline: 'Underline',
                 pills: 'Pills',
                 enclosed: 'Enclosed',
+                cards: 'Cards',
+                glassmorphic: 'Glassmorphic',
+                gradient: 'Radiant Gradient',
+                glow: 'Neon Glow',
+                segmented: 'Segmented',
+                bordered: 'Bordered',
+                dark: 'Dark Mode',
               }}
             />
             <SelectField

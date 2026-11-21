@@ -5,7 +5,7 @@ import {
 } from '../../../constants/atoms-page/stepper/stepperConstants';
 
 export interface StepperContainerProps {
-  sections: typeof STEPPER_SECTIONS;
+  sections?: typeof STEPPER_SECTIONS;
   headerContent: typeof STEPPER_HEADER_CONTENT;
   breadcrumbItems: typeof STEPPER_BREADCRUMB_ITEMS;
 }

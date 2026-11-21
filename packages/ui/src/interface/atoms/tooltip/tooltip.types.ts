@@ -1,15 +1,29 @@
 import * as React from 'react';
-import { type VariantProps } from 'class-variance-authority';
-import { tooltipVariants } from '../../../components/atoms/tooltip/tooltip.styles';
 
-export interface TooltipProps
-  extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof tooltipVariants> {
+export type TooltipVariant = 
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'destructive'
+  | 'info'
+  | 'gradient'
+  | 'glow'
+  | 'glassmorphic'
+  | 'dark';
+
+export type TooltipPosition = 'top' | 'bottom' | 'left' | 'right';
+
+export interface TooltipProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   description: string;
+  variant?: TooltipVariant;
+  position?: TooltipPosition;
   icon?: React.ReactNode;
   trigger?: 'click' | 'hover';
   isOpen?: boolean;
   onOpenChange?: (open: boolean) => void;
   showCloseIcon?: boolean;
 }
+

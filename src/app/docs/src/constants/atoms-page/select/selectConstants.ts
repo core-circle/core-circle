@@ -1,153 +1,104 @@
-import { HomeIcon } from '@core-circle/icons';
 import React from 'react';
 import { PropItem } from '../../../interface/components/props-table.types';
 
 export const SELECT_BREADCRUMB_ITEMS = [
-  { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
+  { label: 'Home', href: '/' },
   { label: 'Atoms', href: '/atoms' },
   { label: 'Select' }
 ];
 
 export const SELECT_HEADER_CONTENT = {
   title: 'Select',
-  description: 'A custom select component that provides a consistent look and feel across different browsers while supporting variants and integrated icons.',
+  description: 'An accessible, fully customized single-select dropdown supporting 12 visual styling variants, floating material labels, prefixes, icons, and validation states.',
 };
 
 export const SELECT_SECTIONS = [
   {
-    id: 'playground',
-    title: 'Live Playground',
-    description: 'Experiment with variants, sizes, and states live.',
-    showBorder: true,
-    isPlayground: true
+    id: 'theming',
+    title: 'Theming',
+    description: 'Production-grade select implementations for currencies, cloud regions, VIP tiers, and RBAC roles.',
   },
   {
     id: 'variants',
-    title: 'Visual Variants',
-    description: 'Multiple styles to match your design system.',
-    previews: [
-      {
-        id: 'material-animated',
-        title: 'Material Animated',
-        code: '<Select variant="material-animated" label="Select Category" options={options} placeholder="Choose a category" />'
-      },
-      {
-        id: 'outline',
-        title: 'Outline (Default)',
-        code: '<Select variant="outline" label="Choose Fruit" options={options} placeholder="Pick a fruit..." />'
-      },
-      {
-        id: 'standard',
-        title: 'Standard',
-        code: '<Select variant="standard" label="Select Theme" options={options} />'
-      },
-      {
-        id: 'ghost',
-        title: 'Ghost',
-        code: '<Select variant="ghost" options={options} />'
-      }
-    ]
+    title: 'Variants',
+    description: 'Explore 12 distinct surface and outline variants.',
   },
   {
-    id: 'icons',
-    title: 'With Icons & Prefixes',
-    description: 'Enhance selection context with start icons and text prefixes.',
-    previews: [
-      {
-        id: 'start-icon',
-        title: 'Start Icon',
-        code: '<Select startIcon={<Filter />} options={options} />'
-      },
-      {
-        id: 'prefix',
-        title: 'With Prefix',
-        code: '<Select prefix="ID:" options={options} />'
-      }
-    ]
+    id: 'playground',
+    title: 'Playground',
+    description: 'Interactive property playground with live preview and code generator.',
   },
   {
-    id: 'validation',
-    title: 'Validation States',
-    description: 'Visual feedback for errors and help text.',
-    previews: [
-      {
-        title: 'Error State',
-        code: '<Select error="This field is required" options={options} />'
-      }
-    ]
-  }
+    id: 'mock-code',
+    title: 'Mock Code',
+    description: 'Dynamic API option fetching and consumer component code.',
+  },
+  {
+    id: 'overview',
+    title: 'Overview',
+    description: 'Quick usage snippet and properties reference.',
+  },
 ];
 
 export const SELECT_PROPS_DATA: PropItem[] = [
   {
     name: 'variant',
-    type: "'outline' | 'material' | 'material-animated' | 'ghost' | 'standard'",
+    type: "'outline' | 'material' | 'material-animated' | 'ghost' | 'standard' | 'filled' | 'glassmorphic' | 'floating' | 'gradient' | 'pill' | 'accent' | 'dark'",
     defaultValue: "'outline'",
-    description: 'Visual style of the select.'
+    description: 'Visual styling theme and border treatment of the select input.'
   },
   {
     name: 'size',
     type: "'sm' | 'md' | 'lg'",
     defaultValue: "'md'",
-    description: 'Vertical size of the select field.'
+    description: 'Vertical height and typography scale of the select.'
   },
   {
     name: 'options',
     type: 'SelectOption[]',
-    description: 'List of options to display in the dropdown.'
+    description: 'Array of selectable option objects ({ value, label, disabled? }).'
   },
   {
     name: 'label',
     type: 'string',
-    description: 'Floating or static label text.'
-  },
-  {
-    name: 'labelSize',
-    type: "'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl'",
-    defaultValue: "'sm'",
-    description: 'Typography size for the label.'
-  },
-  {
-    name: 'labelWeight',
-    type: "'light' | 'normal' | 'medium' | 'semibold' | 'bold'",
-    defaultValue: "'medium'",
-    description: 'Typography weight for the label.'
-  },
-  {
-    name: 'startIcon',
-    type: 'ReactNode',
-    description: 'Icon element to display at the beginning.'
-  },
-  {
-    name: 'prefix',
-    type: 'ReactNode',
-    description: 'Non-editable content at the start.'
+    description: 'Label text placed above or floating within the select container.'
   },
   {
     name: 'placeholder',
     type: 'string',
-    description: 'Text shown when no option is selected.'
+    defaultValue: "'Select...'",
+    description: 'Placeholder text shown when no option is selected.'
+  },
+  {
+    name: 'startIcon',
+    type: 'ReactNode',
+    description: 'Icon element rendered at the leading start position.'
+  },
+  {
+    name: 'prefix',
+    type: 'ReactNode',
+    description: 'Static prefix text or element placed before the value.'
   },
   {
     name: 'error',
     type: 'string',
-    description: 'Error message displayed below.'
+    description: 'Error feedback message displayed beneath the input.'
   },
   {
     name: 'helperText',
     type: 'string',
-    description: 'Additional guidance text.'
+    description: 'Helpful guidance text rendered beneath the input.'
   },
   {
     name: 'fullWidth',
     type: 'boolean',
     defaultValue: 'false',
-    description: 'Takes full width of container.'
+    description: 'Whether the select stretches to 100% of its parent container.'
   },
   {
     name: 'disabled',
     type: 'boolean',
     defaultValue: 'false',
-    description: 'Prevents interaction.'
+    description: 'Disables user interactions and applies a muted opacity.'
   }
 ];

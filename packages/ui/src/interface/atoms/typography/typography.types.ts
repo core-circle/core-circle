@@ -18,10 +18,29 @@ export type TypographyVariant =
   | 'small' 
   | 'muted';
 
+export type TypographyColor = 
+  | 'default'
+  | 'primary'
+  | 'secondary'
+  | 'success'
+  | 'warning'
+  | 'danger'
+  | 'info'
+  | 'gradient'
+  | 'glow'
+  | 'accent'
+  | 'muted'
+  | 'white';
+
+export type TypographyWeight = 'light' | 'normal' | 'medium' | 'semibold' | 'bold';
+
 export interface TypographyProps
   extends React.HTMLAttributes<HTMLElement>,
     VariantProps<typeof typographyVariants> {
   variant?: TypographyVariant;
+  color?: TypographyColor;
+  weight?: TypographyWeight;
   as?: React.ElementType;
   children?: React.ReactNode;
 }
+

@@ -15,64 +15,104 @@ export const COLOR_PICKER_BREADCRUMB_ITEMS = [
 export const COLOR_PICKER_HEADER_CONTENT = {
   title: 'ColorPicker',
   description:
-    'A sleek, visual color selection component with support for hex values and multiple design variants.',
+    'A versatile color selection primitive supporting 10 visual variants, preset palettes, opacity sliders, eye dropper sampling, and multi-format conversions (Hex, RGB, HSL).',
 };
-
-export const COLOR_PICKER_SECTIONS = [
-  {
-    id: 'playground',
-    title: 'Live Playground',
-    description: 'Experiment with variants, sizes, and display options live.',
-    showBorder: true,
-    isPlayground: true,
-  },
-  {
-    id: 'variants',
-    title: 'Visual Variants',
-    description: 'Choose between different design styles to match your UI.',
-    previews: [
-      {
-        id: 'outline',
-        title: 'Outline (Default)',
-        code: '<ColorPicker variant="outline" label="Primary Color" value="#3b82f6" />',
-      },
-      {
-        id: 'material',
-        title: 'Material Design',
-        code: '<ColorPicker variant="material" label="Secondary Color" value="#10b981" />',
-      },
-    ],
-  },
-];
 
 export const COLOR_PICKER_PROPS_DATA: PropItem[] = [
   {
     name: 'value',
     type: 'string',
-    defaultValue: "'#3b82f6'",
-    description: 'The current color hex value.',
+    defaultValue: "'#3B82F6'",
+    description: 'The current controlled color value (Hex format).',
+  },
+  {
+    name: 'defaultValue',
+    type: 'string',
+    defaultValue: "'#3B82F6'",
+    description: 'Default color value for uncontrolled usage.',
   },
   {
     name: 'label',
-    type: 'string',
-    description: 'Text label displayed above the picker.',
+    type: 'ReactNode',
+    defaultValue: '-',
+    description: 'Optional label displayed above the picker.',
   },
   {
     name: 'variant',
-    type: "'outline' | 'material' | 'ghost'",
+    type: "'outline' | 'filled' | 'floating' | 'glassmorphic' | 'pill' | 'material' | 'gradient' | 'compact' | 'studio' | 'ghost'",
     defaultValue: "'outline'",
-    description: 'The visual style variant.',
+    description: 'The visual style variant of the container (10 options).',
   },
   {
     name: 'size',
     type: "'sm' | 'md' | 'lg'",
     defaultValue: "'md'",
-    description: 'Size of the color swatch.',
+    description: 'Size scale of the color swatch and text.',
+  },
+  {
+    name: 'shape',
+    type: "'rounded' | 'circle' | 'square' | 'pill'",
+    defaultValue: "'rounded'",
+    description: 'Contour shape of the color preview swatch.',
+  },
+  {
+    name: 'format',
+    type: "'hex' | 'rgb' | 'hsl'",
+    defaultValue: "'hex'",
+    description: 'Color string representation format.',
   },
   {
     name: 'showValue',
     type: 'boolean',
     defaultValue: 'true',
-    description: 'Whether to display the hex code next to the swatch.',
+    description: 'Whether to display the formatted color code alongside the swatch.',
+  },
+  {
+    name: 'allowFormatSwitch',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Allows clicking the format chip to cycle between Hex, RGB, and HSL.',
+  },
+  {
+    name: 'showPresets',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Renders a quick-pick palette of preset color swatches.',
+  },
+  {
+    name: 'presets',
+    type: 'string[]',
+    defaultValue: 'DEFAULT_PRESETS',
+    description: 'Array of color hex codes to display in the quick-pick palette.',
+  },
+  {
+    name: 'showAlpha',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Displays an opacity / alpha channel slider (0% to 100%).',
+  },
+  {
+    name: 'showEyeDropper',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Displays a screen eye dropper tool button (supported in modern browsers).',
+  },
+  {
+    name: 'copyable',
+    type: 'boolean',
+    defaultValue: 'true',
+    description: 'Whether clicking the formatted color string copies it to clipboard.',
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Whether the color picker is interactive.',
+  },
+  {
+    name: 'onChange',
+    type: '(color: string) => void',
+    defaultValue: '-',
+    description: 'Callback fired when the color value changes.',
   },
 ];

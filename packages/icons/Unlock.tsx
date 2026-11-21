@@ -1,10 +1,12 @@
+import React from 'react';
 import { IconProps } from './types';
 
-const Unlock = ({ 
-  className = 'w-3.5 h-3.5', 
+const Unlock: React.FC<IconProps> = ({
+  size = 24,
   color = 'currentColor',
-  size,
-  ...props 
+  strokeWidth = 2,
+  className = '',
+  ...props
 }: IconProps) => (
   <svg 
     className={className} 
@@ -15,7 +17,7 @@ const Unlock = ({
     height={size}
     {...props}
   >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z" />
   </svg>
 );
 

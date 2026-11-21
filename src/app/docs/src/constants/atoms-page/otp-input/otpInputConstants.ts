@@ -5,101 +5,97 @@ import { PropItem } from '../../../interface/components/props-table.types';
 export const OTP_INPUT_BREADCRUMB_ITEMS = [
   { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
   { label: 'Atoms', href: '/atoms' },
-  { label: 'OTPInput' }
+  { label: 'OtpInput' }
 ];
 
 export const OTP_INPUT_HEADER_CONTENT = {
-  title: 'OTPInput',
-  description: 'A specialized input component for one-time passwords and verification codes. Features automatic focus management, backspace handling, and paste support.',
+  title: 'OtpInput',
+  description: 'A verification code and one-time password entry primitive supporting 10 visual variants, PIN masking, smart clipboard paste distribution, arrow key navigation, and automatic onComplete callbacks.',
 };
-
-export const OTP_INPUT_SECTIONS = [
-  {
-    id: 'playground',
-    title: 'Live Playground',
-    description: 'Customize the length, variant, and behavior of the OTP input.',
-    showBorder: true,
-    isPlayground: true
-  },
-  {
-    id: 'variants',
-    title: 'Visual Variants',
-    description: 'Match the OTP input style with your form design.',
-    previews: [
-      {
-        id: 'outline',
-        title: 'Outline (Default)',
-        code: '<OTPInput variant="outline" length={4} />'
-      },
-      {
-        id: 'material',
-        title: 'Material Design',
-        code: '<OTPInput variant="material" length={6} />'
-      },
-      {
-        id: 'standard',
-        title: 'Standard',
-        code: '<OTPInput variant="standard" length={4} />'
-      }
-    ]
-  },
-  {
-    id: 'sizes',
-    title: 'Sizes',
-    description: 'Available in three sizes: small, medium, and large.',
-    previews: [
-      {
-        id: 'sm',
-        title: 'Small',
-        code: '<OTPInput size="sm" length={4} />'
-      },
-      {
-        id: 'lg',
-        title: 'Large',
-        code: '<OTPInput size="lg" length={4} />'
-      }
-    ]
-  }
-];
 
 export const OTP_INPUT_PROPS_DATA: PropItem[] = [
   {
     name: 'length',
     type: 'number',
-    defaultValue: '4',
-    description: 'Number of individual digit inputs.'
+    defaultValue: '6',
+    description: 'Number of individual digit input slots (4, 6, or 8).'
   },
   {
     name: 'variant',
-    type: "'outline' | 'material' | 'ghost' | 'standard'",
+    type: "'outline' | 'filled' | 'floating' | 'glassmorphic' | 'pill' | 'material' | 'gradient' | 'bordered' | 'success' | 'ghost'",
     defaultValue: "'outline'",
-    description: 'Visual style of the input slots.'
+    description: 'Visual style variant of the input slots (10 options).'
   },
   {
     name: 'size',
-    type: "'sm' | 'md' | 'lg'",
+    type: "'sm' | 'md' | 'lg' | 'xl'",
     defaultValue: "'md'",
-    description: 'Dimensions of the input slots.'
+    description: 'Dimensions of the digit slots (from 36px to 64px).'
   },
   {
-    name: 'onComplete',
-    type: '(value: string) => void',
-    description: 'Callback triggered when all digits are entered.'
+    name: 'shape',
+    type: "'rounded' | 'circle' | 'square'",
+    defaultValue: "'rounded'",
+    description: 'Contour shape of the input boxes.'
   },
   {
-    name: 'onChange',
-    type: '(value: string) => void',
-    description: 'Callback triggered on every digit entry.'
+    name: 'value',
+    type: 'string',
+    defaultValue: '-',
+    description: 'Controlled string value.'
+  },
+  {
+    name: 'defaultValue',
+    type: 'string',
+    defaultValue: "''",
+    description: 'Initial value for uncontrolled usage.'
   },
   {
     name: 'mask',
     type: 'boolean',
     defaultValue: 'false',
-    description: 'Whether to mask the input (type="password").'
+    description: 'Whether to mask entered digits with bullet dots for sensitive PINs.'
+  },
+  {
+    name: 'separator',
+    type: 'ReactNode',
+    defaultValue: '-',
+    description: 'Optional divider element rendered midway between digit groups.'
+  },
+  {
+    name: 'autoFocus',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Whether the first slot auto-focuses on mount.'
+  },
+  {
+    name: 'disabled',
+    type: 'boolean',
+    defaultValue: 'false',
+    description: 'Whether inputs are disabled.'
+  },
+  {
+    name: 'onChange',
+    type: '(value: string) => void',
+    defaultValue: '-',
+    description: 'Callback fired on every keystroke with current full value.'
+  },
+  {
+    name: 'onComplete',
+    type: '(value: string) => void',
+    defaultValue: '-',
+    description: 'Callback triggered automatically once all digits are filled.'
   },
   {
     name: 'error',
     type: 'string',
-    description: 'Error message displayed below the input group.'
+    defaultValue: '-',
+    description: 'Validation error message displayed below.'
+  },
+  {
+    name: 'helperText',
+    type: 'string',
+    defaultValue: '-',
+    description: 'Guidance text displayed below.'
   }
 ];

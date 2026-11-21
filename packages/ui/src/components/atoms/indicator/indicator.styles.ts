@@ -1,44 +1,58 @@
-import { cva, type VariantProps } from 'class-variance-authority';
+import { cva } from 'class-variance-authority';
 
-export const indicatorVariants = cva(
-  'absolute flex items-center justify-center rounded-full ring-2 ring-white whitespace-nowrap',
+export const indicatorBadgeVariants = cva(
+  'flex items-center justify-center font-core-circle-bold whitespace-nowrap transition-all select-none z-10 ring-2 ring-white',
   {
     variants: {
       variant: {
-        primary: 'bg-core-circle-primary text-white',
-        success: 'bg-core-circle-success text-white',
-        warning: 'bg-core-circle-warning text-white',
-        danger: 'bg-core-circle-destructive text-white',
-        info: 'bg-core-circle-info text-white',
+        primary: 'bg-core-circle-primary text-white shadow-sm',
+        success: 'bg-emerald-500 text-white shadow-sm',
+        warning: 'bg-amber-500 text-white shadow-sm',
+        destructive: 'bg-red-500 text-white shadow-sm',
+        info: 'bg-blue-500 text-white shadow-sm',
+        gradient: 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-sm',
+        glassmorphic: 'backdrop-blur-md bg-slate-900/85 text-white ring-white/70 shadow-sm',
+        soft: 'bg-blue-100 text-blue-800 font-extrabold',
+        bordered: 'bg-white text-slate-900 border-2 border-slate-900 ring-0 shadow-sm',
+        neutral: 'bg-slate-500 text-white shadow-sm',
       },
       size: {
-        sm: 'h-2 w-2 text-[8px]',
-        md: 'h-4 min-w-[1rem] px-1 text-[10px] font-core-circle-bold',
-        lg: 'h-5 min-w-[1.25rem] px-1.5 text-[12px] font-core-circle-bold',
+        xs: 'h-2 w-2 min-w-0 p-0 text-[0px]',
+        sm: 'h-3 w-3 min-w-0 p-0 text-[0px]',
+        md: 'h-5 min-w-[1.25rem] px-1.5 text-[10px] leading-none',
+        lg: 'h-6 min-w-[1.5rem] px-2 text-xs leading-none',
+        xl: 'h-7 min-w-[1.75rem] px-2.5 text-xs leading-none',
       },
       position: {
-        'top-right': 'top-0 right-0 -translate-y-1/2 translate-x-1/2',
-        'top-left': 'top-0 left-0 -translate-y-1/2 -translate-x-1/2',
-        'bottom-right': 'bottom-0 right-0 translate-y-1/2 translate-x-1/2',
-        'bottom-left': 'bottom-0 left-0 translate-y-1/2 -translate-x-1/2',
+        'top-right': 'absolute top-0 right-0 -translate-y-1/4 translate-x-1/4',
+        'top-left': 'absolute top-0 left-0 -translate-y-1/4 -translate-x-1/4',
+        'bottom-right': 'absolute bottom-0 right-0 translate-y-0 translate-x-0',
+        'bottom-left': 'absolute bottom-0 left-0 translate-y-0 translate-x-0',
+        'top-center': 'absolute top-0 left-1/2 -translate-y-1/4 -translate-x-1/2',
+        'bottom-center': 'absolute bottom-0 left-1/2 translate-y-0 -translate-x-1/2',
+        'middle': 'absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2',
+      },
+      shape: {
+        circle: 'rounded-full',
+        pill: 'rounded-full px-2',
+        square: 'rounded-none',
+        rounded: 'rounded-md',
       },
       pulse: {
-        true: 'after:absolute after:inset-0 after:rounded-full after:animate-ping after:bg-inherit after:opacity-75',
+        true: 'after:absolute after:inset-0 after:rounded-full after:animate-ping after:bg-inherit after:opacity-60 after:pointer-events-none',
+      },
+      standalone: {
+        true: 'relative static translate-x-0 translate-y-0 inline-flex',
+        false: '',
       },
     },
     defaultVariants: {
       variant: 'primary',
       size: 'md',
       position: 'top-right',
+      shape: 'circle',
       pulse: false,
+      standalone: false,
     },
   }
 );
-
-export interface IndicatorProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'content'>,
-    VariantProps<typeof indicatorVariants> {
-  children?: React.ReactNode;
-  content?: React.ReactNode;
-  show?: boolean;
-}

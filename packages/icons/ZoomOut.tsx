@@ -1,10 +1,12 @@
+import React from 'react';
 import { IconProps } from './types';
 
-const ZoomOut = ({ 
-  className = 'w-3.5 h-3.5', 
+const ZoomOut: React.FC<IconProps> = ({
+  size = 24,
   color = 'currentColor',
-  size,
-  ...props 
+  strokeWidth = 2,
+  className = '',
+  ...props
 }: IconProps) => (
   <svg 
     className={className} 
@@ -15,7 +17,7 @@ const ZoomOut = ({
     height={size}
     {...props}
   >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM7 10h6" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM7 10h6" />
   </svg>
 );
 

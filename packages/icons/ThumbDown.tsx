@@ -1,10 +1,12 @@
+import React from 'react';
 import { IconProps } from './types';
 
-const ThumbDown = ({ 
-  className = 'w-3.5 h-3.5', 
+const ThumbDown: React.FC<IconProps> = ({
+  size = 24,
   color = 'currentColor',
-  size,
-  ...props 
+  strokeWidth = 2,
+  className = '',
+  ...props
 }: IconProps) => (
   <svg 
     className={className} 
@@ -15,7 +17,7 @@ const ThumbDown = ({
     height={size}
     {...props}
   >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 15v4a3 3 0 003 3l4-9V2H5.72a2 2 0 00-2 1.708l-1.385 9a2 2 0 002 2.292H10zM19 13h3V2h-3v11z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M10 15v4a3 3 0 003 3l4-9V2H5.72a2 2 0 00-2 1.708l-1.385 9a2 2 0 002 2.292H10zM19 13h3V2h-3v11z" />
   </svg>
 );
 

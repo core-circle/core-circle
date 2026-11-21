@@ -37,6 +37,9 @@ import {
   Palette,
   Calendar as CalendarIcon,
   List as ListIcon,
+  Star,
+  Cloud,
+  Clock,
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -73,9 +76,21 @@ export const ATOM_CARDS = [
     icon: AlertIcon,
   },
   {
+    title: 'AspectRatio',
+    description: 'A responsive layout container enforcing strict proportional dimensions.',
+    href: '/atoms/aspect-ratio',
+    icon: AspectRatioIcon,
+  },
+  {
     title: 'Avatar',
     description: 'Visual representation of a user or entity with fallback support.',
     href: '/atoms/avatar',
+    icon: UserCircle,
+  },
+  {
+    title: 'AvatarGroup',
+    description: 'A stacked cluster of user identity avatars with overflow badge support.',
+    href: '/atoms/avatar-group',
     icon: UserCircle,
   },
   {
@@ -139,6 +154,18 @@ export const ATOM_CARDS = [
     icon: DividerIcon,
   },
   {
+    title: 'Drawer',
+    description: 'A slide-over overlay panel anchored to any viewport edge.',
+    href: '/atoms/drawer',
+    icon: LayersIcon,
+  },
+  {
+    title: 'FileUpload',
+    description: 'An interactive drag-and-drop file upload dropzone with multi-file support.',
+    href: '/atoms/file-upload',
+    icon: Cloud,
+  },
+  {
     title: 'Icons',
     description: '130+ high-quality vector icons for the Core Circle ecosystem.',
     href: '/atoms/icons',
@@ -199,10 +226,22 @@ export const ATOM_CARDS = [
     icon: CircleDot,
   },
   {
+    title: 'Rating',
+    description: 'An interactive satisfaction and star evaluation rating component.',
+    href: '/atoms/rating',
+    icon: Star,
+  },
+  {
     title: 'RichText',
     description: 'Render complex HTML or formatted content with design system styles.',
     href: '/atoms/rich-text',
     icon: DocumentText,
+  },
+  {
+    title: 'ScrollArea',
+    description: 'A cross-browser custom smooth scrollable viewport with custom scrollbars.',
+    href: '/atoms/scroll-area',
+    icon: RowsIcon,
   },
   {
     title: 'Select',
@@ -247,6 +286,12 @@ export const ATOM_CARDS = [
     icon: TabIcon,
   },
   {
+    title: 'TagInput',
+    description: 'An interactive chip and tag creation input with duplicate checks and limit rules.',
+    href: '/atoms/tag-input',
+    icon: Tag,
+  },
+  {
     title: 'TextInput',
     description: 'Versatile input field with Material Design support and icons.',
     href: '/atoms/text-input',
@@ -257,6 +302,12 @@ export const ATOM_CARDS = [
     description: 'Multi-line text input for longer content with support for variants and resizing.',
     href: '/atoms/textarea',
     icon: DocumentText,
+  },
+  {
+    title: 'TimePicker',
+    description: 'An interactive time selection input supporting 12h/24h formats and minute steps.',
+    href: '/atoms/time-picker',
+    icon: Clock,
   },
   {
     title: 'Toast',

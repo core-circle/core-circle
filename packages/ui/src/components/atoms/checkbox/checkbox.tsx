@@ -3,87 +3,119 @@
 import * as React from 'react';
 import { cn } from '../../../utils/cn';
 import { CheckboxProps } from '../../../interface/atoms/checkbox/checkbox.types';
-import { checkboxWrapperVariants, checkboxVariants, labelVariants } from './checkbox.styles';
+import { checkboxContainerVariants, checkboxBoxVariants } from './checkbox.styles';
 import { CheckIcon, Minus } from '@core-circle/icons';
-import { Label } from '../label/label';
 
 export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
       className,
-      variant = 'outline',
+      variant = 'solid',
       size = 'md',
+      shape = 'rounded',
+      checked: controlledChecked,
+      defaultChecked = false,
+      indeterminate = false,
       label,
-      labelSize,
-      labelWeight,
       labelClassName,
+      description,
+      badge,
       error,
       helperText,
-      indeterminate = false,
-      checked: controlledChecked,
-      defaultChecked,
-      onChange,
       disabled = false,
+      onChange,
+      onCheckedChange,
+      id: customId,
       ...props
     },
     ref
   ) => {
-    const [internalChecked, setInternalChecked] = React.useState(defaultChecked || false);
-    const isChecked = controlledChecked !== undefined ? controlledChecked : internalChecked;
-    const hasError = !!error;
+    const [internalChecked, setInternalChecked] = React.useState(defaultChecked);
+    const autoId = React.useId();
+    const id = customId || autoId;
 
-    const handleToggle = () => {
+    const isChecked = controlledChecked !== undefined ? controlledChecked : internalChecked;
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       if (disabled) return;
-      const nextChecked = !isChecked;
+      const nextChecked = e.target.checked;
       if (controlledChecked === undefined) {
         setInternalChecked(nextChecked);
       }
-      onChange?.(nextChecked);
+      onChange?.(e);
+      onCheckedChange?.(nextChecked);
     };
 
-    const iconSize = size === 'sm' ? 10 : size === 'md' ? 12 : 14;
+    const state = indeterminate ? 'indeterminate' : isChecked ? 'checked' : 'unchecked';
 
     return (
-      <div className={cn("flex flex-col gap-1.5", fullWidth ? "w-full" : "w-fit")}>
-        <label 
-          className={cn(checkboxWrapperVariants({ disabled }), className)}
+      <div className="flex flex-col gap-1 w-full">
+        <label
+          htmlFor={id}
+          className={cn(
+            checkboxContainerVariants({ variant, disabled }),
+            className
+          )}
         >
-          <div className="relative flex items-center justify-center">
-            <input
-              type="checkbox"
-              ref={ref}
-              checked={isChecked}
-              disabled={disabled}
-              onChange={handleToggle}
-              className="sr-only"
-              aria-invalid={hasError}
-              {...props}
-            />
-            <div className={cn(checkboxVariants({ variant, size, checked: isChecked || indeterminate, hasError }))}>
-              {indeterminate ? (
-                <Minus size={iconSize} className="text-white" strokeWidth={3} />
-              ) : (
-                isChecked && <CheckIcon size={iconSize} className="text-white" strokeWidth={3} />
+          {/* Visual Checkbox Box */}
+          <div
+            data-state={state}
+            className={cn(checkboxBoxVariants({ variant, size, shape }))}
+          >
+            {indeterminate ? (
+              <Minus size={size === 'sm' ? 10 : size === 'lg' ? 14 : 12} className="stroke-[3]" />
+            ) : isChecked ? (
+              <CheckIcon size={size === 'sm' ? 12 : size === 'lg' ? 16 : 14} className="stroke-[3]" />
+            ) : null}
+          </div>
+
+          {/* Hidden native checkbox input */}
+          <input
+            {...props}
+            ref={ref}
+            id={id}
+            type="checkbox"
+            checked={isChecked}
+            onChange={handleChange}
+            disabled={disabled}
+            className="sr-only"
+          />
+
+          {/* Label, Badge & Subtitle Description */}
+          {(label || description || badge) && (
+            <div className="flex flex-col gap-0.5 min-w-0 flex-1">
+              <div className="flex items-center gap-2">
+                {label && (
+                  <span className={cn(
+                    "font-core-circle-medium text-slate-900 leading-tight",
+                    size === 'sm' ? "text-xs" : size === 'lg' ? "text-base" : "text-sm",
+                    disabled && "text-slate-400",
+                    labelClassName
+                  )}>
+                    {label}
+                  </span>
+                )}
+                {badge && (
+                  <span className="inline-flex items-center">
+                    {badge}
+                  </span>
+                )}
+              </div>
+
+              {description && (
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  {description}
+                </p>
               )}
             </div>
-          </div>
-          {label && (
-            <Label 
-              as="span"
-              size={labelSize || (size === 'lg' ? 'md' : size === 'md' ? 'sm' : 'xs')}
-              weight={labelWeight || 'medium'}
-              uppercase={false}
-              className={cn(labelVariants({ size, hasError }), labelClassName)}
-            >
-              {label}
-            </Label>
           )}
         </label>
-        
+
+        {/* Error or Helper text */}
         {(error || helperText) && (
           <p className={cn(
             "text-[11px] font-core-circle-medium pl-1 transition-all duration-200",
-            hasError ? "text-core-circle-warning" : "text-core-circle-text-muted"
+            error ? "text-core-circle-warning" : "text-core-circle-text-muted"
           )}>
             {error || helperText}
           </p>
@@ -95,5 +127,4 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
 Checkbox.displayName = 'Checkbox';
 
-// Temporary fix for fullWidth if needed, though checkbox is usually fit-content
-const fullWidth = false; 
+export default Checkbox;

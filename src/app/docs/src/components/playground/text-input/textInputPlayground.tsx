@@ -97,7 +97,25 @@ export const TextInputPlayground = () => {
         {/* Controls */}
         <div className={s.controlsWrapper}>
           <div className={s.gridTwoCols}>
-            <SelectField label="Variant" value={state.variant} onChange={(v: string) => updateState('variant', v)} options={{ outline: 'Outline', material: 'Material', 'material-animated': 'Material Animated', ghost: 'Ghost', standard: 'Standard' }} />
+            <SelectField 
+              label="Variant" 
+              value={state.variant} 
+              onChange={(v: string) => updateState('variant', v)} 
+              options={{ 
+                outline: 'Outline', 
+                material: 'Material Static', 
+                'material-animated': 'Material Animated', 
+                ghost: 'Ghost', 
+                standard: 'Standard Minimal',
+                filled: 'Filled Surface',
+                glassmorphic: 'Glassmorphic',
+                floating: 'Floating Elevated',
+                gradient: 'Radiant Gradient',
+                pill: 'Pill Rounded',
+                accent: 'Accent Blue',
+                dark: 'Dark Mode'
+              }} 
+            />
             <SelectField label="Size" value={state.size} onChange={(v: string) => updateState('size', v)} options={{ sm: 'Small', md: 'Medium', lg: 'Large' }} />
             <SelectField label="Type" value={state.type} options={{ text: 'Text', number: 'Number', password: 'Password', email: 'Email' }} onChange={(v: string) => updateState('type', v)} />
             <SelectField

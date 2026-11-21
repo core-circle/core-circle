@@ -1,5 +1,4 @@
 import {
-  COLOR_PICKER_SECTIONS,
   COLOR_PICKER_HEADER_CONTENT,
   COLOR_PICKER_BREADCRUMB_ITEMS,
 } from '../../../constants/atoms-page/color-picker/colorPickerConstants';
@@ -13,7 +12,6 @@ export const metadata = {
 export default function ColorPickerDocsPage() {
   return (
     <ColorPickerContainer
-      sections={COLOR_PICKER_SECTIONS}
       headerContent={COLOR_PICKER_HEADER_CONTENT}
       breadcrumbItems={COLOR_PICKER_BREADCRUMB_ITEMS}
     />

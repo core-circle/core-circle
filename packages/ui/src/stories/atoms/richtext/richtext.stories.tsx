@@ -7,6 +7,22 @@ const meta: Meta<typeof RichText> = {
   component: RichText,
   tags: ['autodocs'],
   argTypes: {
+    variant: {
+      control: 'select',
+      options: [
+        'default',
+        'card',
+        'bordered',
+        'floating',
+        'glassmorphic',
+        'gradient',
+        'filled',
+        'minimal',
+        'ghost',
+        'accent',
+        'dark',
+      ],
+    },
     size: {
       control: 'select',
       options: ['sm', 'base', 'lg'],
@@ -37,6 +53,47 @@ const sampleContent = `
 export const Default: Story = {
   args: {
     content: sampleContent,
+    variant: 'default',
+    size: 'base',
+  },
+};
+
+export const Card: Story = {
+  args: {
+    content: sampleContent,
+    variant: 'card',
+    size: 'base',
+  },
+};
+
+export const Glassmorphic: Story = {
+  args: {
+    content: sampleContent,
+    variant: 'glassmorphic',
+    size: 'base',
+  },
+};
+
+export const Gradient: Story = {
+  args: {
+    content: sampleContent,
+    variant: 'gradient',
+    size: 'base',
+  },
+};
+
+export const Dark: Story = {
+  args: {
+    content: sampleContent,
+    variant: 'dark',
+    size: 'base',
+  },
+};
+
+export const Accent: Story = {
+  args: {
+    content: sampleContent,
+    variant: 'accent',
     size: 'base',
   },
 };

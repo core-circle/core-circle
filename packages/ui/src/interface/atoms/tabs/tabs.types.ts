@@ -1,5 +1,19 @@
 import { ReactNode } from 'react';
 
+export type TabsVariant = 
+  | 'underline' 
+  | 'pills' 
+  | 'enclosed' 
+  | 'cards' 
+  | 'glassmorphic' 
+  | 'gradient' 
+  | 'glow' 
+  | 'segmented' 
+  | 'bordered' 
+  | 'dark';
+
+export type TabsSize = 'sm' | 'md' | 'lg';
+
 export interface TabItem {
   id: string;
   label: ReactNode;
@@ -18,13 +32,13 @@ export interface TabsProps {
    * The design variant of the tabs.
    * @default 'underline'
    */
-  variant?: 'underline' | 'pills' | 'enclosed';
+  variant?: TabsVariant;
   
   /**
    * The size of the tabs.
    * @default 'md'
    */
-  size?: 'sm' | 'md' | 'lg';
+  size?: TabsSize;
   
   /**
    * Whether the tabs list should take up the full width of its container.
@@ -52,3 +66,4 @@ export interface TabsProps {
    */
   className?: string;
 }
+

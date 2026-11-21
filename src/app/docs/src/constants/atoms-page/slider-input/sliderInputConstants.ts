@@ -1,149 +1,112 @@
-import { HomeIcon } from '@core-circle/icons';
 import React from 'react';
 import { PropItem } from '../../../interface/components/props-table.types';
 
 export const SLIDER_INPUT_BREADCRUMB_ITEMS = [
-  { label: 'Home', href: '/', icon: React.createElement(HomeIcon, { size: 14 }) },
+  { label: 'Home', href: '/' },
   { label: 'Atoms', href: '/atoms' },
   { label: 'SliderInput' }
 ];
 
 export const SLIDER_INPUT_HEADER_CONTENT = {
   title: 'SliderInput',
-  description: 'A range input component that allows users to select a value from a range by sliding a thumb along a track.',
+  description: 'An interactive range slider component supporting 12 visual variants, size scales, formatted numeric tooltips, step increments, and form validation states.',
 };
 
 export const SLIDER_INPUT_SECTIONS = [
   {
-    id: 'playground',
-    title: 'Live Playground',
-    description: 'Experiment with variants, sizes, and values live.',
-    showBorder: true,
-    isPlayground: true
+    id: 'theming',
+    title: 'Theming',
+    description: 'Production-grade slider implementations for audio gain decibels, cloud CPU cores, smart lumens, and mortgage calculators.',
   },
   {
     id: 'variants',
-    title: 'Visual Variants',
-    description: 'Distinct color schemes to represent different states or themes.',
-    previews: [
-      {
-        id: 'standard',
-        title: 'Standard (Default)',
-        code: '<SliderInput variant="standard" label="Default Slider" defaultValue={50} />'
-      },
-      {
-        id: 'primary',
-        title: 'Primary',
-        code: '<SliderInput variant="primary" label="Primary Theme" defaultValue={40} />'
-      },
-      {
-        id: 'success',
-        title: 'Success',
-        code: '<SliderInput variant="success" label="Success Theme" defaultValue={70} />'
-      },
-      {
-        id: 'warning',
-        title: 'Warning',
-        code: '<SliderInput variant="warning" label="Warning Theme" defaultValue={30} />'
-      },
-      {
-        id: 'danger',
-        title: 'Danger',
-        code: '<SliderInput variant="danger" label="Danger Theme" defaultValue={90} />'
-      }
-    ]
+    title: 'Variants',
+    description: 'Explore 12 distinct color and surface styling variants.',
   },
   {
-    id: 'sizes',
-    title: 'Sizes',
-    description: 'Three different track heights and thumb sizes.',
-    previews: [
-      {
-        title: 'Small, Medium, and Large',
-        code: `<SliderInput size="sm" label="Small Track" defaultValue={25} />\n<SliderInput size="md" label="Medium Track" defaultValue={50} />\n<SliderInput size="lg" label="Large Track" defaultValue={75} />`
-      }
-    ]
+    id: 'playground',
+    title: 'Playground',
+    description: 'Interactive property playground with live value formatting and code generator.',
   },
   {
-    id: 'value-display',
-    title: 'Value Display',
-    description: 'Optionally show the current value and format it as needed.',
-    previews: [
-      {
-        title: 'Formatted Values',
-        code: `<SliderInput \n  label="Volume" \n  showValue \n  defaultValue={30} \n/>\n<SliderInput \n  label="Price Range" \n  showValue \n  formatValue={(val) => \`$\${val}\`} \n  defaultValue={250} \n  max={1000} \n/>`
-      }
-    ]
-  }
+    id: 'mock-code',
+    title: 'Mock Code',
+    description: 'Dynamic real-time audio/transcoding config state binding example.',
+  },
+  {
+    id: 'overview',
+    title: 'Overview',
+    description: 'Quick usage snippet and props reference.',
+  },
 ];
 
 export const SLIDER_INPUT_PROPS_DATA: PropItem[] = [
   {
     name: 'variant',
-    type: "'standard' | 'primary' | 'success' | 'warning' | 'danger'",
+    type: "'standard' | 'primary' | 'secondary' | 'success' | 'warning' | 'danger' | 'info' | 'gradient' | 'glassmorphic' | 'glow' | 'floating' | 'accent' | 'dark'",
     defaultValue: "'standard'",
-    description: 'Color theme of the slider.'
+    description: 'Visual color theme and thumb/track styling treatment.'
   },
   {
     name: 'size',
     type: "'sm' | 'md' | 'lg'",
     defaultValue: "'md'",
-    description: 'Height of the track and size of the thumb.'
+    description: 'Vertical height of the slider track and thumb diameter.'
   },
   {
     name: 'label',
     type: 'string',
-    description: 'Label text for the slider.'
+    description: 'Label text positioned above the slider track.'
   },
   {
     name: 'showValue',
     type: 'boolean',
     defaultValue: 'false',
-    description: 'Whether to display the current numeric value.'
+    description: 'Whether to render the active numeric value badge.'
   },
   {
     name: 'formatValue',
     type: '(value: number) => string',
-    description: 'Custom function to format the displayed value.'
+    description: 'Custom formatter callback for rendering unit suffixes or currency.'
   },
   {
     name: 'min',
     type: 'number',
     defaultValue: '0',
-    description: 'Minimum possible value.'
+    description: 'Minimum selectable bound.'
   },
   {
     name: 'max',
     type: 'number',
     defaultValue: '100',
-    description: 'Maximum possible value.'
+    description: 'Maximum selectable bound.'
   },
   {
     name: 'step',
     type: 'number',
     defaultValue: '1',
-    description: 'Increment amount for each step.'
+    description: 'Granular step interval between numbers.'
   },
   {
     name: 'error',
     type: 'string',
-    description: 'Error message displayed below the slider.'
+    description: 'Validation error message rendered beneath the slider.'
   },
   {
     name: 'helperText',
     type: 'string',
-    description: 'Helper text displayed below the slider.'
+    description: 'Informational helper text rendered beneath the slider.'
   },
   {
     name: 'fullWidth',
     type: 'boolean',
     defaultValue: 'false',
-    description: 'Whether the slider takes full width.'
+    description: 'Whether the slider spans 100% width of its parent.'
   },
   {
     name: 'disabled',
     type: 'boolean',
     defaultValue: 'false',
-    description: 'Disables user interaction.'
+    description: 'Disables slider interactions and mutes appearance.'
   }
 ];

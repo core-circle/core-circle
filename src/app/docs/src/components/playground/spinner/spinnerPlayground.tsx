@@ -53,13 +53,26 @@ export const SpinnerPlayground = () => {
               label="Variant"
               value={state.variant}
               onChange={(v: string) => updateState('variant', v)}
-              options={{ primary: 'Primary', secondary: 'Secondary', warning: 'Warning', destructive: 'Destructive', info: 'Info' }}
+              options={{ 
+                primary: 'Primary', 
+                secondary: 'Secondary', 
+                success: 'Success',
+                warning: 'Warning', 
+                danger: 'Danger', 
+                info: 'Info Sky',
+                gradient: 'Radiant Gradient',
+                glow: 'Neon Glow',
+                glassmorphic: 'Glassmorphic',
+                accent: 'Accent Blue',
+                dark: 'Dark Mode',
+                white: 'White'
+              }}
             />
             <SelectField
               label="Size"
               value={state.size}
               onChange={(v: string) => updateState('size', v)}
-              options={{ sm: 'Small', md: 'Medium', lg: 'Large', xl: 'Extra Large' }}
+              options={{ xs: 'Extra Small', sm: 'Small', md: 'Medium', lg: 'Large', xl: 'Extra Large' }}
             />
             <TextInput
               label="Thickness"

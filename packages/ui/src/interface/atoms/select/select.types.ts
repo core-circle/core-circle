@@ -1,5 +1,19 @@
 import { SelectHTMLAttributes, ReactNode } from 'react';
 
+export type SelectVariant = 
+  | 'outline' 
+  | 'material' 
+  | 'material-animated' 
+  | 'ghost' 
+  | 'standard' 
+  | 'filled' 
+  | 'glassmorphic' 
+  | 'floating' 
+  | 'gradient' 
+  | 'pill' 
+  | 'accent' 
+  | 'dark';
+
 export interface SelectOption {
   value: string;
   label: string;
@@ -11,7 +25,7 @@ export interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement
    * Visual style of the select
    * @default 'outline'
    */
-  variant?: 'outline' | 'material' | 'material-animated' | 'ghost' | 'standard';
+  variant?: SelectVariant;
   
   /**
    * Size of the select

@@ -9,7 +9,7 @@ const meta: Meta<typeof SliderInput> = {
   argTypes: {
     variant: {
       control: 'select',
-      options: ['standard', 'primary', 'success', 'warning', 'danger'],
+      options: ['standard', 'primary', 'secondary', 'success', 'warning', 'danger', 'info', 'gradient', 'glassmorphic', 'glow', 'floating', 'accent', 'dark'],
     },
     size: {
       control: 'select',
@@ -24,111 +24,93 @@ const meta: Meta<typeof SliderInput> = {
     showValue: {
       control: 'boolean',
     },
-    min: {
-      control: 'number',
-    },
-    max: {
-      control: 'number',
-    },
-    step: {
-      control: 'number',
-    },
   },
 };
 
 export default meta;
 type Story = StoryObj<typeof SliderInput>;
 
-export const Standard: Story = {
-  args: {
-    variant: 'standard',
-    label: 'Default Slider',
-    defaultValue: 50,
-    min: 0,
-    max: 100,
-    showValue: true,
-    fullWidth: true,
-  },
-};
-
 export const Primary: Story = {
   args: {
     variant: 'primary',
-    label: 'Volume Control',
-    defaultValue: 30,
-    min: 0,
-    max: 100,
+    label: 'Primary Track',
+    defaultValue: 50,
     showValue: true,
     fullWidth: true,
   },
 };
 
-export const Success: Story = {
+export const Gradient: Story = {
   args: {
-    variant: 'success',
-    label: 'Brightness',
+    variant: 'gradient',
+    label: 'Radiant Gradient',
+    defaultValue: 75,
+    showValue: true,
+    fullWidth: true,
+  },
+};
+
+export const Glow: Story = {
+  args: {
+    variant: 'glow',
+    label: 'Neon Glow Studio Gain',
+    defaultValue: 65,
+    showValue: true,
+    fullWidth: true,
+  },
+};
+
+export const Glassmorphic: Story = {
+  args: {
+    variant: 'glassmorphic',
+    label: 'Frosted Translucent Slider',
+    defaultValue: 45,
+    showValue: true,
+    fullWidth: true,
+  },
+};
+
+export const Floating: Story = {
+  args: {
+    variant: 'floating',
+    label: 'Floating Elevated Slider',
     defaultValue: 80,
-    min: 0,
-    max: 100,
     showValue: true,
     fullWidth: true,
   },
 };
 
-export const Warning: Story = {
+export const Accent: Story = {
   args: {
-    variant: 'warning',
-    label: 'Warning Threshold',
+    variant: 'accent',
+    label: 'Accent Highlight',
     defaultValue: 60,
-    min: 0,
-    max: 100,
     showValue: true,
     fullWidth: true,
   },
 };
 
-export const Danger: Story = {
+export const Dark: Story = {
   args: {
-    variant: 'danger',
-    label: 'Risk Level',
+    variant: 'dark',
+    label: 'Dark Mode Terminal Bitrate',
     defaultValue: 90,
-    min: 0,
-    max: 100,
     showValue: true,
     fullWidth: true,
   },
-};
-
-export const Sizes: Story = {
-  render: (args) => (
-    <div className="flex flex-col gap-8">
-      <SliderInput {...args} size="sm" label="Small Slider" defaultValue={20} showValue />
-      <SliderInput {...args} size="md" label="Medium Slider" defaultValue={50} showValue />
-      <SliderInput {...args} size="lg" label="Large Slider" defaultValue={80} showValue />
-    </div>
-  ),
 };
 
 export const WithCustomFormatting: Story = {
   args: {
     variant: 'primary',
-    label: 'Price Range',
+    label: 'Mortgage Loan Amount',
     min: 0,
-    max: 1000,
-    step: 10,
-    defaultValue: 250,
+    max: 1000000,
+    step: 5000,
+    defaultValue: 450000,
     showValue: true,
-    formatValue: (val) => `$${val}`,
+    formatValue: (val) => `$${val.toLocaleString()}`,
     fullWidth: true,
   },
 };
 
-export const Disabled: Story = {
-  args: {
-    label: 'Disabled Slider',
-    defaultValue: 40,
-    disabled: true,
-    showValue: true,
-    fullWidth: true,
-  },
-};

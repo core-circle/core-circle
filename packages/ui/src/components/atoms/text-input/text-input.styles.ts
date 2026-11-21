@@ -28,6 +28,13 @@ export const inputWrapperVariants = cva(
         'material-animated': 'border-b-2 border-core-circle-border-main bg-core-circle-bg-page hover:bg-core-circle-bg-muted focus-within:border-core-circle-primary rounded-t-core-circle-md',
         ghost: 'bg-transparent border-none hover:bg-core-circle-bg-page focus-within:bg-core-circle-bg-page',
         standard: 'border-b border-core-circle-border-main bg-transparent focus-within:border-core-circle-primary',
+        filled: 'border-0 bg-slate-100 rounded-core-circle-lg focus-within:bg-slate-200/80 focus-within:ring-2 focus-within:ring-core-circle-primary/20',
+        glassmorphic: 'bg-white/40 backdrop-blur-md border border-white/60 rounded-core-circle-lg shadow-sm focus-within:bg-white/80 focus-within:border-core-circle-primary focus-within:ring-2 focus-within:ring-core-circle-primary/10',
+        floating: 'border border-core-circle-border-main bg-white rounded-core-circle-lg shadow-md hover:shadow-lg focus-within:shadow-xl focus-within:border-core-circle-primary transition-shadow',
+        gradient: 'p-[1.5px] rounded-core-circle-lg bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-500 focus-within:from-purple-600 focus-within:to-indigo-600 shadow-sm',
+        pill: 'border border-core-circle-border-main bg-white rounded-full focus-within:border-core-circle-primary focus-within:ring-2 focus-within:ring-core-circle-primary/10',
+        accent: 'border-2 border-blue-500 bg-blue-50/20 rounded-core-circle-lg focus-within:bg-white focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-500/20',
+        dark: 'border border-slate-700 bg-slate-900 text-white rounded-core-circle-lg focus-within:border-core-circle-primary focus-within:ring-2 focus-within:ring-core-circle-primary/20',
       },
       hasError: {
         true: 'border-core-circle-warning focus-within:border-core-circle-warning focus-within:ring-core-circle-warning/10',
@@ -57,6 +64,13 @@ export const inputVariants = cva(
         'material-animated': '',
         ghost: '',
         standard: '',
+        filled: '',
+        glassmorphic: '',
+        floating: '',
+        gradient: 'bg-white rounded-[7px]',
+        pill: 'px-6',
+        accent: '',
+        dark: 'text-white placeholder:text-slate-500',
       }
     },
     compoundVariants: [
@@ -97,6 +111,13 @@ export const labelVariants = cva(
         'material-animated': 'absolute left-4 top-4 mb-0 text-core-circle-sm font-core-circle-medium normal-case tracking-normal text-core-circle-text-muted',
         ghost: 'text-core-circle-text-muted',
         standard: 'text-core-circle-text-muted',
+        filled: 'text-core-circle-text-muted',
+        glassmorphic: 'text-slate-700 font-bold',
+        floating: 'text-core-circle-text-main font-bold',
+        gradient: 'text-purple-900 font-bold',
+        pill: 'text-core-circle-text-muted',
+        accent: 'text-blue-900 font-bold',
+        dark: 'text-slate-300 font-bold',
       },
       hasError: {
         true: 'text-core-circle-warning',
@@ -117,3 +138,4 @@ export const labelVariants = cva(
     },
   }
 );
+

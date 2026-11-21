@@ -1,10 +1,12 @@
+import React from 'react';
 import { IconProps } from './types';
 
-const CodeIcon = ({ 
-  className = 'w-3.5 h-3.5', 
+const CodeIcon: React.FC<IconProps> = ({
+  size = 24,
   color = 'currentColor',
-  size,
-  ...props 
+  strokeWidth = 2,
+  className = '',
+  ...props
 }: IconProps) => (
   <svg 
     className={className} 
@@ -15,7 +17,7 @@ const CodeIcon = ({
     height={size}
     {...props}
   >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
   </svg>
 );
 

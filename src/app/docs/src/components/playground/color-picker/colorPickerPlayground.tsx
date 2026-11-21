@@ -1,192 +1,211 @@
 'use client';
 
 import React, { useState } from 'react';
-import {
-  ColorPicker,
-  Select,
-  Checkbox,
-  Button,
-  TextInput,
+import { 
+  ColorPicker, 
+  Select, 
+  Checkbox, 
+  TextInput, 
+  Typography, 
+  Card,
+  ColorPickerVariant,
+  ColorPickerSize,
+  ColorPickerShape,
+  ColorPickerFormat
 } from '@core-circle/ui';
-import { CodeIcon, CopyIcon } from '@core-circle/icons';
-import { highlightCode } from '../../../utils/highlight';
-import { colorPickerPlaygroundStyles as s } from './colorPickerPlayground.styles';
+import ComponentPreview from '../../component-preview';
 
-const SelectField = ({ label, value, options, onChange }: any) => {
-  const formattedOptions = Object.entries(options).map(([val, lbl]) => ({
-    value: val,
-    label: lbl as string,
-  }));
-  return (
-    <Select
-      label={label}
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      options={formattedOptions}
-      fullWidth
-    />
-  );
-};
+export const ColorPickerPlayground: React.FC = () => {
+  const [color, setColor] = useState('#3B82F6');
+  const [variant, setVariant] = useState<ColorPickerVariant>('outline');
+  const [size, setSize] = useState<ColorPickerSize>('md');
+  const [shape, setShape] = useState<ColorPickerShape>('rounded');
+  const [format, setFormat] = useState<ColorPickerFormat>('hex');
 
-export const ColorPickerPlayground = () => {
-  const [state, setState] = useState({
-    variant: 'outline',
-    size: 'md',
-    value: '#3b82f6',
-    label: 'Brand Color',
-    showValue: true,
-    error: '',
-    helperText: 'Pick your primary brand color',
-    disabled: false,
-  });
+  const [label, setLabel] = useState('Brand Accent Color');
+  const [helperText, setHelperText] = useState('Select your brand primary color token.');
+  
+  const [showValue, setShowValue] = useState(true);
+  const [showPresets, setShowPresets] = useState(true);
+  const [showAlpha, setShowAlpha] = useState(false);
+  const [showEyeDropper, setShowEyeDropper] = useState(true);
+  const [allowFormatSwitch, setAllowFormatSwitch] = useState(true);
+  const [copyable, setCopyable] = useState(true);
+  const [disabled, setDisabled] = useState(false);
 
-  const updateState = (key: string, value: any) => {
-    setState((prev) => ({ ...prev, [key]: value }));
+  const variantOptions = [
+    { label: 'Outline (Default)', value: 'outline' },
+    { label: 'Filled Surface', value: 'filled' },
+    { label: 'Floating Depth', value: 'floating' },
+    { label: 'Glassmorphic Blur', value: 'glassmorphic' },
+    { label: 'Pill Capsule', value: 'pill' },
+    { label: 'Material Underline', value: 'material' },
+    { label: 'Gradient Glow', value: 'gradient' },
+    { label: 'Designer Studio', value: 'studio' },
+    { label: 'Compact Swatch', value: 'compact' },
+    { label: 'Ghost Minimal', value: 'ghost' },
+  ];
+
+  const sizeOptions = [
+    { label: 'Small (sm)', value: 'sm' },
+    { label: 'Medium (md)', value: 'md' },
+    { label: 'Large (lg)', value: 'lg' },
+  ];
+
+  const shapeOptions = [
+    { label: 'Rounded Square', value: 'rounded' },
+    { label: 'Circle Swatch', value: 'circle' },
+    { label: 'Square Contour', value: 'square' },
+    { label: 'Pill Swatch', value: 'pill' },
+  ];
+
+  const formatOptions = [
+    { label: 'HEX (#3B82F6)', value: 'hex' },
+    { label: 'RGB (rgb(59, 130, 246))', value: 'rgb' },
+    { label: 'HSL (hsl(217, 91%, 60%))', value: 'hsl' },
+  ];
+
+  const generateCodeSnippet = () => {
+    let props = `value="${color}"\n  onChange={(c) => setColor(c)}`;
+    if (variant !== 'outline') props += `\n  variant="${variant}"`;
+    if (size !== 'md') props += `\n  size="${size}"`;
+    if (shape !== 'rounded') props += `\n  shape="${shape}"`;
+    if (format !== 'hex') props += `\n  format="${format}"`;
+    if (label) props += `\n  label="${label}"`;
+    if (helperText) props += `\n  helperText="${helperText}"`;
+    if (!showValue) props += `\n  showValue={false}`;
+    if (showPresets) props += `\n  showPresets`;
+    if (showAlpha) props += `\n  showAlpha`;
+    if (showEyeDropper) props += `\n  showEyeDropper`;
+    if (allowFormatSwitch) props += `\n  allowFormatSwitch`;
+    if (!copyable) props += `\n  copyable={false}`;
+    if (disabled) props += `\n  disabled`;
+
+    return `<ColorPicker\n  ${props}\n/>`;
   };
 
-  const generateCode = () => {
-    const {
-      variant,
-      size,
-      value,
-      label,
-      showValue,
-      error,
-      helperText,
-      disabled,
-    } = state;
-    let props = `variant="${variant}" size="${size}" value="${value}"`;
-    if (label) props += ` label="${label}"`;
-    if (!showValue) props += ' showValue={false}';
-    if (error) props += ` error="${error}"`;
-    if (helperText) props += ` helperText="${helperText}"`;
-    if (disabled) props += ' disabled';
-
-    return `<ColorPicker ${props} />`;
-  };
-
   return (
-    <div className={s.container}>
-      <div className={s.layout}>
-        {/* Controls */}
-        <div className={s.controlsWrapper}>
-          <div className={s.gridTwoCols}>
-            <SelectField
+    <div className="flex flex-col gap-8 w-full">
+      <ComponentPreview title="Interactive ColorPicker Sandbox" code={generateCodeSnippet()}>
+        <div className="flex items-center justify-center p-8 w-full min-h-[160px] bg-slate-50/50 rounded-2xl border border-slate-100">
+          <ColorPicker
+            value={color}
+            onChange={(newCol) => setColor(newCol)}
+            variant={variant}
+            size={size}
+            shape={shape}
+            format={format}
+            label={label}
+            helperText={helperText}
+            showValue={showValue}
+            showPresets={showPresets}
+            showAlpha={showAlpha}
+            showEyeDropper={showEyeDropper}
+            allowFormatSwitch={allowFormatSwitch}
+            copyable={copyable}
+            disabled={disabled}
+          />
+        </div>
+      </ComponentPreview>
+
+      {/* Control Configuration Panel */}
+      <Card variant="outline" className="p-6 bg-white border border-core-circle-border-main/70">
+        <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted mb-6">
+          ColorPicker Controls
+        </Typography>
+
+        <div className="flex flex-col gap-6">
+          {/* Tier 1: Exactly 4 Select Dropdowns */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+            <Select
               label="Variant"
-              value={state.variant}
-              onChange={(v: string) => updateState('variant', v)}
-              options={{
-                outline: 'Outline',
-                material: 'Material',
-                ghost: 'Ghost',
-              }}
+              value={variant}
+              options={variantOptions}
+              onChange={(val) => setVariant(val as ColorPickerVariant)}
             />
-            <SelectField
+            <Select
               label="Size"
-              value={state.size}
-              onChange={(v: string) => updateState('size', v)}
-              options={{ sm: 'Small', md: 'Medium', lg: 'Large' }}
+              value={size}
+              options={sizeOptions}
+              onChange={(val) => setSize(val as ColorPickerSize)}
             />
-            <div className="flex gap-4 items-end pb-2">
-              <Checkbox
-                label="Show Value"
-                checked={state.showValue}
-                onChange={(checked: boolean) =>
-                  updateState('showValue', checked)
-                }
-              />
-              <Checkbox
-                label="Disabled"
-                checked={state.disabled}
-                onChange={(checked: boolean) =>
-                  updateState('disabled', checked)
-                }
-              />
-            </div>
-            <TextInput
-              label="Initial Value"
-              value={state.value}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                updateState('value', e.target.value)
-              }
-              placeholder="#000000"
-              fullWidth
+            <Select
+              label="Swatch Shape"
+              value={shape}
+              options={shapeOptions}
+              onChange={(val) => setShape(val as ColorPickerShape)}
+            />
+            <Select
+              label="Color Format"
+              value={format}
+              options={formatOptions}
+              onChange={(val) => setFormat(val as ColorPickerFormat)}
             />
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 border-t border-core-circle-border-main pt-6">
-            <TextInput
-              label="Label"
-              value={state.label}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                updateState('label', e.target.value)
-              }
-              fullWidth
+          {/* Tier 2: Horizontal Checkboxes Row */}
+          <div className="flex flex-wrap items-center gap-6 py-2 border-t border-core-circle-border-main/40">
+            <Checkbox
+              id="show-presets"
+              label="Show Presets"
+              checked={showPresets}
+              onChange={(e) => setShowPresets(e.target.checked)}
             />
+            <Checkbox
+              id="show-alpha"
+              label="Opacity Slider"
+              checked={showAlpha}
+              onChange={(e) => setShowAlpha(e.target.checked)}
+            />
+            <Checkbox
+              id="show-eye-dropper"
+              label="Eye Dropper"
+              checked={showEyeDropper}
+              onChange={(e) => setShowEyeDropper(e.target.checked)}
+            />
+            <Checkbox
+              id="allow-format-switch"
+              label="Format Switcher"
+              checked={allowFormatSwitch}
+              onChange={(e) => setAllowFormatSwitch(e.target.checked)}
+            />
+            <Checkbox
+              id="copyable-val"
+              label="Copy on Click"
+              checked={copyable}
+              onChange={(e) => setCopyable(e.target.checked)}
+            />
+            <Checkbox
+              id="show-value"
+              label="Show Value"
+              checked={showValue}
+              onChange={(e) => setShowValue(e.target.checked)}
+            />
+            <Checkbox
+              id="picker-disabled"
+              label="Disabled"
+              checked={disabled}
+              onChange={(e) => setDisabled(e.target.checked)}
+            />
+          </div>
+
+          {/* Tier 3: Text Inputs */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 border-t border-core-circle-border-main/60 pt-4">
             <TextInput
-              label="Error Message"
-              value={state.error}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                updateState('error', e.target.value)
-              }
-              placeholder="e.g. Invalid color"
-              fullWidth
+              label="Custom Label"
+              value={label}
+              onChange={(e) => setLabel(e.target.value)}
+              placeholder="e.g. Brand Accent"
             />
             <TextInput
               label="Helper Text"
-              value={state.helperText}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                updateState('helperText', e.target.value)
-              }
-              fullWidth
+              value={helperText}
+              onChange={(e) => setHelperText(e.target.value)}
+              placeholder="e.g. Helper instructions..."
             />
           </div>
         </div>
-
-        {/* Preview & Code */}
-        <div className={s.previewWrapper}>
-          <div className={s.previewArea}>
-            <ColorPicker
-              variant={state.variant as any}
-              size={state.size as any}
-              value={state.value}
-              label={state.label}
-              showValue={state.showValue}
-              error={state.error}
-              helperText={state.helperText}
-              disabled={state.disabled}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                updateState('value', e.target.value)
-              }
-            />
-          </div>
-
-          <div className={s.codeSection}>
-            <div className={s.codeHeader}>
-              <span className={s.codeTitle}>
-                <CodeIcon className="w-3.5 h-3.5" />
-                Live Code
-              </span>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => navigator.clipboard.writeText(generateCode())}
-                className={s.copyButton}
-                startIcon={<CopyIcon className="w-3.5 h-3.5" />}
-              >
-                Copy Snippet
-              </Button>
-            </div>
-            <pre className={s.codeBlock}>
-              <code
-                dangerouslySetInnerHTML={{
-                  __html: highlightCode(generateCode()),
-                }}
-              />
-            </pre>
-          </div>
-        </div>
-      </div>
+      </Card>
     </div>
   );
 };

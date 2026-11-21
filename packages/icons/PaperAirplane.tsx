@@ -1,10 +1,12 @@
+import React from 'react';
 import { IconProps } from './types';
 
-const PaperAirplane = ({ 
-  className = 'w-3.5 h-3.5', 
+const PaperAirplane: React.FC<IconProps> = ({
+  size = 24,
   color = 'currentColor',
-  size,
-  ...props 
+  strokeWidth = 2,
+  className = '',
+  ...props
 }: IconProps) => (
   <svg 
     className={className} 
@@ -15,7 +17,7 @@ const PaperAirplane = ({
     height={size}
     {...props}
   >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
   </svg>
 );
 

@@ -1,10 +1,12 @@
+import React from 'react';
 import { IconProps } from './types';
 
-const Battery = ({ 
-  className = 'w-3.5 h-3.5', 
+const Battery: React.FC<IconProps> = ({
+  size = 24,
   color = 'currentColor',
-  size,
-  ...props 
+  strokeWidth = 2,
+  className = '',
+  ...props
 }: IconProps) => (
   <svg 
     className={className} 
@@ -15,7 +17,7 @@ const Battery = ({
     height={size}
     {...props}
   >
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h11V8a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 011 1v2a1 1 0 01-1 1v2a1 1 0 01-1 1h-4a1 1 0 01-1-1v-2H3a1 1 0 01-1-1v-4a1 1 0 011-1z" />
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={strokeWidth} d="M3 10h11V8a1 1 0 011-1h4a1 1 0 011 1v2a1 1 0 011 1v2a1 1 0 01-1 1v2a1 1 0 01-1 1h-4a1 1 0 01-1-1v-2H3a1 1 0 01-1-1v-4a1 1 0 011-1z" />
   </svg>
 );
 

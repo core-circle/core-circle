@@ -1,11 +1,9 @@
 import { 
   OTP_INPUT_BREADCRUMB_ITEMS, 
-  OTP_INPUT_HEADER_CONTENT, 
-  OTP_INPUT_SECTIONS 
+  OTP_INPUT_HEADER_CONTENT 
 } from '../../../constants/atoms-page/otp-input/otpInputConstants';
 
-export interface OTPInputContainerProps {
-  sections: typeof OTP_INPUT_SECTIONS;
+export interface OtpInputContainerProps {
   headerContent: typeof OTP_INPUT_HEADER_CONTENT;
-  breadcrumbItems: typeof OTP_INPUT_BREADCRUMB_ITEMS;
+  breadcrumbItems?: typeof OTP_INPUT_BREADCRUMB_ITEMS;
 }

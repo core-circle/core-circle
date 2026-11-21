@@ -6,7 +6,7 @@ import { SwitchProps } from '../../../interface/atoms/switch/switch.types';
 import { switchVariants, switchThumbVariants } from './switch.styles';
 
 export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
-  ({ className, variant, size, checked, defaultChecked, onCheckedChange, disabled, ...props }, ref) => {
+  ({ className, variant, size, checked, defaultChecked, onCheckedChange, disabled, thumbIcon, ...props }, ref) => {
     const [internalChecked, setInternalChecked] = React.useState(defaultChecked || false);
     const isChecked = checked !== undefined ? checked : internalChecked;
 
@@ -32,7 +32,9 @@ export const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
         <span
           data-state={isChecked ? 'checked' : 'unchecked'}
           className={cn(switchThumbVariants({ size }))}
-        />
+        >
+          {thumbIcon}
+        </span>
         <input
           ref={ref}
           type="checkbox"
