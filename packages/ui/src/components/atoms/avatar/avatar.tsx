@@ -10,7 +10,6 @@ import {
   avatarStatusVariants,
 } from './avatar.styles';
 import { Image } from '../image/image';
-import { Typography } from '../typography/typography';
 import { AvatarIcon } from '@core-circle/icons';
 
 const getInitials = (name: string) => {
