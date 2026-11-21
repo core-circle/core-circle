@@ -7,8 +7,8 @@ on:
     types: [opened, synchronize, reopened, ready_for_review]
 
 jobs:
-  validate-source-branch:
-    name: Verify PR Source Branch
+  check-source-branch:
+    name: check-source-branch
     runs-on: ubuntu-latest
     steps:
       - name: Validate Source Branch
