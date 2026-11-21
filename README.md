@@ -55,7 +55,7 @@ npx nx storybook @core-circle/ui
 
 Both `main` and `development` branches are strictly protected. Direct pushes and force-pushes are blocked.
 
-- **`development` Branch (Protected)**: Integration branch for all active engineering work. Multiple contributors submit Pull Requests from feature or bugfix branches targeting `development`. PRs require two mandatory gatekeeper labels: `build_and_lint` (or `build`) and `ready_to_merge`.
+- **`development` Branch (Protected)**: Integration branch for all active engineering work. Multiple contributors submit Pull Requests from feature or bugfix branches targeting `development`. PRs require two mandatory gatekeeper labels: `build` and `ready_to_merge`.
 - **`main` Branch (Protected)**: Production-ready branch. All releases and live deployments must originate strictly from `development` via a Pull Request. PRs require Code Owner approval (`@1694srinivasan`) and the `ready_to_merge` label.
 
 ---
@@ -70,7 +70,7 @@ Pull requests targeting `development` enforce two mandatory gatekeeper checks:
 
 | Mandatory Label | Gatekeeper Role | CI Enforcement & Behavior |
 | :--- | :--- | :--- |
-| `build_and_lint` *(or `build`)* | **Compilation & Lint Gate** | Strictly mandatory. Triggers and enforces full monorepo linting (`nx run-many -t lint`), all package builds (`@core-circle/ui`, `@core-circle/theme`, `@core-circle/icons`), web docs build, and UI Storybook compilation. PR cannot merge into `development` until this check passes. |
+| `build` | **Compilation & Lint Gate** | Strictly mandatory. Triggers and enforces full monorepo linting (`nx run-many -t lint`), all package builds (`@core-circle/ui`, `@core-circle/theme`, `@core-circle/icons`), web docs build, and UI Storybook compilation. PR cannot merge into `development` until this check passes. |
 | `ready_to_merge` | **Reviewer Sign-off Gate** | Strictly mandatory. Attached by an authorized reviewer or Code Owner once code review is complete. Blocks PR merge until attached. |
 
 ### 🛡️ Main Gatekeeper Labels (`.github/workflows/enforce-main-pr.yml`)
@@ -87,7 +87,7 @@ Pull requests from `development` into `main` enforce production release gates:
 | :--- | :--- | :--- | :--- |
 | `deploy_pages` | `main` | **PR & Merge** | **During PR**: Runs full lint and build validation.<br>**On Merge**: Automatically builds and deploys both **Web Docs** and **Storybook** live to GitHub Pages. |
 | `build_publish_package` | `main` | **PR & Merge** | **During PR**: Pre-verifies package compilation.<br>**On Merge**: Automatically publishes packages to GitHub Packages registry (`npm.pkg.github.com`). |
-| `build` / `build_and_lint` | `development` & `main` | **During PR** | Runs full monorepo linting and compilation (`nx run-many -t lint build` + Storybook). |
+| `build` | `development` & `main` | **During PR** | Runs full monorepo linting and compilation (`nx run-many -t lint build` + Storybook). |
 | `run:test` | `development` & `main` | **During PR** | Runs unit test suites across the monorepo (`nx run-many -t test`). |
 | `run:storybook` | `development` & `main` | **During PR** | Verifies that component Storybooks build cleanly (`npm run build-storybook`). |
 
