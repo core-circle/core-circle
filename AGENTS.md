@@ -95,10 +95,14 @@ packages/ui/src/
 
 ---
 
-## 5. Command Execution & Build Policy (Strict)
+## 5. Command Execution, Build & Quality Metrics Policy (Strict)
 
 - **NEVER run `build`, `test`, `lint`, or other long-running verification commands automatically** after code edits.
 - Only run `npm run build`, `npm run build:packages`, `npm test`, or `npm run lint` when the user **specifically and explicitly asks** for it.
+- **Strict Lint Warning Metric (< 100 Warnings)**:
+  - Total monorepo lint warnings must **strictly never exceed 100** (`nx run-many -t lint`).
+  - Core primitives in `@core-circle/ui`, `@core-circle/theme`, and `@core-circle/icons` must maintain **0 errors and 0 warnings** at all times.
+  - Always exclude compiled/minified build artifacts (`storybook-static/`, `dist/`, `.next/`) in ESLint flat configs (`eslint.config.mjs`) to prevent false-positive alert storms.
 
 ---
 
@@ -162,6 +166,15 @@ When developing or upgrading documentation containers, pages, and constants in `
    - In Tailwind CSS v4, dark variants are strictly isolated to class-based activation via `@custom-variant dark (&:where(.dark, .dark *));` in `global.css` and `tailwind.css`. Never allow media-query based dark bleeding from user OS themes.
    - In component primitives (`packages/ui/`), avoid hardcoding pitch-black surfaces (`bg-slate-950`). Use semantic tokens or soft neutral surfaces (`bg-core-circle-bg-surface`, `bg-slate-50`, `bg-slate-100`).
    - In overlapping cluster components (such as `AvatarGroup`), always enforce natural left-to-right stacking order with decreasing z-indexes (`style={{ zIndex: totalCount - idx }}`). This guarantees that bottom-right status indicators (`online`, `busy`) are never clipped into half-moons by adjacent sibling circles.
+10. **Clean React 19 JSX & Dead Import Hygiene**:
+   - Do NOT import `React` in `.ts` data/constants files or in components where `React` is not directly referenced as a value or type. React 19 uses the modern JSX transform.
+   - Never leave unused icon imports or variable declarations in playgrounds or containers. Prune dead imports before committing.
+11. **Strict React Hook Dependencies & Memoization**:
+   - Any callback (`close`, `handleClose`, etc.) invoked within `useEffect` listeners must be wrapped with `useCallback` and explicitly declared in the dependency array (`react-hooks/exhaustive-deps`).
+   - Avoid omitting conditional state/props dependencies (e.g., `defaultValue`, `value`, `isDarkPreview`).
+12. **Fragment & Accessibility Standards**:
+   - Avoid wrapping a single child in empty fragments `<>{child}</>` (`react/jsx-no-useless-fragment`).
+   - Emojis in JSX must be wrapped with an accessible span: `<span role="img" aria-label="description">...</span>` (`jsx-a11y/accessible-emoji`).
 
 ---
 
