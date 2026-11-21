@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "noPropertyAccessFromIndexSignature": true,
     "composite": false,
     "declaration": true,

@@ -63,6 +63,7 @@ module.exports = {
 | **Layout & Surfaces** | `Card`, `Accordion`, `Drawer`, `Dialog`, `Popover`, `Tooltip`, `ScrollArea`, `AspectRatio`, `Divider`, `Kbd` | Elevated surfaces, responsive side sheets, focus-trapped dialogs, and layout primitives. |
 | **Navigation** | `Breadcrumb`, `Tabs`, `Stepper` | Route breadcrumbs, animated segmented tabs, and multi-step progress indicators. |
 | **Identity & Typography** | `Avatar`, `AvatarGroup`, `Typography`, `Label`, `Image`, `RichText` | Clustered avatar stacks, typography hierarchies, and structured content display. |
+| **Organisms & Studios** | `ThemeGenerator` | Interactive, production-ready Tailwind v4 theme creation studio for bespoke product stylesheets. |
 
 ---
 
