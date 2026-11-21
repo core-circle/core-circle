@@ -1,8 +1,14 @@
 # Core Circle Monorepo
 
-![Favicon](/src/app/docs/public/favicon.svg)
+<p align="center">
+  <img src="./src/app/docs/public/favicon.svg" alt="Core Circle Logo" width="80" height="80" />
+</p>
 
 A modern, high-performance monorepo for the Core Circle ecosystem. Built with **Nx**, **Next.js**, and **Tailwind CSS v4**.
+
+### 🌐 Live Documentation & Showcase
+- 📖 [Core Circle UI | Premium Component Library](https://core-circle.github.io/core-circle/)
+- 🎨 [Atoms / Accordion - Bordered ⋅ Storybook](https://core-circle.github.io/core-circle/storybook/?path=/story/atoms-accordion--bordered)
 
 ## Architecture
 

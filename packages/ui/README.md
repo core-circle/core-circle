@@ -5,6 +5,10 @@
 
 A high-performance, accessible, and themeable React component library built for modern web applications. Powered by **Tailwind CSS**, **Class Variance Authority (CVA)**, and the **CoreCircle Design System**.
 
+### 🔗 Live Demos & Storybook
+- 📖 [Core Circle UI | Premium Component Library](https://core-circle.github.io/core-circle/)
+- 🎨 [Atoms / Accordion - Bordered ⋅ Storybook](https://core-circle.github.io/core-circle/storybook/?path=/story/atoms-accordion--bordered)
+
 ---
 
 ## 1. Installation

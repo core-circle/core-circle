@@ -1,0 +1,21 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    :root { color: #1a1a1a; }
+    @media (prefers-color-scheme: dark) {
+      :root { color: #ffffff; }
+    }
+    .core-circle-path { stroke: currentColor; fill: none; stroke-width: 6; stroke-linecap: round; }
+    .core-circle-dot { fill: currentColor; }
+    .core-circle-text { fill: currentColor; font-family: sans-serif; font-weight: 900; font-size: 32px; }
+  </style>
+  
+  <!-- Atomic Ring -->
+  <circle cx="50" cy="50" r="42" class="core-circle-path" />
+  
+  <!-- Orbiting Nodes (Atoms) -->
+  <circle cx="50" cy="8" r="5" class="core-circle-dot" />
+  <circle cx="50" cy="92" r="5" class="core-circle-dot" />
+  
+  <!-- CC Monogram (Nucleus) -->
+  <text x="50" y="61" text-anchor="middle" class="core-circle-text">CC</text>
+</svg>

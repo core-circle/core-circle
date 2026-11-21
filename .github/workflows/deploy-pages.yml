@@ -140,7 +140,7 @@ jobs:
         with:
           script: |
             const prNumber = parseInt('${{ needs.check-deploy.outputs.pr_number }}', 10);
-            const body = `### 🚀 Deployed Successfully to GitHub Pages!\n\nYour changes from this PR are now live:\n\n* 📖 **Web Docs**: [https://1694srinivasan.github.io/core-circle/](https://1694srinivasan.github.io/core-circle/)\n* 🎨 **UI Storybook**: [https://1694srinivasan.github.io/core-circle/storybook/](https://1694srinivasan.github.io/core-circle/storybook/)\n\n*Deployment automated via GitHub Actions.*`;
+            const body = `### 🚀 Deployed Successfully to GitHub Pages!\n\nYour changes from this PR are now live:\n\n* 📖 **Web Docs**: [Core Circle UI | Premium Component Library](https://core-circle.github.io/core-circle/)\n* 🎨 **UI Storybook**: [Atoms / Accordion - Bordered ⋅ Storybook](https://core-circle.github.io/core-circle/storybook/?path=/story/atoms-accordion--bordered)\n\n*Deployment automated via GitHub Actions.*`;
             if (prNumber) {
               await github.rest.issues.createComment({
                 issue_number: prNumber,
