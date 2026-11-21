@@ -6,6 +6,10 @@
 The publishable, unified single source of truth for the **CoreCircle Design System**.
 Contains all design tokens, 22-hue color palette (242 shades), 10 categorical chart colors, Tailwind v4 theme configuration, universal Tailwind v3 preset, automatic dark mode support, and 6 curated font family options.
 
+### 🔗 Live Documentation & Showcase
+- 📖 [Core Circle UI | Premium Component Library](https://core-circle.github.io/core-circle/)
+- 🎨 [Atoms / Accordion - Bordered ⋅ Storybook](https://core-circle.github.io/core-circle/storybook/?path=/story/atoms-accordion--bordered)
+
 ---
 
 ## 1. Installation

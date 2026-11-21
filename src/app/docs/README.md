@@ -2,6 +2,10 @@
 
 The official documentation site for the Core Circle component library. Built with Next.js and Tailwind CSS v4.
 
+### 🔗 Live Deployments
+- 📖 [Core Circle UI | Premium Component Library](https://core-circle.github.io/core-circle/)
+- 🎨 [Atoms / Accordion - Bordered ⋅ Storybook](https://core-circle.github.io/core-circle/storybook/?path=/story/atoms-accordion--bordered)
+
 ## Development
 
 To run the documentation site locally:

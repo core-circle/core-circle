@@ -5,6 +5,10 @@
 
 A collection of **520+ beautifully crafted, tree-shakeable SVG icon components** for React and Tailwind CSS. Built as the visual icon foundation of the **CoreCircle Design System**.
 
+### 🔗 Live Demos & Storybook
+- 📖 [Core Circle UI | Premium Component Library](https://core-circle.github.io/core-circle/)
+- 🎨 [Atoms / Accordion - Bordered ⋅ Storybook](https://core-circle.github.io/core-circle/storybook/?path=/story/atoms-accordion--bordered)
+
 ---
 
 ## 1. Installation
