@@ -25,9 +25,9 @@ export const DatePickerPlayground: React.FC = () => {
   const [variant, setVariant] = useState<DatePickerVariant>('outline');
   const [size, setSize] = useState<DatePickerSize>('md');
 
-  const [label, setLabel] = useState('Reservation Date');
-  const [placeholder, setPlaceholder] = useState('Select date');
-  const [helperText, setHelperText] = useState('Choose your arrival date or schedule interval.');
+  const [label] = useState('Reservation Date');
+  const [placeholder] = useState('Select date');
+  const [helperText] = useState('Choose your arrival date or schedule interval.');
 
   const [showPresets, setShowPresets] = useState(true);
   const [showTime, setShowTime] = useState(false);

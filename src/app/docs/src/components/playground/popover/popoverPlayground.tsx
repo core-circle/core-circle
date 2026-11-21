@@ -8,14 +8,13 @@ import {
   TextInput, 
   Button, 
   Typography, 
-  Badge, 
   Card,
   PopoverVariant,
   PopoverSize,
   PopoverPosition,
   PopoverAlign 
 } from '@core-circle/ui';
-import { Info, Sparkles, Filter, CheckIcon } from '@core-circle/icons';
+import { Info, Sparkles } from '@core-circle/icons';
 import ComponentPreview from '../../component-preview';
 
 export const PopoverPlayground: React.FC = () => {

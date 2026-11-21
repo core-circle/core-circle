@@ -56,7 +56,6 @@ test-output
 
 # AI Assistants
 .claude/
-.agents/
 .codex/
 .cursor/
 .opencode/

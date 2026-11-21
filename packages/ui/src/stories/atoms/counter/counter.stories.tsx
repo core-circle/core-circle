@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Counter } from '../../../components/atoms/counter/counter';
 import { Button } from '../../../components/atoms/button/button';
-import { Bell } from '@core-circle/icons';
-import React from 'react';
 
 const meta: Meta<typeof Counter> = {
   title: 'Atoms/Counter',

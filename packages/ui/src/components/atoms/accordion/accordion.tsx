@@ -42,7 +42,7 @@ export const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       if (defaultValue === undefined && value === undefined) {
         setInternalValue(type === 'multiple' ? [] : '');
       }
-    }, [type]);
+    }, [type, defaultValue, value]);
 
     const activeValue = value !== undefined ? value : internalValue;
 

@@ -5,7 +5,17 @@ export default [
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   {
-    ignores: ['**/dist', '**/out-tsc', '**/.next', '**/node_modules', '**/.nx', '**/tmp', '**/coverage'],
+    ignores: [
+      '**/dist',
+      '**/out-tsc',
+      '**/.next',
+      '**/node_modules',
+      '**/.nx',
+      '**/tmp',
+      '**/coverage',
+      '**/storybook-static',
+      '**/.storybook-cache',
+    ],
   },
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],

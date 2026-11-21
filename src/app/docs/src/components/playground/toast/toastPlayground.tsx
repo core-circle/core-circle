@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Button, Select, TextInput, useToast, Toaster, Toast } from '@core-circle/ui';
-import { CodeIcon, CopyIcon, Bell, Sparkles, CircleCheck } from '@core-circle/icons';
+import { CodeIcon, CopyIcon, Bell, Sparkles } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { toastPlaygroundStyles as s } from './toastPlayground.styles';
 
