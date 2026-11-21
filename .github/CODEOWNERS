@@ -1,0 +1,3 @@
+# Global code owner for all files across CoreCircle
+# Requires this user's approval on all Pull Requests to protected branches
+* @1694srinivasan
