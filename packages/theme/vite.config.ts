@@ -15,6 +15,7 @@ export default defineConfig({
       entry: {
         index: resolve(__dirname, 'index.ts'),
         preset: resolve(__dirname, 'preset.ts'),
+        'theme-generator': resolve(__dirname, 'theme-generator/index.ts'),
       },
       name: 'CoreCircleTheme',
       formats: ['es', 'cjs'],

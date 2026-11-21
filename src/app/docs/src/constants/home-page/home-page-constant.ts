@@ -1,4 +1,4 @@
-import { Atom, Molecule, Puzzle } from '@core-circle/icons';
+import { Atom, Molecule, Puzzle, Palette } from '@core-circle/icons';
 
 /**
  * Home Page Header Content
@@ -35,5 +35,11 @@ export const HOME_COMPONENT_CARDS = [
     description: 'Relatively complex UI components composed of groups of molecules and/or atoms.',
     href: '/organisms',
     icon: Puzzle,
+  },
+  {
+    title: 'Generators',
+    description: 'Interactive tooling, theme configurators, and asset generators for the CoreCircle ecosystem.',
+    href: '/generators',
+    icon: Palette,
   },
 ];

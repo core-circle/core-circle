@@ -10,6 +10,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   (
     {
       className,
+      wrapperClassName,
       variant = 'outline',
       size = 'md',
       label,
@@ -90,7 +91,7 @@ export const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           </Label>
         )}
         
-        <div className={cn(inputWrapperVariants({ variant, hasError, disabled: props.disabled }))}>
+        <div className={cn(inputWrapperVariants({ variant, hasError, disabled: props.disabled }), wrapperClassName)}>
           {label && isMaterialAnimated && (
             <Label 
               htmlFor={inputId} 
