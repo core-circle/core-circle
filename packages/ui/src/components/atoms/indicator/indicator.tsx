@@ -27,7 +27,7 @@ export const Indicator = forwardRef<HTMLDivElement, IndicatorProps>(
     },
     ref
   ) => {
-    if (!show) return <>{children}</>;
+    if (!show) return children as React.ReactElement | null;
 
     const displayContent = count !== undefined
       ? count > max ? `${max}+` : count

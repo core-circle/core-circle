@@ -211,7 +211,7 @@ export const ColorPaletteShowcase = () => {
                   !isDarkMode ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500'
                 }`}
               >
-                ☀ Light Mode
+                <span role="img" aria-label="Light mode">☀</span> Light Mode
               </button>
               <button
                 onClick={() => setIsDarkMode(true)}
@@ -219,7 +219,7 @@ export const ColorPaletteShowcase = () => {
                   isDarkMode ? 'bg-slate-900 text-white shadow-sm' : 'text-slate-500'
                 }`}
               >
-                🌙 Dark Mode
+                <span role="img" aria-label="Dark mode">🌙</span> Dark Mode
               </button>
             </div>
           </div>

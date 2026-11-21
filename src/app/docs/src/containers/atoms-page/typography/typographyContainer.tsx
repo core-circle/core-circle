@@ -3,19 +3,13 @@
 import { TypographyContainerProps } from '../../../interface/containers/atoms/typography.types';
 import React from 'react';
 import Link from 'next/link';
-import { Typography, Breadcrumb, Tabs, Badge, Button } from '@core-circle/ui';
+import { Typography, Breadcrumb, Tabs, Badge } from '@core-circle/ui';
 import { 
   Palette, 
   Layers, 
   Play, 
   CodeIcon, 
-  Info, 
-  Banknotes, 
-  Shield, 
-  Sparkles, 
-  Terminal, 
-  ShoppingBag, 
-  CheckIcon 
+  Info 
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';

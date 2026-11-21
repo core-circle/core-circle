@@ -1,5 +1,3 @@
-import { HomeIcon } from '@core-circle/icons';
-import React from 'react';
 import { PropItem } from '../../../interface/components/props-table.types';
 
 export const RICHTEXT_BREADCRUMB_ITEMS = [

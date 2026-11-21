@@ -1,4 +1,3 @@
-import React from 'react';
 import { PropItem } from '../../../interface/components/props-table.types';
 
 export const STEPPER_BREADCRUMB_ITEMS = [

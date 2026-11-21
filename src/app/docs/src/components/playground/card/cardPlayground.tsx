@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Card, Select, Checkbox, Button, TextInput, Badge } from '@core-circle/ui';
-import { CodeIcon, CopyIcon, Sparkles, Star, Shield, ArrowRight } from '@core-circle/icons';
+import { CodeIcon, CopyIcon, Sparkles, Shield, ArrowRight } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { cardPlaygroundStyles as s } from './cardPlayground.styles';
 

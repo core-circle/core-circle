@@ -22,7 +22,7 @@ import {
   Sparkles,
 } from '@core-circle/icons';
 import { themeGeneratorStyles as s } from './theme-generator.styles';
-import type { ThemeGeneratorProps } from '../../../interface/organisms/theme-generator/theme-generator.types';
+import type { ThemeGeneratorProps } from '../../../interface/generators/theme-generator/theme-generator.types';
 import { cn } from '../../../utils/cn';
 
 const BRAND_PRESETS = [
@@ -206,7 +206,7 @@ export const ThemeGenerator = forwardRef<HTMLDivElement, ThemeGeneratorProps>(
         '--radius-core-circle-lg': result.tokens.radius.lg,
         '--radius-core-circle-xl': result.tokens.radius.xl,
       } as React.CSSProperties;
-    }, [activeThemeTokens, result.tokens.radius]);
+    }, [activeThemeTokens, result.tokens.radius, isDarkPreview]);
 
     const levels = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950] as const;
 

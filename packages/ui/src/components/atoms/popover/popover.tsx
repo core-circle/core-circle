@@ -39,12 +39,12 @@ export const Popover: React.FC<PopoverProps> = ({
     onOpenChange?.(nextState);
   };
 
-  const handleClose = () => {
+  const handleClose = React.useCallback(() => {
     if (!isControlled) {
       setInternalOpen(false);
     }
     onOpenChange?.(false);
-  };
+  }, [isControlled, onOpenChange]);
 
   // Close on outside click
   React.useEffect(() => {
@@ -65,7 +65,7 @@ export const Popover: React.FC<PopoverProps> = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen]);
+  }, [isOpen, handleClose]);
 
   // Close on Escape key
   React.useEffect(() => {
@@ -76,7 +76,7 @@ export const Popover: React.FC<PopoverProps> = ({
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen]);
+  }, [isOpen, handleClose]);
 
   // Position classes
   const getPositionClasses = () => {
