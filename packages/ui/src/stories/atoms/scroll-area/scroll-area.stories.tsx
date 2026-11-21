@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { ScrollArea } from './scroll-area';
+import { ScrollArea } from '../../../components/atoms/scroll-area/scroll-area';
 import React from 'react';
 
 const meta: Meta<typeof ScrollArea> = {

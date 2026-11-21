@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Dialog } from './dialog';
-import { Button } from '../button/button';
-import { Typography } from '../typography/typography';
+import { Dialog } from '../../../components/atoms/dialog/dialog';
+import { Button } from '../../../components/atoms/button/button';
+import { Typography } from '../../../components/atoms/typography/typography';
 import React from 'react';
 
 const meta: Meta<typeof Dialog> = {

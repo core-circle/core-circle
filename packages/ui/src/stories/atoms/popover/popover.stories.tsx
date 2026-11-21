@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Popover } from './popover';
-import { Button } from '../button/button';
-import { Typography } from '../typography/typography';
+import { Popover } from '../../../components/atoms/popover/popover';
+import { Button } from '../../../components/atoms/button/button';
+import { Typography } from '../../../components/atoms/typography/typography';
 import { SettingsIcon } from '@core-circle/icons';
 import React from 'react';
 

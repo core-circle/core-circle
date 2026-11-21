@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { Alert } from './alert';
+import { Alert } from '../../../components/atoms/alert/alert';
 import { Info, CircleCheck, Alert as AlertIcon, CircleX, Terminal } from '@core-circle/icons';
 import React from 'react';
 

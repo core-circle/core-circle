@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { FileUpload } from './file-upload';
+import { FileUpload } from '../../../components/atoms/file-upload/file-upload';
 import React from 'react';
 
 const meta: Meta<typeof FileUpload> = {
