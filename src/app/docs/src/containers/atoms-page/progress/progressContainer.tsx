@@ -24,7 +24,7 @@ import {
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { atomsPageStyles as s } from '../atoms.styles';
+import { progressPageStyles as s } from './progress.styles';
 import {
   PROGRESS_PROPS_DATA,
 } from '../../../constants/atoms-page/progress/progressConstants';
@@ -226,7 +226,7 @@ export default function ProgressContainer({
           >
             <ComponentPreview
               title="Kubernetes Rollout Progress"
-              code={`<div className="flex flex-col gap-4 p-6 bg-slate-900 text-white rounded-2xl shadow-lg w-full">
+              code={`<div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle w-full">
   <div className="flex items-center justify-between">
     <div className="flex items-center gap-2">
       <Terminal size={16} className="text-emerald-400" />
@@ -243,7 +243,7 @@ export default function ProgressContainer({
   </div>
 </div>`}
             >
-              <div className="flex flex-col gap-4 p-6 bg-slate-900 text-white rounded-2xl shadow-lg w-full max-w-xl">
+              <div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle w-full max-w-xl">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Terminal size={16} className="text-emerald-400" />

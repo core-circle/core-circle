@@ -24,7 +24,7 @@ import {
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { atomsPageStyles as s } from '../atoms.styles';
+import { checkboxPageStyles as s } from './checkbox.styles';
 import { 
   CHECKBOX_PROPS_DATA, 
   CHECKBOX_BREADCRUMB_ITEMS 

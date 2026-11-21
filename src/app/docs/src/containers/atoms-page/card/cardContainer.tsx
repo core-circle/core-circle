@@ -13,7 +13,7 @@ import {
   CARD_PROPS_DATA
 } from '../../../constants/atoms-page/card/cardConstants';
 import { CardContainerProps } from '../../../interface/containers/atoms/card.types';
-import { atomsPageStyles as s } from '../atoms.styles';
+import { cardPageStyles as s } from './card.styles';
 
 export default function CardContainer({ headerContent, breadcrumbItems }: CardContainerProps) {
   const samplePhoto = 'https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=800&q=80';
@@ -372,17 +372,17 @@ export default function CardContainer({ headerContent, breadcrumbItems }: CardCo
                     </Card.Footer>
                   </Card>
 
-                  <Card variant="solid-dark" hoverable>
-                    <Card.Header divider className="border-slate-800">
-                      <h4 className="font-bold text-white text-lg">Database Replication Pool</h4>
+                  <Card variant="floating" hoverable>
+                    <Card.Header divider>
+                      <h4 className="font-bold text-core-circle-text-main text-lg">Database Replication Pool</h4>
                     </Card.Header>
                     <Card.Body>
-                      <p className="text-sm text-slate-400 leading-relaxed">
+                      <p className="text-sm text-core-circle-text-muted leading-relaxed">
                         Multi-region read replicas with sub-10ms replication lag across 4 geographical availability zones.
                       </p>
                     </Card.Body>
                     <Card.Footer align="end">
-                      <Button size="sm" variant="outline" className="border-slate-700 text-white hover:bg-slate-800">View Telemetry</Button>
+                      <Button size="sm" variant="outline">View Telemetry</Button>
                     </Card.Footer>
                   </Card>
                 </div>

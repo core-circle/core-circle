@@ -6,7 +6,7 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary:
-          'bg-core-circle-primary text-white hover:bg-core-circle-primary-hover active:bg-core-circle-primary-active shadow-core-circle-subtle border border-transparent',
+          'bg-core-circle-primary text-white hover:bg-core-circle-primary-hover hover:text-white active:bg-core-circle-primary-active shadow-core-circle-subtle border border-transparent',
         secondary:
           'bg-core-circle-secondary text-white hover:bg-core-circle-secondary-hover active:bg-core-circle-secondary-active shadow-core-circle-subtle border border-transparent',
         success:

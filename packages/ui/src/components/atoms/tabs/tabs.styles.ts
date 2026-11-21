@@ -21,10 +21,10 @@ export const tabListVariants = cva('flex items-center flex-wrap transition-all d
       cards: 'gap-3',
       glassmorphic: 'gap-2 bg-white/40 backdrop-blur-md p-1.5 border border-white/60 rounded-2xl shadow-sm inline-flex',
       gradient: 'gap-2 bg-gradient-to-r from-purple-50 via-indigo-50 to-purple-50 p-1.5 rounded-2xl inline-flex border border-purple-100',
-      glow: 'gap-2 bg-slate-950 p-1.5 rounded-2xl border border-emerald-900/40 inline-flex shadow-[0_0_20px_rgba(16,185,129,0.15)]',
+      glow: 'gap-2 bg-emerald-50/60 p-1.5 rounded-2xl border border-emerald-200 inline-flex shadow-sm',
       segmented: 'bg-slate-100 p-1 rounded-xl inline-flex border border-slate-200 shadow-inner',
       bordered: 'border border-core-circle-border-main rounded-xl p-1 gap-2 inline-flex bg-white',
-      dark: 'gap-2 bg-slate-900 p-1.5 rounded-2xl border border-slate-800 inline-flex text-white',
+      dark: 'gap-2 bg-slate-100 p-1.5 rounded-2xl border border-slate-200 inline-flex text-slate-800',
     },
     fullWidth: {
       true: 'w-full flex',
@@ -48,10 +48,10 @@ export const tabItemVariants = cva(
         cards: 'rounded-xl border border-core-circle-border-main hover:border-core-circle-primary/40 bg-white shadow-sm',
         glassmorphic: 'rounded-xl hover:bg-white/60 text-slate-700',
         gradient: 'rounded-xl text-purple-900',
-        glow: 'rounded-xl text-slate-300',
+        glow: 'rounded-xl text-emerald-800',
         segmented: 'rounded-lg text-slate-700',
         bordered: 'rounded-lg text-slate-700',
-        dark: 'rounded-xl text-slate-400',
+        dark: 'rounded-xl text-slate-600',
       },
       size: {
         sm: 'px-3 py-1.5 text-xs',
@@ -142,12 +142,12 @@ export const tabItemVariants = cva(
       {
         variant: 'glow',
         active: true,
-        className: 'bg-emerald-950 border border-emerald-400 text-emerald-400 shadow-[0_0_12px_rgba(52,211,153,0.5)] font-bold',
+        className: 'bg-emerald-600 text-white shadow-sm font-bold',
       },
       {
         variant: 'glow',
         active: false,
-        className: 'border border-transparent text-slate-400 hover:text-emerald-300',
+        className: 'border border-transparent text-emerald-800/70 hover:text-emerald-950',
       },
       // 8. Segmented
       {
@@ -164,7 +164,7 @@ export const tabItemVariants = cva(
       {
         variant: 'bordered',
         active: true,
-        className: 'bg-slate-900 text-white font-bold',
+        className: 'bg-core-circle-primary text-white font-bold',
       },
       {
         variant: 'bordered',
@@ -175,12 +175,12 @@ export const tabItemVariants = cva(
       {
         variant: 'dark',
         active: true,
-        className: 'bg-core-circle-primary text-white font-bold shadow-sm',
+        className: 'bg-slate-800 text-white font-bold shadow-sm',
       },
       {
         variant: 'dark',
         active: false,
-        className: 'bg-transparent text-slate-400 hover:text-white',
+        className: 'bg-transparent text-slate-600 hover:text-slate-900',
       },
     ],
     defaultVariants: {

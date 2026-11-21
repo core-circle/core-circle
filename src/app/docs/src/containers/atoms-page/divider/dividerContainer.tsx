@@ -20,7 +20,7 @@ import {
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { atomsPageStyles as s } from '../atoms.styles';
+import { dividerPageStyles as s } from './divider.styles';
 import { DIVIDER_PROPS_DATA } from '../../../constants/atoms-page/divider/dividerConstants';
 import { DividerPlayground } from '../../../components/playground/divider/dividerPlayground';
 import PropsTable from '../../../components/props-table';

@@ -107,11 +107,11 @@ export default function TextareaContainer({ headerContent, breadcrumbItems }: Te
           >
             <ComponentPreview
               title="AWS IAM JSON Policy Document"
-              code={`<div className="flex flex-col gap-4 p-6 bg-slate-950 text-white border border-slate-800 rounded-2xl shadow-xl w-full">
+              code={`<div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main border border-core-circle-border-main rounded-core-circle-xl shadow-core-circle-subtle w-full">
   <div className="flex items-center justify-between">
     <div className="flex items-center gap-2">
-      <Shield size={18} className="text-emerald-400" />
-      <span className="font-mono text-xs font-bold text-slate-200">AWS IAM POLICY DOCUMENT (JSON)</span>
+      <Shield size={18} className="text-emerald-500" />
+      <span className="font-mono text-xs font-bold text-core-circle-text-main">AWS IAM POLICY DOCUMENT (JSON)</span>
     </div>
     <Badge variant="success" size="sm" shape="pill">Syntax Validated</Badge>
   </div>
@@ -127,11 +127,11 @@ export default function TextareaContainer({ headerContent, breadcrumbItems }: Te
   />
 </div>`}
             >
-              <div className="flex flex-col gap-4 p-6 bg-slate-950 text-white border border-slate-800 rounded-2xl shadow-xl w-full">
+              <div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main border border-core-circle-border-main rounded-core-circle-xl shadow-core-circle-subtle w-full">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
-                    <Shield size={18} className="text-emerald-400" />
-                    <span className="font-mono text-xs font-bold text-slate-200">AWS IAM POLICY DOCUMENT (JSON)</span>
+                    <Shield size={18} className="text-emerald-500" />
+                    <span className="font-mono text-xs font-bold text-core-circle-text-main">AWS IAM POLICY DOCUMENT (JSON)</span>
                   </div>
                   <Badge variant="success" size="sm" shape="pill">Syntax Validated</Badge>
                 </div>
@@ -408,7 +408,7 @@ export default function TextareaContainer({ headerContent, breadcrumbItems }: Te
                 title="Dark Mode Terminal"
                 code={`<Textarea variant="dark" label="Stack Trace Log" placeholder="Paste crash dump..." rows={4} />`}
               >
-                <div className="p-4 bg-slate-950 rounded-2xl w-full">
+                <div className="p-4 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main w-full">
                   <Textarea variant="dark" label="Stack Trace Log" placeholder="Paste crash dump..." rows={4} fullWidth />
                 </div>
               </ComponentPreview>

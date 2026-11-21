@@ -28,7 +28,7 @@ import {
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { atomsPageStyles as s } from '../atoms.styles';
+import { datePickerPageStyles as s } from './date-picker.styles';
 import { 
   DATE_PICKER_PROPS_DATA 
 } from '../../../constants/atoms-page/date-picker/datePickerConstants';

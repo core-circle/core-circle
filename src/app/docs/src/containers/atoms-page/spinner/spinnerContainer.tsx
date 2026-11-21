@@ -49,29 +49,29 @@ export default function SpinnerContainer({ headerContent, breadcrumbItems }: Spi
           >
             <ComponentPreview
               title="Payment Gateway Settlement Processing"
-              code={`<div className="flex items-center justify-between p-6 bg-slate-950 text-white border border-emerald-900/40 rounded-2xl shadow-xl w-full">
+              code={`<div className="flex items-center justify-between p-6 bg-white text-core-circle-text-main border border-emerald-500/30 rounded-core-circle-xl shadow-core-circle-subtle w-full">
   <div className="flex items-center gap-4">
     <div className="relative flex items-center justify-center">
       <Spinner variant="glow" size="lg" thickness={4} />
       <Banknotes size={18} className="absolute text-emerald-400" />
     </div>
     <div className="space-y-1">
-      <span className="font-mono text-sm font-bold text-slate-200">ISO-20022 SETTLEMENT PIPELINE</span>
-      <p className="text-xs text-emerald-400">Verifying zero-knowledge rollup proofs...</p>
+      <span className="font-mono text-sm font-bold text-core-circle-text-main">ISO-20022 SETTLEMENT PIPELINE</span>
+      <p className="text-xs text-emerald-600">Verifying zero-knowledge rollup proofs...</p>
     </div>
   </div>
   <Badge variant="success" size="sm" shape="pill">24ms Latency</Badge>
 </div>`}
             >
-              <div className="flex items-center justify-between p-6 bg-slate-950 text-white border border-emerald-900/40 rounded-2xl shadow-xl w-full max-w-xl">
+              <div className="flex items-center justify-between p-6 bg-white text-core-circle-text-main border border-emerald-500/30 rounded-core-circle-xl shadow-core-circle-subtle w-full max-w-xl">
                 <div className="flex items-center gap-4">
                   <div className="relative flex items-center justify-center">
                     <Spinner variant="glow" size="lg" thickness={4} />
                     <Banknotes size={18} className="absolute text-emerald-400" />
                   </div>
                   <div className="space-y-1">
-                    <span className="font-mono text-sm font-bold text-slate-200">ISO-20022 SETTLEMENT PIPELINE</span>
-                    <p className="text-xs text-emerald-400">Verifying zero-knowledge rollup proofs...</p>
+                    <span className="font-mono text-sm font-bold text-core-circle-text-main">ISO-20022 SETTLEMENT PIPELINE</span>
+                    <p className="text-xs text-emerald-600">Verifying zero-knowledge rollup proofs...</p>
                   </div>
                 </div>
                 <Badge variant="success" size="sm" shape="pill">24ms Latency</Badge>
@@ -157,7 +157,7 @@ export default function SpinnerContainer({ headerContent, breadcrumbItems }: Spi
           >
             <ComponentPreview
               title="DevOps Terminal Health Monitor"
-              code={`<div className="flex items-center justify-between p-6 bg-slate-900 text-white border border-slate-800 rounded-2xl shadow-xl w-full">
+              code={`<div className="flex items-center justify-between p-6 bg-white text-core-circle-text-main border border-core-circle-border-main rounded-core-circle-xl shadow-core-circle-subtle w-full">
   <div className="flex items-center gap-4">
     <Spinner variant="dark" size="md" thickness={3} />
     <div className="space-y-1">
@@ -168,7 +168,7 @@ export default function SpinnerContainer({ headerContent, breadcrumbItems }: Spi
   <Badge variant="info" size="sm" shape="pill">Healthy</Badge>
 </div>`}
             >
-              <div className="flex items-center justify-between p-6 bg-slate-900 text-white border border-slate-800 rounded-2xl shadow-xl w-full max-w-xl">
+              <div className="flex items-center justify-between p-6 bg-white text-core-circle-text-main border border-core-circle-border-main rounded-core-circle-xl shadow-core-circle-subtle w-full max-w-xl">
                 <div className="flex items-center gap-4">
                   <Spinner variant="dark" size="md" thickness={3} />
                   <div className="space-y-1">
@@ -261,7 +261,7 @@ export default function SpinnerContainer({ headerContent, breadcrumbItems }: Spi
                 title="Gradient & Glow Styles"
                 code={`<Spinner variant="gradient" size="lg" />\n<Spinner variant="glow" size="lg" />`}
               >
-                <div className="flex items-center gap-10 p-6 bg-slate-950 rounded-2xl">
+                <div className="flex items-center gap-10 p-6 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main">
                   <div className="flex flex-col items-center gap-2">
                     <Spinner variant="gradient" size="lg" />
                     <span className="text-xs text-purple-300">Gradient</span>
@@ -319,7 +319,7 @@ export default function SpinnerContainer({ headerContent, breadcrumbItems }: Spi
                 title="Surface Spinners"
                 code={`<Spinner variant="glassmorphic" size="lg" />\n<Spinner variant="dark" size="lg" />\n<Spinner variant="white" size="lg" />`}
               >
-                <div className="flex items-center gap-10 p-6 bg-slate-900 rounded-2xl">
+                <div className="flex items-center gap-10 p-6 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main">
                   <div className="flex flex-col items-center gap-2">
                     <Spinner variant="glassmorphic" size="lg" />
                     <span className="text-xs text-slate-300">Glassmorphic</span>

@@ -63,7 +63,7 @@ export const avatarFallbackVariants = cva(
 );
 
 export const avatarStatusVariants = cva(
-  'absolute rounded-full border-2 border-white',
+  'absolute rounded-full border-2 border-white z-20',
   {
     variants: {
       status: {
@@ -75,10 +75,10 @@ export const avatarStatusVariants = cva(
       size: {
         xs: 'h-1.5 w-1.5 bottom-0 right-0',
         sm: 'h-2 w-2 bottom-0 right-0',
-        md: 'h-2.5 w-2.5 bottom-0 right-0.5',
-        lg: 'h-3 w-3 bottom-0.5 right-0.5',
-        xl: 'h-4 w-4 bottom-1 right-1',
-        '2xl': 'h-6 w-6 bottom-1.5 right-1.5',
+        md: 'h-2.5 w-2.5 bottom-0 right-0',
+        lg: 'h-3 w-3 bottom-0 right-0',
+        xl: 'h-4 w-4 bottom-0.5 right-0.5',
+        '2xl': 'h-6 w-6 bottom-1 right-1',
       }
     },
     defaultVariants: {

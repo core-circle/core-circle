@@ -1,5 +1,6 @@
 'use client';
 
+import { TypographyContainerProps } from '../../../interface/containers/atoms/typography.types';
 import React from 'react';
 import Link from 'next/link';
 import { Typography, Breadcrumb, Tabs, Badge, Button } from '@core-circle/ui';
@@ -23,16 +24,9 @@ import PropsTable from '../../../components/props-table';
 import { TypographyPlayground } from '../../../components/playground/typography/typographyPlayground';
 import { typographyPageStyles as s } from './typography.styles';
 import { TYPOGRAPHY_PROPS_DATA } from '../../../constants/atoms-page/typography/typographyConstants';
-export interface TypographyContainerProps {
-  sections?: any[];
-  headerContent?: {
-    title: string;
-    description: string;
-  };
-  breadcrumbItems?: any[];
-}
 
-export default function TypographyContainer({ headerContent, breadcrumbItems }: any) {
+
+export default function TypographyContainer({ headerContent, breadcrumbItems }: TypographyContainerProps) {
   const tabItems = [
     {
       id: 'theming',
@@ -162,7 +156,7 @@ export default function TypographyContainer({ headerContent, breadcrumbItems }: 
           >
             <ComponentPreview
               title="Terminal Stream Typography"
-              code={`<div className="p-6 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl space-y-3 w-full">
+              code={`<div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle space-y-3 w-full">
   <div className="flex items-center justify-between">
     <Typography variant="code" color="glow">
       SYS_INF: gRPC listener bound to 0.0.0.0:50051
@@ -174,7 +168,7 @@ export default function TypographyContainer({ headerContent, breadcrumbItems }: 
   </Typography>
 </div>`}
             >
-              <div className="p-6 bg-slate-950 text-white rounded-2xl border border-slate-800 shadow-xl space-y-3 w-full">
+              <div className="p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle space-y-3 w-full">
                 <div className="flex items-center justify-between">
                   <Typography variant="code" color="glow">
                     SYS_INF: gRPC listener bound to 0.0.0.0:50051

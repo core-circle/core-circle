@@ -11,9 +11,9 @@ export const indicatorBadgeVariants = cva(
         destructive: 'bg-red-500 text-white shadow-sm',
         info: 'bg-blue-500 text-white shadow-sm',
         gradient: 'bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white shadow-sm',
-        glassmorphic: 'backdrop-blur-md bg-slate-900/85 text-white ring-white/70 shadow-sm',
+        glassmorphic: 'backdrop-blur-md bg-white/80 text-slate-900 border border-white/80 shadow-sm',
         soft: 'bg-blue-100 text-blue-800 font-extrabold',
-        bordered: 'bg-white text-slate-900 border-2 border-slate-900 ring-0 shadow-sm',
+        bordered: 'bg-white text-slate-900 border-2 border-core-circle-border-strong ring-0 shadow-sm',
         neutral: 'bg-slate-500 text-white shadow-sm',
       },
       size: {

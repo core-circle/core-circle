@@ -26,7 +26,7 @@ import {
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { atomsPageStyles as s } from '../atoms.styles';
+import { otpInputPageStyles as s } from './otp-input.styles';
 import { 
   OTP_INPUT_PROPS_DATA, 
   OTP_INPUT_BREADCRUMB_ITEMS 

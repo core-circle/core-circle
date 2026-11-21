@@ -131,8 +131,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
             {startIcon && (
               <div className={cn(
                 "flex items-center justify-center text-core-circle-text-muted transition-colors pl-4",
-                isOpen && "text-core-circle-primary",
-                isMaterialAnimated && "mt-2"
+                isOpen && "text-core-circle-primary"
               )}>
                 {startIcon}
               </div>
@@ -142,8 +141,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
               <div className={cn(
                 prefixVariants({ size }),
                 !startIcon && 'pl-4',
-                startIcon && 'pl-2',
-                isMaterialAnimated && "mt-2"
+                startIcon && 'pl-2'
               )}>
                 {prefix}
               </div>
@@ -152,9 +150,8 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
             <div className={cn(
               selectVariants({ size, variant }),
               'flex items-center',
-              variant === 'outline' && !startIcon && !prefix && 'pl-4',
-              (startIcon || prefix) && 'pl-2',
-              isMaterialAnimated && "mt-2"
+              !startIcon && !prefix && 'pl-4',
+              (startIcon || prefix) && 'pl-2'
             )}>
               <span className={cn(
                 "truncate",
@@ -166,8 +163,7 @@ export const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 
             <div className={cn(
               "absolute right-3 pointer-events-none text-core-circle-text-muted transition-transform duration-200",
-              isOpen && "rotate-180",
-              isMaterialAnimated && "mt-2"
+              isOpen && "rotate-180"
             )}>
               <ChevronDown size={18} />
             </div>

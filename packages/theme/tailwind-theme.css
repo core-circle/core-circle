@@ -1,5 +1,3 @@
-@import "./fonts.css";
-
 @theme {
   /* Font Families (Tailwind v4: --font-* generates font-* utility classes) */
   --font-core-circle-primary: "Montserrat", sans-serif;

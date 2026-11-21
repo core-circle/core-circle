@@ -28,7 +28,7 @@ import {
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { atomsPageStyles as s } from '../atoms.styles';
+import { colorPickerPageStyles as s } from './color-picker.styles';
 import { 
   COLOR_PICKER_PROPS_DATA, 
   COLOR_PICKER_BREADCRUMB_ITEMS 

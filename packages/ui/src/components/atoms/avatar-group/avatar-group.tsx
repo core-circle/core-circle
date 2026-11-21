@@ -56,7 +56,21 @@ export const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         className={cn(avatarGroupVariants({ spacing }), className)}
         {...props}
       >
-        {/* Render overflow counter if applicable (placed first in DOM for flex-row-reverse z-indexing) */}
+        {visibleAvatars.map((avatar, idx) => (
+          <div
+            key={idx}
+            className={cn(avatarGroupItemVariants({ variant, size }))}
+            style={{ zIndex: totalCount - idx }}
+          >
+            {React.isValidElement(avatar)
+              ? React.cloneElement(avatar as React.ReactElement<any>, {
+                  size: (avatar.props as any)?.size || size,
+                  className: cn('hover:scale-100', (avatar.props as any)?.className),
+                })
+              : avatar}
+          </div>
+        ))}
+
         {overflowCount > 0 && (
           renderOverflow ? (
             renderOverflow(overflowCount)
@@ -64,22 +78,12 @@ export const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
             <span
               aria-label={`+${overflowCount} more users`}
               className={cn(avatarGroupOverflowVariants({ variant, size }))}
+              style={{ zIndex: 1 }}
             >
               +{overflowCount}
             </span>
           )
         )}
-
-        {/* Reverse array for correct stack overlap visually */}
-        {visibleAvatars.slice().reverse().map((avatar, idx) => (
-          <div key={idx} className={cn(avatarGroupItemVariants({ variant }))}>
-            {React.isValidElement(avatar)
-              ? React.cloneElement(avatar as React.ReactElement<any>, {
-                  size: (avatar.props as any)?.size || size,
-                })
-              : avatar}
-          </div>
-        ))}
       </div>
     );
   }

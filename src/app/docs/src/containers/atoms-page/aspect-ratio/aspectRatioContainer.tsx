@@ -1,5 +1,6 @@
 'use client';
 
+import { AspectRatioContainerProps } from '../../../interface/containers/atoms/aspect-ratio.types';
 import React from 'react';
 import Link from 'next/link';
 import { AspectRatio, Breadcrumb, Tabs, Button, Badge, Typography } from '@core-circle/ui';
@@ -21,7 +22,10 @@ import { AspectRatioPlayground } from '../../../components/playground/aspect-rat
 import { aspectRatioPageStyles as s } from './aspect-ratio.styles';
 import { ASPECT_RATIO_PROPS_DATA } from '../../../constants/atoms-page/aspect-ratio/aspectRatioConstants';
 
-export default function AspectRatioContainer({ headerContent, breadcrumbItems }: any) {
+export default function AspectRatioContainer({
+  headerContent,
+  breadcrumbItems
+}: AspectRatioContainerProps) {
   const tabItems = [
     {
       id: 'theming',
@@ -39,7 +43,7 @@ export default function AspectRatioContainer({ headerContent, breadcrumbItems }:
               title="16:9 Cinematic Video Container"
               code={`<div className="w-full max-w-xl mx-auto">
   <AspectRatio ratio="16:9" variant="bordered">
-    <div className="bg-slate-950 text-white flex flex-col items-center justify-center h-full w-full">
+    <div className="bg-slate-100 text-slate-700 flex flex-col items-center justify-center h-full w-full">
       <Play size={48} className="text-core-circle-primary hover:scale-110 transition-transform cursor-pointer" />
       <span className="text-xs font-mono font-bold text-slate-300 mt-2">4K UHD STREAM (60 FPS)</span>
     </div>
@@ -48,7 +52,7 @@ export default function AspectRatioContainer({ headerContent, breadcrumbItems }:
             >
               <div className="w-full max-w-xl mx-auto">
                 <AspectRatio ratio="16:9" variant="bordered">
-                  <div className="bg-slate-950 text-white flex flex-col items-center justify-center h-full w-full">
+                  <div className="bg-slate-100 text-slate-700 flex flex-col items-center justify-center h-full w-full">
                     <Play size={48} className="text-core-circle-primary hover:scale-110 transition-transform cursor-pointer" />
                     <span className="text-xs font-mono font-bold text-slate-300 mt-2">4K UHD STREAM (60 FPS)</span>
                   </div>
@@ -67,18 +71,18 @@ export default function AspectRatioContainer({ headerContent, breadcrumbItems }:
               title="1:1 Square Photo Card"
               code={`<div className="w-64 mx-auto">
   <AspectRatio ratio="1:1" variant="gradient">
-    <div className="bg-slate-900 text-white flex flex-col items-center justify-center h-full w-full p-4">
-      <Sparkles size={32} className="text-purple-400" />
-      <span className="font-bold text-sm text-white mt-2">1:1 Square Product Shot</span>
+    <div className="bg-slate-100 text-slate-700 flex flex-col items-center justify-center h-full w-full p-4">
+      <Sparkles size={32} className="text-purple-500" />
+      <span className="font-bold text-sm text-core-circle-text-main mt-2">1:1 Square Product Shot</span>
     </div>
   </AspectRatio>
 </div>`}
             >
               <div className="w-64 mx-auto">
                 <AspectRatio ratio="1:1" variant="gradient">
-                  <div className="bg-slate-900 text-white flex flex-col items-center justify-center h-full w-full p-4">
-                    <Sparkles size={32} className="text-purple-400" />
-                    <span className="font-bold text-sm text-white mt-2">1:1 Square Product Shot</span>
+                  <div className="bg-slate-100 text-slate-700 flex flex-col items-center justify-center h-full w-full p-4">
+                    <Sparkles size={32} className="text-purple-500" />
+                    <span className="font-bold text-sm text-core-circle-text-main mt-2">1:1 Square Product Shot</span>
                   </div>
                 </AspectRatio>
               </div>
@@ -95,7 +99,7 @@ export default function AspectRatioContainer({ headerContent, breadcrumbItems }:
               title="21:9 Panoramic Terminal"
               code={`<div className="w-full max-w-2xl mx-auto">
   <AspectRatio ratio="21:9" variant="glow">
-    <div className="bg-slate-950 text-emerald-400 font-mono text-xs flex items-center justify-between p-6 h-full w-full">
+    <div className="bg-slate-50 text-emerald-600 font-mono text-xs flex items-center justify-between p-6 h-full w-full">
       <div>
         <p className="font-bold text-sm">21:9 Panoramic Cloud Metrics</p>
         <p className="text-slate-400 mt-1">Cluster Nodes: 128 • CPU Load: 18.2% • Ingress: 42Gbps</p>
@@ -107,7 +111,7 @@ export default function AspectRatioContainer({ headerContent, breadcrumbItems }:
             >
               <div className="w-full max-w-2xl mx-auto">
                 <AspectRatio ratio="21:9" variant="glow">
-                  <div className="bg-slate-950 text-emerald-400 font-mono text-xs flex items-center justify-between p-6 h-full w-full">
+                  <div className="bg-slate-50 text-emerald-600 font-mono text-xs flex items-center justify-between p-6 h-full w-full">
                     <div>
                       <p className="font-bold text-sm">21:9 Panoramic Cloud Metrics</p>
                       <p className="text-slate-400 mt-1">Cluster Nodes: 128 • CPU Load: 18.2% • Ingress: 42Gbps</p>
@@ -157,8 +161,8 @@ export default function AspectRatioContainer({ headerContent, breadcrumbItems }:
               title="9:16 Vertical Reel Frame"
               code={`<div className="w-48 mx-auto">
   <AspectRatio ratio="9:16" variant="dark">
-    <div className="bg-slate-900 text-white flex flex-col items-center justify-center h-full w-full p-4">
-      <span className="font-bold text-sm text-white">9:16 Mobile Reel</span>
+    <div className="bg-slate-100 text-slate-700 flex flex-col items-center justify-center h-full w-full p-4">
+      <span className="font-bold text-sm text-core-circle-text-main">9:16 Mobile Reel</span>
       <p className="text-xs text-slate-400 mt-1 text-center">Portrait video asset</p>
     </div>
   </AspectRatio>
@@ -166,8 +170,8 @@ export default function AspectRatioContainer({ headerContent, breadcrumbItems }:
             >
               <div className="w-48 mx-auto">
                 <AspectRatio ratio="9:16" variant="dark">
-                  <div className="bg-slate-900 text-white flex flex-col items-center justify-center h-full w-full p-4">
-                    <span className="font-bold text-sm text-white">9:16 Mobile Reel</span>
+                  <div className="bg-slate-100 text-slate-700 flex flex-col items-center justify-center h-full w-full p-4">
+                    <span className="font-bold text-sm text-core-circle-text-main">9:16 Mobile Reel</span>
                     <p className="text-xs text-slate-400 mt-1 text-center">Portrait video asset</p>
                   </div>
                 </AspectRatio>
@@ -208,15 +212,15 @@ export default function AspectRatioContainer({ headerContent, breadcrumbItems }:
             title="2. Radiant Gradient & Neon Glow Styles"
             description="Surface halo styling around the proportioned media element."
           >
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-8 bg-slate-950 rounded-2xl border border-slate-800 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-8 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main w-full">
               <AspectRatio ratio="16:9" variant="glassmorphic">
                 <div className="bg-white/10 flex items-center justify-center font-bold text-xs text-white h-full">Glassmorphic</div>
               </AspectRatio>
               <AspectRatio ratio="16:9" variant="gradient">
-                <div className="bg-slate-900 flex items-center justify-center font-bold text-xs text-purple-300 h-full">Gradient Border</div>
+                <div className="bg-slate-100 flex items-center justify-center font-bold text-xs text-purple-300 h-full">Gradient Border</div>
               </AspectRatio>
               <AspectRatio ratio="16:9" variant="glow">
-                <div className="bg-slate-900 flex items-center justify-center font-bold text-xs text-emerald-400 h-full">Neon Glow</div>
+                <div className="bg-slate-100 flex items-center justify-center font-bold text-xs text-emerald-400 h-full">Neon Glow</div>
               </AspectRatio>
             </div>
           </DocSection>

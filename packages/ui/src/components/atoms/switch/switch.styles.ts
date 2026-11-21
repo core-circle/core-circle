@@ -13,10 +13,10 @@ export const switchVariants = cva(
         info: 'bg-slate-200 data-[state=checked]:bg-sky-500',
         gradient: 'bg-slate-200 data-[state=checked]:bg-gradient-to-r data-[state=checked]:from-purple-600 data-[state=checked]:to-indigo-600',
         glassmorphic: 'bg-slate-200/60 backdrop-blur-sm border border-slate-300/50 data-[state=checked]:bg-blue-600/80 data-[state=checked]:border-blue-400',
-        glow: 'bg-slate-900 border border-slate-800 data-[state=checked]:bg-emerald-950 data-[state=checked]:border-emerald-400 data-[state=checked]:shadow-[0_0_15px_rgba(52,211,153,0.5)]',
+        glow: 'bg-slate-200 border border-emerald-300 data-[state=checked]:bg-emerald-600 data-[state=checked]:shadow-[0_0_15px_rgba(52,211,153,0.5)]',
         floating: 'bg-slate-200 shadow-inner data-[state=checked]:bg-core-circle-primary data-[state=checked]:shadow-md',
         accent: 'bg-slate-200 data-[state=checked]:bg-blue-600',
-        dark: 'bg-slate-800 border border-slate-700 data-[state=checked]:bg-core-circle-primary data-[state=checked]:border-core-circle-primary',
+        dark: 'bg-slate-200 border border-slate-300 data-[state=checked]:bg-slate-800',
       },
       size: {
         sm: 'h-5 w-9',

@@ -34,7 +34,7 @@ export const inputWrapperVariants = cva(
         gradient: 'p-[1.5px] rounded-core-circle-lg bg-gradient-to-r from-purple-500 via-indigo-500 to-purple-500 focus-within:from-purple-600 focus-within:to-indigo-600 shadow-sm',
         pill: 'border border-core-circle-border-main bg-white rounded-full focus-within:border-core-circle-primary focus-within:ring-2 focus-within:ring-core-circle-primary/10',
         accent: 'border-2 border-blue-500 bg-blue-50/20 rounded-core-circle-lg focus-within:bg-white focus-within:border-blue-600 focus-within:ring-2 focus-within:ring-blue-500/20',
-        dark: 'border border-slate-700 bg-slate-900 text-white rounded-core-circle-lg focus-within:border-core-circle-primary focus-within:ring-2 focus-within:ring-core-circle-primary/20',
+        dark: 'border border-slate-300 bg-slate-50 text-slate-900 rounded-core-circle-lg focus-within:border-core-circle-primary focus-within:ring-2 focus-within:ring-core-circle-primary/20',
       },
       hasError: {
         true: 'border-core-circle-warning focus-within:border-core-circle-warning focus-within:ring-core-circle-warning/10',
@@ -70,15 +70,9 @@ export const inputVariants = cva(
         gradient: 'bg-white rounded-[7px]',
         pill: 'px-6',
         accent: '',
-        dark: 'text-white placeholder:text-slate-500',
+        dark: 'text-slate-900 placeholder:text-slate-400',
       }
     },
-    compoundVariants: [
-      {
-        variant: 'material-animated',
-        className: 'pt-6 pb-1.5',
-      }
-    ],
     defaultVariants: {
       size: 'md',
     },
@@ -108,7 +102,7 @@ export const labelVariants = cva(
       variant: {
         outline: 'text-core-circle-text-muted',
         material: 'text-core-circle-primary',
-        'material-animated': 'absolute left-4 top-4 mb-0 text-core-circle-sm font-core-circle-medium normal-case tracking-normal text-core-circle-text-muted',
+        'material-animated': 'absolute left-4 top-1/2 -translate-y-1/2 mb-0 text-core-circle-sm font-core-circle-medium normal-case tracking-normal text-core-circle-text-muted',
         ghost: 'text-core-circle-text-muted',
         standard: 'text-core-circle-text-muted',
         filled: 'text-core-circle-text-muted',
@@ -117,7 +111,7 @@ export const labelVariants = cva(
         gradient: 'text-purple-900 font-bold',
         pill: 'text-core-circle-text-muted',
         accent: 'text-blue-900 font-bold',
-        dark: 'text-slate-300 font-bold',
+        dark: 'text-slate-700 font-bold',
       },
       hasError: {
         true: 'text-core-circle-warning',

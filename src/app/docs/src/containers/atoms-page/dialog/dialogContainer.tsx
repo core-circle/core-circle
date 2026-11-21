@@ -30,7 +30,7 @@ import {
 } from '@core-circle/icons';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import { atomsPageStyles as s } from '../atoms.styles';
+import { dialogPageStyles as s } from './dialog.styles';
 import { 
   DIALOG_PROPS_DATA, 
   DIALOG_BREADCRUMB_ITEMS 

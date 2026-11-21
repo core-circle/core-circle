@@ -137,11 +137,11 @@ export default function SelectContainer({ headerContent, breadcrumbItems }: Sele
           >
             <ComponentPreview
               title="Kubernetes Cluster Switcher"
-              code={`<div className="flex flex-col gap-4 p-6 bg-slate-900 text-white rounded-2xl shadow-xl w-full">
+              code={`<div className="flex flex-col gap-4 p-6 bg-white text-core-circle-text-main rounded-core-circle-xl border border-core-circle-border-main shadow-core-circle-subtle w-full">
   <div className="flex items-center justify-between">
     <div className="flex items-center gap-2">
       <Cloud size={18} className="text-core-circle-primary" />
-      <span className="font-mono text-xs font-bold text-slate-200">ACTIVE INFRASTRUCTURE CLUSTER</span>
+      <span className="font-mono text-xs font-bold text-core-circle-text-main">ACTIVE INFRASTRUCTURE CLUSTER</span>
     </div>
     <Badge variant="primary" size="sm" shape="pill">4 Regions Active</Badge>
   </div>
@@ -160,7 +160,7 @@ export default function SelectContainer({ headerContent, breadcrumbItems }: Sele
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
                     <Cloud size={18} className="text-core-circle-primary" />
-                    <span className="font-mono text-xs font-bold text-slate-200">ACTIVE INFRASTRUCTURE CLUSTER</span>
+                    <span className="font-mono text-xs font-bold text-core-circle-text-main">ACTIVE INFRASTRUCTURE CLUSTER</span>
                   </div>
                   <Badge variant="primary" size="sm" shape="pill">4 Regions Active</Badge>
                 </div>
@@ -430,7 +430,7 @@ export default function SelectContainer({ headerContent, breadcrumbItems }: Sele
                 title="Dark Mode Style"
                 code={`<Select variant="dark" label="Cluster Terminal" options={options} fullWidth />`}
               >
-                <div className="w-full p-4 bg-slate-950 rounded-2xl">
+                <div className="w-full p-4 bg-core-circle-bg-surface rounded-core-circle-xl border border-core-circle-border-main">
                   <Select variant="dark" label="Cluster Terminal" options={standardFruitOptions} defaultValue="apple" fullWidth />
                 </div>
               </ComponentPreview>
