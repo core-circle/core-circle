@@ -151,4 +151,23 @@ When developing or upgrading documentation containers, pages, and constants in `
    - In component primitives (`packages/ui/`), avoid hardcoding pitch-black surfaces (`bg-slate-950`). Use semantic tokens or soft neutral surfaces (`bg-core-circle-bg-surface`, `bg-slate-50`, `bg-slate-100`).
    - In overlapping cluster components (such as `AvatarGroup`), always enforce natural left-to-right stacking order with decreasing z-indexes (`style={{ zIndex: totalCount - idx }}`). This guarantees that bottom-right status indicators (`online`, `busy`) are never clipped into half-moons by adjacent sibling circles.
 
+---
+
+## 7. Mandatory Storybook Companion Protocol
+
+Every new UI component (Atom or Molecule) in `@core-circle/ui` must have a corresponding Storybook story file before it can be merged into `main`.
+
+1. **Colocation & Naming**:
+   - Atoms: `packages/ui/src/stories/atoms/[name]/[name].stories.tsx`
+   - Molecules: `packages/ui/src/stories/molecules/[name]/[name].stories.tsx`
+2. **Strict Relative Component Import**:
+   - Must import component relatively from `../../../components/atoms/[name]/[name]` (or `../../../components/molecules/[name]/[name]`).
+   - Never import from `./[name]` or `../[name]`.
+3. **Story Requirements**:
+   - Must export default `Meta` with `tags: ['autodocs']`.
+   - Provide stories demonstrating default state, key variants, sizes, and interactive states.
+4. **Pre-Merge CI Verification**:
+   - The PR gatekeeper job (`lint-and-build`) automatically builds Storybook (`npm run build-storybook`) on every PR to `main`.
+   - Broken imports, missing component exports, or invalid args in Storybook will immediately fail the PR check and block merge.
+
 
