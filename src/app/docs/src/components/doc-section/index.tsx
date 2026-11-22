@@ -4,7 +4,7 @@ import { DocSectionProps } from '../../interface/components/doc-section.types';
 import { docSectionStyles as s } from './doc-section.styles';
 
 const DocSection = ({ id, title, description, children, showBorder }: DocSectionProps) => (
-  <section id={id}>
+  <section id={id} className="w-full">
     <div className={s.headerWrapper}>
       <Typography 
         as="h2"

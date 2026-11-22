@@ -40,6 +40,11 @@ import {
   Star,
   Cloud,
   Clock,
+  Menu,
+  ArrowUpRight,
+  Activity,
+  Folder,
+  AlertTriangle,
 } from '@core-circle/icons';
 import React from 'react';
 
@@ -63,6 +68,72 @@ export const ATOMS_HEADER_CONTENT = {
  * Atoms List for the main grid (Alphabetically Arranged)
  */
 export const ATOM_CARDS = [
+  {
+    title: 'Pagination',
+    description: 'An accessible multi-page navigation control featuring automated sibling ellipsis collapse and directional arrow buttons.',
+    href: '/atoms/pagination',
+    icon: ListIcon,
+  },
+  {
+    title: 'Timeline',
+    description: 'A sequential milestone progression component visualizing chronological events, delivery tracking, and pipelines.',
+    href: '/atoms/timeline',
+    icon: Clock,
+  },
+  {
+    title: 'PulseDot',
+    description: 'An animated live status indicator beacon with a radiating radar ping pulse effect.',
+    href: '/atoms/pulse-dot',
+    icon: CircleDot,
+  },
+  {
+    title: 'Callout',
+    description: 'A prominent contextual banner designed to surface key updates, operational alerts, status announcements, and warnings.',
+    href: '/atoms/callout',
+    icon: AlertTriangle,
+  },
+  {
+    title: 'EmptyState',
+    description: 'An informative placeholder surface communicating that a table, list, search, or inbox has no data.',
+    href: '/atoms/empty-state',
+    icon: Folder,
+  },
+  {
+    title: 'Sparkline',
+    description: 'A pure zero-dependency lightweight SVG micro-chart (line, area, or bar) for compact trend visuals.',
+    href: '/atoms/sparkline',
+    icon: Activity,
+  },
+  {
+    title: 'Stat',
+    description: 'A key performance indicator metric block with prominent typography, label, contextual description, and trend indicators.',
+    href: '/atoms/stat',
+    icon: PresentationChart,
+  },
+  {
+    title: 'TrendBadge',
+    description: 'A compact contextual delta indicator showing growth, decline, and neutral metrics with directional icons.',
+    href: '/atoms/trend-badge',
+    icon: ArrowUpRight,
+  },
+  {
+    title: 'HoverCard',
+    description: 'A floating preview card triggered on pointer hover or focus with configurable delays and placements.',
+    href: '/atoms/hover-card',
+    icon: Info,
+  },
+  {
+    title: 'ContextMenu',
+    description: 'An accessible right-click popup menu positioned at pointer coordinates with viewport clamping and keyboard shortcuts.',
+    href: '/atoms/context-menu',
+    icon: SquareEdit,
+  },
+  {
+    title: 'DropdownMenu',
+    description: 'An interactive contextual action menu triggered by click with shortcuts and submenus.',
+    href: '/atoms/dropdown-menu',
+    icon: Menu,
+  },
   {
     title: 'Accordion',
     description: 'A vertically stacked set of interactive headings that reveal content sections.',

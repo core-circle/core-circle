@@ -108,7 +108,23 @@ Always consult `src/app/docs/src/containers/atoms-page/accordion/accordionContai
 
 5. **Icon Verification**:
    - Only import icons that actually exist in `@core-circle/icons` (`packages/icons/index.ts`).
-   - Common traps: Use `Cloud` not `Server`, `UserIcon` not `User`, `DocumentText` not `FileText`, `AudioWaveform` not `Music`.
+   - Common traps & mandatory replacements:
+     - `DollarSign` $\rightarrow$ use `BadgeDollarSign`
+     - `Copy` $\rightarrow$ use `CopyIcon`
+     - `TrendingUp` / `TrendingDown` $\rightarrow$ use `ArrowUpRight` / `ArrowDownRight` or `Activity`
+     - `Trash` $\rightarrow$ use `XIcon`
+     - `CheckCircle` $\rightarrow$ use `CircleCheck`
+     - `Server` $\rightarrow$ use `Cloud` or `Terminal`
+     - `User` $\rightarrow$ use `UserIcon` or `UserCircle`
+     - `FileText` $\rightarrow$ use `DocumentText` or `File`
+     - `Music` $\rightarrow$ use `AudioWaveform` or `Play`
+     - `Pencil` / `Edit` $\rightarrow$ use `SquareEdit`
+     - `Refresh` $\rightarrow$ use `Rotate`
+     - `Eye` / `EyeOff` $\rightarrow$ use `EyeIcon`
+     - `QrCode` $\rightarrow$ use `Barcode` or `CodeIcon`
+     - `LayoutGrid` $\rightarrow$ use `Grid`
+     - `Globe` $\rightarrow$ use `SearchIcon` or `AtSign`
+     - `X` $\rightarrow$ use `XIcon`
 
 6. **Canonical DocPageShell & Data-Driven 5 Tabs Architecture**:
    - Containers MUST use `<DocPageShell headerContent={headerContent} breadcrumbItems={breadcrumbItems} tabs={{ theming, variants, playground, mockCode, overview }} />` (`src/app/docs/src/components/doc-page-shell/docPageShell.tsx`) powered by `DOCS_CANONICAL_TABS` (`src/app/docs/src/constants/docs-tabs-constant.tsx`).
@@ -124,9 +140,25 @@ Always consult `src/app/docs/src/containers/atoms-page/accordion/accordionContai
    - Always use clean surface tokens (`bg-white` or `bg-core-circle-bg-surface`, `border-core-circle-border-main`, `text-core-circle-text-main`) in showcase cards.
    - Never introduce localized dark wrappers (`bg-slate-900`, `bg-slate-950`, `dark:bg-slate-900`), which cause black-on-black invisible text and inverted hover states. Full dark mode will be ported globally at the root level once the webapp is completed.
 
-8. **Strict Quality Gates & Lint Warning Metric (< 100 Warnings)**:
+8. **Playground Form Controls Standard (Accordion Benchmark & Zero Native HTML Elements)**:
+   - In all interactive playgrounds (`*Playground.tsx`), developers MUST strictly use `@core-circle/ui` primitives (`<Select>`, `<TextInput>`, `<Checkbox>`, `<Switch>`, `<SliderInput>`).
+   - Never use raw HTML `<select>`, `<input>`, or `<label>` in control panels.
+   - Follow `AccordionPlayground` layout: single unified container card (`s.container`), integrated top controls panel (`s.controlsWrapper`), center preview canvas (`s.previewWrapper` / `s.previewArea`), and integrated dark code footer (`s.codeSection`) with syntax highlighting and copy button.
+   - Every playground must have a companion `[Name]Playground.styles.ts` importing `accordionPlaygroundStyles`.
+
+9. **Theming Spacing Architecture (`tabContentWrapper`)**:
+   - Wrap tab contents in `<div className={s.tabContentWrapper}>` using `tabContentWrapper: 'flex flex-col gap-12 w-full'` from `atoms.styles.ts`.
+   - Ensures an exact 48px gap between preview cards and sections. `<DocSection>` must have `className="w-full"`.
+
+10. **Compound Variant Propagation**:
+   - Primitives supporting surface variants (`dark`, `accent`) must propagate `variant` to all child slot style functions (`statLabelVariants({ variant, size })`, etc.) to prevent invisible black-on-black text on dark surfaces.
+
+11. **Strict Quality Gates & Lint Warning Metric (< 100 Warnings)**:
    - Monorepo lint warnings must **never exceed 100** (`nx run-many -t lint`).
    - Primitives in `@core-circle/ui`, `@core-circle/theme`, and `@core-circle/icons` must maintain **0 errors and 0 warnings**.
    - React 19 Clean Imports: No dead `import React from 'react'` in `.ts` constants or stories.
    - React Hooks: Memoize effect callbacks (`useCallback`) and declare all effect dependencies (`react-hooks/exhaustive-deps`).
    - Accessibility: Wrap all JSX emojis in `<span role="img" aria-label="...">`. Avoid single-child fragments `<>{child}</>`.
+
+12. **STRICT NO GIT PUSH MANDATE**:
+   - All work must stay local within the working tree. Never execute `git push` or publish branches.
