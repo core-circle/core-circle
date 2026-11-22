@@ -28,7 +28,7 @@ export interface DocPageShellProps {
  * Reusable layout shell for documentation component showcase pages.
  * Handles header, breadcrumbs, typography, and standard 5-tab composition.
  */
-export default function DocPageShell({
+export function DocPageShell({
   headerContent,
   breadcrumbItems,
   tabs,
@@ -67,3 +67,5 @@ export default function DocPageShell({
     </div>
   );
 }
+
+export default DocPageShell;
