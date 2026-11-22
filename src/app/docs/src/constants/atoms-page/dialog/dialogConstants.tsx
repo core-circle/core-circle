@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactNode } from 'react';
 import { Dialog, Button, TextInput } from '@core-circle/ui';
 import {

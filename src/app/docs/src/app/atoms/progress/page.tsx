@@ -1,5 +1,4 @@
 import { 
-  PROGRESS_SECTIONS, 
   PROGRESS_HEADER_CONTENT, 
   PROGRESS_BREADCRUMB_ITEMS 
 } from '../../../constants/atoms-page/progress/progressConstants';
@@ -13,7 +12,6 @@ export const metadata = {
 export default function ProgressPage() {
   return (
     <ProgressContainer 
-      sections={PROGRESS_SECTIONS}
       headerContent={PROGRESS_HEADER_CONTENT}
       breadcrumbItems={PROGRESS_BREADCRUMB_ITEMS}
     />

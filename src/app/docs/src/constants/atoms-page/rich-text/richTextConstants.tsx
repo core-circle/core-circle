@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { RichText, Badge } from '@core-circle/ui';
 import { Shield, Terminal, Star, DocumentText, Lock, HomeIcon } from '@core-circle/icons';

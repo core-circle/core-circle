@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactNode } from 'react';
 import { Star, Lock, CircleCheck, Terminal } from '@core-circle/icons';
 import { Button } from '@core-circle/ui';
