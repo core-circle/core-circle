@@ -1,567 +1,132 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import { 
-  Breadcrumb, 
-  Tabs, 
-  Dialog, 
-  Button, 
-  Badge, 
-  Typography, 
-  TextInput 
-} from '@core-circle/ui';
-import { 
-  Shield, 
-  Sparkles, 
-  Star, 
-  CheckIcon, 
-  Layers, 
-  Play, 
-  CodeIcon, 
-  Info, 
-  Palette, 
-  CircleX, 
-  Alert, 
-  Lock, 
-  CreditCard, 
-  UserIcon, 
-  Mail 
-} from '@core-circle/icons';
-import ComponentPreview from '../../../components/component-preview';
+import { useMemo } from 'react';
+import DocPageShell from '../../../components/doc-page-shell/docPageShell';
 import DocSection from '../../../components/doc-section';
-import { dialogPageStyles as s } from './dialog.styles';
-import { 
-  DIALOG_PROPS_DATA, 
-  DIALOG_BREADCRUMB_ITEMS 
-} from '../../../constants/atoms-page/dialog/dialogConstants';
-import { DialogPlayground } from '../../../components/playground/dialog/dialogPlayground';
-import PropsTable from '../../../components/props-table';
+import ComponentPreview from '../../../components/component-preview';
 import CodeSnippet from '../../../components/code-snippet';
+import PropsTable from '../../../components/props-table';
+import { DialogPlayground } from '../../../components/playground/dialog/dialogPlayground';
+import { Typography } from '@core-circle/ui';
+import { dialogPageStyles as s } from './dialog.styles';
+import {
+  DIALOG_THEME_CONFIGS,
+  DIALOG_VARIANT_GROUPS,
+  DIALOG_PLAYGROUND_SECTION,
+  DIALOG_MOCK_SECTION,
+  DIALOG_OVERVIEW_SECTION,
+  DIALOG_PROPS_DATA,
+} from '../../../constants/atoms-page/dialog/dialogConstants';
 import { DialogContainerProps } from '../../../interface/containers/atoms/dialog.types';
 
 export default function DialogContainer({
   headerContent,
-  breadcrumbItems
+  breadcrumbItems,
 }: DialogContainerProps) {
-  const tabItems = [
-    {
-      id: 'theming',
-      label: 'Theming',
-      icon: <Palette size={16} />,
-      content: (
-        <div className="flex flex-col gap-12 max-w-5xl">
-          {/* 1. Destructive Resource Deletion Theme */}
+  const theming = useMemo(
+    () => (
+      <div className={s.tabContentWrapper}>
+        {DIALOG_THEME_CONFIGS.map((theme) => (
           <DocSection
-            id="theming-destructive-dialog"
-            title="1. Enterprise Destructive Resource Deletion Theme"
-            description="High-alert confirmation dialog for permanent database cluster and infrastructure deletion."
+            key={theme.id}
+            id={theme.id}
+            title={theme.sectionTitle}
+            description={theme.description}
           >
-            <ComponentPreview
-              title="Irreversible Action Modal"
-              code={`<Dialog
-  variant="destructive"
-  icon={
-    <div className="w-10 h-10 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center">
-      <Alert size={20} />
-    </div>
-  }
-  title="Delete Production Cluster?"
-  description="This action cannot be undone. All database replicas in 'prod-us-east-1' will be terminated permanently."
-  trigger={<Button variant="outline" className="text-red-600 border-red-200 hover:bg-red-50">Delete Cluster</Button>}
-  footer={
-    <div className="flex gap-2 justify-end w-full">
-      <Button variant="ghost">Cancel</Button>
-      <Button variant="primary" className="bg-red-600 hover:bg-red-700 text-white">Permanently Delete</Button>
-    </div>
-  }
->
-  <div className="flex flex-col gap-3 py-2">
-    <p className="text-xs text-slate-500">Please type <strong className="text-slate-900 font-mono">prod-us-east-1</strong> to confirm deletion:</p>
-    <TextInput placeholder="prod-us-east-1" fullWidth />
-  </div>
-</Dialog>`}
-            >
-              <div className="flex justify-center p-8 bg-slate-50/50 rounded-2xl border border-slate-100">
-                <Dialog
-                  variant="destructive"
-                  icon={
-                    <div className="w-10 h-10 rounded-2xl bg-red-100 text-red-600 flex items-center justify-center">
-                      <Alert size={20} />
-                    </div>
-                  }
-                  title="Delete Production Cluster?"
-                  description="This action cannot be undone. All database replicas in 'prod-us-east-1' will be terminated permanently."
-                  trigger={
-                    <Button variant="outline" className="text-red-600 border-red-200 hover:bg-red-50">
-                      Launch Deletion Dialog
-                    </Button>
-                  }
-                  footer={
-                    <div className="flex gap-2 justify-end w-full">
-                      <Button variant="ghost">Cancel</Button>
-                      <Button variant="primary" className="bg-red-600 hover:bg-red-700 text-white">Permanently Delete</Button>
-                    </div>
-                  }
-                >
-                  <div className="flex flex-col gap-3 py-2">
-                    <p className="text-xs text-slate-500">Please type <strong className="text-slate-900 font-mono">prod-us-east-1</strong> to confirm deletion:</p>
-                    <TextInput placeholder="prod-us-east-1" fullWidth />
-                  </div>
-                </Dialog>
-              </div>
+            <ComponentPreview title={theme.previewTitle} code={theme.code}>
+              {theme.render()}
             </ComponentPreview>
           </DocSection>
-
-          {/* 2. Royal VIP Loyalty Upgrade Celebration */}
-          <DocSection
-            id="theming-vip-celebration"
-            title="2. Royal VIP Loyalty Upgrade Celebration Theme"
-            description="Luminous celebration dialog featuring top gradient accent bar and achievement perks."
-          >
-            <ComponentPreview
-              title="VIP Tier Upgrade Modal"
-              code={`<Dialog
-  variant="gradient"
-  size="md"
-  icon={
-    <div className="w-10 h-10 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center">
-      <Star size={20} className="text-amber-500 fill-amber-400" />
-    </div>
-  }
-  title="Welcome to Platinum VIP!"
-  description="Your organization has surpassed 1,000,000 monthly API calls. Enjoy your new perks!"
-  trigger={<Button variant="gradient">Claim VIP Upgrade</Button>}
-  footer={
-    <div className="flex gap-2 justify-end w-full">
-      <Button variant="primary" fullWidth>Activate My 25% Discount</Button>
-    </div>
-  }
->
-  <div className="space-y-2 py-2">
-    <div className="p-3 bg-purple-50 rounded-2xl border border-purple-100 flex items-center gap-3">
-      <CheckIcon size={16} className="text-purple-600 shrink-0" />
-      <span className="text-xs font-bold text-purple-950">Zero-latency dedicated edge compute</span>
-    </div>
-    <div className="p-3 bg-purple-50 rounded-2xl border border-purple-100 flex items-center gap-3">
-      <CheckIcon size={16} className="text-purple-600 shrink-0" />
-      <span className="text-xs font-bold text-purple-950">24/7 Priority Discord & Phone Engineer Access</span>
-    </div>
-  </div>
-</Dialog>`}
-            >
-              <div className="flex justify-center p-8 bg-slate-50/50 rounded-2xl border border-slate-100">
-                <Dialog
-                  variant="gradient"
-                  size="md"
-                  icon={
-                    <div className="w-10 h-10 rounded-2xl bg-purple-100 text-purple-600 flex items-center justify-center">
-                      <Star size={20} className="text-amber-500 fill-amber-400" />
-                    </div>
-                  }
-                  title="Welcome to Platinum VIP!"
-                  description="Your organization has surpassed 1,000,000 monthly API calls. Enjoy your new perks!"
-                  trigger={<Button variant="gradient">Claim VIP Upgrade</Button>}
-                  footer={
-                    <div className="flex gap-2 justify-end w-full">
-                      <Button variant="primary" fullWidth>Activate My 25% Discount</Button>
-                    </div>
-                  }
-                >
-                  <div className="space-y-2 py-2">
-                    <div className="p-3 bg-purple-50 rounded-2xl border border-purple-100 flex items-center gap-3">
-                      <CheckIcon size={16} className="text-purple-600 shrink-0" />
-                      <span className="text-xs font-bold text-purple-950">Zero-latency dedicated edge compute</span>
-                    </div>
-                    <div className="p-3 bg-purple-50 rounded-2xl border border-purple-100 flex items-center gap-3">
-                      <CheckIcon size={16} className="text-purple-600 shrink-0" />
-                      <span className="text-xs font-bold text-purple-950">24/7 Priority Discord & Phone Engineer Access</span>
-                    </div>
-                  </div>
-                </Dialog>
-              </div>
-            </ComponentPreview>
-          </DocSection>
-
-          {/* 3. Two-Factor Authentication Security Modal */}
-          <DocSection
-            id="theming-security-2fa"
-            title="3. Two-Factor Authentication (2FA) Security Theme"
-            description="Deep floating modal for authenticator app configuration and biometric enrollment."
-          >
-            <ComponentPreview
-              title="Two-Factor Security Modal"
-              code={`<Dialog
-  variant="floating"
-  icon={
-    <div className="w-10 h-10 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center">
-      <Shield size={20} />
-    </div>
-  }
-  title="Two-Factor Authentication Required"
-  description="Enter the 6-digit verification code generated by your Authenticator app (1Password, Google Authenticator)."
-  trigger={<Button variant="outline">Configure 2FA</Button>}
-  footer={
-    <div className="flex gap-2 justify-end w-full">
-      <Button variant="ghost">Cancel</Button>
-      <Button variant="primary">Verify & Enable</Button>
-    </div>
-  }
->
-  <div className="flex flex-col gap-3 py-2">
-    <TextInput placeholder="• • • • • •" fullWidth />
-    <span className="text-xs text-core-circle-primary cursor-pointer hover:underline">Lost access to your device? Use backup code</span>
-  </div>
-</Dialog>`}
-            >
-              <div className="flex justify-center p-8 bg-slate-50/50 rounded-2xl border border-slate-100">
-                <Dialog
-                  variant="floating"
-                  icon={
-                    <div className="w-10 h-10 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center">
-                      <Shield size={20} />
-                    </div>
-                  }
-                  title="Two-Factor Authentication Required"
-                  description="Enter the 6-digit verification code generated by your Authenticator app (1Password, Google Authenticator)."
-                  trigger={<Button variant="outline">Configure 2FA</Button>}
-                  footer={
-                    <div className="flex gap-2 justify-end w-full">
-                      <Button variant="ghost">Cancel</Button>
-                      <Button variant="primary">Verify & Enable</Button>
-                    </div>
-                  }
-                >
-                  <div className="flex flex-col gap-3 py-2">
-                    <TextInput placeholder="• • • • • •" fullWidth />
-                    <span className="text-xs text-core-circle-primary cursor-pointer hover:underline">Lost access to your device? Use backup code</span>
-                  </div>
-                </Dialog>
-              </div>
-            </ComponentPreview>
-          </DocSection>
-
-          {/* 4. E-Commerce Checkout Payment Modal */}
-          <DocSection
-            id="theming-ecommerce-checkout"
-            title="4. E-Commerce Checkout & Payment Confirmation Theme"
-            description="Card modal with price breakdown and fast one-click payment buttons."
-          >
-            <ComponentPreview
-              title="Payment Order Summary Modal"
-              code={`<Dialog
-  variant="card"
-  icon={
-    <div className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
-      <CreditCard size={20} />
-    </div>
-  }
-  title="Complete Your Order"
-  description="Review your order details before final charge."
-  trigger={<Button variant="primary">Proceed to Pay ($249.00)</Button>}
-  footer={
-    <div className="flex gap-2 justify-end w-full">
-      <Button variant="ghost">Cancel</Button>
-      <Button variant="primary">Pay $249.00 with Card</Button>
-    </div>
-  }
->
-  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col gap-2 text-xs">
-    <div className="flex justify-between text-slate-600">
-      <span>Pro Subscription (Annual)</span>
-      <span className="font-bold text-slate-900">$240.00</span>
-    </div>
-    <div className="flex justify-between text-slate-600">
-      <span>Sales Tax (NY 3.75%)</span>
-      <span className="font-bold text-slate-900">$9.00</span>
-    </div>
-    <div className="flex justify-between font-bold text-slate-900 pt-2 border-t border-slate-200 text-sm">
-      <span>Total Charged Today</span>
-      <span className="text-core-circle-primary">$249.00</span>
-    </div>
-  </div>
-</Dialog>`}
-            >
-              <div className="flex justify-center p-8 bg-slate-50/50 rounded-2xl border border-slate-100">
-                <Dialog
-                  variant="card"
-                  icon={
-                    <div className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center">
-                      <CreditCard size={20} />
-                    </div>
-                  }
-                  title="Complete Your Order"
-                  description="Review your order details before final charge."
-                  trigger={<Button variant="primary">Proceed to Pay ($249.00)</Button>}
-                  footer={
-                    <div className="flex gap-2 justify-end w-full">
-                      <Button variant="ghost">Cancel</Button>
-                      <Button variant="primary">Pay $249.00 with Card</Button>
-                    </div>
-                  }
-                >
-                  <div className="p-4 bg-slate-50 rounded-2xl border border-slate-200 flex flex-col gap-2 text-xs">
-                    <div className="flex justify-between text-slate-600">
-                      <span>Pro Subscription (Annual)</span>
-                      <span className="font-bold text-slate-900">$240.00</span>
-                    </div>
-                    <div className="flex justify-between text-slate-600">
-                      <span>Sales Tax (NY 3.75%)</span>
-                      <span className="font-bold text-slate-900">$9.00</span>
-                    </div>
-                    <div className="flex justify-between font-bold text-slate-900 pt-2 border-t border-slate-200 text-sm">
-                      <span>Total Charged Today</span>
-                      <span className="text-core-circle-primary">$249.00</span>
-                    </div>
-                  </div>
-                </Dialog>
-              </div>
-            </ComponentPreview>
-          </DocSection>
-
-          {/* 5. User Invite & Workspace Team Permissions Modal */}
-          <DocSection
-            id="theming-workspace-invite"
-            title="5. User Invite & Workspace Team Permissions Theme"
-            description="Glassmorphic modal for adding new team collaborators and assigning role permissions."
-          >
-            <ComponentPreview
-              title="Invite Teammates Modal"
-              code={`<Dialog
-  variant="glassmorphic"
-  icon={
-    <div className="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center">
-      <UserIcon size={20} />
-    </div>
-  }
-  title="Invite Teammates to CoreCircle"
-  description="Add coworkers by email. They will receive an onboarding invite link."
-  trigger={<Button variant="outline">Invite Members</Button>}
-  footer={
-    <div className="flex gap-2 justify-end w-full">
-      <Button variant="ghost">Cancel</Button>
-      <Button variant="primary">Send 1 Invitation</Button>
-    </div>
-  }
->
-  <div className="flex flex-col gap-3 py-2">
-    <TextInput label="Colleague Email Address" placeholder="alex@company.com" fullWidth />
-  </div>
-</Dialog>`}
-            >
-              <div className="flex justify-center p-8 bg-slate-50/50 rounded-2xl border border-slate-100">
-                <Dialog
-                  variant="glassmorphic"
-                  icon={
-                    <div className="w-10 h-10 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center">
-                      <UserIcon size={20} />
-                    </div>
-                  }
-                  title="Invite Teammates to CoreCircle"
-                  description="Add coworkers by email. They will receive an onboarding invite link."
-                  trigger={<Button variant="outline">Invite Members</Button>}
-                  footer={
-                    <div className="flex gap-2 justify-end w-full">
-                      <Button variant="ghost">Cancel</Button>
-                      <Button variant="primary">Send 1 Invitation</Button>
-                    </div>
-                  }
-                >
-                  <div className="flex flex-col gap-3 py-2">
-                    <TextInput label="Colleague Email Address" placeholder="alex@company.com" fullWidth />
-                  </div>
-                </Dialog>
-              </div>
-            </ComponentPreview>
-          </DocSection>
-        </div>
-      )
-    },
-    {
-      id: 'variants',
-      label: 'Variants',
-      icon: <Layers size={16} />,
-      content: (
-        <div className="flex flex-col gap-12 max-w-5xl">
-          <DocSection id="dialog-variants-styles" title="1. Modal Container Styles (10 Variants)" description="Card, floating, glassmorphic, gradient, destructive, success, centered-hero, drawer, minimal, and bordered.">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
-              <Dialog variant="card" title="Card Dialog" trigger={<Button variant="outline" fullWidth>Card</Button>}>
-                <p className="text-xs text-slate-600">Standard card style modal.</p>
-              </Dialog>
-              <Dialog variant="floating" title="Floating Dialog" trigger={<Button variant="outline" fullWidth>Floating</Button>}>
-                <p className="text-xs text-slate-600">Deep elevation shadow style.</p>
-              </Dialog>
-              <Dialog variant="glassmorphic" title="Glassmorphic Dialog" trigger={<Button variant="outline" fullWidth>Glassmorphic</Button>}>
-                <p className="text-xs text-slate-600">Frosted translucent backdrop.</p>
-              </Dialog>
-              <Dialog variant="gradient" title="Gradient Bar Dialog" trigger={<Button variant="outline" fullWidth>Gradient</Button>}>
-                <p className="text-xs text-slate-600">Luminous top accent bar.</p>
-              </Dialog>
-              <Dialog variant="destructive" title="Destructive Warning" trigger={<Button variant="outline" fullWidth>Destructive</Button>}>
-                <p className="text-xs text-slate-600">Warning alert style modal.</p>
-              </Dialog>
-              <Dialog variant="success" title="Success Confirmation" trigger={<Button variant="outline" fullWidth>Success</Button>}>
-                <p className="text-xs text-slate-600">Success confirmation style.</p>
-              </Dialog>
-              <Dialog variant="centered-hero" title="Centered Hero" trigger={<Button variant="outline" fullWidth>Centered Hero</Button>}>
-                <p className="text-xs text-slate-600">Centered headline and body.</p>
-              </Dialog>
-              <Dialog variant="drawer" title="Drawer Sheet" trigger={<Button variant="outline" fullWidth>Drawer Sheet</Button>}>
-                <p className="text-xs text-slate-600">Bottom sheet style dialog.</p>
-              </Dialog>
-              <Dialog variant="bordered" title="Bordered Strong" trigger={<Button variant="outline" fullWidth>Bordered</Button>}>
-                <p className="text-xs text-slate-600">Strong 2px outline border.</p>
-              </Dialog>
-            </div>
-          </DocSection>
-
-          <DocSection id="dialog-variants-sizes" title="2. Dialog Width Scales" description="Small (sm), Medium (md), Large (lg), Extra-Large (xl), and Full Screen.">
-            <div className="flex flex-wrap gap-4 w-full">
-              <Dialog size="sm" title="Small Dialog" trigger={<Button size="sm">Small (sm)</Button>}>
-                <p className="text-xs text-slate-600">Compact modal for brief alerts.</p>
-              </Dialog>
-              <Dialog size="md" title="Medium Dialog" trigger={<Button size="sm">Medium (md)</Button>}>
-                <p className="text-xs text-slate-600">Standard general-purpose modal.</p>
-              </Dialog>
-              <Dialog size="lg" title="Large Dialog" trigger={<Button size="sm">Large (lg)</Button>}>
-                <p className="text-xs text-slate-600">Spacious modal for forms and tables.</p>
-              </Dialog>
-              <Dialog size="xl" title="Extra Large Dialog" trigger={<Button size="sm">Extra Large (xl)</Button>}>
-                <p className="text-xs text-slate-600">Wide view modal for multi-column dashboards.</p>
-              </Dialog>
-            </div>
-          </DocSection>
-        </div>
-      )
-    },
-    {
-      id: 'playground',
-      label: 'Playground',
-      icon: <Play size={16} />,
-      content: (
-        <DocSection
-          id="dialog-playground-section"
-          title="Interactive Playground"
-          description="Experiment with 10 visual variants, sizes, screen positions, and dismiss handlers."
-        >
-          <DialogPlayground />
-        </DocSection>
-      )
-    },
-    {
-      id: 'mock-code',
-      label: 'Mock Code',
-      icon: <CodeIcon size={16} />,
-      content: (
-        <div className="flex flex-col gap-12 max-w-5xl">
-          <DocSection
-            id="dialog-mock"
-            title="Dynamic Confirmation Dialog Integration"
-            description="Manage modal state with asynchronous API mutations and state triggers."
-          >
-            <div className="flex flex-col gap-8 mt-6">
-              <CodeSnippet
-                label="Sample Backend Deletion API Payload"
-                code={JSON.stringify({
-                  action: "delete_cluster",
-                  resource_id: "prod-us-east-1",
-                  requested_by: "sec_admin@corecircle.design",
-                  timestamp: "2026-08-24T22:35:00Z"
-                }, null, 2)}
-              />
-
-              <CodeSnippet
-                label="Dynamic Consumer Component"
-                code={`import React, { useState } from 'react';
-import { Dialog, Button, TextInput } from '@core-circle/ui';
-import { Alert } from '@core-circle/icons';
-
-export const DeleteClusterModal = () => {
-  const [open, setOpen] = useState(false);
-  const [inputVal, setInputVal] = useState('');
-
-  const handleDelete = async () => {
-    await fetch('/api/v1/clusters/prod-us-east-1', { method: 'DELETE' });
-    setOpen(false);
-  };
-
-  return (
-    <Dialog
-      open={open}
-      onOpenChange={setOpen}
-      variant="destructive"
-      title="Delete Production Cluster?"
-      trigger={<Button variant="outline">Delete</Button>}
-      footer={
-        <div className="flex gap-2 justify-end">
-          <Button variant="ghost" onClick={() => setOpen(false)}>Cancel</Button>
-          <Button 
-            variant="primary" 
-            disabled={inputVal !== 'prod-us-east-1'}
-            onClick={handleDelete}
-          >
-            Confirm
-          </Button>
-        </div>
-      }
-    >
-      <TextInput 
-        value={inputVal} 
-        onChange={(e) => setInputVal(e.target.value)} 
-        placeholder="Type prod-us-east-1" 
-      />
-    </Dialog>
-  );
-};`}
-              />
-            </div>
-          </DocSection>
-        </div>
-      )
-    },
-    {
-      id: 'overview',
-      label: 'Overview',
-      icon: <Info size={16} />,
-      content: (
-        <div className="flex flex-col gap-12 max-w-5xl">
-          <DocSection id="dialog-usage" title="Introduction" description="The Dialog atom displays an accessible overlay window, preventing interaction with background content until dismissed.">
-            <div className="flex flex-col gap-8 mt-6">
-              <CodeSnippet
-                label="Quick Usage"
-                code={`import { Dialog, Button } from '@core-circle/ui';
-
-<Dialog
-  title="Account Settings"
-  trigger={<Button>Open Settings</Button>}
->
-  <p>Your modal content...</p>
-</Dialog>`}
-              />
-              <div className="flex flex-col gap-4">
-                <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">Component Props</Typography>
-                <PropsTable data={DIALOG_PROPS_DATA} />
-              </div>
-            </div>
-          </DocSection>
-        </div>
-      )
-    }
-  ];
-
-  return (
-    <div className={s.container}>
-      <header className={s.header}>
-        {breadcrumbItems && (
-          <Breadcrumb items={breadcrumbItems} renderLink={(props) => <Link {...props} />} className="mb-4" />
-        )}
-        <Typography variant="h1" className={s.title}>{headerContent.title}</Typography>
-        <Typography variant="p" className={s.description}>{headerContent.description}</Typography>
-      </header>
-
-      <div className="mt-8">
-        <Tabs items={tabItems} variant="underline" size="lg" className="w-full" />
+        ))}
       </div>
-    </div>
+    ),
+    []
+  );
+
+  const variants = useMemo(
+    () => (
+      <div className={s.tabContentWrapper}>
+        {DIALOG_VARIANT_GROUPS.map((group) => (
+          <DocSection
+            key={group.id}
+            id={group.id}
+            title={group.title}
+            description={group.description}
+          >
+            {group.render()}
+          </DocSection>
+        ))}
+      </div>
+    ),
+    []
+  );
+
+  const playground = useMemo(
+    () => (
+      <DocSection {...DIALOG_PLAYGROUND_SECTION}>
+        <DialogPlayground />
+      </DocSection>
+    ),
+    []
+  );
+
+  const mockCode = useMemo(
+    () => (
+      <div className={s.tabContentWrapper}>
+        <DocSection
+          id={DIALOG_MOCK_SECTION.id}
+          title={DIALOG_MOCK_SECTION.title}
+          description={DIALOG_MOCK_SECTION.description}
+        >
+          <div className="flex flex-col gap-8 mt-6">
+            {DIALOG_MOCK_SECTION.snippets.map((snippet) => (
+              <CodeSnippet
+                key={snippet.label}
+                label={snippet.label}
+                code={snippet.code}
+              />
+            ))}
+          </div>
+        </DocSection>
+      </div>
+    ),
+    []
+  );
+
+  const overview = useMemo(
+    () => (
+      <div className={s.tabContentWrapper}>
+        <DocSection
+          id={DIALOG_OVERVIEW_SECTION.id}
+          title={DIALOG_OVERVIEW_SECTION.title}
+          description={DIALOG_OVERVIEW_SECTION.description}
+        >
+          <div className="flex flex-col gap-8 mt-6">
+            <CodeSnippet
+              label={DIALOG_OVERVIEW_SECTION.quickUsage.label}
+              code={DIALOG_OVERVIEW_SECTION.quickUsage.code}
+            />
+            <div className="flex flex-col gap-4">
+              <Typography
+                variant="h4"
+                className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted"
+              >
+                {DIALOG_OVERVIEW_SECTION.propsTableTitle}
+              </Typography>
+              <PropsTable data={DIALOG_PROPS_DATA} />
+            </div>
+          </div>
+        </DocSection>
+      </div>
+    ),
+    []
+  );
+
+  return (
+    <DocPageShell
+      headerContent={headerContent}
+      breadcrumbItems={breadcrumbItems}
+      tabs={{ theming, variants, playground, mockCode, overview }}
+    />
   );
 }

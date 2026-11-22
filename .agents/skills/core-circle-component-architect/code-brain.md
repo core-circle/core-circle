@@ -216,15 +216,16 @@ All 520 icons are exported in alphabetical order from `packages/icons/index.ts`:
 When building or updating documentation pages in `src/app/docs/`:
 
 1. **Benchmark Reference**: `src/app/docs/src/containers/atoms-page/accordion/accordionContainer.tsx`
-2. **Standard Page Layout**:
-   - Must import or use `atomsPageStyles` (`max-w-5xl mx-auto px-6 py-10`, `header: 'mb-8'`).
+2. **Canonical Shell & Layout**:
+   - Must use `<DocPageShell headerContent={headerContent} breadcrumbItems={breadcrumbItems} tabs={{ theming, variants, playground, mockCode, overview }} />` (`src/app/docs/src/components/doc-page-shell/docPageShell.tsx`) utilizing `DOCS_CANONICAL_TABS` (`src/app/docs/src/constants/docs-tabs-constant.tsx`).
    - Breadcrumb schema: `[{ label: 'Home', href: '/' }, { label: 'Atoms', href: '/atoms' }, { label: '[ComponentName]' }]`.
-3. **5 Standard Tabs Order**:
-   - `Theming` (Tab 1, default active, `Palette` icon): 5 production themes with full width previews.
-   - `Variants` (Tab 2, `Layers` icon): 10+ variants in `DocSection` containers.
-   - `Playground` (Tab 3, `Play` icon): Interactive props controls + live code generator.
-   - `Mock Code` (Tab 4, `CodeIcon`): Realistic backend API/CMS payload and consumer implementation.
-   - `Overview` (Tab 5, `Info` icon): Quick usage snippet and `PropsTable`.
+3. **Data-Driven Declarative Architecture & Zero Hardcoding**:
+   - **Zero Hardcoded Strings**: All section IDs, titles, descriptions, labels, and code strings MUST reside in `[name]Constants.tsx`. Container stays ~100–140 lines.
+   - `Theming` (Tab 1, default active, `Palette` icon): 5 production themes rendered via `[NAME]_THEME_CONFIGS.map(...)`.
+   - `Variants` (Tab 2, `Layers` icon): 10+ variants in `DocSection`s rendered via `[NAME]_VARIANT_GROUPS.map(...)`.
+   - `Playground` (Tab 3, `Play` icon): Interactive props controls + live code generator inside `<DocSection {...[NAME]_PLAYGROUND_SECTION}>`.
+   - `Mock Code` (Tab 4, `CodeIcon`): Realistic backend API/CMS payload and consumer implementation rendered from `[NAME]_MOCK_SECTION.snippets.map(...)`.
+   - `Overview` (Tab 5, `Info` icon): Quick usage snippet and `PropsTable` rendered from `[NAME]_OVERVIEW_SECTION`.
 
 ---
 
@@ -241,6 +242,7 @@ When building or updating documentation pages in `src/app/docs/`:
 6. **Clean React 19 Imports**: Never import unused `React` in `.ts` constants or stories.
 7. **Hook Dependency Safety**: Wrap event listener callbacks in `useCallback` when consumed by `useEffect`.
 8. **Accessibility & Fragments**: Emojis must use `<span role="img" aria-label="...">`; avoid single-child `<>{child}</>` wrappers.
+9. **Mandatory Tri-Deliverable Rule**: Every new component requires (1) Core Primitive in `packages/ui`, (2) Storybook story, and (3) 6-file Docs showcase + entry in `ATOM_CARDS` (`atoms-page-constant.ts`). Never leave any deliverable missing.
 
 ---
 
