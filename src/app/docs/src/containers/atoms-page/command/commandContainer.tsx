@@ -100,7 +100,7 @@ export default function CommandContainer({
               code={COMMAND_OVERVIEW_SECTION.quickUsage.code}
             />
             <div className="mt-8">
-              <PropsTable propsData={COMMAND_PROPS_DATA} />
+              <PropsTable data={COMMAND_PROPS_DATA} />
             </div>
           </div>
         </DocSection>

@@ -100,7 +100,7 @@ export default function MarkdownContainer({
               code={MARKDOWN_OVERVIEW_SECTION.quickUsage.code}
             />
             <div className="mt-8">
-              <PropsTable propsData={MARKDOWN_PROPS_DATA} />
+              <PropsTable data={MARKDOWN_PROPS_DATA} />
             </div>
           </div>
         </DocSection>

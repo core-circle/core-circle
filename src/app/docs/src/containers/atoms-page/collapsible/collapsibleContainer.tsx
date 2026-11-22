@@ -100,7 +100,7 @@ export default function CollapsibleContainer({
               code={COLLAPSIBLE_OVERVIEW_SECTION.quickUsage.code}
             />
             <div className="mt-8">
-              <PropsTable propsData={COLLAPSIBLE_PROPS_DATA} />
+              <PropsTable data={COLLAPSIBLE_PROPS_DATA} />
             </div>
           </div>
         </DocSection>

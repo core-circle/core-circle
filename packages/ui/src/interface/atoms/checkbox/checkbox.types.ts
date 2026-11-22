@@ -78,9 +78,9 @@ export interface CheckboxProps extends Omit<InputHTMLAttributes<HTMLInputElement
   helperText?: string;
 
   /**
-   * Callback fired when checked state changes.
+   * Callback fired when checked state changes. Accepts either a ChangeEvent or the new boolean state.
    */
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: ((e: React.ChangeEvent<HTMLInputElement>) => void) | ((checked: boolean) => void);
 
   /**
    * Simplified boolean callback shorthand.

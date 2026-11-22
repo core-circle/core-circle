@@ -140,7 +140,7 @@ export const AccordionPlayground = () => {
               <Checkbox
                 label="Full Width"
                 checked={state.fullWidth}
-                onChange={(checked) => updateState('fullWidth', checked)}
+                onCheckedChange={(checked) => updateState('fullWidth', checked)}
               />
             </div>
           </div>

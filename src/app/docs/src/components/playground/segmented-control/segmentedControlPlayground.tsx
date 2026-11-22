@@ -78,7 +78,7 @@ export const SegmentedControlPlayground: React.FC = () => {
               <Checkbox
                 label="Full Width Distribution"
                 checked={fullWidth}
-                onChange={(checked) => setFullWidth(checked)}
+                onCheckedChange={(checked) => setFullWidth(checked)}
               />
             </div>
           </div>

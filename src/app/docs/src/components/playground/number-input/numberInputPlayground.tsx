@@ -123,7 +123,7 @@ export const NumberInputPlayground: React.FC = () => {
                 <Checkbox
                   label="Thousands Commas"
                   checked={formatThousands}
-                  onChange={(checked) => setFormatThousands(checked)}
+                  onCheckedChange={(checked) => setFormatThousands(checked)}
                 />
               </div>
             </div>

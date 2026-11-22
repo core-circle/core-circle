@@ -100,7 +100,7 @@ export default function FloatingActionContainer({
               code={FLOATING_ACTION_OVERVIEW_SECTION.quickUsage.code}
             />
             <div className="mt-8">
-              <PropsTable propsData={FLOATING_ACTION_PROPS_DATA} />
+              <PropsTable data={FLOATING_ACTION_PROPS_DATA} />
             </div>
           </div>
         </DocSection>

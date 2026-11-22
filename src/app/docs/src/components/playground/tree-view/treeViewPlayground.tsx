@@ -79,7 +79,7 @@ export const TreeViewPlayground: React.FC = () => {
                 <Checkbox
                   label="Show Vertical Guide Indent Lines"
                   checked={showGuideLines}
-                  onChange={(checked) => setShowGuideLines(checked)}
+                  onCheckedChange={(checked) => setShowGuideLines(checked)}
                 />
               </div>
             </div>

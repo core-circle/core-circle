@@ -83,7 +83,7 @@ export const ColorSwatchPlayground: React.FC = () => {
               <Checkbox
                 label="Arrange in 4-Column Grid"
                 checked={useGrid}
-                onChange={(checked) => setUseGrid(checked)}
+                onCheckedChange={(checked) => setUseGrid(checked)}
               />
             </div>
           </div>

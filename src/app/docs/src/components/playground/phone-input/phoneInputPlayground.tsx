@@ -90,7 +90,7 @@ export const PhoneInputPlayground: React.FC = () => {
               <Checkbox
                 label="Simulate Error"
                 checked={hasError}
-                onChange={(checked) => setHasError(checked)}
+                onCheckedChange={(checked) => setHasError(checked)}
               />
               {hasError && (
                 <div className="flex-1 max-w-sm">

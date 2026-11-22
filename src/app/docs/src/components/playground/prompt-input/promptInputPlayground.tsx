@@ -83,17 +83,17 @@ export const PromptInputPlayground: React.FC = () => {
               <Checkbox
                 label="Simulate Loading / Generating (Shows Stop Button)"
                 checked={loading}
-                onChange={(checked) => setLoading(checked)}
+                onCheckedChange={(checked) => setLoading(checked)}
               />
               <Checkbox
                 label="Show File Attachment Button"
                 checked={showAttachments}
-                onChange={(checked) => setShowAttachments(checked)}
+                onCheckedChange={(checked) => setShowAttachments(checked)}
               />
               <Checkbox
                 label="Show Voice Dictation Mic Button"
                 checked={showVoice}
-                onChange={(checked) => setShowVoice(checked)}
+                onCheckedChange={(checked) => setShowVoice(checked)}
               />
             </div>
           </div>

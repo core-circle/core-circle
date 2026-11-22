@@ -28,14 +28,14 @@ jobs:
         run: |
           echo "Target branch: ${{ github.base_ref }}"
           echo "Source branch: ${{ github.head_ref }}"
-          
+
           if [ "${{ github.head_ref }}" != "development" ] && [ "${{ github.head_ref }}" != "develop" ]; then
             echo "::error::Direct PRs to 'main' must originate from 'development' (or 'develop') only."
             echo "Current source branch is '${{ github.head_ref }}'."
             echo "Action required: Merge your changes into 'development' first, then open a PR from 'development' to 'main'."
             exit 1
           fi
-          
+
           echo "Validation passed: Source branch is '${{ github.head_ref }}'."
 
       - name: Comment on PR if Source Branch Invalid
@@ -96,6 +96,9 @@ jobs:
       - name: Run Lint
         run: npx nx run-many -t lint
 
+      - name: Run Tests & Check Coverage (80% Individual Limit)
+        run: npx nx run-many -t test --coverage
+
       - name: Build Packages
         run: npx nx run-many -t build -p tag:package
 
@@ -111,7 +114,7 @@ jobs:
         with:
           script: |
             const prNumber = context.payload.pull_request?.number || context.issue?.number;
-            const body = `### ✅ Lint, Build & Storybook Passed!\n\nAll packages, web documentation, and UI Storybook compiled with zero errors on commit \`${context.sha.substring(0, 7)}\`.\n\n* ✨ **Status**: Clean build. Ready for review and merge.`;
+            const body = `### ✅ Lint, Test, Build & Storybook Passed!\n\nAll packages, web documentation, and UI Storybook compiled with zero errors and test coverage met the >= 80% individual threshold on commit \`${context.sha.substring(0, 7)}\`.\n\n* ✨ **Status**: Clean compilation and test pass. Ready for review and merge.`;
             if (prNumber) {
               await github.rest.issues.createComment({
                 issue_number: prNumber,
@@ -128,7 +131,7 @@ jobs:
           script: |
             const prNumber = context.payload.pull_request?.number || context.issue?.number;
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const body = `### ❌ Build, Lint & Storybook Check Failed\n\nThe automated **lint-and-build** check encountered errors on commit \`${context.sha.substring(0, 7)}\`.\n\n🔍 **Action Required**: Please inspect the failure logs and fix the reported errors before merging:\n👉 [View Failure Logs in GitHub Actions](${runUrl})\n\n*Merging into \`main\` is blocked until this check passes.*`;
+            const body = `### ❌ Lint, Test, Build or Storybook Check Failed\n\nThe automated **lint-and-build** check encountered errors or failed the 80% coverage threshold on commit \`${context.sha.substring(0, 7)}\`.\n\n🔍 **Action Required**: Please inspect the failure logs and fix the reported errors before merging:\n👉 [View Failure Logs in GitHub Actions](${runUrl})\n\n*Merging into \`main\` is blocked until this check passes.*`;
             if (prNumber) {
               await github.rest.issues.createComment({
                 issue_number: prNumber,

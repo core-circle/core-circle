@@ -28,7 +28,9 @@ When a requirement calls for a new look, size, color, or state for an existing c
    - Add the new variant key and tailwind classes in `cva(...)`.
 3. **Update Type Definitions** (`packages/ui/src/interface/.../[name].types.ts`):
    - Import `VariantProps<typeof [name]Variants>` and ensure the prop type reflects new options.
-4. **Update Storybook Stories** (`packages/ui/src/stories/.../[name].stories.tsx`):
+4. **Update Unit Tests** (`packages/ui/src/components/.../[name].spec.tsx`):
+   - Add tests exercising the new variant/size/props to ensure coverage remains $\ge 80\%$.
+5. **Update Storybook Stories** (`packages/ui/src/stories/.../[name].stories.tsx`):
    - Add a story demonstrating the new variant.
 
 ---
@@ -45,9 +47,12 @@ When building higher-level UI widgets (e.g. MetricCard, SearchHeader, FilterTool
    - `packages/ui/src/components/molecules/[molecule-name]/[molecule-name].styles.ts`
 3. **Create Interface**:
    - `packages/ui/src/interface/molecules/[molecule-name]/[molecule-name].types.ts`
-4. **Export in Main Index**:
+4. **Create Companion Tests with $\ge 80\%$ Coverage**:
+   - `packages/ui/src/components/molecules/[molecule-name]/[molecule-name].spec.tsx`
+   - Verify initial render, atom compositions, and interaction callbacks.
+5. **Export in Main Index**:
    - Add exports to `packages/ui/src/components/index.ts`.
-5. **Add Mandatory Storybook Story**:
+6. **Add Mandatory Storybook Story**:
    - `packages/ui/src/stories/molecules/[molecule-name]/[molecule-name].stories.tsx`.
    - Import component relatively via `../../../components/molecules/[molecule-name]/[molecule-name]`.
    - Export default `meta` with `tags: ['autodocs']`.
@@ -62,15 +67,19 @@ Only create a new Atom if no existing Atom can fulfill the foundational role:
 2. Ensure strict `React.forwardRef` and HTML element attribute forwarding.
 3. Use design tokens from `@core-circle/theme` in `cva()`.
 4. Export in `packages/ui/src/components/index.ts`.
-5. **Add Mandatory Storybook Story**:
+5. **Add Mandatory Companion Tests with $\ge 80\%$ Individual Coverage**:
+   - `packages/ui/src/components/atoms/[name]/[name].spec.tsx`.
+   - Test default rendering, all CVA variants and sizes, controlled and uncontrolled event handlers, disabled states, and edge cases.
+   - Individual coverage must strictly meet or exceed **80%** across Statements, Branches, Functions, and Lines.
+6. **Add Mandatory Storybook Story**:
    - `packages/ui/src/stories/atoms/[name]/[name].stories.tsx`.
    - Import component relatively via `../../../components/atoms/[name]/[name]`.
    - Export default `meta` with `tags: ['autodocs']`.
-   - Storybook build (`npm run build-storybook`) is verified automatically in CI (`lint-and-build`).
-6. **Mandatory Webapp Showcase & Registry Indexing**:
+   - Storybook build (`npm run build-storybook`) is verified automatically in CI.
+7. **Mandatory Webapp Showcase & Registry Indexing**:
    - Create the 6-file documentation anatomy in `src/app/docs/` (`page.tsx`, `Container.tsx`, `[name].styles.ts`, `[name]Constants.tsx`, `[Name]Playground.tsx`, `[name].types.ts`).
    - Register the component in `ATOM_CARDS` in `src/app/docs/src/constants/atoms-page/atoms-page-constant.ts` so it appears in the overview grid and search.
-   - Never consider a component complete without all three deliverables (Primitive + Storybook + Docs & Registry).
+   - Never consider a component complete without all four deliverables (Primitive + Unit Tests + Storybook + Docs & Registry).
 
 ---
 

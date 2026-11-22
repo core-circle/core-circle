@@ -590,9 +590,9 @@ import { MyContainerProps } from '../../../interface/containers/atoms/my.types';
 | Do ✅                                                                                                                                      | Don't ❌                                                                                                              |
 | :----------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
 | **Always use `bg-white` / `bg-core-circle-bg-surface`** for showcase preview cards.                                                        | **Never use ad-hoc dark wrappers** (`bg-slate-900`, `bg-slate-950`, `dark:bg-slate-900`) causing black-on-black text. |
-| **Always use `<Select>`, `<TextInput>`, `<Checkbox>`** from `@core-circle/ui` in playgrounds.                                              | **Never use raw HTML `<select>`, `<input>`, or `<label>`** in playground control panels.                             |
+| **Always use `<Select>`, `<TextInput>`, `<Checkbox>`** from `@core-circle/ui` in playgrounds.                                              | **Never use raw HTML `<select>`, `<input>`, or `<label>`** in playground control panels.                              |
 | **Always wrap tab content in `s.tabContentWrapper`** for standard 48px vertical section spacing.                                           | **Never omit `tabContentWrapper`**, which causes adjacent showcase sections to touch with 0px gap.                    |
-| **Always propagate `variant` to all child slot style helpers** (`statLabelVariants({ variant, size })`).                                  | **Never omit `variant` in child styles**, causing invisible black-on-black text on dark surfaces.                     |
+| **Always propagate `variant` to all child slot style helpers** (`statLabelVariants({ variant, size })`).                                   | **Never omit `variant` in child styles**, causing invisible black-on-black text on dark surfaces.                     |
 | **Always place `'use client';` on Line 1** before any imports in client components.                                                        | **Never place import statements above `'use client';`**.                                                              |
 | **Always verify icon names in `packages/icons/index.ts`** before importing from `@core-circle/icons`.                                      | **Never guess icon names** (e.g. `Server`, `User`, `FileText`).                                                       |
 | **Always import `[name]PageStyles as s` from `./[name].styles`** extending `atomsPageStyles`.                                              | **Do not write inline layout padding** like `p-12 lg:p-20` on container wrappers.                                     |
@@ -611,7 +611,15 @@ import { MyContainerProps } from '../../../interface/containers/atoms/my.types';
 
 Whenever a documentation page or primitive is added or modified:
 
-1. **Lint Metric**: Monorepo lint warnings must **never exceed 100**, and primitives in `@core-circle/ui` must maintain **0 errors and 0 warnings**: `npx nx run-many -t lint`.
-2. **Clean Builds**: Ensure Next.js builds cleanly with static route generation: `npx nx run @core-circle/docs:build`.
-3. **Package Builds**: Ensure all library packages compile without DTS or bundle errors: `npx nx run-many -t build -p tag:package`.
-4. Never bypass design tokens or introduce unverified CSS imports.
+1. **Pipeline Order Mandate (`lint` -> `test` -> `build`)**:
+   Verification workflows must strictly follow the sequential order:
+   - **Step 1: Lint**: `npx nx run-many -t lint` (primitives 0 warnings, monorepo < 100 warnings).
+   - **Step 2: Test & Coverage**: `npx nx run-many -t test --coverage` (individual coverage limit strictly $\ge 80\%$).
+   - **Step 3: Build**: `npx nx run-many -t build` (packages, docs, and storybook).
+2. **Strict Test Coverage ($\ge 80\%$)**:
+   - Both `@core-circle/ui` and `@core-circle/docs` enforce $\ge 80\%$ individual test coverage across Statements, Branches, Functions, and Lines.
+   - All newly developed primitives in `packages/ui` must supply a companion `[name].spec.tsx` test file.
+   - All shared documentation components and utilities in `src/app/docs` must supply companion `*.spec.tsx` / `*.spec.ts` test files.
+3. **Clean Builds**: Ensure Next.js builds cleanly with static route generation: `npx nx run @core-circle/docs:build`.
+4. **Package Builds**: Ensure all library packages compile without DTS or bundle errors: `npx nx run-many -t build -p tag:package`.
+5. Never bypass design tokens or introduce unverified CSS imports.

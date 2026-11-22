@@ -84,22 +84,22 @@ export const PasswordInputPlayground: React.FC = () => {
               <Checkbox
                 label="Show Strength Meter"
                 checked={showStrength}
-                onChange={(checked) => setShowStrength(checked)}
+                onCheckedChange={(checked) => setShowStrength(checked)}
               />
               <Checkbox
                 label="Caps Lock Warning"
                 checked={capsLockWarning}
-                onChange={(checked) => setCapsLockWarning(checked)}
+                onCheckedChange={(checked) => setCapsLockWarning(checked)}
               />
               <Checkbox
                 label="Show Reveal Toggle"
                 checked={showToggle}
-                onChange={(checked) => setShowToggle(checked)}
+                onCheckedChange={(checked) => setShowToggle(checked)}
               />
               <Checkbox
                 label="Simulate Error"
                 checked={hasError}
-                onChange={(checked) => setHasError(checked)}
+                onCheckedChange={(checked) => setHasError(checked)}
               />
             </div>
           </div>

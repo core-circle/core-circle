@@ -126,7 +126,7 @@ export const QRCodePlayground: React.FC = () => {
               <Checkbox
                 label="Include Interactive Download & Copy Buttons"
                 checked={downloadable}
-                onChange={(checked) => setDownloadable(checked)}
+                onCheckedChange={(checked) => setDownloadable(checked)}
               />
             </div>
           </div>

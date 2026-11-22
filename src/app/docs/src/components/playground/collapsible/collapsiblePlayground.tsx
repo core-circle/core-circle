@@ -55,17 +55,17 @@ export const CollapsiblePlayground: React.FC = () => {
               <Checkbox
                 label="Default Open"
                 checked={defaultOpen}
-                onChange={(checked) => setDefaultOpen(checked)}
+                onCheckedChange={(checked) => setDefaultOpen(checked)}
               />
               <Checkbox
                 label="Disabled"
                 checked={disabled}
-                onChange={(checked) => setDisabled(checked)}
+                onCheckedChange={(checked) => setDisabled(checked)}
               />
               <Checkbox
                 label="Unmount Content on Exit"
                 checked={unmountOnExit}
-                onChange={(checked) => setUnmountOnExit(checked)}
+                onCheckedChange={(checked) => setUnmountOnExit(checked)}
               />
             </div>
           </div>

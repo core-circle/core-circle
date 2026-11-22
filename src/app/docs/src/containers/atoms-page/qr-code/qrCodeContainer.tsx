@@ -100,7 +100,7 @@ export default function QRCodeContainer({
               code={QR_CODE_OVERVIEW_SECTION.quickUsage.code}
             />
             <div className="mt-8">
-              <PropsTable propsData={QR_CODE_PROPS_DATA} />
+              <PropsTable data={QR_CODE_PROPS_DATA} />
             </div>
           </div>
         </DocSection>

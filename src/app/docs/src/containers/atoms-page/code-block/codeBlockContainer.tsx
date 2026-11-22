@@ -100,7 +100,7 @@ export default function CodeBlockContainer({
               code={CODE_BLOCK_OVERVIEW_SECTION.quickUsage.code}
             />
             <div className="mt-8">
-              <PropsTable propsData={CODE_BLOCK_PROPS_DATA} />
+              <PropsTable data={CODE_BLOCK_PROPS_DATA} />
             </div>
           </div>
         </DocSection>

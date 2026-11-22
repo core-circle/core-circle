@@ -89,17 +89,17 @@ export const CodeBlockPlayground: React.FC = () => {
               <Checkbox
                 label="Show Line Numbers"
                 checked={showLineNumbers}
-                onChange={(checked) => setShowLineNumbers(checked)}
+                onCheckedChange={(checked) => setShowLineNumbers(checked)}
               />
               <Checkbox
                 label="Highlight Critical Lines (L4 & L9)"
                 checked={highlightFirstLine}
-                onChange={(checked) => setHighlightFirstLine(checked)}
+                onCheckedChange={(checked) => setHighlightFirstLine(checked)}
               />
               <Checkbox
                 label="Show Copy to Clipboard Button"
                 checked={copyable}
-                onChange={(checked) => setCopyable(checked)}
+                onCheckedChange={(checked) => setCopyable(checked)}
               />
             </div>
           </div>

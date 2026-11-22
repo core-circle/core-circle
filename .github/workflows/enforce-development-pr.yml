@@ -102,6 +102,9 @@ jobs:
       - name: Run Lint
         run: npx nx run-many -t lint
 
+      - name: Run Tests & Check Coverage (80% Individual Limit)
+        run: npx nx run-many -t test --coverage
+
       - name: Build Packages
         run: npx nx run-many -t build -p tag:package
 
@@ -117,7 +120,7 @@ jobs:
         with:
           script: |
             const prNumber = context.payload.pull_request?.number || context.issue?.number;
-            const body = `### ✅ Build, Lint & Storybook Passed!\n\nAll packages, web documentation, and UI Storybook compiled with zero errors on commit \`${context.sha.substring(0, 7)}\`.\n\n* ✨ **Target**: \`development\`\n* 📦 **Status**: Clean compilation. Ready for merge review.`;
+            const body = `### ✅ Lint, Test, Build & Storybook Passed!\n\nAll packages, web documentation, and UI Storybook compiled with zero errors and test coverage met the >= 80% individual threshold on commit \`${context.sha.substring(0, 7)}\`.\n\n* ✨ **Target**: \`development\`\n* 📦 **Status**: Clean compilation and test pass. Ready for merge review.`;
             if (prNumber) {
               await github.rest.issues.createComment({
                 issue_number: prNumber,
@@ -134,7 +137,7 @@ jobs:
           script: |
             const prNumber = context.payload.pull_request?.number || context.issue?.number;
             const runUrl = `${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
-            const body = `### ❌ Build, Lint & Storybook Check Failed\n\nThe automated **build** check encountered errors on commit \`${context.sha.substring(0, 7)}\`.\n\n🔍 **Action Required**: Please inspect the failure logs and fix the reported errors before merging:\n👉 [View Failure Logs in GitHub Actions](${runUrl})\n\n*Merging into \`development\` is blocked until this check passes.*`;
+            const body = `### ❌ Lint, Test, Build or Storybook Check Failed\n\nThe automated **build** check encountered errors or failed the 80% coverage threshold on commit \`${context.sha.substring(0, 7)}\`.\n\n🔍 **Action Required**: Please inspect the failure logs and fix the reported errors before merging:\n👉 [View Failure Logs in GitHub Actions](${runUrl})\n\n*Merging into \`development\` is blocked until this check passes.*`;
             if (prNumber) {
               await github.rest.issues.createComment({
                 issue_number: prNumber,

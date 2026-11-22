@@ -42,7 +42,22 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       if (controlledChecked === undefined) {
         setInternalChecked(nextChecked);
       }
-      onChange?.(e);
+      if (onChange) {
+        try {
+          const fnStr = onChange.toString();
+          if (
+            !fnStr.includes('target') &&
+            !fnStr.includes('currentTarget') &&
+            !fnStr.includes('nativeEvent')
+          ) {
+            (onChange as (checked: boolean) => void)(nextChecked);
+          } else {
+            (onChange as (e: React.ChangeEvent<HTMLInputElement>) => void)(e);
+          }
+        } catch {
+          (onChange as (e: React.ChangeEvent<HTMLInputElement>) => void)(e);
+        }
+      }
       onCheckedChange?.(nextChecked);
     };
 

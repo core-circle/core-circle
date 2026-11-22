@@ -112,7 +112,7 @@ export const FloatingActionPlayground: React.FC = () => {
                 <Checkbox
                   label="Disabled Interaction"
                   checked={disabled}
-                  onChange={(checked) => setDisabled(checked)}
+                  onCheckedChange={(checked) => setDisabled(checked)}
                 />
               </div>
             </div>

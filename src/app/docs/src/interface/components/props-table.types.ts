@@ -7,5 +7,6 @@ export interface PropItem {
 }
 
 export interface PropsTableProps {
-  data: PropItem[];
+  data?: PropItem[];
+  propsData?: PropItem[];
 }

@@ -100,7 +100,7 @@ export default function ResizableContainer({
               code={RESIZABLE_OVERVIEW_SECTION.quickUsage.code}
             />
             <div className="mt-8">
-              <PropsTable propsData={RESIZABLE_PROPS_DATA} />
+              <PropsTable data={RESIZABLE_PROPS_DATA} />
             </div>
           </div>
         </DocSection>

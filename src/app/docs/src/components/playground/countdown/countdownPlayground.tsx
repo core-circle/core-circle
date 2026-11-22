@@ -66,12 +66,12 @@ export const CountdownPlayground: React.FC = () => {
               <Checkbox
                 label="Show Days Segment"
                 checked={showDays}
-                onChange={(checked) => setShowDays(checked)}
+                onCheckedChange={(checked) => setShowDays(checked)}
               />
               <Checkbox
                 label="Show Text Labels (Days, Hours, Mins)"
                 checked={showLabels}
-                onChange={(checked) => setShowLabels(checked)}
+                onCheckedChange={(checked) => setShowLabels(checked)}
               />
             </div>
           </div>

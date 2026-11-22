@@ -100,7 +100,7 @@ export default function PromptInputContainer({
               code={PROMPT_INPUT_OVERVIEW_SECTION.quickUsage.code}
             />
             <div className="mt-8">
-              <PropsTable propsData={PROMPT_INPUT_PROPS_DATA} />
+              <PropsTable data={PROMPT_INPUT_PROPS_DATA} />
             </div>
           </div>
         </DocSection>

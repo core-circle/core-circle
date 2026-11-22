@@ -100,7 +100,7 @@ export default function CountdownContainer({
               code={COUNTDOWN_OVERVIEW_SECTION.quickUsage.code}
             />
             <div className="mt-8">
-              <PropsTable propsData={COUNTDOWN_PROPS_DATA} />
+              <PropsTable data={COUNTDOWN_PROPS_DATA} />
             </div>
           </div>
         </DocSection>

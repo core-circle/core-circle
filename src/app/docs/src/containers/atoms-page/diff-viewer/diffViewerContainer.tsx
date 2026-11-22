@@ -100,7 +100,7 @@ export default function DiffViewerContainer({
               code={DIFF_VIEWER_OVERVIEW_SECTION.quickUsage.code}
             />
             <div className="mt-8">
-              <PropsTable propsData={DIFF_VIEWER_PROPS_DATA} />
+              <PropsTable data={DIFF_VIEWER_PROPS_DATA} />
             </div>
           </div>
         </DocSection>

@@ -90,7 +90,7 @@ export const DiffViewerPlayground: React.FC = () => {
               <Checkbox
                 label="Show Line Numbers"
                 checked={showLineNumbers}
-                onChange={(checked) => setShowLineNumbers(checked)}
+                onCheckedChange={(checked) => setShowLineNumbers(checked)}
               />
             </div>
           </div>

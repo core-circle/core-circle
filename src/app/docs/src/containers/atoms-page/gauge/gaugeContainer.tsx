@@ -100,7 +100,7 @@ export default function GaugeContainer({
               code={GAUGE_OVERVIEW_SECTION.quickUsage.code}
             />
             <div className="mt-8">
-              <PropsTable propsData={GAUGE_PROPS_DATA} />
+              <PropsTable data={GAUGE_PROPS_DATA} />
             </div>
           </div>
         </DocSection>

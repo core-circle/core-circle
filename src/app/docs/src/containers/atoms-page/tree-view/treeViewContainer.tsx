@@ -100,7 +100,7 @@ export default function TreeViewContainer({
               code={TREE_VIEW_OVERVIEW_SECTION.quickUsage.code}
             />
             <div className="mt-8">
-              <PropsTable propsData={TREE_VIEW_PROPS_DATA} />
+              <PropsTable data={TREE_VIEW_PROPS_DATA} />
             </div>
           </div>
         </DocSection>

@@ -65,7 +65,7 @@ export const MarkdownPlayground: React.FC = () => {
                 <Checkbox
                   label="Sanitize Dangerous HTML / Scripts"
                   checked={sanitize}
-                  onChange={(checked) => setSanitize(checked)}
+                  onCheckedChange={(checked) => setSanitize(checked)}
                 />
               </div>
             </div>

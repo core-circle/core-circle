@@ -87,12 +87,12 @@ export const SignaturePadPlayground: React.FC = () => {
               <Checkbox
                 label="Show Toolbar Controls"
                 checked={showControls}
-                onChange={(checked) => setShowControls(checked)}
+                onCheckedChange={(checked) => setShowControls(checked)}
               />
               <Checkbox
                 label="Disabled (Read-Only)"
                 checked={disabled}
-                onChange={(checked) => setDisabled(checked)}
+                onCheckedChange={(checked) => setDisabled(checked)}
               />
             </div>
           </div>

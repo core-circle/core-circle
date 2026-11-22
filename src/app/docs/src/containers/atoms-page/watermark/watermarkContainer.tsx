@@ -100,7 +100,7 @@ export default function WatermarkContainer({
               code={WATERMARK_OVERVIEW_SECTION.quickUsage.code}
             />
             <div className="mt-8">
-              <PropsTable propsData={WATERMARK_PROPS_DATA} />
+              <PropsTable data={WATERMARK_PROPS_DATA} />
             </div>
           </div>
         </DocSection>

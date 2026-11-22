@@ -69,7 +69,7 @@ export const TourPlayground: React.FC = () => {
                 <Checkbox
                   label="Show Skip Action"
                   checked={showSkip}
-                  onChange={(checked) => setShowSkip(checked)}
+                  onCheckedChange={(checked) => setShowSkip(checked)}
                 />
               </div>
 

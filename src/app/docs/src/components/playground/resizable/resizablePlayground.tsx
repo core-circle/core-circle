@@ -76,12 +76,12 @@ export const ResizablePlayground: React.FC = () => {
               <Checkbox
                 label="Show Grip Handle Indicator"
                 checked={withHandle}
-                onChange={(checked) => setWithHandle(checked)}
+                onCheckedChange={(checked) => setWithHandle(checked)}
               />
               <Checkbox
                 label="Disable Drag Resizing"
                 checked={disabled}
-                onChange={(checked) => setDisabled(checked)}
+                onCheckedChange={(checked) => setDisabled(checked)}
               />
             </div>
           </div>

@@ -79,22 +79,22 @@ export const InputGroupPlayground: React.FC = () => {
               <Checkbox
                 label="Joined (Unified Borders)"
                 checked={joined}
-                onChange={(checked) => setJoined(checked)}
+                onCheckedChange={(checked) => setJoined(checked)}
               />
               <Checkbox
                 label="Show Prefix"
                 checked={showPrefix}
-                onChange={(checked) => setShowPrefix(checked)}
+                onCheckedChange={(checked) => setShowPrefix(checked)}
               />
               <Checkbox
                 label="Show Suffix"
                 checked={showSuffix}
-                onChange={(checked) => setShowSuffix(checked)}
+                onCheckedChange={(checked) => setShowSuffix(checked)}
               />
               <Checkbox
                 label="Show Action Button"
                 checked={showButton}
-                onChange={(checked) => setShowButton(checked)}
+                onCheckedChange={(checked) => setShowButton(checked)}
               />
             </div>
           </div>

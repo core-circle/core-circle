@@ -99,6 +99,14 @@ packages/ui/src/
 
 - **NEVER run `build`, `test`, `lint`, or other long-running verification commands automatically** after code edits.
 - Only run `npm run build`, `npm run build:packages`, `npm test`, or `npm run lint` when the user **specifically and explicitly asks** for it.
+- **Ordered Pipeline Execution (`lint` -> `test` -> `build`)**:
+  - In all CI pipelines (`enforce-development-pr.yml`, `enforce-main-pr.yml`), pre-commit hooks (`.husky/pre-commit`), and local validation scripts (`npm run validate`), tasks MUST strictly execute in this sequential order:
+    1. **`lint`**: `nx run-many -t lint`
+    2. **`test`**: `nx run-many -t test --coverage` (enforcing $\ge 80\%$ threshold)
+    3. **`build`**: `nx run-many -t build` (packages, docs, and storybook)
+- **Strict Individual Test Coverage Mandate ($\ge 80\%$)**:
+  - Both `@core-circle/ui` and `@core-circle/docs` maintain strict Jest coverage thresholds of **$\ge 80\%$** across all 4 metrics (Statements, Branches, Functions, Lines).
+  - Every new component, feature, or utility must deliver a companion test file (`*.spec.tsx` / `*.spec.ts`) achieving $\ge 80\%$ coverage before PR review.
 - **Strict Lint Warning Metric (< 100 Warnings)**:
   - Total monorepo lint warnings must **strictly never exceed 100** (`nx run-many -t lint`).
   - Core primitives in `@core-circle/ui`, `@core-circle/theme`, and `@core-circle/icons` must maintain **0 errors and 0 warnings** at all times.
@@ -208,9 +216,9 @@ When developing or upgrading documentation containers, pages, and constants in `
 
 ---
 
-## 7. Mandatory Tri-Deliverable Protocol for New Components
+## 7. Mandatory Tetra-Deliverable Protocol for New Components
 
-Every new UI component (Atom, Molecule, or Generator) in `@core-circle/ui` must deliver **all three mandatory artifacts** before it can be merged into `main`:
+Every new UI component (Atom, Molecule, or Generator) in `@core-circle/ui` must deliver **all four mandatory artifacts** before it can be merged into `main`:
 
 ### Deliverable 1: Core Primitive (`packages/ui/src/`)
 1. **Component**: `packages/ui/src/components/atoms/[name]/[name].tsx` with `React.forwardRef`, `cn(...)`, and CVA variants.
@@ -218,7 +226,18 @@ Every new UI component (Atom, Molecule, or Generator) in `@core-circle/ui` must 
 3. **Types**: `packages/ui/src/interface/atoms/[name]/[name].types.ts` with complete prop and variant typing.
 4. **Re-export**: Must be re-exported in `packages/ui/src/components/index.ts`.
 
-### Deliverable 2: Companion Storybook Story (`packages/ui/src/stories/`)
+### Deliverable 2: Companion Unit Tests with $\ge 80\%$ Coverage (`packages/ui/src/components/`)
+1. **Colocated Test File**: `packages/ui/src/components/atoms/[name]/[name].spec.tsx` (or `molecules/[name]/[name].spec.tsx`).
+2. **80% Individual Coverage Threshold**:
+   - Must achieve at least **80% coverage** across Statements, Branches, Functions, and Lines.
+3. **Required Test Scenarios**:
+   - Initial rendering & default props.
+   - Variant styling & size propagation.
+   - Interactive callbacks (`onClick`, `onChange`, `onCheckedChange`).
+   - State handling (controlled vs uncontrolled, disabled, loading, indeterminate).
+   - Accessibility and edge cases (empty data, custom icons, keyboard interactions).
+
+### Deliverable 3: Companion Storybook Story (`packages/ui/src/stories/`)
 1. **Colocation & Naming**:
    - Atoms: `packages/ui/src/stories/atoms/[name]/[name].stories.tsx`
    - Molecules: `packages/ui/src/stories/molecules/[name]/[name].stories.tsx`
@@ -232,7 +251,7 @@ Every new UI component (Atom, Molecule, or Generator) in `@core-circle/ui` must 
 4. **CI Gatekeeper Verification**:
    - PR gatekeeper (`lint-and-build`) builds Storybook (`npm run build-storybook`). Broken stories will fail the check.
 
-### Deliverable 3: Webapp Documentation & Registry Indexing (`src/app/docs/`)
+### Deliverable 4: Webapp Documentation & Registry Indexing (`src/app/docs/`)
 1. **6-File Showcase Anatomy**:
    - Page route: `src/app/docs/src/app/atoms/[name]/page.tsx`
    - Container: `src/app/docs/src/containers/atoms-page/[name]/[name]Container.tsx` (5 canonical tabs: `Theming`, `Variants`, `Playground`, `Mock Code`, `Overview`)
@@ -244,5 +263,7 @@ Every new UI component (Atom, Molecule, or Generator) in `@core-circle/ui` must 
 2. **MANDATORY Registry Indexing**:
    - Prepend the component definition card at index 0 of `ATOM_CARDS` in `src/app/docs/src/constants/atoms-page/atoms-page-constant.ts` (or `molecules-page-constant.ts` / `generators-page-constant.tsx`) without sorting.
    - Components omitted from `ATOM_CARDS` will not appear in the `/atoms` overview grid or component search bar.
+3. **Webapp Companion Tests**:
+   - Documentation utilities and shared components (`src/app/docs/src/utils/`, `src/app/docs/src/components/`) must also maintain companion unit tests with $\ge 80\%$ coverage threshold.
 
 

@@ -1,7 +1,8 @@
 import { PropsTableProps } from '../../interface/components/props-table.types';
 import { propsTableStyles as s } from './props-table.styles';
 
-const PropsTable = ({ data }: PropsTableProps) => {
+const PropsTable = ({ data, propsData }: PropsTableProps) => {
+  const tableData = data || propsData || [];
   return (
     <div className={s.container}>
       <table className={s.table}>
@@ -14,7 +15,7 @@ const PropsTable = ({ data }: PropsTableProps) => {
           </tr>
         </thead>
         <tbody className={s.tbody.base}>
-          {data.map((prop) => (
+          {tableData.map((prop) => (
             <tr key={prop.name} className={s.tbody.row}>
               <td className={s.tbody.cell}>
                 <div className={s.prop.wrapper}>

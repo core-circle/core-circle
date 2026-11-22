@@ -81,17 +81,17 @@ export const ChipPlayground: React.FC = () => {
               <Checkbox
                 label="Selected State"
                 checked={selected}
-                onChange={(checked) => setSelected(checked)}
+                onCheckedChange={(checked) => setSelected(checked)}
               />
               <Checkbox
                 label="Removable (×)"
                 checked={removable}
-                onChange={(checked) => setRemovable(checked)}
+                onCheckedChange={(checked) => setRemovable(checked)}
               />
               <Checkbox
                 label="Show Count Badge"
                 checked={showCount}
-                onChange={(checked) => setShowCount(checked)}
+                onCheckedChange={(checked) => setShowCount(checked)}
               />
             </div>
           </div>
