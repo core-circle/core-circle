@@ -149,12 +149,14 @@ When developing or upgrading documentation containers, pages, and constants in `
      }
      ```
    - Containers MUST type their props with this interface instead of using `any`.
-6. **Standard 5-Tab Order**:
-   - **`Theming`** (Tab 1, default active, `Palette` icon): 5 real-world production themes utilizing full `w-full` width.
-   - **`Variants`** (Tab 2, `Layers` icon): Minimum 10 variants grouped cleanly in `DocSection`s utilizing full `w-full` width.
-   - **`Playground`** (Tab 3, `Play` icon): Interactive playground with live property controls and code generator.
-   - **`Mock Code`** (Tab 4, `CodeIcon`): Dynamic backend API/CMS payload and consumer component example.
-   - **`Overview`** (Tab 5, `Info` icon): Quick usage snippet and comprehensive `PropsTable`.
+6. **Standard 5-Tab Order & Data-Driven DocPageShell Architecture**:
+   - **Canonical Shell**: All atom containers MUST use `<DocPageShell headerContent={headerContent} breadcrumbItems={breadcrumbItems} tabs={{ theming, variants, playground, mockCode, overview }} />` (`src/app/docs/src/components/doc-page-shell/docPageShell.tsx`) which integrates `DOCS_CANONICAL_TABS` (`src/app/docs/src/constants/docs-tabs-constant.tsx`). Never duplicate headers, breadcrumbs, or manual tab item arrays in containers.
+   - **Zero Hardcoded Strings in Containers**: Every single `id`, `title`, `description`, `label`, and code string MUST reside in `[name]Constants.tsx`. Container length must stay compact (~100–140 lines) with zero JSX duplication.
+   - **`Theming`** (Tab 1, default active, `Palette` icon): Rendered declaratively via `[NAME]_THEME_CONFIGS.map(...)` displaying 5 real-world production themes utilizing full `w-full` width.
+   - **`Variants`** (Tab 2, `Layers` icon): Rendered declaratively via `[NAME]_VARIANT_GROUPS.map(...)` displaying minimum 10 variants grouped cleanly in `DocSection`s.
+   - **`Playground`** (Tab 3, `Play` icon): Interactive playground `<[Name]Playground />` wrapped in `<DocSection {...[NAME]_PLAYGROUND_SECTION}>`.
+   - **`Mock Code`** (Tab 4, `CodeIcon`): Dynamic backend API/CMS payload and consumer component rendered from `[NAME]_MOCK_SECTION.snippets.map(...)`.
+   - **`Overview`** (Tab 5, `Info` icon): Quick usage snippet and comprehensive `PropsTable` rendered from `[NAME]_OVERVIEW_SECTION`.
 7. **Verified Icon Imports**:
    - Only import icons that actually exist in `@core-circle/icons` (`packages/icons/index.ts`).
    - Do not guess icon names (e.g. use `Cloud` not `Server`, `UserIcon` or `UserCircle` not `User`, `DocumentText` not `FileText`). Turbopack fails the build if an invalid named icon export is imported.
@@ -178,10 +180,17 @@ When developing or upgrading documentation containers, pages, and constants in `
 
 ---
 
-## 7. Mandatory Storybook Companion Protocol
+## 7. Mandatory Tri-Deliverable Protocol for New Components
 
-Every new UI component (Atom, Molecule, or Generator) in `@core-circle/ui` must have a corresponding Storybook story file before it can be merged into `main`.
+Every new UI component (Atom, Molecule, or Generator) in `@core-circle/ui` must deliver **all three mandatory artifacts** before it can be merged into `main`:
 
+### Deliverable 1: Core Primitive (`packages/ui/src/`)
+1. **Component**: `packages/ui/src/components/atoms/[name]/[name].tsx` with `React.forwardRef`, `cn(...)`, and CVA variants.
+2. **Styles**: `packages/ui/src/components/atoms/[name]/[name].styles.ts` with CVA definitions and design tokens.
+3. **Types**: `packages/ui/src/interface/atoms/[name]/[name].types.ts` with complete prop and variant typing.
+4. **Re-export**: Must be re-exported in `packages/ui/src/components/index.ts`.
+
+### Deliverable 2: Companion Storybook Story (`packages/ui/src/stories/`)
 1. **Colocation & Naming**:
    - Atoms: `packages/ui/src/stories/atoms/[name]/[name].stories.tsx`
    - Molecules: `packages/ui/src/stories/molecules/[name]/[name].stories.tsx`
@@ -192,8 +201,19 @@ Every new UI component (Atom, Molecule, or Generator) in `@core-circle/ui` must 
 3. **Story Requirements**:
    - Must export default `Meta` with `tags: ['autodocs']`.
    - Provide stories demonstrating default state, key variants, sizes, and interactive states.
-4. **Pre-Merge CI Verification**:
-   - The PR gatekeeper job (`lint-and-build`) automatically builds Storybook (`npm run build-storybook`) on every PR to `main` and `development`.
-   - Broken imports, missing component exports, or invalid args in Storybook will immediately fail the PR check and block merge.
+4. **CI Gatekeeper Verification**:
+   - PR gatekeeper (`lint-and-build`) builds Storybook (`npm run build-storybook`). Broken stories will fail the check.
+
+### Deliverable 3: Webapp Documentation & Registry Indexing (`src/app/docs/`)
+1. **6-File Showcase Anatomy**:
+   - Page route: `src/app/docs/src/app/atoms/[name]/page.tsx`
+   - Container: `src/app/docs/src/containers/atoms-page/[name]/[name]Container.tsx` (5 canonical tabs: `Theming`, `Variants`, `Playground`, `Mock Code`, `Overview`)
+   - Styles: `src/app/docs/src/containers/atoms-page/[name]/[name].styles.ts`
+   - Constants: `src/app/docs/src/constants/atoms-page/[name]/[name]Constants.tsx`
+   - Playground: `src/app/docs/src/components/playground/[name]/[Name]Playground.tsx`
+   - Types: `src/app/docs/src/interface/containers/atoms/[name].types.ts`
+2. **MANDATORY Registry Indexing**:
+   - Must add the component definition card to `ATOM_CARDS` in `src/app/docs/src/constants/atoms-page/atoms-page-constant.ts` (or `molecules-page-constant.ts` / `generators-page-constant.tsx`).
+   - Components omitted from `ATOM_CARDS` will not appear in the `/atoms` overview grid or component search bar.
 
 

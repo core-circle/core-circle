@@ -25,6 +25,10 @@ Every documentation page in CoreCircle must follow the **Canonical Accordion Arc
 4. **Dark Mode & Design Tokens**:
    - Use `@core-circle/theme` tokens (`bg-core-circle-bg-page`, `text-core-circle-text-main`, `rounded-core-circle-xl`, `font-core-circle-bold`).
    - Never hardcode arbitrary hex colors like `#2563eb` or `#ffffff` in containers or pages.
+5. **Data-Driven Declarative Containers (`DocPageShell` & Zero Inline Strings)**:
+   - Containers must delegate layout, breadcrumbs, header, and tabs navigation to `<DocPageShell>` (`src/app/docs/src/components/doc-page-shell/docPageShell.tsx`) utilizing `DOCS_CANONICAL_TABS` (`src/app/docs/src/constants/docs-tabs-constant.tsx`).
+   - Container files must maintain **zero hardcoded strings** (IDs, titles, descriptions, labels). All theme configurations (`[NAME]_THEME_CONFIGS`), variant groups (`[NAME]_VARIANT_GROUPS`), section descriptors (`[NAME]_PLAYGROUND_SECTION`, `[NAME]_MOCK_SECTION`, `[NAME]_OVERVIEW_SECTION`), and code snippets must be defined in `[name]Constants.tsx`.
+   - Containers render showcase tabs via declarative `.map()` loops, reducing container size from 600+ lines to ~100–140 lines and ensuring a single source of truth for all content.
 
 ---
 
@@ -48,6 +52,24 @@ src/app/docs/
 │   └── interface/containers/atoms/
 │       └── [component-name].types.ts         # 6. Container Props TypeScript Interface
 ```
+
+### 2.1 Mandatory Registry Card Indexing (`ATOM_CARDS`)
+
+In addition to the 6 individual showcase files, **every new atom MUST be registered in `ATOM_CARDS`** in `src/app/docs/src/constants/atoms-page/atoms-page-constant.ts`:
+
+```ts
+export const ATOM_CARDS = [
+  ...{
+    title: '[ComponentName]',
+    description: 'Clear, concise 1-sentence summary of component capabilities.',
+    href: '/atoms/[component-name]',
+    icon: [VerifiedIconName],
+  },
+];
+```
+
+> [!IMPORTANT]
+> A component is **not complete** until it is registered in `ATOM_CARDS`. Without this registration, the component will be omitted from the `/atoms` catalog grid and cannot be found via the docs search bar.
 
 ---
 
@@ -181,11 +203,14 @@ export interface [Name]ContainerProps {
 
 ### 4.4 Constants & Data Specification (`[name]Constants.tsx`)
 
+All showcase data, theme configurations, variant groupings, and section strings must be declared in `[name]Constants.tsx`. Never hardcode display text or IDs in the container:
+
 ```tsx
 // src/app/docs/src/constants/atoms-page/[name]/[name]Constants.tsx
-import React from 'react';
-import { HomeIcon } from '@core-circle/icons';
+import type { ReactNode } from 'react';
 import { PropItem } from '../../../interface/components/props-table.types';
+import { Shield, Sparkles } from '@core-circle/icons';
+import { Badge } from '@core-circle/ui';
 
 export const [NAME]_HEADER_CONTENT = {
   title: '[ComponentName]',
@@ -198,26 +223,89 @@ export const [NAME]_BREADCRUMB_ITEMS = [
   { label: '[ComponentName]' },
 ];
 
-export const [NAME]_SECTIONS = [
-  { id: 'theming', title: 'Theming', description: 'Real-world production themes.' },
-  { id: 'variants', title: 'Variants', description: 'Style, size, and layout variants.' },
-  { id: 'playground', title: 'Playground', description: 'Interactive sandbox.' },
-  { id: 'mock-code', title: 'Mock Code', description: 'CMS payload & consumer component.' },
-  { id: 'overview', title: 'Overview', description: 'API reference and properties.' },
+export const [NAME]_SAMPLE_ITEMS = [
+  { id: '1', title: 'Item 1', content: 'Content 1' },
+  { id: '2', title: 'Item 2', content: 'Content 2' },
 ];
+
+export const [NAME]_THEME_CONFIGS = [
+  {
+    id: 'theming-enterprise',
+    sectionTitle: '1. Enterprise Security & Audit Theme',
+    description: 'Crisp card layout with verified status badges.',
+    previewTitle: 'Security FAQ',
+    props: { variant: 'card' as const, type: 'single' as const, defaultValue: '1' },
+    items: [
+      {
+        id: '1',
+        title: (
+          <div className="flex items-center gap-3">
+            <span className="font-bold flex items-center gap-2">
+              <Shield size={16} className="text-emerald-600" /> Compliance
+            </span>
+            <Badge variant="success" size="sm" shape="pill">Certified</Badge>
+          </div>
+        ),
+        content: 'Enterprise compliance details.',
+      },
+    ],
+    code: `<[ComponentName] variant="card" defaultValue="1" ... />`,
+  },
+  // 5 realistic production themes
+];
+
+export const [NAME]_VARIANT_GROUPS = [
+  {
+    id: '[name]-variants-card',
+    title: '1. Card & Floating Styles',
+    description: 'Elevated card modules with soft drop shadows.',
+    variants: [
+      { title: 'Card Style', variant: 'card' },
+      { title: 'Floating Style', variant: 'floating' },
+    ],
+  },
+  // Minimum 10 distinct variants grouped cleanly
+];
+
+export const [NAME]_PLAYGROUND_SECTION = {
+  id: '[name]-playground-section',
+  title: 'Interactive Playground',
+  description: 'Explore variants, sizes, and interactive modes.',
+};
+
+export const [NAME]_MOCK_SECTION = {
+  id: '[name]-mock',
+  title: 'Dynamic Backend Integration',
+  description: 'Render entries dynamically from remote JSON API responses.',
+  snippets: [
+    { label: 'Sample Backend API Payload', code: JSON.stringify({ status: 'success', data: [] }, null, 2) },
+    { label: 'Dynamic Consumer Component', code: `// Consumer React component...` },
+  ],
+};
+
+export const [NAME]_OVERVIEW_SECTION = {
+  id: '[name]-usage',
+  title: 'Introduction',
+  description: 'The [ComponentName] primitive collapses and expands dense information sections.',
+  quickUsage: {
+    label: 'Quick Usage',
+    code: `import { [ComponentName] } from '@core-circle/ui';\n\n<[ComponentName] />`,
+  },
+  propsTableTitle: 'Component Props',
+};
 
 export const [NAME]_PROPS_DATA: PropItem[] = [
   {
     name: 'variant',
     type: 'string',
-    defaultValue: "'default'",
+    defaultValue: "'bordered'",
     description: 'The visual styling variant of the component.',
   },
   {
     name: 'size',
     type: "'sm' | 'md' | 'lg'",
     defaultValue: "'md'",
-    description: 'The size dimensions and padding scale.',
+    description: 'The vertical padding and font scale.',
   },
   {
     name: 'className',
@@ -230,130 +318,138 @@ export const [NAME]_PROPS_DATA: PropItem[] = [
 
 ### 4.5 Container Component Standard (`[name]Container.tsx`)
 
+Containers must use `<DocPageShell>` and declarative `.map()` loops. No hardcoded text or manual tab arrays:
+
 ```tsx
 // src/app/docs/src/containers/atoms-page/[name]/[name]Container.tsx
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import { Breadcrumb, Tabs, Typography, Badge, Button, [ComponentName] } from '@core-circle/ui';
-import {
-  Palette,
-  Layers,
-  Play,
-  CodeIcon,
-  Info,
-  Sparkles,
-  Shield
-} from '@core-circle/icons';
+import { [ComponentName], Typography } from '@core-circle/ui';
 import ComponentPreview from '../../../components/component-preview';
 import DocSection from '../../../components/doc-section';
-import CodeSnippet from '../../../components/code-snippet';
-import PropsTable from '../../../components/props-table';
-import { [Name]Playground } from '../../../components/playground/[name]/[name]Playground';
-import { [name]PageStyles as s } from './[name].styles';
+import DocPageShell from '../../../components/doc-page-shell/docPageShell';
 import {
+  [NAME]_THEME_CONFIGS,
+  [NAME]_VARIANT_GROUPS,
+  [NAME]_SAMPLE_ITEMS,
   [NAME]_PROPS_DATA,
-  [NAME]_HEADER_CONTENT
+  [NAME]_PLAYGROUND_SECTION,
+  [NAME]_MOCK_SECTION,
+  [NAME]_OVERVIEW_SECTION,
 } from '../../../constants/atoms-page/[name]/[name]Constants';
+import { [Name]Playground } from '../../../components/playground/[name]/[Name]Playground';
+import PropsTable from '../../../components/props-table';
+import CodeSnippet from '../../../components/code-snippet';
 import { [Name]ContainerProps } from '../../../interface/containers/atoms/[name].types';
 
 export default function [Name]Container({
-  headerContent = [NAME]_HEADER_CONTENT,
-  breadcrumbItems
+  headerContent,
+  breadcrumbItems,
 }: [Name]ContainerProps) {
-  const tabItems = [
-    {
-      id: 'theming',
-      label: 'Theming',
-      icon: <Palette size={16} />,
-      content: (
-        <div className="flex flex-col gap-12 max-w-5xl">
-          {/* 5 Distinct Production Themes */}
-          <DocSection id="theme-1" title="1. Enterprise Theme" description="...">
-            <ComponentPreview title="..." code="...">
-              <[ComponentName] ... />
-            </ComponentPreview>
-          </DocSection>
-        </div>
-      ),
-    },
-    {
-      id: 'variants',
-      label: 'Variants',
-      icon: <Layers size={16} />,
-      content: (
-        <div className="flex flex-col gap-12 max-w-5xl">
-          {/* 10+ Distinct Variants */}
-          <DocSection id="variants-styles" title="Visual Variants" description="...">
-            <ComponentPreview title="..." code="...">
-              <[ComponentName] variant="..." />
-            </ComponentPreview>
-          </DocSection>
-        </div>
-      ),
-    },
-    {
-      id: 'playground',
-      label: 'Playground',
-      icon: <Play size={16} />,
-      content: (
-        <div className="max-w-5xl">
-          <[Name]Playground />
-        </div>
-      ),
-    },
-    {
-      id: 'mock-code',
-      label: 'Mock Code',
-      icon: <CodeIcon size={16} />,
-      content: (
-        <div className="flex flex-col gap-12 max-w-5xl">
-          <DocSection id="mock-api" title="Dynamic Backend Integration" description="...">
-            <CodeSnippet label="1. CMS JSON Payload" code={`...`} />
-            <CodeSnippet label="2. Consumer React Component" code={`...`} />
-          </DocSection>
-        </div>
-      ),
-    },
-    {
-      id: 'overview',
-      label: 'Overview',
-      icon: <Info size={16} />,
-      content: (
-        <div className="flex flex-col gap-12 max-w-5xl">
-          <DocSection id="overview-usage" title="Introduction" description="...">
-            <CodeSnippet label="Quick Usage" code={`import { [ComponentName] } from '@core-circle/ui';\n\n<[ComponentName] />`} />
-            <div className="flex flex-col gap-4 mt-6">
-              <Typography variant="h4" className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted">
-                Component Props
-              </Typography>
-              <PropsTable data={[NAME]_PROPS_DATA} />
-            </div>
-          </DocSection>
-        </div>
-      ),
-    },
-  ];
-
   return (
-    <div className={s.container}>
-      <header className={s.header}>
-        {breadcrumbItems && (
-          <Breadcrumb
-            items={breadcrumbItems}
-            renderLink={(props) => <Link {...props} />}
-            className="mb-4"
-          />
-        )}
-        <Typography variant="h1" className={s.title}>{headerContent.title}</Typography>
-        <Typography variant="p" className={s.description}>{headerContent.description}</Typography>
-      </header>
-
-      <div className="mt-8">
-        <Tabs items={tabItems} variant="underline" size="lg" className="w-full" />
-      </div>
-    </div>
+    <DocPageShell
+      headerContent={headerContent}
+      breadcrumbItems={breadcrumbItems}
+      tabs={{
+        theming: (
+          <div className="flex flex-col gap-12 max-w-5xl">
+            {[NAME]_THEME_CONFIGS.map((theme) => (
+              <DocSection
+                key={theme.id}
+                id={theme.id}
+                title={theme.sectionTitle}
+                description={theme.description}
+              >
+                <ComponentPreview title={theme.previewTitle} code={theme.code}>
+                  <div className="w-full">
+                    <[ComponentName] {...theme.props} items={theme.items} />
+                  </div>
+                </ComponentPreview>
+              </DocSection>
+            ))}
+          </div>
+        ),
+        variants: (
+          <div className="flex flex-col gap-12 max-w-5xl">
+            {[NAME]_VARIANT_GROUPS.map((group) => (
+              <DocSection
+                key={group.id}
+                id={group.id}
+                title={group.title}
+                description={group.description}
+              >
+                <div className="flex flex-col gap-6 w-full">
+                  {group.variants.map((v) => (
+                    <ComponentPreview
+                      key={v.variant}
+                      title={v.title}
+                      code={`<[ComponentName] variant="${v.variant}" />`}
+                    >
+                      <div className={v.wrapperClassName ? `w-full ${v.wrapperClassName}` : 'w-full'}>
+                        <[ComponentName] items={[NAME]_SAMPLE_ITEMS} variant={v.variant} />
+                      </div>
+                    </ComponentPreview>
+                  ))}
+                </div>
+              </DocSection>
+            ))}
+          </div>
+        ),
+        playground: (
+          <DocSection
+            id={[NAME]_PLAYGROUND_SECTION.id}
+            title={[NAME]_PLAYGROUND_SECTION.title}
+            description={[NAME]_PLAYGROUND_SECTION.description}
+          >
+            <[Name]Playground />
+          </DocSection>
+        ),
+        mockCode: (
+          <div className="flex flex-col gap-12 max-w-5xl">
+            <DocSection
+              id={[NAME]_MOCK_SECTION.id}
+              title={[NAME]_MOCK_SECTION.title}
+              description={[NAME]_MOCK_SECTION.description}
+            >
+              <div className="flex flex-col gap-8 mt-6">
+                {[NAME]_MOCK_SECTION.snippets.map((snippet) => (
+                  <CodeSnippet
+                    key={snippet.label}
+                    label={snippet.label}
+                    code={snippet.code}
+                  />
+                ))}
+              </div>
+            </DocSection>
+          </div>
+        ),
+        overview: (
+          <div className="flex flex-col gap-12 max-w-5xl">
+            <DocSection
+              id={[NAME]_OVERVIEW_SECTION.id}
+              title={[NAME]_OVERVIEW_SECTION.title}
+              description={[NAME]_OVERVIEW_SECTION.description}
+            >
+              <div className="flex flex-col gap-8 mt-6">
+                <CodeSnippet
+                  label={[NAME]_OVERVIEW_SECTION.quickUsage.label}
+                  code={[NAME]_OVERVIEW_SECTION.quickUsage.code}
+                />
+                <div className="flex flex-col gap-4">
+                  <Typography
+                    variant="h4"
+                    className="text-xs font-bold uppercase tracking-wider text-core-circle-text-muted"
+                  >
+                    {[NAME]_OVERVIEW_SECTION.propsTableTitle}
+                  </Typography>
+                  <PropsTable data={[NAME]_PROPS_DATA} />
+                </div>
+              </div>
+            </DocSection>
+          </div>
+        ),
+      }}
+    />
   );
 }
 ```

@@ -67,6 +67,10 @@ Only create a new Atom if no existing Atom can fulfill the foundational role:
    - Import component relatively via `../../../components/atoms/[name]/[name]`.
    - Export default `meta` with `tags: ['autodocs']`.
    - Storybook build (`npm run build-storybook`) is verified automatically in CI (`lint-and-build`).
+6. **Mandatory Webapp Showcase & Registry Indexing**:
+   - Create the 6-file documentation anatomy in `src/app/docs/` (`page.tsx`, `Container.tsx`, `[name].styles.ts`, `[name]Constants.tsx`, `[Name]Playground.tsx`, `[name].types.ts`).
+   - Register the component in `ATOM_CARDS` in `src/app/docs/src/constants/atoms-page/atoms-page-constant.ts` so it appears in the overview grid and search.
+   - Never consider a component complete without all three deliverables (Primitive + Storybook + Docs & Registry).
 
 ---
 
@@ -106,12 +110,15 @@ Always consult `src/app/docs/src/containers/atoms-page/accordion/accordionContai
    - Only import icons that actually exist in `@core-circle/icons` (`packages/icons/index.ts`).
    - Common traps: Use `Cloud` not `Server`, `UserIcon` not `User`, `DocumentText` not `FileText`, `AudioWaveform` not `Music`.
 
-6. **5 Standard Tabs Order**:
-   - **`Theming`** (Tab 1, `Palette` icon, default active): 5 real-world production themes (`w-full` previews).
-   - **`Variants`** (Tab 2, `Layers` icon): 10+ variants in `DocSection`s (`w-full` previews).
-   - **`Playground`** (Tab 3, `Play` icon): Interactive playground controls with live preview and code generator.
-   - **`Mock Code`** (Tab 4, `CodeIcon`): Dynamic backend API payload and consumer component.
-   - **`Overview`** (Tab 5, `Info` icon): Quick usage snippet and `PropsTable`.
+6. **Canonical DocPageShell & Data-Driven 5 Tabs Architecture**:
+   - Containers MUST use `<DocPageShell headerContent={headerContent} breadcrumbItems={breadcrumbItems} tabs={{ theming, variants, playground, mockCode, overview }} />` (`src/app/docs/src/components/doc-page-shell/docPageShell.tsx`) powered by `DOCS_CANONICAL_TABS` (`src/app/docs/src/constants/docs-tabs-constant.tsx`).
+   - **Zero Hardcoded Strings**: All IDs, titles, descriptions, labels, and code strings MUST be declared in `[name]Constants.tsx`.
+   - **Declarative Loops**:
+     - **`Theming`** (Tab 1, `Palette` icon, default active): 5 real-world production themes rendered via `[NAME]_THEME_CONFIGS.map(...)`.
+     - **`Variants`** (Tab 2, `Layers` icon): 10+ variants rendered via `[NAME]_VARIANT_GROUPS.map(...)`.
+     - **`Playground`** (Tab 3, `Play` icon): Interactive playground `<[Name]Playground />` inside `<DocSection {...[NAME]_PLAYGROUND_SECTION}>`.
+     - **`Mock Code`** (Tab 4, `CodeIcon`): Dynamic backend API payload and consumer component rendered from `[NAME]_MOCK_SECTION.snippets.map(...)`.
+     - **`Overview`** (Tab 5, `Info` icon): Quick usage snippet and `PropsTable` rendered from `[NAME]_OVERVIEW_SECTION`.
 
 7. **Zero Ad-Hoc Dark Containers**:
    - Always use clean surface tokens (`bg-white` or `bg-core-circle-bg-surface`, `border-core-circle-border-main`, `text-core-circle-text-main`) in showcase cards.
