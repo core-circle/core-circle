@@ -103,6 +103,9 @@ packages/ui/src/
   - Total monorepo lint warnings must **strictly never exceed 100** (`nx run-many -t lint`).
   - Core primitives in `@core-circle/ui`, `@core-circle/theme`, and `@core-circle/icons` must maintain **0 errors and 0 warnings** at all times.
   - Always exclude compiled/minified build artifacts (`storybook-static/`, `dist/`, `.next/`) in ESLint flat configs (`eslint.config.mjs`) to prevent false-positive alert storms.
+- **STRICT NO GIT PUSH MANDATE**:
+  - All code edits, commits, and experiments must remain strictly within the local working tree.
+  - **NEVER** run `git push` or push branches to any remote repository under any circumstances.
 
 ---
 
@@ -159,7 +162,24 @@ When developing or upgrading documentation containers, pages, and constants in `
    - **`Overview`** (Tab 5, `Info` icon): Quick usage snippet and comprehensive `PropsTable` rendered from `[NAME]_OVERVIEW_SECTION`.
 7. **Verified Icon Imports**:
    - Only import icons that actually exist in `@core-circle/icons` (`packages/icons/index.ts`).
-   - Do not guess icon names (e.g. use `Cloud` not `Server`, `UserIcon` or `UserCircle` not `User`, `DocumentText` not `FileText`). Turbopack fails the build if an invalid named icon export is imported.
+   - Do not guess icon names. Turbopack fails the build if an invalid named icon export is imported.
+   - **Known Icon Trap Replacements**:
+     - `DollarSign` $\rightarrow$ use `BadgeDollarSign`
+     - `Copy` $\rightarrow$ use `CopyIcon`
+     - `TrendingUp` / `TrendingDown` $\rightarrow$ use `ArrowUpRight` / `ArrowDownRight` or `Activity`
+     - `Trash` $\rightarrow$ use `XIcon`
+     - `CheckCircle` $\rightarrow$ use `CircleCheck`
+     - `Server` $\rightarrow$ use `Cloud` or `Terminal`
+     - `User` $\rightarrow$ use `UserIcon` or `UserCircle`
+     - `FileText` $\rightarrow$ use `DocumentText` or `File`
+     - `Music` $\rightarrow$ use `AudioWaveform` or `Play`
+     - `Pencil` / `Edit` $\rightarrow$ use `SquareEdit`
+     - `Refresh` $\rightarrow$ use `Rotate`
+     - `Eye` / `EyeOff` $\rightarrow$ use `EyeIcon`
+     - `QrCode` $\rightarrow$ use `Barcode` or `CodeIcon`
+     - `LayoutGrid` $\rightarrow$ use `Grid`
+     - `Globe` $\rightarrow$ use `SearchIcon` or `AtSign`
+     - `X` $\rightarrow$ use `XIcon`
 8. **Zero Ad-Hoc Dark Containers**:
    - Do NOT introduce localized dark wrappers (`bg-slate-900`, `bg-slate-950`, `bg-black`, `dark:bg-slate-900`) inside preview cards or theming showcases.
    - Child elements resolve light-mode semantic tokens (`text-core-circle-text-main` = black), causing invisible black-on-black text and inverted hover flashes.
@@ -177,6 +197,14 @@ When developing or upgrading documentation containers, pages, and constants in `
 12. **Fragment & Accessibility Standards**:
    - Avoid wrapping a single child in empty fragments `<>{child}</>` (`react/jsx-no-useless-fragment`).
    - Emojis in JSX must be wrapped with an accessible span: `<span role="img" aria-label="description">...</span>` (`jsx-a11y/accessible-emoji`).
+13. **Playground Form Controls Standard (Zero Native HTML Elements)**:
+   - In all interactive playground components (`*Playground.tsx`), developers MUST strictly use design system primitives (`<Select>`, `<TextInput>`, `<Checkbox>`, `<Switch>`, `<SliderInput>`) from `@core-circle/ui`.
+   - Never render native HTML `<select>`, `<input>`, or `<label>` elements in control panels.
+14. **Theming & Section Spacing Architecture (`tabContentWrapper`)**:
+   - All tab contents in containers must be wrapped in `<div className={s.tabContentWrapper}>` using `tabContentWrapper: 'flex flex-col gap-12 w-full'` from `atoms.styles.ts`.
+   - This guarantees uniform 48px vertical spacing between adjacent showcase preview cards. `<DocSection>` must have `className="w-full"`.
+15. **Compound & Multi-Slot Variant Propagation**:
+   - Primitives supporting surface variants (such as `dark`) must propagate the `variant` prop to all internal CVA style helpers (`statLabelVariants({ variant, size })`, `statValueVariants({ variant, size })`, etc.) to prevent invisible black-on-black text or default light-card child styling on dark cards.
 
 ---
 
@@ -210,10 +238,11 @@ Every new UI component (Atom, Molecule, or Generator) in `@core-circle/ui` must 
    - Container: `src/app/docs/src/containers/atoms-page/[name]/[name]Container.tsx` (5 canonical tabs: `Theming`, `Variants`, `Playground`, `Mock Code`, `Overview`)
    - Styles: `src/app/docs/src/containers/atoms-page/[name]/[name].styles.ts`
    - Constants: `src/app/docs/src/constants/atoms-page/[name]/[name]Constants.tsx`
-   - Playground: `src/app/docs/src/components/playground/[name]/[Name]Playground.tsx`
+   - Playground: `src/app/docs/src/components/playground/[name]/[Name]Playground.tsx` (Accordion benchmark: unified card, design system form primitives `Select`/`TextInput`/`Checkbox`, syntax-highlighted dark footer)
+   - Playground Styles: `src/app/docs/src/components/playground/[name]/[Name]Playground.styles.ts` (importing `accordionPlaygroundStyles`)
    - Types: `src/app/docs/src/interface/containers/atoms/[name].types.ts`
 2. **MANDATORY Registry Indexing**:
-   - Must add the component definition card to `ATOM_CARDS` in `src/app/docs/src/constants/atoms-page/atoms-page-constant.ts` (or `molecules-page-constant.ts` / `generators-page-constant.tsx`).
+   - Prepend the component definition card at index 0 of `ATOM_CARDS` in `src/app/docs/src/constants/atoms-page/atoms-page-constant.ts` (or `molecules-page-constant.ts` / `generators-page-constant.tsx`) without sorting.
    - Components omitted from `ATOM_CARDS` will not appear in the `/atoms` overview grid or component search bar.
 
 

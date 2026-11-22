@@ -34,7 +34,7 @@ import { colors, theme } from '@core-circle/theme';
 
 ## 2. Complete Atomic Primitives Directory (`@core-circle/ui`)
 
-All 43 atoms live in `packages/ui/src/components/atoms/` and are re-exported by `packages/ui/src/components/index.ts`.
+All 54 atoms live in `packages/ui/src/components/atoms/` and are re-exported by `packages/ui/src/components/index.ts`.
 
 | Atom | Relative Path | Key Props / Variants | Description & Use Case |
 | :--- | :--- | :--- | :--- |
@@ -46,9 +46,11 @@ All 43 atoms live in `packages/ui/src/components/atoms/` and are re-exported by 
 | **Badge** | `atoms/badge/` | `variant` (12 variants: `primary`, `secondary`, `success`, `warning`, `destructive`, `info`, `ghost`, `outline`, `glassmorphic`, `gradient`, `floating`, `dot`), `size`, `shape`, `dot`, `pulse` | Status badges, tags, chips |
 | **Breadcrumb** | `atoms/breadcrumb/` | `items` ({label, href, icon}), `variant` (10 variants), `size`, `separator`, `showBack`, `backLabel` | Navigation trail and breadcrumb items |
 | **Button** | `atoms/button/` | `variant` (12 variants: `primary`, `secondary`, `success`, `warning`, `destructive`, `outline`, `ghost`, `glassmorphic`, `gradient`, `floating`, `pill`, `soft`), `size` ('sm','md','lg','icon'), `shape`, `loading`, `startIcon`, `endIcon` | Primary interactive button |
+| **Callout** | `atoms/callout/` | `title`, `description`, `icon`, `variant` ('info','warning','success','danger','brand'), `dismissible`, `onDismiss`, `action` | High-visibility dismissible notice banner |
 | **Card** | `atoms/card/` | `Card`, `CardHeader`, `CardTitle`, `CardDescription`, `CardContent`, `CardFooter`, `variant` (11 variants), `orientation` ('vertical'/'horizontal'), `hoverable` | Card container & layout slots |
 | **Checkbox** | `atoms/checkbox/` | `checked`, `onChange`, `label`, `disabled`, `error`, `indeterminate`, `size` | Form checkbox with label & indeterminate state |
 | **ColorPicker** | `atoms/color-picker/` | `value`, `onChange`, `format`, `presets`, `disabled` | Color picker input with presets |
+| **ContextMenu** | `atoms/context-menu/` | `items` (schema), `trigger`, `variant` ('default','minimal','dark'), `size` ('sm','md','lg'), `disabled` | Coordinates-anchored right-click overlay menu |
 | **Counter** | `atoms/counter/` | `value`, `min`, `max`, `step`, `onChange`, `size`, `disabled` | Numeric stepper / increment-decrement |
 | **DatePicker** | `atoms/date-picker/` | `value`, `onChange`, `label`, `placeholder`, `disabled`, `fullWidth` | Single date picker popover |
 | **DatePickerRange** | `atoms/date-picker/` | `value` ({ from, to }), `onChange`, `label`, `placeholder`, `disabled` | Date range selector |
@@ -56,32 +58,41 @@ All 43 atoms live in `packages/ui/src/components/atoms/` and are re-exported by 
 | **Dialog** | `atoms/dialog/` | `open`, `onOpenChange`, `title`, `description`, `children`, `footer`, `size` | Modal dialog overlay |
 | **Divider** | `atoms/divider/` | `variant` (10 variants: `solid`, `dashed`, `dotted`, `gradient`, `fade`, `accent`, etc.), `orientation`, `thickness`, `align` | Visual divider with embedded text slot |
 | **Drawer** | `atoms/drawer/` | `open`, `onOpenChange`, `position` ('left','right','top','bottom'), `size` | Slide-out drawer panel |
+| **DropdownMenu** | `atoms/dropdown-menu/` | `items`, `trigger`, `variant` ('default','minimal','card','dark'), `size` ('sm','md','lg'), `placement` | Click-triggered multi-item action overlay |
+| **EmptyState** | `atoms/empty-state/` | `title`, `description`, `icon`, `action`, `variant` ('default','card','minimal','dashed'), `size` | Placeholder state with artwork & action slot |
 | **FileUpload** | `atoms/file-upload/` | `onDrop`, `accept`, `maxFiles`, `maxSize`, `disabled`, `multiple` | Drag-and-drop file upload zone |
+| **HoverCard** | `atoms/hover-card/` | `trigger`, `children`, `placement`, `openDelay`, `closeDelay`, `arrow` | Floating preview card triggered on hover |
 | **Image** | `atoms/image/` | `src`, `alt`, `fallback`, `aspectRatio`, `rounded`, `fit` | Image wrapper with loading fallback |
 | **Indicator** | `atoms/indicator/` | `status` ('online','offline','busy','away'), `size`, `ping` | Status indicator dot / ping |
 | **Kbd** | `atoms/kbd/` | `keys`, `size` ('sm','md','lg') | Keyboard shortcut badge |
 | **Label** | `atoms/label/` | `htmlFor`, `required`, `size`, `disabled` | Form input label |
 | **MultiSelect** | `atoms/multi-select/` | `options`, `value`, `onChange`, `placeholder`, `searchable`, `clearable`, `maxSelected` | Multi-item select dropdown with tags |
 | **OtpInput** | `atoms/otp-input/` | `length`, `value`, `onChange`, `disabled`, `autoFocus`, `mask` | One-time password verification input |
+| **Pagination** | `atoms/pagination/` | `totalPages`, `currentPage`, `onPageChange`, `pageSize`, `variant` ('default','pills','bordered'), `showQuickJumper` | Numeric page pagination with page size selector |
 | **Popover** | `atoms/popover/` | `trigger`, `content`, `placement`, `open`, `onOpenChange` | Floating interactive popover |
 | **Progress** | `atoms/progress/` | `value`, `max`, `variant` ('primary','secondary','success','warning','destructive'), `size`, `showValue` | Linear progress bar |
+| **PulseDot** | `atoms/pulse-dot/` | `status` ('online','offline','busy','away','deploying'), `size` ('sm','md','lg'), `ping`, `label` | Live radar pulse status indicator beacon |
 | **RadioButton** | `atoms/radio-button/` | `name`, `value`, `checked`, `onChange`, `label`, `disabled` | Radio option input |
 | **Rating** | `atoms/rating/` | `value`, `max`, `onChange`, `readOnly`, `precision`, `size` | Star rating display & selector |
 | **RichText** | `atoms/richtext/` | `content`, `editable`, `onChange`, `placeholder` | Formatted rich text editor/preview |
 | **ScrollArea** | `atoms/scroll-area/` | `children`, `orientation` ('vertical','horizontal','both') | Custom scrollable container |
-| **Select** | `atoms/select/` | `options`, `value`, `onChange`, `placeholder`, `disabled`, `size` | Dropdown single-select |
+| **Select** | `atoms/select/` | `options`, `value`, `onChange`, `placeholder`, `disabled`, `size`, `label`, `fullWidth` | Dropdown single-select (use in playgrounds) |
 | **Skeleton** | `atoms/skeleton/` | `variant` ('text','circular','rectangular','rounded'), `width`, `height`, `animation` | Loading placeholder skeleton |
 | **SliderInput** | `atoms/slider-input/` | `value`, `min`, `max`, `step`, `onChange`, `disabled`, `range` | Slider range input |
+| **Sparkline** | `atoms/sparkline/` | `data` (number[]), `type` ('line'\|'bar'), `color` ('primary'\|'success'\|'warning'\|'danger'), `height` | Lightweight zero-dependency SVG micro-chart |
 | **Spinner** | `atoms/spinner/` | `size` ('xs','sm','md','lg','xl'), `variant` ('primary','white','current') | Loading spinner |
+| **Stat** | `atoms/stat/` | `label`, `value`, `description`, `trend`, `icon`, `badge`, `footer`, `variant` (7 variants), `size` | Executive KPI big-number metric block |
 | **Stepper** | `atoms/stepper/` | `steps`, `activeStep`, `orientation`, `variant` ('numbers','circles','dots') | Multi-step progress tracker |
 | **Switch** | `atoms/switch/` | `checked`, `onChange`, `label`, `disabled`, `size` | Toggle switch |
 | **Tabs** | `atoms/tabs/` | `items`, `activeTab`, `onChange`, `variant` ('line','pill','enclosed') | Tab switcher |
 | **TagInput** | `atoms/tag-input/` | `tags`, `onTagsChange`, `placeholder`, `maxTags`, `disabled` | Tag input box |
-| **TextInput** | `atoms/text-input/` | `type`, `value`, `onChange`, `placeholder`, `startIcon`, `endIcon`, `error`, `helperText`, `size` | Text field with icons & error handling |
+| **TextInput** | `atoms/text-input/` | `type`, `value`, `onChange`, `placeholder`, `startIcon`, `endIcon`, `error`, `helperText`, `size`, `fullWidth` | Text field with icons & error handling |
 | **Textarea** | `atoms/textarea/` | `value`, `onChange`, `placeholder`, `rows`, `resize`, `error`, `disabled` | Multi-line textarea |
+| **Timeline** | `atoms/timeline/` | `items` (schema), `orientation` ('vertical'\|'horizontal'), `variant` ('solid'\|'dashed'), `size` | Chronological event & milestone tracker |
 | **TimePicker** | `atoms/time-picker/` | `value`, `onChange`, `format` ('12h'/'24h'), `step`, `disabled` | Time selector input |
 | **Toast & Toaster** | `atoms/toast/` | `variant` (12 variants), `title`, `description`, `action`, `duration`, `useToast()` hook | System notifications & viewport |
 | **Tooltip** | `atoms/tooltip/` | `content`, `placement`, `delay`, `children` | Hover tooltip |
+| **TrendBadge** | `atoms/trend-badge/` | `value`, `trend` ('up'\|'down'\|'neutral'), `variant` ('soft'\|'outline'\|'filled'\|'pill'), `size` | Numeric percentage delta badge with arrow |
 | **Typography** | `atoms/typography/` | `variant` ('h1'..'h6', 'body1', 'body2', 'caption', 'overline'), `weight`, `color`, `as` | Design token typography wrapper |
 
 ---
@@ -165,16 +176,35 @@ import { SearchIcon, CheckIcon, AlertTriangle, Trash2 } from '@core-circle/icons
 
 ### Categorized Icon Directory (520 Total Icons)
 All 520 icons are exported in alphabetical order from `packages/icons/index.ts`:
-- **Navigation & Arrows (60+)**: `ArrowDown`, `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowBigDown`, `ArrowBigUp`, `ArrowDownLeft`, `ArrowDownRight`, `ChevronDown`, `ChevronLeft`, `ChevronRight`, `ChevronUp`, `ChevronFirst`, `ChevronLast`, `ChevronsDown`, `ChevronsUp`, `ChevronsLeft`, `ChevronsRight`, `Compass`, `Locate`, `LocateFixed`, `MapPin`, `Move`, `Navigation`, `CornerDownLeft`, `CornerUpRight`, etc.
-- **System, Status & Feedback (60+)**: `Alert`, `AlertCircle`, `AlertOctagon`, `AlertTriangle`, `CheckIcon`, `CheckCheck`, `CircleCheck`, `CircleDot`, `CircleX`, `CircleAlert`, `HelpCircle`, `Info`, `XIcon`, `Plus`, `Minus`, `Ban`, `ShieldCheck`, `ShieldAlert`, `ShieldClose`, `ShieldOff`, etc.
-- **Media, Audio & Controls (50+)**: `Play`, `Pause`, `Square`, `Circle`, `FastForward`, `Rewind`, `SkipBack`, `SkipForward`, `Volume`, `Volume1`, `Volume2`, `VolumeX`, `Mic`, `MicOff`, `Video`, `VideoOff`, `Music`, `Film`, `Disc`, `Radio`, `Tv`, `Speaker`, `Headphones`, `Sliders`, `Shuffle`, `Repeat`, etc.
+- **Navigation & Arrows (60+)**: `ArrowDown`, `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowBigDown`, `ArrowBigUp`, `ArrowDownLeft`, `ArrowDownRight`, `ArrowUpRight`, `ArrowDownRight`, `ChevronDown`, `ChevronLeft`, `ChevronRight`, `ChevronUp`, `ChevronFirst`, `ChevronLast`, `ChevronsDown`, `ChevronsUp`, `ChevronsLeft`, `ChevronsRight`, `Move`, `CornerDownLeft`, etc.
+- **System, Status & Feedback (60+)**: `Alert`, `AlertCircle`, `AlertOctagon`, `AlertTriangle`, `CheckIcon`, `CheckCheck`, `CircleCheck`, `CircleDot`, `CircleX`, `CircleAlert`, `HelpCircle`, `Info`, `XIcon`, `Plus`, `Minus`, `Ban`, `Shield`, `ShieldAlert`, `ShieldOff`, `Lock`, `Unlock`, etc.
+- **Media, Audio & Controls (50+)**: `Play`, `Pause`, `Square`, `Circle`, `FastForward`, `Rewind`, `SkipBack`, `SkipForward`, `Volume`, `Volume1`, `Volume2`, `VolumeX`, `Mic`, `MicOff`, `Video`, `VideoOff`, `Film`, `Disc`, `Radio`, `Tv`, `Speaker`, `Headphones`, `Sliders`, `Shuffle`, `Repeat`, `AudioWaveform`, etc.
 - **Devices, Hardware & Tech (50+)**: `Cpu`, `HardDrive`, `Server`, `Database`, `Monitor`, `Laptop`, `Tablet`, `Smartphone`, `Watch`, `Printer`, `Router`, `Usb`, `Cable`, `Power`, `PowerOff`, `BatteryCharging`, `BatteryFull`, `BatteryLow`, `Wifi`, `WifiOff`, `Bluetooth`, `BluetoothConnected`, etc.
-- **Files, Folders & Storage (70+)**: `File`, `FileText`, `FileCode`, `FileArchive`, `FileSpreadsheet`, `FileImage`, `FileAudio`, `FileVideo`, `FilePlus`, `FileMinus`, `FileCheck`, `FileX`, `Folder`, `FolderOpen`, `FolderPlus`, `FolderMinus`, `FolderArchive`, `FolderTree`, `Files`, `Archive`, `Save`, `Download`, `Upload`, `CloudDownload`, `CloudUpload`, etc.
-- **Commerce, Business & Analytics (50+)**: `Banknotes`, `Wallet`, `CreditCard`, `Coins`, `Receipt`, `DollarSign`, `Euro`, `Bitcoin`, `Percent`, `Tag`, `Tags`, `ShoppingBag`, `ShoppingCart`, `Store`, `PackageCheck`, `Truck`, `Briefcase`, `Calculator`, `TrendingUp`, `TrendingDown`, `Activity`, `BarChart`, `PieChart`, `LineChart`, etc.
-- **Communication & Social (50+)**: `Mail`, `MailOpen`, `MailCheck`, `Chat`, `MessageSquare`, `MessageCircle`, `Send`, `SendHorizontal`, `Inbox`, `Bell`, `BellRing`, `BellOff`, `Share`, `ThumbUp`, `ThumbDown`, `Heart`, `HeartCrack`, `Star`, `Bookmark`, `Flag`, `Globe`, `Link`, `Link2`, `AtSign`, `Hash`, etc.
-- **Tools, Editing & Design (60+)**: `Brush`, `Crop`, `Eraser`, `Layers`, `Palette`, `Scissors`, `SettingsIcon`, `SlidersHorizontalIcon`, `SquareEdit`, `Wrench`, `CodeIcon`, `Terminal`, `TypeIcon`, `Highlighter`, `PenTool`, `AlignLeft`, `AlignCenter`, `AlignRight`, `List`, `Grid`, etc.
+- **Files, Folders & Storage (70+)**: `File`, `DocumentText`, `FileCode`, `FileArchive`, `FileSpreadsheet`, `FileImage`, `FileAudio`, `FileVideo`, `FilePlus`, `FileMinus`, `FileCheck`, `FileX`, `Folder`, `FolderOpen`, `FolderPlus`, `FolderMinus`, `FolderArchive`, `FolderTree`, `Files`, `Archive`, `Save`, `Download`, `Upload`, `CloudDownload`, `CloudUpload`, etc.
+- **Commerce, Business & Analytics (50+)**: `Banknotes`, `Wallet`, `CreditCard`, `Coins`, `Receipt`, `BadgeDollarSign`, `Euro`, `Bitcoin`, `Percent`, `Tag`, `Tags`, `ShoppingBag`, `ShoppingCart`, `Store`, `PackageCheck`, `Truck`, `Briefcase`, `Calculator`, `Activity`, `BarChart`, `PieChart`, `LineChart`, `Barcode`, etc.
+- **Communication & Social (50+)**: `Mail`, `MailOpen`, `MailCheck`, `Chat`, `MessageSquare`, `MessageCircle`, `Send`, `SendHorizontal`, `Inbox`, `Bell`, `BellRing`, `BellOff`, `Share`, `ThumbUp`, `ThumbDown`, `Heart`, `HeartCrack`, `Star`, `Bookmark`, `Flag`, `AtSign`, `Hash`, etc.
+- **Tools, Editing & Design (60+)**: `Brush`, `Crop`, `Eraser`, `Layers`, `Palette`, `Scissors`, `SettingsIcon`, `SlidersHorizontalIcon`, `SquareEdit`, `Wrench`, `CodeIcon`, `Terminal`, `TypeIcon`, `Highlighter`, `PenTool`, `AlignLeft`, `AlignCenter`, `AlignRight`, `List`, `Grid`, `EyeIcon`, `Rotate`, `CopyIcon`, etc.
 - **Weather & Time (40+)**: `Sun`, `Moon`, `Cloud`, `CloudRain`, `CloudSnow`, `CloudLightning`, `Wind`, `Umbrella`, `Droplet`, `Flame`, `Sparkles`, `Zap`, `Clock`, `Calendar`, `CalendarDays`, `CalendarRange`, `Timer`, `Hourglass`, etc.
-- **Geometric Shapes & UI Elements (40+)**: `Circle`, `Square`, `Triangle`, `Diamond`, `Hexagon`, `Octagon`, `Badge`, `Layout`, `LayoutDashboard`, `LayoutGrid`, `LayoutList`, `LayoutPanelLeft`, etc.
+- **Geometric Shapes & UI Elements (40+)**: `Circle`, `Square`, `Triangle`, `Diamond`, `Hexagon`, `Octagon`, `Badge`, `Grid`, `List`, etc.
+
+> [!WARNING]
+> **Common Icon Traps & Mandatory Replacements**:
+> - `DollarSign` does NOT exist $\rightarrow$ use `BadgeDollarSign`
+> - `Copy` does NOT exist $\rightarrow$ use `CopyIcon`
+> - `TrendingUp` / `TrendingDown` do NOT exist $\rightarrow$ use `ArrowUpRight` / `ArrowDownRight` or `Activity`
+> - `Trash` does NOT exist $\rightarrow$ use `XIcon`
+> - `CheckCircle` does NOT exist $\rightarrow$ use `CircleCheck`
+> - `Server` does NOT exist $\rightarrow$ use `Cloud` or `Terminal`
+> - `User` does NOT exist $\rightarrow$ use `UserIcon` or `UserCircle`
+> - `FileText` does NOT exist $\rightarrow$ use `DocumentText` or `File`
+> - `Music` does NOT exist $\rightarrow$ use `AudioWaveform` or `Play`
+> - `Pencil` / `Edit` do NOT exist $\rightarrow$ use `SquareEdit`
+> - `Refresh` does NOT exist $\rightarrow$ use `Rotate`
+> - `Eye` / `EyeOff` do NOT exist $\rightarrow$ use `EyeIcon`
+> - `QrCode` does NOT exist $\rightarrow$ use `Barcode` or `CodeIcon`
+> - `LayoutGrid` does NOT exist $\rightarrow$ use `Grid`
+> - `Globe` does NOT exist $\rightarrow$ use `SearchIcon` or `AtSign`
+> - `X` does NOT exist $\rightarrow$ use `XIcon`
 
 ---
 
@@ -226,6 +256,15 @@ When building or updating documentation pages in `src/app/docs/`:
    - `Playground` (Tab 3, `Play` icon): Interactive props controls + live code generator inside `<DocSection {...[NAME]_PLAYGROUND_SECTION}>`.
    - `Mock Code` (Tab 4, `CodeIcon`): Realistic backend API/CMS payload and consumer implementation rendered from `[NAME]_MOCK_SECTION.snippets.map(...)`.
    - `Overview` (Tab 5, `Info` icon): Quick usage snippet and `PropsTable` rendered from `[NAME]_OVERVIEW_SECTION`.
+4. **Mandatory Accordion-Standard Interactive Playground**:
+   - Every playground must follow `AccordionPlayground` layout: single unified container card (`s.container`), integrated top controls panel (`s.controlsWrapper`), center preview canvas (`s.previewWrapper` / `s.previewArea`), and integrated dark code footer (`s.codeSection`) with syntax highlighting and copy button.
+   - **Zero Raw HTML Form Elements**: Always use design system primitives (`<Select>`, `<TextInput>`, `<Checkbox>`, `<Switch>`, `<SliderInput>`) from `@core-circle/ui`. Never render raw `<select>`, `<input>`, or `<label>` elements.
+   - Colocate `[name]Playground.styles.ts` importing `accordionPlaygroundStyles`.
+5. **Theming & Section Spacing Architecture (`tabContentWrapper`)**:
+   - All tab contents must be wrapped in `<div className={s.tabContentWrapper}>` (`tabContentWrapper: 'flex flex-col gap-12 w-full'` in `atomsPageStyles`). `<DocSection>` must have `className="w-full"`.
+   - Guarantees standard 48px vertical breathing room between preview cards and sections.
+6. **Compound Variant Propagation**:
+   - Primitives supporting surface variants (`dark`, `accent`) must propagate `variant` to all child slot style helpers (`*LabelVariants({ variant, size })`, `*ValueVariants({ variant, size })`, etc.) to prevent invisible black-on-black text on dark surfaces.
 
 ---
 
@@ -234,7 +273,7 @@ When building or updating documentation pages in `src/app/docs/`:
 1. **Zero-Turn Navigation**: Use this Code Brain instead of searching directories or querying file trees.
 2. **Selective File Edits**: When adding a variant, only touch `[name].styles.ts` and `[name].types.ts`.
 3. **Compose, Don't Code**: Assemble existing Atoms (`Card`, `Typography`, `Badge`, `Button`) instead of writing raw HTML and custom CSS.
-4. **Strict Command Policy**: NEVER run `build`, `test`, or `lint` commands unless specifically and explicitly requested by the user.
+4. **Strict Command Policy (Rule 5)**: NEVER run `build`, `test`, or `lint` commands automatically. Only run them when specifically requested by the user.
 5. **Strict Lint Warning Metric (< 100 Warnings)**:
    - Monorepo lint warnings must strictly never exceed 100 (`nx run-many -t lint`).
    - Primitives in `@core-circle/ui`, `@core-circle/theme`, and `@core-circle/icons` must maintain **0 errors and 0 warnings**.
@@ -243,6 +282,7 @@ When building or updating documentation pages in `src/app/docs/`:
 7. **Hook Dependency Safety**: Wrap event listener callbacks in `useCallback` when consumed by `useEffect`.
 8. **Accessibility & Fragments**: Emojis must use `<span role="img" aria-label="...">`; avoid single-child `<>{child}</>` wrappers.
 9. **Mandatory Tri-Deliverable Rule**: Every new component requires (1) Core Primitive in `packages/ui`, (2) Storybook story, and (3) 6-file Docs showcase + entry in `ATOM_CARDS` (`atoms-page-constant.ts`). Never leave any deliverable missing.
+10. **STRICT NO GIT PUSH MANDATE**: All changes must remain purely in the local working tree. Never run `git push`.
 
 ---
 

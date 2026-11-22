@@ -2,6 +2,7 @@ export const atomsPageStyles = {
   container: 'max-w-5xl mx-auto px-6 py-10',
   header: 'mb-8',
   breadcrumbWrapper: 'mb-4',
+  tabContentWrapper: 'flex flex-col gap-12 w-full',
   title: 'text-4xl font-core-circle-bold text-core-circle-text-main mb-3 tracking-tight',
   description: 'text-base text-core-circle-text-muted max-w-2xl leading-relaxed',
   grid: 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6',

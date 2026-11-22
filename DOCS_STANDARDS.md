@@ -113,11 +113,27 @@ Every container must provide the standard **5-Tab Navigation** in this exact ord
 
 - **ID & Icon**: `id: 'playground'`, icon: `<Play size={16} />` from `@core-circle/icons`.
 - **Purpose**: An interactive sandbox where developers can dynamically tweak component props and see live updates.
-- **Structure**:
-  - Houses the isolated `[Component]Playground` component.
-  - Controls grid (dropdowns for `variant`, `size`, `shape`, toggle switches for boolean flags).
-  - Live interactive component preview surface.
-  - Live syntax-highlighted code output with one-click copy button.
+- **Strict Primitive Usage (Zero Raw HTML Elements)**:
+  - All playground form controls MUST strictly use design system primitives from `@core-circle/ui`:
+    - Dropdowns: `<Select label="..." value={...} onChange={(e) => ...} options={[...]} fullWidth />`
+    - Text / String values: `<TextInput label="..." value={...} onChange={(e) => ...} fullWidth />`
+    - Checkboxes: `<Checkbox label="..." checked={...} onChange={(checked) => ...} />`
+    - Switches: `<Switch label="..." checked={...} onChange={(checked) => ...} />`
+    - Sliders: `<SliderInput label="..." value={...} onChange={(val) => ...} />`
+  - **Never** render raw HTML `<select>`, `<input>`, or `<label>` elements in playgrounds.
+- **Architecture & Layout Standard (Accordion Benchmark)**:
+  - Every playground MUST follow the unified layout architecture of `AccordionPlayground.tsx` and `accordionPlaygroundStyles`:
+    - **Unified card container**: `<div className={s.container}>` (`bg-white rounded-core-circle-2xl border border-core-circle-border-main shadow-core-circle-subtle overflow-hidden`)
+    - **Layout shell**: `<div className={s.layout}>` (`flex flex-col`)
+    - **Integrated controls toolbar**: `<div className={s.controlsWrapper}>` (`w-full bg-core-circle-bg-page/30 border-b border-core-circle-border-main p-6 space-y-6`) containing responsive grid rows of design system primitives (`Select`, `TextInput`, `Checkbox`)
+    - **Interactive preview canvas**: `<div className={s.previewWrapper}><div className={s.previewArea}>` (`flex-1 flex items-center justify-center p-12 lg:p-20 min-h-[400px] bg-white`)
+    - **Integrated code footer**: `<div className={s.codeSection}>` (`p-6 bg-slate-950 border-t border-core-circle-border-main`) with syntax-highlighted code (`highlightCode`) and one-click "Copy Snippet" button using `DOC_TEXT`.
+  - **Colocated Styles Requirement**: Every playground directory MUST contain a colocated `[name]Playground.styles.ts` importing `accordionPlaygroundStyles`:
+    ```ts
+    import { accordionPlaygroundStyles } from '../accordion/accordionPlayground.styles';
+    export const [name]PlaygroundStyles = accordionPlaygroundStyles;
+    ```
+  - **Forbidden Anti-Pattern**: Never render detached control cards, floating input boxes, or loose `<CodeSnippet>` components underneath. The entire playground must be a single cohesive module.
 
 ### Tab 4: `Mock Code`
 
@@ -484,11 +500,23 @@ import { MyContainerProps } from '../../../interface/containers/atoms/my.types';
 ### 5.2 Icon Existence in `@core-circle/icons`
 
 - **Rule**: Before importing any icon, verify it exists in `packages/icons/index.ts` (or `@core-circle/icons`).
-- **Common traps**:
-  - `Server` does not exist $\rightarrow$ use `Cloud` or `Terminal`.
-  - `User` does not exist $\rightarrow$ use `UserIcon` or `UserCircle`.
-  - `FileText` does not exist $\rightarrow$ use `DocumentText` or `File`.
-  - `Music` does not exist $\rightarrow$ use `AudioWaveform` or `Play`.
+- **Common traps & Mandatory Replacements**:
+  - `Copy` does NOT exist $\rightarrow$ use `CopyIcon`.
+  - `DollarSign` does NOT exist $\rightarrow$ use `BadgeDollarSign`.
+  - `TrendingUp` / `TrendingDown` do NOT exist $\rightarrow$ use `ArrowUpRight` / `ArrowDownRight` or `Activity`.
+  - `Trash` does NOT exist $\rightarrow$ use `XIcon`.
+  - `CheckCircle` does NOT exist $\rightarrow$ use `CircleCheck`.
+  - `Server` does NOT exist $\rightarrow$ use `Cloud` or `Terminal`.
+  - `User` does NOT exist $\rightarrow$ use `UserIcon` or `UserCircle`.
+  - `FileText` does NOT exist $\rightarrow$ use `DocumentText` or `File`.
+  - `Music` does NOT exist $\rightarrow$ use `AudioWaveform` or `Play`.
+  - `Pencil` / `Edit` do NOT exist $\rightarrow$ use `SquareEdit`.
+  - `Refresh` does NOT exist $\rightarrow$ use `Rotate`.
+  - `Eye` / `EyeOff` do NOT exist $\rightarrow$ use `EyeIcon`.
+  - `QrCode` does NOT exist $\rightarrow$ use `Barcode` or `CodeIcon`.
+  - `LayoutGrid` does NOT exist $\rightarrow$ use `Grid`.
+  - `Globe` does NOT exist $\rightarrow$ use `SearchIcon` or `AtSign`.
+  - `X` does NOT exist $\rightarrow$ use `XIcon`.
 - **Why**: Next.js Turbopack statically analyzes named exports. Importing a non-existent named export causes a hard compilation failure during `next build`.
 
 ### 5.3 Colocated Styles File (`[component].styles.ts`)
@@ -527,6 +555,34 @@ import { MyContainerProps } from '../../../interface/containers/atoms/my.types';
 - **Rule 2 (Single-Child Fragment Hygiene)**: Never wrap a single child in `<>{children}</>`. Return `children` directly or cast as `children as React.ReactElement | null`.
 - **Rule 3 (Accessible Emojis)**: All emojis in UI text must be wrapped in `<span role="img" aria-label="...">` to satisfy `jsx-a11y/accessible-emoji`.
 
+### 5.9 Interactive Playground Controls Standard (Zero Native HTML Form Elements)
+
+- **Rule**: In all interactive playground sandboxes (`src/app/docs/src/components/playground/[name]/[Name]Playground.tsx`), developers must **strictly use `@core-circle/ui` primitives** for control panels.
+- **Forbidden Elements**: Never render raw HTML `<select>`, `<input>`, `<label>`, `<button>`, or `<input type="checkbox">` elements.
+- **Approved Component Replacements**:
+  - Dropdown selectors: `<Select label="..." value={...} onChange={(e) => ...} options={[...]} fullWidth />`
+  - Text & numeric inputs: `<TextInput label="..." value={...} onChange={(e) => ...} fullWidth />`
+  - Checkbox flags: `<Checkbox label="..." checked={...} onChange={(checked) => ...} />`
+  - Toggle switches: `<Switch label="..." checked={...} onChange={(checked) => ...} />`
+  - Numeric sliders: `<SliderInput label="..." value={...} onChange={(val) => ...} />`
+- **Why**: Raw HTML form inputs fail to respect design system typography, focus rings, border radiuses, and platform styling tokens, creating visually jarring and inconsistent documentation sandboxes.
+
+### 5.10 Theming & Section Spacing Architecture (`tabContentWrapper`)
+
+- **Rule**: All showcase tab contents (`theming`, `variants`, `mockCode`, `overview`) rendered in containers must be wrapped with `<div className={s.tabContentWrapper}>`.
+- **Definition**: `tabContentWrapper` is defined in `atomsPageStyles` (`src/app/docs/src/containers/atoms-page/atoms.styles.ts`) as:
+  ```ts
+  tabContentWrapper: 'flex flex-col gap-12 w-full',
+  ```
+- **DocSection Full-Width Guarantee**: `<DocSection>` must include `className="w-full"` on its root `<section id={id}>` element to ensure all preview cards and theming cards stretch across the full layout container.
+- **Spacing Guarantee**: This enforces an exact `48px` (`gap-12`) vertical breathing room between each theming preview card and section heading, preventing adjacent sections from touching.
+
+### 5.11 Compound & Multi-Slot Variant Propagation (Preventing Invisible Text on Dark Surfaces)
+
+- **Rule**: Any component primitive that offers surface or color variants (e.g. `dark`, `accent`, `glassmorphic`, `gradient`) must propagate the `variant` prop to all internal CVA style helpers (`*LabelVariants`, `*ValueVariants`, `*DescriptionVariants`, `*IconWrapperVariants`).
+- **Forbidden Practice**: Never call `statValueVariants({ size })` without passing `{ variant }`. Omitting `variant` defaults to `card` (`text-slate-900`), resulting in pitch-black text rendered against dark navy cards (`bg-slate-900`), rendering the text completely invisible.
+- **Icon Box & Auxiliary Slots**: Auxiliary wrappers (icon badges, footers, divider lines) must also adapt their background and border tokens according to the active `variant`.
+
 ---
 
 ## 6. Do's and Don'ts Checklist
@@ -534,6 +590,9 @@ import { MyContainerProps } from '../../../interface/containers/atoms/my.types';
 | Do ✅                                                                                                                                      | Don't ❌                                                                                                              |
 | :----------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
 | **Always use `bg-white` / `bg-core-circle-bg-surface`** for showcase preview cards.                                                        | **Never use ad-hoc dark wrappers** (`bg-slate-900`, `bg-slate-950`, `dark:bg-slate-900`) causing black-on-black text. |
+| **Always use `<Select>`, `<TextInput>`, `<Checkbox>`** from `@core-circle/ui` in playgrounds.                                              | **Never use raw HTML `<select>`, `<input>`, or `<label>`** in playground control panels.                             |
+| **Always wrap tab content in `s.tabContentWrapper`** for standard 48px vertical section spacing.                                           | **Never omit `tabContentWrapper`**, which causes adjacent showcase sections to touch with 0px gap.                    |
+| **Always propagate `variant` to all child slot style helpers** (`statLabelVariants({ variant, size })`).                                  | **Never omit `variant` in child styles**, causing invisible black-on-black text on dark surfaces.                     |
 | **Always place `'use client';` on Line 1** before any imports in client components.                                                        | **Never place import statements above `'use client';`**.                                                              |
 | **Always verify icon names in `packages/icons/index.ts`** before importing from `@core-circle/icons`.                                      | **Never guess icon names** (e.g. `Server`, `User`, `FileText`).                                                       |
 | **Always import `[name]PageStyles as s` from `./[name].styles`** extending `atomsPageStyles`.                                              | **Do not write inline layout padding** like `p-12 lg:p-20` on container wrappers.                                     |
