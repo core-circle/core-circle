@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Tabs, Badge } from '@core-circle/ui';
 import { Cloud, Banknotes, Terminal, Shield, ShoppingBag, HomeIcon } from '@core-circle/icons';

@@ -92,6 +92,17 @@
     },
     "test": {
       "dependsOn": ["^build"]
+    },
+    "build-storybook": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "default",
+        "^production",
+        "{projectRoot}/.storybook/**/*",
+        "{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+        "{projectRoot}/tsconfig.storybook.json"
+      ],
+      "cache": true
     }
   }
 }

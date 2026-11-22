@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Stepper, Badge, Button } from '@core-circle/ui';
 import { UserCircle, Cloud, Shield, ShoppingBag, Lock, ChevronRight, ChevronLeft, HomeIcon } from '@core-circle/icons';

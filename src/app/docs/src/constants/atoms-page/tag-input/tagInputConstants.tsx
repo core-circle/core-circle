@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { TagInput, Badge } from '@core-circle/ui';

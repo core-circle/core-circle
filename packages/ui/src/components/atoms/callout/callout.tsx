@@ -37,8 +37,6 @@ export const Callout = React.forwardRef<HTMLDivElement, CalloutProps>(
       onDismiss?.();
     }, [onDismiss]);
 
-    if (dismissed) return null;
-
     const defaultIcon = React.useMemo(() => {
       const iconSize = size === 'sm' ? 16 : size === 'md' ? 18 : 20;
       switch (variant) {
@@ -55,6 +53,8 @@ export const Callout = React.forwardRef<HTMLDivElement, CalloutProps>(
           return <Info size={iconSize} />;
       }
     }, [variant, size]);
+
+    if (dismissed) return null;
 
     return (
       <div
