@@ -10,6 +10,7 @@
   "files": [
     "dist",
     "tailwind-theme.css",
+    "core-circle-themes",
     "fonts.css"
   ],
   "repository": {
@@ -29,8 +30,16 @@
       "require": "./dist/preset.cjs",
       "default": "./dist/preset.mjs"
     },
+    "./theme-generator": {
+      "types": "./dist/theme-generator.d.ts",
+      "import": "./dist/theme-generator.mjs",
+      "require": "./dist/theme-generator.cjs",
+      "default": "./dist/theme-generator.mjs"
+    },
     "./package.json": "./package.json",
     "./tailwind-theme.css": "./tailwind-theme.css",
+    "./core-circle.theme.css": "./core-circle-themes/core-circle.theme.css",
+    "./core-circle-themes/*": "./core-circle-themes/*",
     "./fonts.css": "./fonts.css"
   }
 }

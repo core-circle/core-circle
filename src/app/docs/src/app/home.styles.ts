@@ -9,7 +9,7 @@ export const homePageStyles = {
 
   // Section
   sectionTitle: "text-core-circle-text-main text-2xl font-core-circle-bold mb-10 pb-4 border-b border-core-circle-border-main",
-  grid: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8",
+  grid: "grid grid-cols-1 md:grid-cols-2 gap-8",
 
   // Active component card (linked)
   card: "group block p-8 rounded-core-circle-2xl border border-core-circle-border-main bg-white hover:border-core-circle-primary hover:shadow-core-circle-floating transition-all duration-300",

@@ -15,7 +15,7 @@ import {
 import ComponentPreview from '../../component-preview';
 
 export const OtpInputPlayground: React.FC = () => {
-  const [code, setCode] = useState('');
+  const [, setCode] = useState('');
   const [completedCode, setCompletedCode] = useState('');
   const [variant, setVariant] = useState<OtpVariant>('outline');
   const [size, setSize] = useState<OtpSize>('md');

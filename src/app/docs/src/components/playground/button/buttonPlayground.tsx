@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Button, Select, Checkbox, TextInput } from '@core-circle/ui';
-import { CodeIcon, CopyIcon, Mail, ArrowRight, Star, SettingsIcon, Rotate, Sparkles, Shield, Bell } from '@core-circle/icons';
+import { CodeIcon, CopyIcon, Mail, ArrowRight, Star, Sparkles, Shield, Bell } from '@core-circle/icons';
 import { highlightCode } from '../../../utils/highlight';
 import { buttonPlaygroundStyles as s } from './buttonPlayground.styles';
 import { DOC_TEXT } from '../../../constants/common-constants';

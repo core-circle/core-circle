@@ -55,6 +55,13 @@ export const Dialog: React.FC<DialogProps> = ({
     };
   }, [isOpen]);
 
+  const close = React.useCallback(() => {
+    if (controlledOpen === undefined) {
+      setUncontrolledOpen(false);
+    }
+    onOpenChange?.(false);
+  }, [controlledOpen, onOpenChange]);
+
   // Handle ESC key to close
   useEffect(() => {
     if (!isOpen || !closeOnEsc) return;
@@ -66,7 +73,7 @@ export const Dialog: React.FC<DialogProps> = ({
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, closeOnEsc]);
+  }, [isOpen, closeOnEsc, close]);
 
   const toggle = () => {
     const next = !isOpen;
@@ -74,13 +81,6 @@ export const Dialog: React.FC<DialogProps> = ({
       setUncontrolledOpen(next);
     }
     onOpenChange?.(next);
-  };
-
-  const close = () => {
-    if (controlledOpen === undefined) {
-      setUncontrolledOpen(false);
-    }
-    onOpenChange?.(false);
   };
 
   if (!mounted) return trigger ? <div onClick={toggle} className="inline-block">{trigger}</div> : null;

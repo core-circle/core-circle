@@ -5,6 +5,10 @@
 
 A high-performance, accessible, and themeable React component library built for modern web applications. Powered by **Tailwind CSS**, **Class Variance Authority (CVA)**, and the **CoreCircle Design System**.
 
+### 🔗 Live Demos & Storybook
+- 📖 [Core Circle UI | Premium Component Library](https://core-circle.github.io/core-circle/)
+- 🎨 [Atoms / Accordion - Bordered ⋅ Storybook](https://core-circle.github.io/core-circle/storybook/?path=/story/atoms-accordion--bordered)
+
 ---
 
 ## 1. Installation
@@ -59,6 +63,7 @@ module.exports = {
 | **Layout & Surfaces** | `Card`, `Accordion`, `Drawer`, `Dialog`, `Popover`, `Tooltip`, `ScrollArea`, `AspectRatio`, `Divider`, `Kbd` | Elevated surfaces, responsive side sheets, focus-trapped dialogs, and layout primitives. |
 | **Navigation** | `Breadcrumb`, `Tabs`, `Stepper` | Route breadcrumbs, animated segmented tabs, and multi-step progress indicators. |
 | **Identity & Typography** | `Avatar`, `AvatarGroup`, `Typography`, `Label`, `Image`, `RichText` | Clustered avatar stacks, typography hierarchies, and structured content display. |
+| **Generators & Tooling** | `ThemeGenerator`, `ProjectScaffolder` | Interactive, production-ready Tailwind v4 theme creation studio and in-browser boilerplate scaffolder. |
 
 ---
 
@@ -207,6 +212,59 @@ export const ToastTrigger = () => {
     </div>
   );
 };
+```
+
+### F. Theme Generator Studio
+
+Embed the complete Tailwind v4 theme creation studio:
+
+```tsx
+import { ThemeGenerator } from '@core-circle/ui';
+
+export const ThemeStudioPage = () => (
+  <div className="max-w-7xl mx-auto p-6">
+    <ThemeGenerator
+      initialConfig={{
+        productName: 'NovaPay',
+        prefix: 'nova',
+        primaryColor: '#6366f1',
+        neutralUndertone: 'slate',
+        radius: 'rounded',
+      }}
+      onThemeChange={(result) => {
+        console.log('Generated CSS:', result.fileName, result.css);
+      }}
+    />
+  </div>
+);
+```
+
+### G. Project Scaffolder & Boilerplate Generator
+
+Generate downloadable, production-ready Next.js 15 or React 19 boilerplates in-browser:
+
+```tsx
+import { ProjectScaffolder } from '@core-circle/ui';
+
+export const ScaffolderPage = () => (
+  <div className="max-w-7xl mx-auto p-6">
+    <ProjectScaffolder
+      initialConfig={{
+        projectName: 'saas-starter',
+        framework: 'nextjs',
+        brandName: 'CloudNova',
+        cssPrefix: 'nova',
+        primaryColor: '#6366f1',
+        neutralUndertone: 'slate',
+        radius: 'rounded',
+        packageManager: 'pnpm',
+      }}
+      onDownload={(config) => {
+        console.log('Project downloaded:', config.projectName);
+      }}
+    />
+  </div>
+);
 ```
 
 ---

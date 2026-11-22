@@ -16,6 +16,11 @@ export type TextInputVariant =
 
 export interface TextInputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size' | 'prefix'> {
   /**
+   * Additional CSS classes for the inner input wrapper element
+   */
+  wrapperClassName?: string;
+
+  /**
    * Visual style of the input
    * @default 'outline'
    */

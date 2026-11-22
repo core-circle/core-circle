@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "noPropertyAccessFromIndexSignature": true,
     "composite": false,
     "declaration": true,
@@ -17,6 +18,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es2022",
+    "resolveJsonModule": true,
     "customConditions": ["@core-circle/source"],
     "paths": {
       "@core-circle/ui": ["packages/ui/src/index.ts"],

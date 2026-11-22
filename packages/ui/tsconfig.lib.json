@@ -13,7 +13,13 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "emitDeclarationOnly": false,
-    "declaration": true
+    "declaration": true,
+    "composite": true,
+    "paths": {
+      "@core-circle/theme": ["../theme/index.ts"],
+      "@core-circle/theme/*": ["../theme/*"],
+      "@core-circle/icons": ["../icons/index.ts"]
+    }
   },
   "exclude": [
     "out-tsc",
@@ -36,10 +42,19 @@
     "**/*.stories.jsx",
     "**/*.stories.tsx"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"],
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "package.json"
+  ],
   "references": [
     {
       "path": "../icons/tsconfig.lib.json"
+    },
+    {
+      "path": "../theme/tsconfig.lib.json"
     }
   ]
 }
