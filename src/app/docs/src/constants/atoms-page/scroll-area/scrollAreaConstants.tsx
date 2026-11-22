@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { ScrollArea } from '@core-circle/ui';
 import { HomeIcon } from '@core-circle/icons';

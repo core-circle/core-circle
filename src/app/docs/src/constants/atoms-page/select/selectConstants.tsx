@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactNode } from 'react';
 import { Select, Badge } from '@core-circle/ui';
 import {

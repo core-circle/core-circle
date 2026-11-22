@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactNode } from 'react';
 import { Spinner, Badge } from '@core-circle/ui';
 import { Banknotes, Sparkles } from '@core-circle/icons';

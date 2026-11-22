@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactNode } from 'react';
 import { AvatarGroup, Badge } from '@core-circle/ui';
 import { PropItem } from '../../../interface/components/props-table.types';

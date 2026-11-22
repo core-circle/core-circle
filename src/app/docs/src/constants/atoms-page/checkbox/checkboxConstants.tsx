@@ -1,3 +1,5 @@
+'use client';
+
 import type { ReactNode } from 'react';
 import { Checkbox, Badge, Button } from '@core-circle/ui';
 import { PropItem } from '../../../interface/components/props-table.types';

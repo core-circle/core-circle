@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { Rating, Badge } from '@core-circle/ui';
 import { HomeIcon } from '@core-circle/icons';

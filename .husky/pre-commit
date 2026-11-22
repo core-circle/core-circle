@@ -1,1 +1,1 @@
-npx nx affected -t lint build
+npx nx affected -t lint build build-storybook

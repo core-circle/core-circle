@@ -1,3 +1,5 @@
+'use client';
+
 import { useState } from 'react';
 import type { ReactNode } from 'react';
 import { ColorPicker, Button, Badge } from '@core-circle/ui';
